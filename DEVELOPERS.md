@@ -18,3 +18,10 @@ Only app controls (buttons, key hints, header, menus) are exempt.
    in the edit bar ("N not editable"). `WU.auditEditable()` returns the offending elements. Ship only at 0.
 
 Edits, resets and Export / Import work for every registered list automatically.
+
+## Shared kit (`js/gamekit.js`)
+Use `WU.kit` so every game looks and behaves the same:
+`kit.screen({...})` registers the per-level "Screen text & timing" record, `kit.header`, `kit.hints`,
+`kit.frame` (sentence frames with drawn gaps), `kit.chip`, `kit.fill` (`{name}`, `{n}`...), `kit.fit` (shrink text to its box),
+`kit.deck` (no repeats until the list is used up), `kit.student` (a random student, avoiding some names), `kit.normWord` (word + a / an from the picture library).
+Every field listed in a screen record needs a default at every level; the automated check fails otherwise.

@@ -19,6 +19,14 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **The Bomb (1):** a category appears. Students pass an object around; the holder says one word (or a sentence at higher levels) and passes it on. **Space** lights the fuse. Nobody knows when it explodes. Whoever holds it spins the **challenge wheel** and answers a short speaking challenge from their seat.
 Keys: Space start / spin / next · N new category · P who starts · X explode now · T timer · R reset.
 
+**Slot Machine of Chaos (2):** three reels stop one by one: WHO (a student), TOPIC, HOW (a speaking style). From Intermediate a fourth reel adds a TWIST. The timer starts by itself; then two more students each ask the speaker one question.
+Keys: Space spin · Enter pause / go · Q questions now · H styles on / off · W twist on / off.
+
+**Mystery Tiles (3):** a picture hides under tiles. Students ask yes / no questions. Good question: open a tile (arrows + **Enter**, or tap it). Bad question: **X** (nothing opens). Anyone can guess any time: **G** reveals. With teams, teams take turns and the team that guessed gets a point for every tile still closed (press its number). Without teams the screen counts the tiles used.
+Keys: arrows + Enter open · X bad question · G reveal · N next picture.
+
+**Hot Seat (4):** one student sits with their back to the board. **P** picks a student (P again = someone else). **Space** starts the round; the class describes each word, the student guesses. **Space** = got it (a point), **P** = pass. The high score stays for the next student to beat (R resets it). With teams, press a team number to give it the points.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board.
 
 ## Change the content
@@ -27,6 +35,9 @@ Keys: Space start / spin / next · N new category · P who starts · X explode n
 - Everything students read can be changed: categories, example cards (word, a / an, picture, order), sentence frames
   (per level or per category), rules (or hide them), challenges, the words around the bomb and the wheel, fuse and timer lengths
   (**Screen text & timing**), and the timer / picker words (**App texts**).
+- Slot Machine: topics, first-lesson topics, speaking styles, twists, reel labels, talking time, reels on / off, question frame.
+  Mystery Tiles: pictures (library picture, your own upload, or a built-in scene), answer, a / an, end sentence, grid size.
+  Hot Seat: words, pictures, banned words, round length, all screen texts.
 - Edits are per level. **Undo my changes** (in the editor) brings back the original of one item.
 
 ## Your edits on every device (GitHub sync)

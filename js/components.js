@@ -13,7 +13,7 @@
     var size = opts.size || 520, total = (opts.seconds || 30) * 1000;
     var el = WU.frag('<div class="wut" style="width:' + size + 'px;height:' + size + 'px">' +
       '<div class="wut-in" style="left:' + Math.round(size * 0.085) + 'px;top:' + Math.round(size * 0.085) + 'px;right:' + Math.round(size * 0.085) + 'px;bottom:' + Math.round(size * 0.085) + 'px">' +
-      '<div class="wut-d" data-auto></div><div class="wut-l" style="font-size:' + Math.max(18, Math.round(size * 0.05)) + 'px"></div></div></div>');
+      '<div class="wut-d" data-auto></div><div class="wut-l" style="font-size:' + Math.max(40, Math.round(size * 0.06)) + 'px"></div></div></div>');
     var inner = el.firstChild, dEl = inner.firstChild, lEl = inner.lastChild;
     var left = null, running = false, done = false, end = 0, iv = null, lastSec = null, lastTxt = '';
 
@@ -180,6 +180,7 @@
     build(); place(); parent.appendChild(el);
     return {
       el: el,
+      add: function (i, d) { add(i, d); },
       show: function (v) { el.style.display = v ? '' : 'none'; },
       visible: function () { return el.style.display !== 'none'; },
       // Handles 1-4 / Shift+1-4. Returns true if the key was used.

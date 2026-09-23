@@ -224,7 +224,10 @@
   WU.icons.pencil = '<svg width="30" height="30" viewBox="0 0 28 28"><path d="M5 23l1.5-6L18 5.5l4.5 4.5L11 21.5z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path><path d="M15.5 8l4.5 4.5" stroke="currentColor" stroke-width="3"></path></svg>';
   function viewLists() {
     var g = WU.current;
-    return Object.keys(WU.lists).map(function (k) { return WU.lists[k]; }).filter(function (d) { return g === 'home' || d.game === g || d.game === 'app'; });
+    var all = Object.keys(WU.lists).map(function (k) { return WU.lists[k]; });
+    // Home: one button per game (the editor has a tab for each of its lists).
+    if (g === 'home') { var seen = {}; return all.filter(function (d) { if (seen[d.game]) return false; seen[d.game] = 1; return true; }); }
+    return all.filter(function (d) { return d.game === g || d.game === 'app'; });
   }
   function renderBar() {
     var st = document.getElementById('stage'), bar = document.getElementById('editbar');
@@ -234,7 +237,7 @@
     // Fixed part first (always visible): EDIT MODE, sync status, level, Done. The list buttons wrap onto more rows.
     bar.innerHTML = '<div class="eb-fixed"><span class="eb-chip">EDIT MODE</span><span class="eb-sync" data-sync></span><span class="eb-warn" style="display:none"></span>' +
       '<span class="eb-lv">' + L.name + ' ' + L.code + '</span><span class="sbtn dark" tabindex="0" data-open="done">Done (E)</span></div>' +
-      '<div class="eb-lists">' + (ls.length ? ls.map(function (d) { return '<span class="sbtn" tabindex="0" data-open="' + d.game + ':' + d.list + '">' + WU.esc((WU.current === 'home' ? d.gameTitle + ': ' : '') + d.label) + '</span>'; }).join('')
+      '<div class="eb-lists">' + (ls.length ? ls.map(function (d) { return '<span class="sbtn" tabindex="0" data-open="' + d.game + ':' + d.list + '">' + WU.esc(WU.current === 'home' ? (d.game === 'app' ? d.label : d.gameTitle) : d.label) + '</span>'; }).join('')
         : '<span class="eb-note">Nothing to edit on this screen.</span>') + '</div>';
     showSync();
     // Push the screen down by the bar's real height (it can be two or three rows).
@@ -392,6 +395,8 @@
         h += '<div class="ed-f" data-k="' + f.k + '"><span class="lab">' + WU.esc(f.label) + '</span>';
         if (f.type === 'text') h += '<input type="text" data-f="' + f.k + '" maxlength="' + (f.max || 80) + '" value="' + WU.esc(v || '') + '"' + (f.ph ? ' placeholder="' + WU.esc(typeof f.ph === 'function' ? f.ph(it, lvl) : f.ph) + '"' : '') + '>';
         else if (f.type === 'num') h += '<input type="number" data-f="' + f.k + '" min="' + (f.min || 0) + '" max="' + f.max + '" value="' + (v || '') + '" placeholder="' + (f.min ? f.min : 'none') + '">';
+        else if (f.type === 'select') h += '<select data-f="' + f.k + '">' + f.options.map(function (o) {
+          return '<option value="' + WU.esc(o[0]) + '"' + (String(v == null ? '' : v) === String(o[0]) ? ' selected' : '') + '>' + WU.esc(o[1]) + '</option>'; }).join('') + '</select>';
         else if (f.type === 'bool') h += '<span class="seg">' + [[1, f.on || 'Show'], [0, f.off || 'Hide']].map(function (o) {
           return '<div class="' + ((v ? 1 : 0) === o[0] ? 'on' : '') + '" tabindex="0" data-bool="' + f.k + '" data-v="' + o[0] + '">' + o[1] + '</div>'; }).join('') + '</span>';
         else if (f.type === 'pic') h += '<span class="ed-pics">' + thumb(v) + '<span class="sbtn" tabindex="0" data-pick="' + f.k + '">Choose picture</span>' +
@@ -452,6 +457,7 @@
       el.querySelectorAll('[data-restore]').forEach(function (b) { b.onclick = function () { WU.edits.restore(game, list, lvl, b.getAttribute('data-restore')); render(); }; });
       el.querySelectorAll('[data-f]').forEach(function (inp) {
         var f = inp.getAttribute('data-f');
+        if (inp.tagName === 'SELECT') { inp.onchange = function () { setF(f, inp.value); }; return; }
         inp.oninput = function () {
           if (inp.type === 'number') {
             var n = +inp.value, fd = fieldDef(f);

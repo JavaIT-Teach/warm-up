@@ -227,7 +227,7 @@
       h += '<div class="wheel" data-b="again" style="background:conic-gradient(' + grad + ');transform:rotate(' + st.rot + 'deg)">';
       for (var i = 0; i < 8; i++) h += '<div class="wline" style="transform:rotate(' + (i * 45) + 'deg)"><div></div></div>';
       pens.forEach(function (p, i) {
-        h += '<div class="wseg" style="transform:rotate(' + (i * 45 + 22.5) + 'deg)"><div data-edit="bomb:challenges:' + p.id + ':short"' + (p.short.length > 8 ? ' style="font-size:32px"' : '') + '>' + WU.esc(p.short) + (p.pic ? WU.pic(p.pic) : '') + '</div></div>';
+        h += '<div class="wseg" style="transform:rotate(' + (i * 45 + 22.5) + 'deg)"><div data-edit="bomb:challenges:' + p.id + ':short"' + (p.short.length > 8 ? ' style="letter-spacing:-0.05em"' : '') + '>' + WU.esc(p.short) + (p.pic ? WU.pic(p.pic) : '') + '</div></div>';
       });
       h += '</div><div class="hub"' + ea('hub') + '>' + WU.esc(S.hub) + '</div><div class="ptr1"></div><div class="ptr2"></div>';
     }
