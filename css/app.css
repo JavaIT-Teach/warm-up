@@ -270,7 +270,7 @@ button { font: inherit; color: inherit; }
 
 /* ---------- edit mode ---------- */
 .ibtn.on { background: var(--pink); }
-#editbar { position: absolute; left: 0; right: 0; top: 0; z-index: 40; display: flex; align-items: center; gap: 12px; padding: 0 20px; height: 64px; background: var(--ink); color: #fff; box-shadow: 0 6px 0 var(--pink); }
+#editbar { position: absolute; left: 0; right: 0; top: 0; z-index: 40; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; padding: 10px 20px; background: var(--ink); color: #fff; box-shadow: 0 6px 0 var(--pink); }
 #editbar .sbtn { color: var(--ink); padding: 6px 14px; font-size: 20px; box-shadow: 3px 3px 0 var(--pink); }
 #editbar .sbtn.dark { background: var(--pink); color: var(--ink); box-shadow: none; }
 .eb-chip { background: var(--pink); color: var(--ink); font-weight: 800; font-size: 22px; letter-spacing: .08em; padding: 4px 12px; }
@@ -278,7 +278,7 @@ button { font: inherit; color: inherit; }
 .eb-note { font-size: 18px; font-weight: 600; color: #ddd; }
 body.editing #screen [data-edit] { outline: 5px dashed var(--pink); outline-offset: 6px; cursor: pointer; }
 body.editing #screen [data-edit]:hover, body.editing #screen [data-edit]:focus { outline: 6px solid var(--pink); background-color: rgba(255, 79, 195, .12); }
-body.editing .gh { top: 76px; }
+body.editing .gh { top: calc(var(--ebh, 64px) + 12px); }
 
 /* editor panel */
 .editor { width: 1800px; height: 1000px; padding: 26px 34px; gap: 16px; }
@@ -323,7 +323,7 @@ img.pic { object-fit: contain; }
 /* settings: move data between devices */
 .settings .move { border: 4px solid var(--ink); background: var(--yellow); box-shadow: 6px 6px 0 var(--ink); padding: 14px 18px; display: flex; flex-direction: column; gap: 10px; }
 .settings .move .h2 { font-family: var(--display); font-size: 34px; line-height: 1; }
-body.editing .home { padding-top: 84px; }
+body.editing .home { padding-top: calc(var(--ebh, 64px) + 20px); }
 
 .bomb .res { max-width: 810px; }
 .bomb .res .frame { display: block; font-size: 44px; line-height: 1.25; box-shadow: 5px 5px 0 var(--ink); }
@@ -360,3 +360,6 @@ body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-off
 .editor.ro [data-clear], .editor.ro [data-bool], .editor.ro [data-exa], .editor.ro [data-exmv], .editor.ro [data-exdel], .editor.ro [data-expick], .editor.ro [data-exup] { display: none; }
 
 .eb-chip, .eb-lv, #editbar .sbtn { white-space: nowrap; }
+
+#editbar .eb-fixed { display: flex; align-items: center; gap: 12px; flex: none; }
+#editbar .eb-lists { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 12px; flex: 1 1 400px; min-width: 0; }

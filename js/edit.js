@@ -228,14 +228,17 @@
   }
   function renderBar() {
     var st = document.getElementById('stage'), bar = document.getElementById('editbar');
-    if (!WU.editing) { if (bar) bar.remove(); return; }
+    if (!WU.editing) { if (bar) bar.remove(); st.style.removeProperty('--ebh'); return; }
     if (!bar) { bar = document.createElement('div'); bar.id = 'editbar'; st.appendChild(bar); }
     var ls = viewLists(), L = WU.LEVELS[WU.state.level];
-    bar.innerHTML = '<span class="eb-chip">EDIT MODE</span><span class="eb-lv">' + L.name + ' ' + L.code + '</span>' +
-      (ls.length ? ls.map(function (d) { return '<span class="sbtn" tabindex="0" data-open="' + d.game + ':' + d.list + '">' + WU.esc((WU.current === 'home' ? d.gameTitle + ': ' : '') + d.label) + '</span>'; }).join('')
-        : '<span class="eb-note">Nothing to edit on this screen.</span>') +
-      '<span class="eb-note"></span><span style="flex:1"></span><span class="eb-sync" data-sync></span><span class="sbtn dark" tabindex="0" data-open="done">Done (E)</span>';
+    // Fixed part first (always visible): EDIT MODE, sync status, level, Done. The list buttons wrap onto more rows.
+    bar.innerHTML = '<div class="eb-fixed"><span class="eb-chip">EDIT MODE</span><span class="eb-sync" data-sync></span><span class="eb-warn" style="display:none"></span>' +
+      '<span class="eb-lv">' + L.name + ' ' + L.code + '</span><span class="sbtn dark" tabindex="0" data-open="done">Done (E)</span></div>' +
+      '<div class="eb-lists">' + (ls.length ? ls.map(function (d) { return '<span class="sbtn" tabindex="0" data-open="' + d.game + ':' + d.list + '">' + WU.esc((WU.current === 'home' ? d.gameTitle + ': ' : '') + d.label) + '</span>'; }).join('')
+        : '<span class="eb-note">Nothing to edit on this screen.</span>') + '</div>';
     showSync();
+    // Push the screen down by the bar's real height (it can be two or three rows).
+    st.style.setProperty('--ebh', bar.offsetHeight + 'px');
     bar.querySelectorAll('[data-open]').forEach(function (b) {
       b.onclick = function () {
         var v = b.getAttribute('data-open');
@@ -298,7 +301,7 @@
       bad.forEach(function (el) { el.classList.add('not-editable'); });
       if (bad.length) console.error('Warm Up: ' + bad.length + ' student-facing item(s) cannot be edited:', bad);
       var w = bar && bar.querySelector('.eb-warn');
-      if (bar && !w) { w = document.createElement('span'); w.className = 'eb-warn'; bar.insertBefore(w, bar.querySelector('.eb-note')); }
+
       if (w) { w.textContent = bad.length ? bad.length + ' not editable (red)' : ''; w.style.display = bad.length ? '' : 'none'; }
     }, 150);
   }
