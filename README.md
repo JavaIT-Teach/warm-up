@@ -27,13 +27,19 @@ Keys: Space start / spin / next · N new category · P who starts · X explode n
 - Everything students read can be changed: categories, example cards (word, a / an, picture, order), sentence frames
   (per level or per category), rules (or hide them), challenges, the words around the bomb and the wheel, fuse and timer lengths
   (**Screen text & timing**), and the timer / picker words (**App texts**).
-- Edits are saved per level on this device. **Undo my changes**, **Reset this list**, or **Settings → Undo my edits** bring back the originals.
+- Edits are per level. **Undo my changes** (in the editor) brings back the original of one item.
 
-## Move to another device
-**Settings → Move to another device → Export my edits** saves one file (edits, pictures, classes, teams).
-On the other device: **Settings → Import a file**. Importing replaces the edits on that device.
+## Your edits on every device (GitHub sync)
+- Edits and uploaded pictures save to this GitHub repo automatically (folder `data/`), a few seconds after each change.
+- Every device loads the latest edits when the app opens. No setup needed to view and play.
+- To **save** edits from a device, paste your GitHub token once in **Settings → Save edits to GitHub** on that device.
+  The steps are written there. Without the token a device is view only.
+- In Edit mode the top bar shows **Saved / Saving... / Offline: will save later**. Offline edits wait on the device and save when the internet is back.
+- If two devices change the same thing at the same time, both changes are kept where possible; if they changed the very same field, the last one saved wins and the other value is kept in a conflict log (in the backup file).
+- The repo is public, so your edits and uploaded pictures are public too. Do not upload photos of students.
 
-## Good to know
-- Your edits live in the browser you use. Clearing browser data deletes them. Export a copy from time to time.
+## Backup and reset
+- **Settings → Backup file → Export / Import**: a spare copy only. Import replaces the edits on that device, then on GitHub.
+- **Settings → Reset all data on this device** (type RESET): clears this device only, including its token. Your edits on GitHub stay and load again.
 - Sound needs one click or key press first (browser rule). **M** mutes.
 - Settings → Motion → **Calm** turns off shaking and flashing.

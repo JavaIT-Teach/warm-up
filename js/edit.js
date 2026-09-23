@@ -111,7 +111,12 @@
     });
     data._v = EV; return changed;
   }
-  function save() { WU.store.set('edits', E); WU.emit('content'); }
+  function save() { WU.store.set('edits', E); WU.emit('content'); if (WU.sync) WU.sync.changed(); }
+  // Devices without a sync token can view and play, but not change content.
+  function canEdit() {
+    if (!WU.sync || WU.sync.canEdit()) return true;
+    WU.toast('View only. Add your GitHub token in Settings to save edits.'); return false;
+  }
   function k3(game, list, level) { var d = WU.lists[game + ':' + list]; return game + ':' + list + ':' + (d && d.global ? 0 : level); }
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
@@ -142,27 +147,27 @@
   };
   WU.edits = {
     set: function (game, list, level, id, field, value) {
+      if (!canEdit()) return;
       var k = k3(game, list, level), e = edits()[k] = edits()[k] || {};
       if (builtIn(game, list, level, id)) { e.mod = e.mod || {}; e.mod[id] = e.mod[id] || {}; e.mod[id][field] = value; }
       else (e.add || []).forEach(function (a) { if (a.id === id) a[field] = value; });
       save();
     },
     add: function (game, list, level, item) {
+      if (!canEdit()) return null;
       var k = k3(game, list, level), e = edits()[k] = edits()[k] || {};
       item.id = 'n' + Date.now().toString(36) + Math.random().toString(36).slice(2, 5);
       (e.add = e.add || []).push(item); save(); return item.id;
     },
     remove: function (game, list, level, id) {
+      if (!canEdit()) return;
       var k = k3(game, list, level), e = edits()[k] = edits()[k] || {};
       if (builtIn(game, list, level, id)) { e.del = e.del || []; if (e.del.indexOf(id) < 0) e.del.push(id); if (e.mod) delete e.mod[id]; }
       else e.add = (e.add || []).filter(function (a) { return a.id !== id; });
       save();
     },
-    restore: function (game, list, level, id) { var e = edits()[k3(game, list, level)]; if (e && e.del) e.del = e.del.filter(function (x) { return x !== id; }); save(); },
-    resetItem: function (game, list, level, id) { var e = edits()[k3(game, list, level)]; if (e && e.mod) delete e.mod[id]; save(); },
-    resetList: function (game, list, level) { delete edits()[k3(game, list, level)]; save(); },
-    resetGame: function (game) { Object.keys(edits()).forEach(function (k) { if (k.indexOf(game + ':') === 0) delete E[k]; }); save(); },
-    resetAll: function () { E = { _v: EV }; WU.images.clear(); save(); },
+    restore: function (game, list, level, id) { if (!canEdit()) return; var e = edits()[k3(game, list, level)]; if (e && e.del) e.del = e.del.filter(function (x) { return x !== id; }); save(); },
+    resetItem: function (game, list, level, id) { if (!canEdit()) return; var e = edits()[k3(game, list, level)]; if (e && e.mod) delete e.mod[id]; save(); },
     count: function (prefix) {
       var n = 0;
       Object.keys(edits()).filter(isKey).forEach(function (k) {
@@ -171,14 +176,17 @@
       });
       return n;
     },
-    reload: function () { E = null; }
+    reload: function () { E = null; },
+    // Used by sync: the whole edits object, and replacing it with the merged version from GitHub.
+    raw: function () { return JSON.parse(JSON.stringify(edits())); },
+    replace: function (obj) { E = obj || {}; migrate(E); WU.store.set('edits', E); WU.emit('content'); }
   };
 
   /* ---------- export / import (one file for another device) ---------- */
   WU.exportData = function () {
     var s = WU.state, data = {
       app: 'warm-up', version: 2, exported: new Date().toISOString(),
-      edits: edits(), images: WU.images.all(),
+      edits: edits(), images: WU.images.all(), conflicts: WU.sync ? WU.sync.conflicts() : [],
       classes: s.classes, students: s.students, teams: s.teams, teamNames: s.teamNames, teamColors: s.teamColors
     };
     var d = new Date(), name = 'warm-up-edits-' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + '.json';
@@ -196,7 +204,7 @@
         var d; try { d = JSON.parse(fr.result); } catch (e) { d = null; }
         if (!d || d.app !== 'warm-up') { WU.toast('That is not a Warm Up file.'); return; }
         // Files from older versions point at positions; convert them to permanent ids.
-        E = d.edits || {}; migrate(E); WU.store.set('edits', E);
+        E = d.edits || {}; migrate(E); WU.store.set('edits', E); if (WU.sync) WU.sync.changed();
         WU.images.clear(); Object.keys(d.images || {}).forEach(function (id) { WU.images.put(id, d.images[id]); });
         var patch = {};
         ['classes', 'students', 'teams', 'teamNames', 'teamColors'].forEach(function (k) { if (d[k] !== undefined) patch[k] = d[k]; });
@@ -226,7 +234,8 @@
     bar.innerHTML = '<span class="eb-chip">EDIT MODE</span><span class="eb-lv">' + L.name + ' ' + L.code + '</span>' +
       (ls.length ? ls.map(function (d) { return '<span class="sbtn" tabindex="0" data-open="' + d.game + ':' + d.list + '">' + WU.esc((WU.current === 'home' ? d.gameTitle + ': ' : '') + d.label) + '</span>'; }).join('')
         : '<span class="eb-note">Nothing to edit on this screen.</span>') +
-      '<span class="eb-note">Click a pink outline, or Tab + Enter.</span><span style="flex:1"></span><span class="sbtn dark" tabindex="0" data-open="done">Done (E)</span>';
+      '<span class="eb-note"></span><span style="flex:1"></span><span class="eb-sync" data-sync></span><span class="sbtn dark" tabindex="0" data-open="done">Done (E)</span>';
+    showSync();
     bar.querySelectorAll('[data-open]').forEach(function (b) {
       b.onclick = function () {
         var v = b.getAttribute('data-open');
@@ -235,6 +244,19 @@
       };
     });
   }
+  // Small sync status, visible only in Edit mode.
+  var SYNC_TEXT = { idle: '', loading: 'Loading...', pending: 'Not saved yet', saving: 'Saving...', saved: 'Saved', local: 'Saved on this device',
+    offline: 'Offline: will save later', token: 'Token problem: not saved', error: 'Not saved: retrying', viewonly: 'View only (no token)' };
+  function showSync() {
+    var el = document.querySelector('#editbar [data-sync]'); if (!el || !WU.sync) return;
+    var s = WU.sync.status(), dirty = WU.store.get('sync-dirty', false);
+    if (s === 'viewonly' || (s === 'idle' && !WU.sync.hasToken())) s = 'viewonly';
+    else if (s === 'idle') s = dirty ? 'pending' : 'saved';
+    el.textContent = SYNC_TEXT[s] || s; el.className = 'eb-sync s-' + s;
+    el.title = WU.sync.detail() || '';
+  }
+  WU.on('sync', showSync);
+
   function markEditables() {
     document.querySelectorAll('#screen [data-edit], .overlay.student [data-edit]').forEach(function (el) {
       if (WU.editing) { el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); }
@@ -316,9 +338,11 @@
       var its = items(), dels = WU.listDeleted(game, list, lvl);
       if (!sel || !cur()) sel = its.length ? its[0].id : null;
       var others = Object.keys(WU.lists).map(function (k) { return WU.lists[k]; }).filter(function (d) { return d.game === game; });
-      var h = '<div class="panel editor"><div class="ed-top"><span class="eb-chip">EDIT</span><span class="ed-h">' + WU.esc(def.gameTitle) + '</span>' +
+      var ro = WU.sync && !WU.sync.canEdit();
+      var h = '<div class="panel editor' + (ro ? ' ro' : '') + '"><div class="ed-top"><span class="eb-chip">EDIT</span><span class="ed-h">' + WU.esc(def.gameTitle) + '</span>' +
         others.map(function (d) { return '<span class="sbtn' + (d.list === list ? ' dark' : '') + '" tabindex="0" data-list="' + d.list + '">' + WU.esc(d.label) + '</span>'; }).join('') +
         '<span style="flex:1"></span><span class="sbtn dark" tabindex="0" data-a="close">Done (Esc)</span></div>' +
+        (ro ? '<div class="ed-ro">View only on this device. To save edits, paste your GitHub token in Settings (S).</div>' : '') +
         (def.global ? '<div class="note">These texts are the same at every level.</div>'
           : '<div class="ed-lv">' + WU.LEVELS.map(function (L, i) { return '<span class="pill sm' + (i === lvl ? ' on' : '') + '" tabindex="0" data-lv="' + i + '"><b>' + L.name + '</b></span>'; }).join('') + '</div>') +
         '<div class="ed-body"><div class="ed-left"><div class="ed-list">' +
@@ -328,9 +352,10 @@
         }).join('') +
         dels.map(function (it) { return '<div class="ed-row del"><span class="ed-t">' + WU.esc(label(it)) + '</span><span class="sbtn" tabindex="0" data-restore="' + it.id + '">Restore</span></div>'; }).join('') +
         '</div><div class="ed-acts">' + (def.single ? '' : '<span class="sbtn dark" tabindex="0" data-a="add">+ Add new (N)</span>') +
-        '<span class="sbtn" tabindex="0" data-a="resetlist">Reset this list' + (def.global ? '' : ' (' + WU.LEVELS[lvl].code + ')') + '</span></div></div>' +
+        '</div></div>' +
         '<div class="ed-right">' + (mode === 'pick' ? pickerHTML() : formHTML()) + '</div></div></div>';
       el.innerHTML = h; wire();
+      if (ro) el.querySelectorAll('.ed-right input, .ed-right select').forEach(function (i) { i.disabled = true; });
     }
 
     function examplesHTML(f, it) {
@@ -500,17 +525,14 @@
           if (a === 'close') WU.closeOverlay();
           else if (a === 'add') addItem();
           else if (a === 'del') delItem();
-          else if (a === 'resetitem') { WU.edits.resetItem(game, list, lvl, sel); render(); }
-          else if (a === 'resetlist') {
-            if (b.getAttribute('data-sure')) { WU.edits.resetList(game, list, lvl); sel = null; render(); WU.toast('List reset to the original.'); }
-            else { b.setAttribute('data-sure', '1'); b.textContent = 'Press again to reset'; }
-          } else if (a === 'pickdone') { var p = pick; mode = 'form'; render(); focusBack(p); }
+          else if (a === 'resetitem') { WU.edits.resetItem(game, list, lvl, sel); render(); } else if (a === 'pickdone') { var p = pick; mode = 'form'; render(); focusBack(p); }
         };
       });
     }
     function addItem() {
       if (def.single) return;
-      sel = WU.edits.add(game, list, lvl, def.blank(lvl)); mode = 'form'; render();
+      var id = WU.edits.add(game, list, lvl, def.blank(lvl)); if (!id) return;
+      sel = id; mode = 'form'; render();
       var f = el.querySelector('.ed-form input[type=text]'); if (f) f.focus();
     }
     function delItem() {

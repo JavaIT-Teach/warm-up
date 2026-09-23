@@ -342,3 +342,21 @@ body.editing .home { padding-top: 84px; }
 .editor .ed-form { padding-right: 10px; }
 .eb-warn { background: #ff2020; color: #fff; font-weight: 800; font-size: 20px; padding: 4px 10px; }
 body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-offset: 4px; }
+
+/* sync */
+.settings .c.scroll { overflow: auto; padding-right: 10px; }
+.settings .steps { margin: 0; padding-left: 28px; font-size: 20px; font-weight: 600; line-height: 1.35; }
+.settings .steps li { margin: 2px 0; }
+.settings input[type=password] { font: 700 22px var(--body); border: 3px solid var(--ink); background: #fff; padding: 8px 12px; user-select: text; -webkit-user-select: text; }
+.settings .sync-line { font-weight: 800; }
+.settings .resetbox { border: 4px solid var(--ink); background: #ffd2c2; padding: 12px 16px; display: flex; flex-direction: column; gap: 10px; }
+.eb-sync { font-weight: 800; font-size: 18px; padding: 4px 10px; background: #333; color: #fff; white-space: nowrap; }
+.eb-sync.s-saved { background: var(--lime); color: var(--ink); }
+.eb-sync.s-saving, .eb-sync.s-pending, .eb-sync.s-loading { background: var(--yellow); color: var(--ink); }
+.eb-sync.s-offline, .eb-sync.s-error { background: var(--orange); color: var(--ink); }
+.eb-sync.s-token { background: #ff2020; }
+.editor .ed-ro { background: var(--yellow); border: 3px solid var(--ink); padding: 8px 14px; font-weight: 800; font-size: 22px; }
+.editor.ro [data-a="add"], .editor.ro [data-a="del"], .editor.ro [data-a="resetitem"], .editor.ro [data-restore], .editor.ro [data-pick], .editor.ro [data-up],
+.editor.ro [data-clear], .editor.ro [data-bool], .editor.ro [data-exa], .editor.ro [data-exmv], .editor.ro [data-exdel], .editor.ro [data-expick], .editor.ro [data-exup] { display: none; }
+
+.eb-chip, .eb-lv, #editbar .sbtn { white-space: nowrap; }

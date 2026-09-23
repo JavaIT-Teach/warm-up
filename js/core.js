@@ -307,6 +307,6 @@
     WU.on('change', function () { WU.refreshMuteIcons(); });
     window.addEventListener('hashchange', WU.route);
     // Uploaded images live in IndexedDB; load them before the first screen draws.
-    (WU.images ? WU.images.load() : Promise.resolve()).then(WU.route);
+    (WU.images ? WU.images.load() : Promise.resolve()).then(function () { WU.route(); WU.emit('booted'); });
   };
 })();
