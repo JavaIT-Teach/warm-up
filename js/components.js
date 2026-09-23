@@ -5,11 +5,15 @@
 
   /* ---------- Timer: big ring, colour shift in the last 10 seconds, sound at zero ----------
      WU.Timer({ seconds, size, onDone }) -> { el, start(), toggle(), stop(), destroy() }. Tap the ring to start/pause. */
+  // Shared texts (editable in Edit mode: App texts).
+  function T(k) { return WU.text ? WU.text('app', 'texts', k, 0) : k; }
+  var EA = function (k) { return ' data-edit="app:texts:app-texts:' + k + '"'; };
+
   WU.Timer = function (opts) {
     var size = opts.size || 520, total = (opts.seconds || 30) * 1000;
     var el = WU.frag('<div class="wut" style="width:' + size + 'px;height:' + size + 'px">' +
       '<div class="wut-in" style="left:' + Math.round(size * 0.085) + 'px;top:' + Math.round(size * 0.085) + 'px;right:' + Math.round(size * 0.085) + 'px;bottom:' + Math.round(size * 0.085) + 'px">' +
-      '<div class="wut-d"></div><div class="wut-l" style="font-size:' + Math.max(18, Math.round(size * 0.05)) + 'px"></div></div></div>');
+      '<div class="wut-d" data-auto></div><div class="wut-l" style="font-size:' + Math.max(18, Math.round(size * 0.05)) + 'px"></div></div></div>');
     var inner = el.firstChild, dEl = inner.firstChild, lEl = inner.lastChild;
     var left = null, running = false, done = false, end = 0, iv = null, lastSec = null, lastTxt = '';
 
@@ -20,7 +24,7 @@
       else if (!idle && s <= 3) { inn = '#ff4fc3'; ring = '#ffe600'; shake = running; }
       else if (!idle && s <= 5) { inn = '#ff5a1f'; ring = '#ffe600'; }
       else if (!idle && s <= 10) { inn = '#ffe600'; ring = '#ff5a1f'; }
-      var txt = done ? 'TIME!' : s >= 60 ? Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2) : String(s);
+      var txt = done ? T('timerDone') : s >= 60 ? Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2) : String(s);
       var fs = done ? size * 0.21 : txt.length >= 4 ? size * 0.27 : txt.length === 3 ? size * 0.3 : size * 0.42;
       var deg = done ? 0 : (l / total * 360).toFixed(1);
       el.style.background = 'conic-gradient(' + ring + ' ' + deg + 'deg, #0d0d0d 0)';
@@ -29,11 +33,14 @@
       dEl.style.color = ink; dEl.style.fontSize = fs + 'px';
       if (txt !== lastTxt) {
         dEl.textContent = txt; lastTxt = txt;
+        if (done) dEl.setAttribute('data-edit', 'app:texts:app-texts:timerDone'); else dEl.removeAttribute('data-edit');
         if (done) WU.restartAnim(dEl, 'slam');
         else if (!idle && running && s <= 10) WU.restartAnim(dEl, 'thump');
       }
       lEl.style.color = ink;
-      lEl.textContent = done ? '' : idle ? 'TAP TO START' : !running ? 'PAUSED' : s >= 60 ? 'LEFT' : 'SECONDS';
+      var lk = done ? '' : idle ? 'timerStart' : !running ? 'timerPaused' : s >= 60 ? 'timerLeft' : 'timerSeconds';
+      lEl.textContent = lk ? T(lk) : '';
+      if (lk) lEl.setAttribute('data-edit', 'app:texts:app-texts:' + lk); else lEl.removeAttribute('data-edit');
     }
     function step() {
       left = Math.max(0, end - Date.now());
@@ -68,9 +75,12 @@
   };
 
   /* ---------- Picker: names shuffle, then one slams onto the screen ----------
-     WU.pickStudent({ title, sub, onPicked }) opens an overlay. Space / tap picks again. */
+     WU.pickStudent({ title, landed, sub, edit: { title, landed, sub }, onPicked }) opens an overlay. Space / tap picks again.
+     Texts default to App texts; a game passes its own texts plus their data-edit keys in "edit". */
   WU.pickStudent = function (o) {
     o = o || {};
+    var ek = o.edit || {}, title = o.title || T('pickerTitle'), landed = o.landed || T('pickerLanded');
+    var kTitle = ek.title || 'app:texts:app-texts:pickerTitle', kLanded = ek.landed || 'app:texts:app-texts:pickerLanded';
     var to = null, phase = 'idle', n = 0;
     function run(root) {
       if (phase === 'shuffling') return;
@@ -78,20 +88,20 @@
       var delays = [], t = 0, d = 45; while (t < 1900) { delays.push(d); t += d; d *= 1.09; }
       if (WU.isCalm()) delays = delays.slice(-4);
       var i = 0, cur = '';
-      phase = 'shuffling'; chip.textContent = o.title || "WHO'S NEXT?"; chip.style.background = '#ffe600';
+      phase = 'shuffling'; chip.textContent = title; chip.setAttribute('data-edit', kTitle); chip.style.background = '#ffe600';
       slab.style.background = '#ffe600'; slab.classList.remove('jolt');
       var next = function () {
         if (i >= delays.length) {
           phase = 'landed'; n++;
-          chip.textContent = o.landed || "YOU'RE UP!"; chip.style.background = '#c6ff00';
+          chip.textContent = landed; chip.setAttribute('data-edit', kLanded); chip.style.background = '#c6ff00';
           slab.style.background = '#ff4fc3';
-          slab.innerHTML = (WU.isCalm() ? '' : '<div class="pk-burst"></div>') + '<div class="pk-name slam" style="font-size:' + fsz(pick) + 'px">' + WU.esc(pick) + '</div>';
+          slab.innerHTML = (WU.isCalm() ? '' : '<div class="pk-burst"></div>') + '<div class="pk-name slam" data-auto style="font-size:' + fsz(pick) + 'px">' + WU.esc(pick) + '</div>';
           if (!WU.isCalm()) slab.classList.add('jolt');
           WU.sound.slam(); if (o.onPicked) o.onPicked(pick);
           return;
         }
         var r; do { r = WU.pick(names); } while (names.length > 1 && r === cur); cur = r;
-        slab.innerHTML = '<div class="pk-name" style="font-size:' + Math.round(fsz(r) * 0.82) + 'px;opacity:.85">' + WU.esc(r) + '</div>';
+        slab.innerHTML = '<div class="pk-name" data-auto style="font-size:' + Math.round(fsz(r) * 0.82) + 'px;opacity:.85">' + WU.esc(r) + '</div>';
         WU.sound.clack();
         to = setTimeout(next, delays[i++]);
       };
@@ -99,11 +109,12 @@
     }
     function fsz(name) { var L = name.length; return L <= 6 ? 210 : L <= 9 ? 170 : L <= 12 ? 130 : 104; }
     WU.openOverlay({
-      cls: 'picker',
+      cls: 'picker student',
       render: function (el) {
-        el.innerHTML = '<div class="panel picker-panel"><div class="chip-label">' + WU.esc(o.title || "WHO'S NEXT?") + '</div>' +
-          '<div class="pk-slab"><div class="pk-name" style="font-size:80px">Tap to pick</div></div>' +
-          '<div class="pk-sub">' + WU.esc(o.sub || 'SPACE = pick again, Esc = close') + '</div></div>';
+        el.innerHTML = '<div class="panel picker-panel"><div class="chip-label" data-edit="' + kTitle + '">' + WU.esc(title) + '</div>' +
+          '<div class="pk-slab"><div class="pk-name"' + EA('pickerTap') + ' style="font-size:80px">' + WU.esc(T('pickerTap')) + '</div></div>' +
+          (o.sub ? '<div class="pk-sub" data-edit="' + (ek.sub || '') + '">' + WU.esc(o.sub) + '</div>' : '') +
+          '<div class="pk-sub" data-ctrl style="font-size:24px;font-weight:700">SPACE = pick again, Esc = close</div></div>';
         el.querySelector('.pk-slab').onclick = function () { run(el); };
         run(el);
       },
@@ -124,9 +135,9 @@
     var el = document.createElement('div'); el.className = 'sb' + (compact ? ' compact' : '');
     function color(i) { return WU.TEAM_COLORS[WU.state.teamColors[i]] || WU.TEAM_COLORS[i]; }
     function build() {
-      var h = '<div class="sb-grip"><div class="v">SCORES</div><div><div class="b" data-sb="size">' + (compact ? '+' : '&ndash;') + '</div><div class="b" data-sb="zero">0</div></div></div>';
+      var h = '<div class="sb-grip" data-ctrl><div class="v"' + EA('scoresLabel') + '>' + WU.esc(T('scoresLabel')) + '</div><div><div class="b" data-sb="size">' + (compact ? '+' : '&ndash;') + '</div><div class="b" data-sb="zero">0</div></div></div>';
       for (var i = 0; i < teams; i++) {
-        h += '<div class="sb-team" style="background:' + color(i) + '"><div class="sb-name">' + WU.esc(WU.state.teamNames[i] || 'TEAM ' + (i + 1)) + '</div>' +
+        h += '<div class="sb-team" data-auto style="background:' + color(i) + '"><div class="sb-name">' + WU.esc(WU.state.teamNames[i] || 'TEAM ' + (i + 1)) + '</div>' +
           '<div class="sb-score" data-i="' + i + '">' + scores[i] + '</div>' +
           '<div class="sb-pm"><div data-sb="m" data-i="' + i + '" style="color:' + color(i) + '">&minus;</div><div data-sb="p" data-i="' + i + '" style="color:' + color(i) + '">+</div></div></div>';
       }

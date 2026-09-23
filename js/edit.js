@@ -112,7 +112,7 @@
     data._v = EV; return changed;
   }
   function save() { WU.store.set('edits', E); WU.emit('content'); }
-  function k3(game, list, level) { return game + ':' + list + ':' + level; }
+  function k3(game, list, level) { var d = WU.lists[game + ':' + list]; return game + ':' + list + ':' + (d && d.global ? 0 : level); }
   function clone(o) { return JSON.parse(JSON.stringify(o)); }
 
   // The list a game should use: defaults, minus deleted, with changes, plus added items.
@@ -127,6 +127,11 @@
     });
     (e.add || []).forEach(function (a) { var it = clone(a); it.custom = true; out.push(it); });
     return out;
+  };
+  // One field of a single-record list (screen texts, app texts), with edits applied.
+  WU.text = function (game, list, key, level) {
+    var it = WU.list(game, list, level == null ? WU.state.level : level)[0];
+    return it ? it[key] : '';
   };
   WU.listDeleted = function (game, list, level) {
     var def = WU.lists[game + ':' + list], e = edits()[k3(game, list, level)] || {}, raws = def.defaults(level) || [];
@@ -211,7 +216,7 @@
   WU.icons.pencil = '<svg width="30" height="30" viewBox="0 0 28 28"><path d="M5 23l1.5-6L18 5.5l4.5 4.5L11 21.5z" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round"></path><path d="M15.5 8l4.5 4.5" stroke="currentColor" stroke-width="3"></path></svg>';
   function viewLists() {
     var g = WU.current;
-    return Object.keys(WU.lists).map(function (k) { return WU.lists[k]; }).filter(function (d) { return g === 'home' || d.game === g; });
+    return Object.keys(WU.lists).map(function (k) { return WU.lists[k]; }).filter(function (d) { return g === 'home' || d.game === g || d.game === 'app'; });
   }
   function renderBar() {
     var st = document.getElementById('stage'), bar = document.getElementById('editbar');
@@ -231,32 +236,81 @@
     });
   }
   function markEditables() {
-    document.querySelectorAll('#screen [data-edit]').forEach(function (el) {
+    document.querySelectorAll('#screen [data-edit], .overlay.student [data-edit]').forEach(function (el) {
       if (WU.editing) { el.setAttribute('tabindex', '0'); el.setAttribute('role', 'button'); }
       else { el.removeAttribute('tabindex'); el.removeAttribute('role'); }
     });
   }
+  /* ---------- the rule: everything students read is editable ----------
+     Every text or picture on a student-facing screen (#screen and student overlays such as the picker) must be
+     inside one of:
+       [data-edit]  editable content (opens the editor),
+       [data-ctrl]  an app control: buttons, key hints, header, menus,
+       [data-auto]  a value generated from editable content or settings (a timer count, a student name, a score).
+     In Edit mode anything else is outlined red and counted in the edit bar, so a gap cannot go unnoticed.
+     WU.auditEditable() returns the offending elements (used by the automated check too). */
+  WU.auditEditable = function () {
+    var roots = [document.getElementById('screen')].concat([].slice.call(document.querySelectorAll('.overlay.student')));
+    var bad = [];
+    function exempt(el) { return !!el.closest('[data-edit], [data-ctrl], [data-auto]'); }
+    function shown(el) { var cs = getComputedStyle(el); return el.getClientRects().length && cs.visibility !== 'hidden' && cs.display !== 'none'; }
+    roots.forEach(function (r) {
+      if (!r) return;
+      r.querySelectorAll('.not-editable').forEach(function (e) { e.classList.remove('not-editable'); });
+      var w = document.createTreeWalker(r, NodeFilter.SHOW_TEXT), n;
+      while ((n = w.nextNode())) {
+        var el = n.parentElement;
+        if (!n.nodeValue.trim() || !el || el.closest('svg') || exempt(el) || !shown(el)) continue;
+        if (bad.indexOf(el) < 0) bad.push(el);
+      }
+      r.querySelectorAll('.pic').forEach(function (el) { if (!exempt(el) && shown(el) && bad.indexOf(el) < 0) bad.push(el); });
+    });
+    return bad;
+  };
+  var auditT = null;
+  function runAudit() {
+    clearTimeout(auditT);
+    auditT = setTimeout(function () {
+      if (!WU.editing) return;
+      var bad = WU.auditEditable(), bar = document.getElementById('editbar');
+      bad.forEach(function (el) { el.classList.add('not-editable'); });
+      if (bad.length) console.error('Warm Up: ' + bad.length + ' student-facing item(s) cannot be edited:', bad);
+      var w = bar && bar.querySelector('.eb-warn');
+      if (bar && !w) { w = document.createElement('span'); w.className = 'eb-warn'; bar.insertBefore(w, bar.querySelector('.eb-note')); }
+      if (w) { w.textContent = bad.length ? bad.length + ' not editable (red)' : ''; w.style.display = bad.length ? '' : 'none'; }
+    }, 150);
+  }
+
   WU.toggleEdit = function (on) {
     WU.editing = on === undefined ? !WU.editing : !!on;
     document.body.classList.toggle('editing', WU.editing);
-    renderBar(); markEditables();
+    renderBar(); markEditables(); runAudit();
+    if (!WU.editing) document.querySelectorAll('.not-editable').forEach(function (e) { e.classList.remove('not-editable'); });
     document.querySelectorAll('[data-act="edit"]').forEach(function (b) { b.classList.toggle('on', WU.editing); });
     if (!WU.editing && document.activeElement && document.activeElement.blur) document.activeElement.blur();
   };
   function openFromEl(el) {
-    var p = el.getAttribute('data-edit').split(':'); // game:list:id
-    WU.openEditor(p[0], p[1], p[2]);
+    var p = el.getAttribute('data-edit').split(':'); // game:list:id[:field]
+    WU.openEditor(p[0], p[1], p[2], p[3]);
   }
+  // data-edit value for one field of a single-record list, e.g. WU.editKey('bomb', 'screen', 'bomb-screen', 'boom').
+  WU.editAttr = function (game, list, id, field) { return ' data-edit="' + game + ':' + list + ':' + id + (field ? ':' + field : '') + '"'; };
 
   /* ---------- editor panel ---------- */
-  WU.openEditor = function (game, list, selId) {
+  // def options: global (same for every level), single (fixed records: no add / delete).
+  // Field types: text, num (min/max), bool (show/hide), pic, examples (example cards), head (section title).
+  WU.openEditor = function (game, list, selId, focusKey) {
     var def = WU.lists[game + ':' + list]; if (!def) return;
-    var lvl = WU.state.level, sel = selId || null, mode = 'form', pick = null, q = '', gi = 0, el = null;
+    var lvl = def.global ? 0 : WU.state.level, sel = selId || null, mode = 'form', pick = null, q = '', gi = 0, el = null;
+    var MAXEX = 8;
 
     function items() { return WU.list(game, list, lvl); }
     function cur() { return items().filter(function (i) { return i.id === sel; })[0] || null; }
     function label(it) { return def.title ? def.title(it) : (it.text || it.short || '(empty)'); }
     function thumb(id) { return id ? '<span class="ed-th">' + WU.pic(id) + '</span>' : '<span class="ed-th empty"></span>'; }
+    function fieldDef(k) { return def.fields(lvl).filter(function (f) { return f.k === k; })[0]; }
+    function exArr() { var it = cur(); return it && it.examples ? it.examples.map(WU.normExample) : null; }
+    function exForm() { var it = cur(), f = fieldDef('examples'); return f && f.form ? f.form(it, lvl) : 'a'; }
 
     function render() {
       var its = items(), dels = WU.listDeleted(game, list, lvl);
@@ -265,16 +319,39 @@
       var h = '<div class="panel editor"><div class="ed-top"><span class="eb-chip">EDIT</span><span class="ed-h">' + WU.esc(def.gameTitle) + '</span>' +
         others.map(function (d) { return '<span class="sbtn' + (d.list === list ? ' dark' : '') + '" tabindex="0" data-list="' + d.list + '">' + WU.esc(d.label) + '</span>'; }).join('') +
         '<span style="flex:1"></span><span class="sbtn dark" tabindex="0" data-a="close">Done (Esc)</span></div>' +
-        '<div class="ed-lv">' + WU.LEVELS.map(function (L, i) { return '<span class="pill sm' + (i === lvl ? ' on' : '') + '" tabindex="0" data-lv="' + i + '"><b>' + L.name + '</b></span>'; }).join('') + '</div>' +
+        (def.global ? '<div class="note">These texts are the same at every level.</div>'
+          : '<div class="ed-lv">' + WU.LEVELS.map(function (L, i) { return '<span class="pill sm' + (i === lvl ? ' on' : '') + '" tabindex="0" data-lv="' + i + '"><b>' + L.name + '</b></span>'; }).join('') + '</div>') +
         '<div class="ed-body"><div class="ed-left"><div class="ed-list">' +
         its.map(function (it, i) {
           return '<div class="ed-row' + (it.id === sel ? ' on' : '') + '" tabindex="0" data-sel="' + it.id + '"><span class="ed-n">' + (i + 1) + '</span>' + thumb(it.pic) +
             '<span class="ed-t">' + WU.esc(label(it)) + '</span>' + (it.custom ? '<span class="ed-b new">NEW</span>' : it.edited ? '<span class="ed-b">EDITED</span>' : '') + '</div>';
         }).join('') +
         dels.map(function (it) { return '<div class="ed-row del"><span class="ed-t">' + WU.esc(label(it)) + '</span><span class="sbtn" tabindex="0" data-restore="' + it.id + '">Restore</span></div>'; }).join('') +
-        '</div><div class="ed-acts"><span class="sbtn dark" tabindex="0" data-a="add">+ Add new (N)</span><span class="sbtn" tabindex="0" data-a="resetlist">Reset this list (' + WU.LEVELS[lvl].code + ')</span></div></div>' +
+        '</div><div class="ed-acts">' + (def.single ? '' : '<span class="sbtn dark" tabindex="0" data-a="add">+ Add new (N)</span>') +
+        '<span class="sbtn" tabindex="0" data-a="resetlist">Reset this list' + (def.global ? '' : ' (' + WU.LEVELS[lvl].code + ')') + '</span></div></div>' +
         '<div class="ed-right">' + (mode === 'pick' ? pickerHTML() : formHTML()) + '</div></div></div>';
       el.innerHTML = h; wire();
+    }
+
+    function examplesHTML(f, it) {
+      var arr = it.examples ? it.examples.map(WU.normExample) : null, form = exForm(), h = '';
+      if (!arr) {
+        return '<span class="ed-pics"><span class="note">' + WU.esc(f.auto ? f.auto(it, lvl) : 'No example cards.') + '</span>' +
+          '<span class="sbtn dark" tabindex="0" data-exa="own">Make my own list</span></span>';
+      }
+      h += '<div class="ed-exs">' + (arr.length ? '' : '<div class="note">No example cards will show.</div>') + arr.map(function (x, i) {
+        return '<div class="ed-ex">' + thumb(x.pic) +
+          '<span class="sbtn" tabindex="0" data-expick="' + i + '">Picture</span><span class="sbtn" tabindex="0" data-exup="' + i + '">Upload</span>' +
+          '<input type="text" class="w" data-exi="' + i + '" data-exf="w" maxlength="30" placeholder="word" value="' + WU.esc(x.w) + '">' +
+          '<select data-exi="' + i + '" data-exf="art" title="Article">' + [['a', 'a'], ['an', 'an'], ['the', 'the'], ['', '(none)']].map(function (o) {
+            return '<option value="' + o[0] + '"' + (x.art === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select>' +
+          '<input type="text" class="p" data-exi="' + i + '" data-exf="pl" maxlength="30" placeholder="plural: ' + WU.esc(WU.phrase({ w: x.w, art: x.art || 'a' }, 'pl')) + '" value="' + WU.esc(x.pl) + '">' +
+          '<span class="ed-shows" data-exshow="' + i + '">' + WU.esc(WU.phrase(x, form)) + '</span>' +
+          '<span class="sbtn" tabindex="0" data-exmv="' + i + ':-1">Up</span><span class="sbtn" tabindex="0" data-exmv="' + i + ':1">Down</span>' +
+          '<span class="sbtn warn" tabindex="0" data-exdel="' + i + '">Remove</span></div>';
+      }).join('') + '</div><span class="ed-pics">' + (arr.length < MAXEX ? '<span class="sbtn dark" tabindex="0" data-exa="add">+ Add example</span>' : '') +
+        (f.auto ? '<span class="sbtn" tabindex="0" data-exa="auto">Back to automatic</span>' : '') + '</span>';
+      return h;
     }
 
     function formHTML() {
@@ -283,68 +360,135 @@
       var h = '<div class="ed-form">';
       def.fields(lvl).forEach(function (f) {
         var v = it[f.k];
-        h += '<label class="ed-f"><span class="lab">' + WU.esc(f.label) + '</span>';
-        if (f.type === 'text') h += '<input type="text" data-f="' + f.k + '" maxlength="' + (f.max || 80) + '" value="' + WU.esc(v || '') + '">';
-        else if (f.type === 'num') h += '<input type="number" data-f="' + f.k + '" min="0" max="' + f.max + '" value="' + (v || '') + '" placeholder="none">';
+        if (f.type === 'head') { h += '<div class="ed-head">' + WU.esc(f.label) + '</div>'; return; }
+        h += '<div class="ed-f" data-k="' + f.k + '"><span class="lab">' + WU.esc(f.label) + '</span>';
+        if (f.type === 'text') h += '<input type="text" data-f="' + f.k + '" maxlength="' + (f.max || 80) + '" value="' + WU.esc(v || '') + '"' + (f.ph ? ' placeholder="' + WU.esc(typeof f.ph === 'function' ? f.ph(it, lvl) : f.ph) + '"' : '') + '>';
+        else if (f.type === 'num') h += '<input type="number" data-f="' + f.k + '" min="' + (f.min || 0) + '" max="' + f.max + '" value="' + (v || '') + '" placeholder="' + (f.min ? f.min : 'none') + '">';
+        else if (f.type === 'bool') h += '<span class="seg">' + [[1, f.on || 'Show'], [0, f.off || 'Hide']].map(function (o) {
+          return '<div class="' + ((v ? 1 : 0) === o[0] ? 'on' : '') + '" tabindex="0" data-bool="' + f.k + '" data-v="' + o[0] + '">' + o[1] + '</div>'; }).join('') + '</span>';
         else if (f.type === 'pic') h += '<span class="ed-pics">' + thumb(v) + '<span class="sbtn" tabindex="0" data-pick="' + f.k + '">Choose picture</span>' +
           '<span class="sbtn" tabindex="0" data-up="' + f.k + '">Upload image</span>' + (v ? '<span class="sbtn" tabindex="0" data-clear="' + f.k + '">Remove</span>' : '') + '</span>';
-        else if (f.type === 'pics') {
-          var arr = v || [];
-          h += '<span class="ed-pics">' + (arr.length ? arr.map(thumb).join('') : '<span class="note">' + WU.esc(f.empty || 'Automatic') + '</span>') +
-            '<span class="sbtn" tabindex="0" data-pick="' + f.k + '">Choose (up to ' + f.max + ')</span>' + (arr.length ? '<span class="sbtn" tabindex="0" data-clear="' + f.k + '">Automatic</span>' : '') + '</span>';
-        }
-        if (f.hint) h += '<span class="note">' + WU.esc(f.hint) + '</span>';
-        h += '</label>';
+        else if (f.type === 'examples') h += examplesHTML(f, it);
+        if (f.hint) h += '<span class="note">' + WU.esc(typeof f.hint === 'function' ? f.hint(it, lvl) : f.hint) + '</span>';
+        h += '</div>';
       });
-      h += '<div class="ed-acts"><span class="sbtn warn" tabindex="0" data-a="del">Delete (Del)</span>' +
+      h += '<div class="ed-acts">' + (def.single ? '' : '<span class="sbtn warn" tabindex="0" data-a="del">Delete (Del)</span>') +
         (it.edited ? '<span class="sbtn" tabindex="0" data-a="resetitem">Undo my changes</span>' : '') + '</div></div>';
       return h;
     }
 
     function pickerHTML() {
-      var multi = pick.type === 'pics', val = cur() ? cur()[pick.k] : null, chosen = multi ? (val || []) : [val];
+      var val = pick.type === 'expic' ? (exArr()[pick.idx] || {}).pic : cur() ? cur()[pick.k] : null;
       var list = WU.PIC_LIST.filter(function (p) { return !q || p.name.toLowerCase().indexOf(q.toLowerCase()) >= 0 || p.tags.join(' ').indexOf(q.toLowerCase()) >= 0; });
       gi = Math.min(gi, Math.max(0, list.length - 1));
       return '<div class="ed-pick"><div class="row"><input type="text" data-q placeholder="Type to search: cat, food, red..." value="' + WU.esc(q) + '" style="flex:1">' +
-        (multi ? '' : '<span class="sbtn" tabindex="0" data-up="' + pick.k + '">Upload image</span>') +
-        '<span class="sbtn dark" tabindex="0" data-a="pickdone">' + (multi ? 'Done' : 'Cancel') + '</span></div>' +
-        (multi ? '<div class="note">Selected ' + chosen.length + ' of ' + pick.max + '. Arrows + Enter to choose.</div>' : '<div class="note">Arrows + Enter to choose. Esc to go back.</div>') +
+        '<span class="sbtn" tabindex="0" data-pkup="1">Upload image</span><span class="sbtn dark" tabindex="0" data-a="pickdone">Cancel</span></div>' +
+        '<div class="note">Arrows + Enter to choose. Esc to go back.</div>' +
         '<div class="ed-grid">' + list.map(function (p, i) {
-          return '<div class="ed-cell' + (chosen.indexOf(p.id) >= 0 ? ' on' : '') + (i === gi ? ' cur' : '') + '" tabindex="-1" data-p="' + p.id + '" data-i="' + i + '">' + WU.pic(p.id) + '<span>' + WU.esc(p.name) + '</span></div>';
+          return '<div class="ed-cell' + (val === p.id ? ' on' : '') + (i === gi ? ' cur' : '') + '" tabindex="-1" data-p="' + p.id + '" data-i="' + i + '">' + WU.pic(p.id) + '<span>' + WU.esc(p.name) + '</span></div>';
         }).join('') + '</div></div>';
     }
 
     function setF(f, v) { WU.edits.set(game, list, lvl, sel, f, v); }
+    function setEx(arr) { setF('examples', arr); }
+    function setExPic(i, pid) {
+      var arr = exArr(); if (!arr || !arr[i]) return;
+      var x = arr[i], old = WU.PICS[x.pic];
+      x.pic = pid;
+      // A library picture brings its own word, article and plural unless the teacher typed their own word.
+      if (WU.PICS[pid] && (!x.w || (old && x.w === old.name))) { var n = WU.exampleFromPic(pid); x.w = n.w; x.art = n.art; x.pl = ''; }
+      setEx(arr);
+    }
     function choose(pid) {
-      var it = cur(); if (!it) return;
-      if (pick.type === 'pics') {
-        var arr = (it[pick.k] || []).slice(), i = arr.indexOf(pid);
-        if (i >= 0) arr.splice(i, 1); else if (arr.length < pick.max) arr.push(pid); else { WU.toast('Up to ' + pick.max + ' pictures.'); return; }
-        setF(pick.k, arr); render(); focusGrid();
-      } else { setF(pick.k, pid); mode = 'form'; render(); }
+      if (!cur()) return;
+      if (pick.type === 'expic') setExPic(pick.idx, pid); else setF(pick.k, pid);
+      var back = pick; mode = 'form'; render(); focusBack(back);
+    }
+    function focusBack(p) {
+      var t = p && p.type === 'expic' ? el.querySelector('[data-expick="' + p.idx + '"]') : p ? el.querySelector('[data-pick="' + p.k + '"]') : null;
+      if (t) t.focus();
+    }
+    function focusField(k) {
+      var w = el.querySelector('.ed-f[data-k="' + k + '"]');
+      var t = w && w.querySelector('input, select, [tabindex]');
+      if (t) { t.focus(); if (t.select) t.select(); w.scrollIntoView({ block: 'nearest' }); }
     }
     function focusGrid() { var c = el.querySelector('.ed-cell.cur'); if (c) { c.focus(); c.scrollIntoView({ block: 'nearest' }); } }
     function focusSel() { var r = el.querySelector('.ed-row.on'); if (r) { r.focus(); r.scrollIntoView({ block: 'nearest' }); } }
+    function upload(cb) { chooseFile(function (id) { cb(id); mode = 'form'; render(); }); }
 
     function wire() {
-      el.querySelectorAll('[data-list]').forEach(function (b) { b.onclick = function () { list = b.getAttribute('data-list'); def = WU.lists[game + ':' + list]; sel = null; mode = 'form'; render(); }; });
+      el.querySelectorAll('[data-list]').forEach(function (b) { b.onclick = function () { list = b.getAttribute('data-list'); def = WU.lists[game + ':' + list]; lvl = def.global ? 0 : WU.state.level; sel = null; mode = 'form'; render(); }; });
       el.querySelectorAll('[data-lv]').forEach(function (b) { b.onclick = function () { lvl = +b.getAttribute('data-lv'); sel = null; mode = 'form'; render(); }; });
       el.querySelectorAll('[data-sel]').forEach(function (b) { b.onclick = function () { sel = b.getAttribute('data-sel'); mode = 'form'; render(); focusSel(); }; });
       el.querySelectorAll('[data-restore]').forEach(function (b) { b.onclick = function () { WU.edits.restore(game, list, lvl, b.getAttribute('data-restore')); render(); }; });
       el.querySelectorAll('[data-f]').forEach(function (inp) {
+        var f = inp.getAttribute('data-f');
         inp.oninput = function () {
-          var f = inp.getAttribute('data-f'), v = inp.type === 'number' ? (inp.value === '' ? 0 : Math.max(0, Math.min(+inp.max, +inp.value))) : inp.value;
-          setF(f, v);
+          if (inp.type === 'number') {
+            var n = +inp.value, fd = fieldDef(f);
+            if (inp.value === '' || isNaN(n) || n < (fd.min || 0) || n > fd.max) return; // wait until the number is valid
+            setF(f, n);
+          } else setF(f, inp.value);
           var row = el.querySelector('.ed-row.on .ed-t'); if (row && cur()) row.textContent = label(cur());
         };
-        inp.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); inp.blur(); focusSel(); } };
+        if (inp.type === 'number') inp.onchange = function () {
+          var fd = fieldDef(f), n = Math.round(+inp.value);
+          if (inp.value === '' && !fd.min) n = 0; else n = Math.max(fd.min || 0, Math.min(fd.max, isNaN(n) ? (fd.min || 0) : n));
+          setF(f, n); inp.value = n || (fd.min ? n : '');
+        };
+        inp.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); if (inp.onchange) inp.onchange(); inp.blur(); focusSel(); } };
+      });
+      el.querySelectorAll('[data-bool]').forEach(function (b) {
+        b.onclick = function () { var k = b.getAttribute('data-bool'); setF(k, b.getAttribute('data-v') === '1'); render(); focusField(k); };
       });
       el.querySelectorAll('[data-pick]').forEach(function (b) {
-        b.onclick = function () { var k = b.getAttribute('data-pick'); pick = def.fields(lvl).filter(function (f) { return f.k === k; })[0]; mode = 'pick'; q = ''; gi = 0; render(); var s = el.querySelector('[data-q]'); if (s) s.focus(); };
+        b.onclick = function () { pick = fieldDef(b.getAttribute('data-pick')); mode = 'pick'; q = ''; gi = 0; render(); var s = el.querySelector('[data-q]'); if (s) s.focus(); };
       });
-      el.querySelectorAll('[data-up]').forEach(function (b) { b.onclick = function () { var k = b.getAttribute('data-up'); chooseFile(function (id) { setF(k, id); mode = 'form'; render(); }); }; });
-      el.querySelectorAll('[data-clear]').forEach(function (b) { b.onclick = function () { var k = b.getAttribute('data-clear'); setF(k, k === 'examples' ? null : ''); render(); }; });
+      el.querySelectorAll('[data-up]').forEach(function (b) { b.onclick = function () { var k = b.getAttribute('data-up'); upload(function (id) { setF(k, id); }); }; });
+      el.querySelectorAll('[data-pkup]').forEach(function (b) {
+        b.onclick = function () { var p = pick; upload(function (id) { if (p.type === 'expic') setExPic(p.idx, id); else setF(p.k, id); }); };
+      });
+      el.querySelectorAll('[data-clear]').forEach(function (b) { b.onclick = function () { setF(b.getAttribute('data-clear'), ''); render(); }; });
       el.querySelectorAll('[data-p]').forEach(function (b) { b.onclick = function () { gi = +b.getAttribute('data-i'); choose(b.getAttribute('data-p')); }; });
+      // example cards
+      el.querySelectorAll('[data-exi]').forEach(function (inp) {
+        var ev = inp.tagName === 'SELECT' ? 'onchange' : 'oninput';
+        inp[ev] = function () {
+          var arr = exArr(), i = +inp.getAttribute('data-exi'); if (!arr || !arr[i]) return;
+          var f = inp.getAttribute('data-exf'), x = arr[i], pic = WU.PICS[x.pic];
+          // A new word drops the picture's own plural (e.g. "birds" after renaming "bird" to "nurse").
+          if (f === 'w' && x.pl && pic && x.pl === pic.pl && inp.value !== pic.name) { x.pl = ''; var pi = el.querySelector('[data-exi="' + i + '"][data-exf="pl"]'); if (pi) pi.value = ''; }
+          x[f] = inp.value; setEx(arr);
+          var sh = el.querySelector('[data-exshow="' + i + '"]'); if (sh) sh.textContent = WU.phrase(arr[i], exForm());
+        };
+      });
+      el.querySelectorAll('[data-expick]').forEach(function (b) {
+        b.onclick = function () { pick = { type: 'expic', k: 'examples', idx: +b.getAttribute('data-expick') }; mode = 'pick'; q = ''; gi = 0; render(); var s = el.querySelector('[data-q]'); if (s) s.focus(); };
+      });
+      el.querySelectorAll('[data-exup]').forEach(function (b) { b.onclick = function () { var i = +b.getAttribute('data-exup'); upload(function (id) { setExPic(i, id); }); }; });
+      el.querySelectorAll('[data-exmv]').forEach(function (b) {
+        b.onclick = function () {
+          var p = b.getAttribute('data-exmv').split(':'), i = +p[0], j = i + (+p[1]), arr = exArr();
+          if (!arr || j < 0 || j >= arr.length) return;
+          var t = arr[i]; arr[i] = arr[j]; arr[j] = t; setEx(arr); render();
+          var n = el.querySelector('[data-exmv="' + j + ':' + p[1] + '"]'); if (n) n.focus();
+        };
+      });
+      el.querySelectorAll('[data-exdel]').forEach(function (b) {
+        b.onclick = function () { var i = +b.getAttribute('data-exdel'), arr = exArr(); arr.splice(i, 1); setEx(arr); render(); focusField('examples'); };
+      });
+      el.querySelectorAll('[data-exa]').forEach(function (b) {
+        b.onclick = function () {
+          var a = b.getAttribute('data-exa'), f = fieldDef('examples'), arr = exArr();
+          if (a === 'own') { setEx(f.seed ? f.seed(cur(), lvl).map(WU.normExample) : []); render(); focusField('examples'); }
+          else if (a === 'auto') { setEx(null); render(); focusField('examples'); }
+          else if (a === 'add') {
+            arr = arr || []; arr.push({ w: '', art: 'a', pl: '', pic: '' }); setEx(arr); render();
+            var ws = el.querySelectorAll('.ed-ex input.w'); if (ws.length) ws[ws.length - 1].focus();
+          }
+        };
+      });
       var s = el.querySelector('[data-q]');
       if (s) {
         s.oninput = function () { q = s.value; gi = 0; var pos = s.selectionStart; render(); var n = el.querySelector('[data-q]'); n.focus(); n.setSelectionRange(pos, pos); };
@@ -360,16 +504,17 @@
           else if (a === 'resetlist') {
             if (b.getAttribute('data-sure')) { WU.edits.resetList(game, list, lvl); sel = null; render(); WU.toast('List reset to the original.'); }
             else { b.setAttribute('data-sure', '1'); b.textContent = 'Press again to reset'; }
-          } else if (a === 'pickdone') { mode = 'form'; render(); }
+          } else if (a === 'pickdone') { var p = pick; mode = 'form'; render(); focusBack(p); }
         };
       });
     }
     function addItem() {
+      if (def.single) return;
       sel = WU.edits.add(game, list, lvl, def.blank(lvl)); mode = 'form'; render();
       var f = el.querySelector('.ed-form input[type=text]'); if (f) f.focus();
     }
     function delItem() {
-      if (!sel) return;
+      if (!sel || def.single) return;
       var its = items(), i = its.map(function (x) { return x.id; }).indexOf(sel);
       WU.edits.remove(game, list, lvl, sel);
       var rest = items(); sel = rest.length ? rest[Math.min(i, rest.length - 1)].id : null; render(); focusSel();
@@ -377,12 +522,16 @@
 
     WU.openOverlay({
       cls: 'editor-ov', dismiss: false,
-      render: function (o) { el = o; render(); if (selId) focusSel(); else { var r = el.querySelector('.ed-row'); if (r) r.focus(); } },
+      render: function (o) {
+        el = o; render();
+        if (focusKey && cur()) focusField(focusKey);
+        else if (selId) focusSel(); else { var r = el.querySelector('.ed-row'); if (r) r.focus(); }
+      },
       onKey: function (e) {
         var k = e.key;
         if (mode === 'pick') {
           var cells = el.querySelectorAll('.ed-cell'), cols = 6;
-          if (k === 'Escape') { mode = 'form'; render(); return true; }
+          if (k === 'Escape') { var p = pick; mode = 'form'; render(); focusBack(p); return true; }
           var mv = { ArrowRight: 1, ArrowLeft: -1, ArrowDown: cols, ArrowUp: -cols }[k];
           if (mv && cells.length) {
             e.preventDefault();
@@ -404,29 +553,53 @@
         if (k === 'n' || k === 'N' || k === 'Insert') { e.preventDefault(); addItem(); return true; }
         if (k === 'Delete') { delItem(); return true; }
         if (k === 'Enter' && document.activeElement && document.activeElement.classList.contains('ed-row')) {
-          e.preventDefault(); var f = el.querySelector('.ed-form input'); if (f) f.focus(); return true;
+          e.preventDefault(); var f = el.querySelector('.ed-form input, .ed-form select, .ed-form [tabindex]'); if (f) f.focus(); return true;
         }
-        if (k === 'PageDown' || k === 'PageUp') { lvl = Math.max(0, Math.min(6, lvl + (k === 'PageDown' ? 1 : -1))); sel = null; render(); focusSel(); return true; }
+        if (!def.global && (k === 'PageDown' || k === 'PageUp')) { lvl = Math.max(0, Math.min(6, lvl + (k === 'PageDown' ? 1 : -1))); sel = null; render(); focusSel(); return true; }
         return false;
       },
       onClose: function () { WU.emit('content'); }
     });
   };
 
+  /* ---------- app-wide texts used by the shared pieces ---------- */
+  WU.registerList('app', 'texts', {
+    gameTitle: 'All games', label: 'App texts', global: true, single: true,
+    defaults: function () { return WU.content.appTexts || []; },
+    norm: function (r) { var o = {}; Object.keys(r).forEach(function (k) { if (k !== 'id') o[k] = r[k]; }); return o; },
+    title: function () { return 'Timer, student picker, scoreboard'; },
+    fields: function () {
+      return [
+        { type: 'head', label: 'Timer' },
+        { k: 'timerStart', label: 'Before it starts', type: 'text', max: 20 },
+        { k: 'timerSeconds', label: 'Under the seconds', type: 'text', max: 20 },
+        { k: 'timerLeft', label: 'Under minutes (1:30)', type: 'text', max: 20 },
+        { k: 'timerPaused', label: 'When paused', type: 'text', max: 20 },
+        { k: 'timerDone', label: 'At zero', type: 'text', max: 12 },
+        { type: 'head', label: 'Student picker' },
+        { k: 'pickerTitle', label: 'Tag while choosing', type: 'text', max: 24 },
+        { k: 'pickerLanded', label: 'Tag when a name lands', type: 'text', max: 24 },
+        { k: 'pickerTap', label: 'Before the first pick', type: 'text', max: 24 },
+        { type: 'head', label: 'Scoreboard' },
+        { k: 'scoresLabel', label: 'Side label', type: 'text', max: 12 }
+      ];
+    }
+  });
+
   /* ---------- wiring ---------- */
-  WU.on('route', function () { renderBar(); markEditables(); });
+  WU.on('route', function () { renderBar(); markEditables(); runAudit(); });
   WU.on('change', function (p) { if (p && 'level' in p) renderBar(); });
   document.addEventListener('DOMContentLoaded', function () {
     edits(); // all games have registered their lists by now: upgrade old saved edits straight away
     var st = document.getElementById('stage');
     // In edit mode, a click on anything editable opens the editor instead of playing.
     st.addEventListener('click', function (e) {
-      if (!WU.editing || WU.overlay) return;
-      var t = e.target.closest && e.target.closest('#screen [data-edit]');
+      if (!WU.editing || (WU.overlay && !WU.overlay.el.classList.contains('student'))) return;
+      var t = e.target.closest && e.target.closest('#screen [data-edit], .overlay.student [data-edit]');
       if (!t) return;
       e.preventDefault(); e.stopPropagation(); openFromEl(t);
     }, true);
-    new MutationObserver(function () { if (WU.editing) markEditables(); }).observe(document.getElementById('screen'), { childList: true, subtree: true });
+    new MutationObserver(function () { if (WU.editing) { markEditables(); runAudit(); } }).observe(document.getElementById('stage'), { childList: true, subtree: true });
   });
   // Keys while editing (called from core before game keys). Returns true if used.
   WU.editKey = function (e) {

@@ -24,6 +24,9 @@ Keys: Space start / spin / next · N new category · P who starts · X explode n
 ## Change the content
 - Press **E** (or the pencil) for **Edit mode**. Everything you can change gets a pink outline.
 - Click it, or use **Tab** + **Enter**. Rename, add (**N**), delete (**Del**), or pick a picture from the library or upload your own.
+- Everything students read can be changed: categories, example cards (word, a / an, picture, order), sentence frames
+  (per level or per category), rules (or hide them), challenges, the words around the bomb and the wheel, fuse and timer lengths
+  (**Screen text & timing**), and the timer / picker words (**App texts**).
 - Edits are saved per level on this device. **Undo my changes**, **Reset this list**, or **Settings → Undo my edits** bring back the originals.
 
 ## Move to another device

@@ -401,21 +401,39 @@
   };
   WU.picsByTag = function (tag) { return WU.PIC_LIST.filter(function (p) { return p.tags.indexOf(tag) >= 0; }); };
   WU.picName = function (id) { return WU.PICS[id] ? WU.PICS[id].name : ''; };
-  // The name in the shape a sentence frame needs:
-  //   form "a"    -> "an apple", "rice", "the sun"   (It's ___. / I have ___.)
+  // English plural guess for words the teacher types (the library stores its own plurals).
+  WU.guessPlural = function (w) {
+    var parts = String(w || '').split(' '), last = parts.pop();
+    if (!last) return '';
+    var p = PLURAL[last] || (/(s|sh|ch|x|z)$/.test(last) ? last + 'es' : /[^aeiou]y$/.test(last) ? last.slice(0, -1) + 'ies' : last + 's');
+    return parts.concat([p]).join(' ');
+  };
+  // An example card: { w: word, art: "a" | "an" | "the" | "", pl: plural (optional), pic: picture id }.
+  // Old edits stored only a picture id; turn that (or any library id) into a full card.
+  WU.exampleFromPic = function (id) {
+    var o = WU.PICS[id];
+    return o ? { w: o.name, art: o.art, pl: o.pl && o.pl !== WU.guessPlural(o.name) ? o.pl : '', pic: id } : { w: '', art: '', pl: '', pic: id || '' };
+  };
+  WU.normExample = function (x) {
+    if (typeof x === 'string') return WU.exampleFromPic(x);
+    return { w: x.w || '', art: x.art || '', pl: x.pl || '', pic: x.pic || '' };
+  };
+  // The words in the shape a sentence frame needs:
+  //   form "a"    -> "an apple", "rice", "the sun"   (It's ___. / I have ___. / She's ___.)
   //   form "pl"   -> "apples", "rice", "football"    (I like ___.)
   //   form "bare" -> "apple"                          (My ___. / ___!)
-  WU.picPhrase = function (id, form) {
-    var o = WU.PICS[id]; if (!o) return '';
-    if (form === 'a') return o.art ? o.art + ' ' + o.name : o.name;
-    if (form === 'pl') return o.pl || o.name;
-    return o.name;
+  WU.phrase = function (ex, form) {
+    var w = ex.w || '';
+    if (form === 'a') return ex.art ? ex.art + ' ' + w : w;
+    if (form === 'pl') return ex.pl || (ex.art && ex.art !== 'the' ? WU.guessPlural(w) : w);
+    return w;
   };
-  // Which form a frame needs, e.g. "I like ___." -> "pl", "It's ___." -> "a", "My ___." -> "bare".
+  WU.picPhrase = function (id, form) { return WU.PICS[id] ? WU.phrase(WU.exampleFromPic(id), form) : ''; };
+  // Which form a frame needs, e.g. "I like ___." -> "pl", "It's ___." / "She's ___." -> "a", "My ___." -> "bare".
   WU.frameForm = function (frame) {
-    var f = String(frame || '').toLowerCase();
-    if (/\blike ___/.test(f)) return 'pl';
-    if (/\b(it's|it is|this is|i have|i see|i've got|have got|there's|there is) ___/.test(f)) return 'a';
+    var f = String(frame || '').toLowerCase().replace(/\u2019/g, "'");
+    if (/\b(like|love|hate|don't like) ___/.test(f)) return 'pl';
+    if (/(\b(it|this|that|he|she|there|what)'s|\b(it|this|that|he|she|there) is|\bi'm|\bi am|\byou're|\bi have|\bi've got|\bhave got|\bhas got|\bi see|\bi want|\bi need|\bi am a) ___/.test(f)) return 'a';
     return 'bare';
   };
 })();

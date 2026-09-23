@@ -328,3 +328,17 @@ body.editing .home { padding-top: 84px; }
 .bomb .res { max-width: 810px; }
 .bomb .res .frame { display: block; font-size: 44px; line-height: 1.25; box-shadow: 5px 5px 0 var(--ink); }
 .bomb .res .frame .gap { width: 90px; height: 30px; }
+
+/* edit mode: example-card editor, section headings, audit warning */
+.ed-head { font-family: var(--display); font-size: 28px; margin-top: 8px; padding-bottom: 4px; border-bottom: 3px solid var(--ink); }
+.ed-exs { display: flex; flex-direction: column; gap: 8px; }
+.ed-ex { display: flex; align-items: center; gap: 6px; background: #fff; border: 3px solid var(--ink); padding: 6px 8px; }
+.ed-ex .ed-th { width: 46px; height: 46px; flex: none; }
+.ed-ex .sbtn { padding: 5px 8px; font-size: 17px; box-shadow: 3px 3px 0 var(--ink); }
+.ed-ex input { font: 700 20px var(--body); border: 3px solid var(--ink); padding: 4px 6px; width: 120px; user-select: text; -webkit-user-select: text; }
+.ed-ex input.p { width: 110px; }
+.ed-ex select { font: 700 22px var(--body); border: 3px solid var(--ink); padding: 3px 4px; background: #fff; }
+.ed-shows { flex: 1; min-width: 0; font-size: 19px; font-weight: 800; color: var(--blue); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.editor .ed-form { padding-right: 10px; }
+.eb-warn { background: #ff2020; color: #fff; font-weight: 800; font-size: 20px; padding: 4px 10px; }
+body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-offset: 4px; }

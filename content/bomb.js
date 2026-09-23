@@ -8,7 +8,7 @@
                 (the article comes from the picture: frame "It's ___." + picture "apple" = "It's an apple.")
                 tag   = picture-library tag; 4 example pictures are drawn from it (see js/pictures.js)
                 icon  = picture shown next to the category name
-                frame = sentence frame shown on screen ("___" = the gap)
+                frame = this category's own sentence frame ("___" = the gap); none = the level's frame (bombScreen)
    first    : extra categories used half the time in "First lesson" mode (get-to-know-you).
    challenges : the challenge wheel (8 are picked each round). { short, text, sub, frame, pic, timer }
                 RULES: the student must SPEAK English, from their seat, in 30 seconds or less.
@@ -27,34 +27,34 @@ WU.content.bomb = [
     rule: "One word is OK. Pointing is OK!",
     tickRule: "One word. Pass it on!",
     cats: [
-      { id: "a1-animals", name: "Animals", tag: "animal", icon: "cat", frame: "It's ___." },
-      { id: "a1-pets", name: "Pets", tag: "pet", icon: "dog", frame: "It's ___." },
-      { id: "a1-farm-animals", name: "Farm animals", tag: "farm", icon: "cow", frame: "It's ___." },
-      { id: "a1-wild-animals", name: "Wild animals", tag: "wild", icon: "lion", frame: "It's ___." },
-      { id: "a1-in-the-sea", name: "In the sea", tag: "sea", icon: "fish", frame: "It's ___." },
+      { id: "a1-animals", name: "Animals", tag: "animal", icon: "cat" },
+      { id: "a1-pets", name: "Pets", tag: "pet", icon: "dog" },
+      { id: "a1-farm-animals", name: "Farm animals", tag: "farm", icon: "cow" },
+      { id: "a1-wild-animals", name: "Wild animals", tag: "wild", icon: "lion" },
+      { id: "a1-in-the-sea", name: "In the sea", tag: "sea", icon: "fish" },
       { id: "a1-food", name: "Food", tag: "food", icon: "pizza", frame: "I like ___." },
       { id: "a1-fruit", name: "Fruit", tag: "fruit", icon: "apple", frame: "I like ___." },
       { id: "a1-vegetables", name: "Vegetables", tag: "veg", icon: "carrot", frame: "I like ___." },
       { id: "a1-drinks", name: "Drinks", tag: "drink", icon: "juice", frame: "I like ___." },
       { id: "a1-breakfast", name: "Breakfast", tag: "breakfast", icon: "egg", frame: "I like ___." },
-      { id: "a1-colours", name: "Colours", tag: "colour", icon: "c-red", frame: "It's ___." },
+      { id: "a1-colours", name: "Colours", tag: "colour", icon: "c-red" },
       { id: "a1-family", name: "Family", tag: "family", icon: "family", frame: "My ___." },
       { id: "a1-body", name: "Body", tag: "body", icon: "hand", frame: "My ___." },
-      { id: "a1-clothes", name: "Clothes", tag: "clothes", icon: "T-shirt", frame: "It's ___." },
+      { id: "a1-clothes", name: "Clothes", tag: "clothes", icon: "T-shirt" },
       { id: "a1-weather", name: "Weather", tag: "weather", icon: "sun", frame: "___!" },
-      { id: "a1-transport", name: "Transport", tag: "transport", icon: "bus", frame: "It's ___." },
-      { id: "a1-wheels", name: "Wheels", tag: "wheels", icon: "car", frame: "It's ___." },
-      { id: "a1-home", name: "Home", tag: "home", icon: "house", frame: "It's ___." },
-      { id: "a1-kitchen", name: "Kitchen", tag: "kitchen", icon: "fridge", frame: "It's ___." },
-      { id: "a1-bedroom", name: "Bedroom", tag: "bedroom", icon: "bed", frame: "It's ___." },
-      { id: "a1-school", name: "School", tag: "school", icon: "book", frame: "It's ___." },
+      { id: "a1-transport", name: "Transport", tag: "transport", icon: "bus" },
+      { id: "a1-wheels", name: "Wheels", tag: "wheels", icon: "car" },
+      { id: "a1-home", name: "Home", tag: "home", icon: "house" },
+      { id: "a1-kitchen", name: "Kitchen", tag: "kitchen", icon: "fridge" },
+      { id: "a1-bedroom", name: "Bedroom", tag: "bedroom", icon: "bed" },
+      { id: "a1-school", name: "School", tag: "school", icon: "book" },
       { id: "a1-in-my-bag", name: "In my bag", tag: "bag", icon: "bag", frame: "I have ___." },
-      { id: "a1-jobs", name: "Jobs", tag: "job", icon: "doctor", frame: "It's ___." },
-      { id: "a1-places", name: "Places", tag: "place", icon: "school", frame: "It's ___." },
+      { id: "a1-jobs", name: "Jobs", tag: "job", icon: "doctor" },
+      { id: "a1-places", name: "Places", tag: "place", icon: "school" },
       { id: "a1-sports", name: "Sports", tag: "sport", icon: "football", frame: "I like ___." },
-      { id: "a1-toys", name: "Toys", tag: "toy", icon: "teddy bear", frame: "It's ___." },
-      { id: "a1-music", name: "Music", tag: "music", icon: "guitar", frame: "It's ___." },
-      { id: "a1-in-the-sky", name: "In the sky", tag: "sky", icon: "star", frame: "It's ___." },
+      { id: "a1-toys", name: "Toys", tag: "toy", icon: "teddy bear" },
+      { id: "a1-music", name: "Music", tag: "music", icon: "guitar" },
+      { id: "a1-in-the-sky", name: "In the sky", tag: "sky", icon: "star" },
       { id: "a1-red-things", name: "Red things", tag: "red", icon: "c-red", frame: "It's red. It's ___." },
       { id: "a1-yellow-things", name: "Yellow things", tag: "yellow", icon: "c-yellow", frame: "It's yellow. It's ___." },
       { id: "a1-green-things", name: "Green things", tag: "green", icon: "c-green", frame: "It's green. It's ___." },
@@ -62,8 +62,8 @@ WU.content.bomb = [
       { id: "a1-small-things", name: "Small things", tag: "small", icon: "mouse", frame: "It's small. It's ___." },
       { id: "a1-hot-things", name: "Hot things", tag: "hot", icon: "fire", frame: "It's hot. It's ___." },
       { id: "a1-cold-things", name: "Cold things", tag: "cold", icon: "snowman", frame: "It's cold. It's ___." },
-      { id: "a1-in-the-park", name: "In the park", tag: "park", icon: "tree", frame: "It's ___." },
-      { id: "a1-at-the-beach", name: "At the beach", tag: "beach", icon: "beach", frame: "It's ___." }
+      { id: "a1-in-the-park", name: "In the park", tag: "park", icon: "tree" },
+      { id: "a1-at-the-beach", name: "At the beach", tag: "beach", icon: "beach" }
     ],
     first: [
       { id: "a1-first-food-i-like", name: "Food I like", tag: "food", icon: "pizza", frame: "I like ___." },
@@ -495,3 +495,22 @@ WU.content.bomb = [
     ]
   }
 ];
+
+/* Screen text and timing for The Bomb, per level. Editable in Edit mode: "Screen text & timing".
+   "shared" applies to every level; "levels" overrides it for one level. rule / tickRule come from the levels above.
+   Empty text hides that line. Fuse times are in seconds. The id "bomb-screen" is PERMANENT. */
+WU.content.bombScreen = {
+  shared: {
+    id: 'bomb-screen',
+    catTag: 'CATEGORY', frame: '', ruleShow: true, tickShow: true,
+    demo: 'TEACHER DEMO: you go first!', demoShow: false,
+    qMark: '??', qLine: 'seconds left', qSub: 'Nobody knows. Not even me.',
+    fuseMin: 15, fuseMax: 60, demoMin: 15, demoMax: 23,
+    boom: 'BOOM!', who: "Who's holding it?", wheelTag: 'CHALLENGE WHEEL', hub: '?', topic: 'Topic:',
+    pickTitle: 'WHO STARTS?', pickLanded: 'YOU START!', pickSub: 'Take the object. Say the first word!'
+  },
+  levels: [
+    { frame: "It's ___.", demoShow: true },
+    {}, {}, {}, {}, {}, {}
+  ]
+};

@@ -76,7 +76,8 @@
 
   function render() {
     var s = WU.state, games = WU.content.games, first = s.lesson === 'first', cls = WU.activeClass();
-    var html = '<div class="home">' +
+    // The home screen is the teacher's menu: controls, not learning content.
+    var html = '<div class="home" data-ctrl>' +
       '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
       '<div class="clchip" data-h="class" title="Change class (C)"><span class="t">CLASS</span><span class="n">' +
       WU.esc(cls ? cls.name : WU.state.students + ' students') + '</span></div>' +
