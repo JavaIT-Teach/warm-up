@@ -133,7 +133,7 @@
     var secs = +scr.get().pairSecs || 0;
     if (secs > 0) {
       st.phase = 'pairs';
-      clock = WU.Timer({ seconds: secs, size: 260, onDone: function () { timers.push(setTimeout(classStory, 1200)); } });
+      clock = WU.Timer({ seconds: secs, size: 290, onDone: function () { timers.push(setTimeout(classStory, 1200)); } });
       render(); clock.start();
     } else classStory();
   }

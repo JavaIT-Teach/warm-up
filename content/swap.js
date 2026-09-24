@@ -375,15 +375,36 @@ WU.content.swapScreen = {
   shared: {
     id: 'swap-screen',
     tag: 'SPEED SWAP', round: 'Round {n} of {total}', rounds: 5, secs: 90,
-    frame: '', rule: 'Each partner asks one follow-up question.', ruleShow: true, ready: 'Find your partner!',
-    swap: 'SWAP!', swapLine: 'Row 1: move one seat along!', endTag: 'FINISHED', end: 'Great talking! {total} rounds, {total} partners.',
+    setupTag: 'SET UP', setup: 'Label students around the U: A, B, A, B...',
+    frame: '', rule: 'Each partner asks one follow-up question.', ruleShow: true, ready: 'Look at your partner. Ready?',
+    askA: 'A asks B', askB: 'B asks A', switchOn: true, switchA: 'SWITCH: now B asks A', switchB: 'SWITCH: now A asks B',
+    chain: 'Chain: the person on the left end starts. Answer, then ask the next person. The last person asks the first.',
+    noPartner: 'No partner? Join the nearest pair.',
+    swap: 'SWAP!', endTag: 'FINISHED', end: 'Tell the class one thing your partner said.',
     demo: 'TEACHER DEMO: watch first!', demoShow: false
   },
   levels: [
-    { secs: 60, rule: 'One word is OK! Pointing is OK!', demoShow: true },
+    { secs: 60, rule: 'One word is OK! Pointing is OK!', demoShow: true, setup: 'Say your letter: A, B, A, B...', ready: 'Ready?',
+      askA: 'A asks. B answers.', askB: 'B asks. A answers.', switchA: 'SWITCH! B asks.', switchB: 'SWITCH! A asks.',
+      chain: 'Ask the next person!', noPartner: 'No partner? Join a pair.', end: 'Say one thing your partner said.' },
     {}, {}, {},
     { secs: 120, rule: 'Answer fully, then ask your partner "Why?"' },
     { secs: 120, rule: 'Answer fully, then ask your partner "Why?"' },
     { secs: 120, rule: 'Answer fully, then ask your partner "Why?"' }
   ]
 };
+
+/* The round cycle for a U-shaped room (nobody moves seats). Repeats until the last round.
+   kind: pair | group. icon: right | left | group | none (drawn by the game). order: position in the cycle.
+   id is PERMANENT: teacher edits (Edit mode) point at it. */
+WU.content.swapCycle = (function () {
+  var P = ['a1', 'a2', 'a2p', 'b1', 'i1', 'i2', 'i3'];
+  return P.map(function (p, i) {
+    var easy = i === 0;
+    return [
+      { id: p + '-c-right', kind: 'pair', icon: 'right', order: 1, text: easy ? 'A: talk to B on your RIGHT' : 'A: talk to the B on your RIGHT' },
+      { id: p + '-c-left', kind: 'pair', icon: 'left', order: 2, text: easy ? 'A: talk to B on your LEFT' : 'A: talk to the B on your LEFT' },
+      { id: p + '-c-group', kind: 'group', icon: 'group', order: 3, text: easy ? 'Make groups of 4!' : 'Groups of 4: join the pair next to you' }
+    ];
+  });
+})();

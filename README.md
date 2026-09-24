@@ -34,8 +34,12 @@ Keys: P pick / pass · Space start / got it / next student · Enter pause · R r
 **5. Lie Detector.** **P** picks a student and shows a question. The student secretly shows you TRUTH or LIE (for example thumb up or down under the desk). Press **T** or **L**: nothing on screen changes. The student answers. **Space**: at middle levels a classmate asks one follow-up question; at IELTS two students explain why they think it's a lie. Then the class votes: stand up = lie, stay seated = truth (optional: count the standing students with **Up / Down**). **R** runs the lie detector and shows the truth.
 Keys: P pick · T / L secret · Space next step · Up / Down votes · R reveal · N other question.
 
-**6. Speed Swap.** Students sit in pairs. A question appears; **Space** starts the round and everyone talks at the same time. At the buzzer the screen shows SWAP!: one row moves one seat along, and the next question appears. Press **Space** to start the next round. Number of rounds and round length can be changed in Edit mode.
-Keys: Space start / swap now / next round · Enter pause · N other question · R start again.
+**6. Speed Swap** (for a U-shaped room: nobody moves seats). First screen: label the students around the U: A, B, A, B... and press **Space**.
+The rounds follow a cycle: **1.** A talks to the B on their RIGHT, **2.** A talks to the B on their LEFT, **3.** groups of 4 (join the pair next to you), then again from 1. Each round has a new question; press **Space** to start it.
+In pair rounds the screen says who asks first (it alternates: A asks B, then B asks A). At exactly half time a sound plays and a big SWITCH tells the other partner to ask. In group rounds there is no A / B: a chain starts at the left end, each person answers and asks the next, the last asks the first. "No partner? Join the nearest pair." is always on screen.
+At the buzzer: SWAP!, then the next instruction with its picture and the next question. At the end: "Tell the class one thing your partner said."
+In Edit mode: every line, the SWITCH on / off, the number of rounds and the round length (Screen text & timing), and the **Round cycle** list (add, delete, change a round's type, picture or instruction; change its position number to reorder).
+Keys: Space begin / start / swap now / next round · Enter pause · N other question · R start again.
 
 **7. Tug of War.** Two sides: two teams, or the left and right side of the room. A topic appears (two things, or a debate statement at IELTS). Sides take turns giving a reason. Good reason: press **←** or **→** to pull the rope towards that side. No good reason: **Space** passes the turn. The first side to pull the flag over its line wins.
 Keys: ← / → pull · Space no pull · N new topic · R reset.
@@ -52,7 +56,7 @@ Keys: Space correct · X out · P pass · T topic · R start again.
 ## Teacher screen (your laptop)
 With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
 the hidden picture and its name (Mystery Tiles), the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
-the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next question (Speed Swap),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap),
 plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
 
 Setup (once per lesson):

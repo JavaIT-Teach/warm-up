@@ -67,6 +67,9 @@
         else if (done || left == null) start(); else start(left);
       },
       isRunning: function () { return running; },
+      // Milliseconds left (the full time before it starts); stays put while paused.
+      left: function () { return left == null ? total : left; },
+      total: total,
       destroy: function () { clearInterval(iv); }
     };
     el.addEventListener('click', api.toggle);

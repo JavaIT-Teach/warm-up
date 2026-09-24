@@ -365,7 +365,7 @@ body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-off
 .ed-f select { font: 700 26px var(--body); border: 3px solid var(--ink); background: #fff; padding: 6px 10px; align-self: flex-start; }
 
 /* ---------- Slot Machine of Chaos ---------- */
-.wut-l { text-align: center; line-height: 1; padding: 0 12px; letter-spacing: .02em; }
+.wut-l { text-align: center; line-height: 1; padding: 0 12px; letter-spacing: 0; }
 .slot { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .slot .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .slot .row1 { position: absolute; left: 48px; right: 48px; top: 140px; display: flex; gap: 28px; }
@@ -504,15 +504,15 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .swapg .shead .chip-label { align-self: center; }
 .swapg .rnd { font-family: var(--display); font-size: 56px; line-height: 1; }
 .swapg .demo { margin-left: auto; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
-.swapg .sq { position: absolute; left: 70px; right: 70px; top: 250px; height: 390px; display: flex; align-items: center; gap: 44px; padding: 30px 50px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--teal); }
-.swapg .qpic { flex: none; width: 290px; height: 290px; }
+.swapg .sq { position: absolute; left: 70px; right: 70px; top: 362px; height: 292px; display: flex; align-items: center; gap: 44px; padding: 30px 50px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--teal); }
+.swapg .qpic { flex: none; width: 220px; height: 220px; }
 .swapg .qcol { flex: 1; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 12px; }
 .swapg .qsub { align-self: flex-start; font-weight: 800; font-size: 40px; padding: 0 14px; background: var(--ink); color: var(--teal); }
 .swapg .qt { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; font-family: var(--display); font-size: 110px; line-height: 1.05; letter-spacing: -0.03em; overflow: hidden; }
-.swapg .sbottom { position: absolute; left: 70px; right: 70px; top: 675px; height: 330px; display: flex; gap: 40px; }
-.swapg .sleft { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-.swapg .tslot { flex: none; width: 260px; }
-.swapg .brow { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; margin-top: auto; margin-bottom: 30px; }
+.swapg .sbottom { position: absolute; left: 70px; right: 70px; top: 680px; height: 322px; display: flex; gap: 40px; }
+.swapg .sleft { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; }
+.swapg .tslot { flex: none; width: 320px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.swapg .brow { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
 .swapg .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
 .swapg .rule.hot { color: #c4127f; }
 .swapg .swapbig { position: absolute; left: 70px; right: 70px; top: 150px; bottom: 90px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; }
@@ -580,7 +580,7 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .dicegame .dword { max-width: 100%; max-height: 104px; font-family: var(--display); font-size: 48px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; overflow: hidden; overflow-wrap: normal; }
 .dicegame .dbottom { position: absolute; left: 70px; right: 70px; top: 680px; height: 320px; display: flex; gap: 40px; }
 .dicegame .dleft { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
-.dicegame .tslot { flex: none; width: 260px; }
+.dicegame .tslot { flex: none; width: 290px; }
 .dicegame .big { font-family: var(--display); font-size: 64px; line-height: 1.05; letter-spacing: -0.03em; }
 .dicegame .big.end { font-size: 110px; animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
 .dicegame .cnt { font-family: var(--display); font-size: 48px; }
@@ -676,3 +676,24 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tw-games { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; width: 100%; }
 .tw-note { margin-top: 16px; font-size: 16px; font-weight: 600; color: #555; }
 @media (max-width: 800px) { .tw-body { flex-direction: column; } .tw-side { width: 100%; } }
+
+/* Speed Swap: U-shaped room (setup, round cycle, A / B turns, SWITCH) */
+.swapg .instr { position: absolute; left: 70px; right: 70px; top: 222px; height: 118px; display: flex; align-items: center; gap: 26px; padding: 4px 28px; border: 5px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.swapg .instr.fresh { animation: wu-catin .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.swapg .instr .ic { flex: none; width: 110px; height: 100px; display: flex; align-items: center; justify-content: center; }
+.swapg .instr .it { flex: 1; min-width: 0; height: 104px; display: flex; align-items: center; font-family: var(--display); font-size: 64px; line-height: 1.02; letter-spacing: -0.03em; overflow: hidden; }
+.swapg .ask { display: flex; align-items: center; gap: 18px; font-family: var(--display); font-size: 52px; line-height: 1.05; }
+.swapg .ask.sw2 { background: var(--pink); padding: 2px 14px 2px 4px; border: 4px solid var(--ink); }
+.swapg .ask.group { display: block; width: 100%; max-height: 160px; overflow: hidden; font-size: 48px; }
+.swapg .ask .badge { flex: none; display: flex; }
+.swapg .nop { font-weight: 800; font-size: 40px; line-height: 1.1; color: #555; }
+.swapg .btn.go { padding: 12px 20px; gap: 16px; font-size: 42px; box-shadow: 8px 8px 0 var(--ink); }
+.swapg .btn.go .key { font-size: 34px; padding: 4px 14px; }
+.swapg .rdy { font-weight: 800; font-size: 40px; text-align: center; color: #c4127f; }
+.swapg .switchbig { position: absolute; left: 70px; right: 70px; top: 400px; padding: 20px 30px; text-align: center; background: var(--pink); border: 8px solid var(--ink); box-shadow: 16px 16px 0 var(--ink); font-family: var(--display); font-size: 110px; line-height: 1; letter-spacing: -0.03em; z-index: 5; animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.swapg .setup { position: absolute; left: 70px; right: 70px; top: 145px; bottom: 76px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.swapg .setup .chip-label { align-self: flex-start; }
+.swapg .setl { font-family: var(--display); font-size: 64px; line-height: 1.05; text-align: center; letter-spacing: -0.03em; }
+.swapg .udraw svg { display: block; }
+.swapg .setup .brow { gap: 40px; }
+.calm .swapg .instr.fresh, .calm .swapg .switchbig { animation: none; }
