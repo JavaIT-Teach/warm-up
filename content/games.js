@@ -9,6 +9,6 @@ WU.content.games = [
   { id: 'lie', name: 'Lie Detector', hook: 'Truth or lie? The machine knows.', color: '#ffe600', first: true, ready: true },
   { id: 'swap', name: 'Speed Swap', hook: 'Talk in pairs. Buzzer. Swap seats.', color: '#00e5c7', first: true, ready: true },
   { id: 'tug', name: 'Tug of War', hook: 'Two teams. Good reasons pull the rope.', color: '#3d6bff', first: true, ready: true },
-  { id: 'dice', name: 'Story Dice', hook: 'Roll the pictures. Build one story.', color: '#c6ff00' },
-  { id: 'chain', name: 'Word Chain', hook: 'The last letter starts the next word.', color: '#ff5a1f' }
+  { id: 'dice', name: 'Story Dice', hook: 'Roll the pictures. Build one story.', color: '#c6ff00', ready: true },
+  { id: 'chain', name: 'Word Chain', hook: 'The last letter starts the next word.', color: '#ff5a1f', ready: true }
 ];

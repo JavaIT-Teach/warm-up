@@ -77,7 +77,7 @@ button { font: inherit; color: inherit; }
 .key { font-family: var(--display); font-size: 40px; background: var(--ink); color: var(--lime); padding: 6px 22px; line-height: 1.1; }
 .btn.sm .key { font-size: 32px; padding: 4px 16px; color: #fff; }
 .key.inv { color: #fff; }
-.hints { position: absolute; left: 48px; right: 48px; bottom: 28px; display: flex; align-items: center; gap: 32px; }
+.hints { position: absolute; left: 48px; right: 48px; bottom: 28px; display: flex; align-items: center; gap: 22px; }
 .hint { display: flex; align-items: center; gap: 10px; }
 .hint .k { min-width: 44px; height: 40px; padding: 0 12px; border: 3px solid var(--ink); background: #fff; display: flex; align-items: center; justify-content: center; font-size: 20px; font-weight: 800; }
 .hint .l { font-size: 22px; font-weight: 700; }
@@ -512,7 +512,7 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .swapg .qt { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; font-family: var(--display); font-size: 110px; line-height: 1.05; letter-spacing: -0.03em; overflow: hidden; }
 .swapg .sbottom { position: absolute; left: 70px; right: 70px; top: 675px; height: 330px; display: flex; gap: 40px; }
 .swapg .sleft { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 20px; }
-.swapg .tslot { flex: none; width: 330px; }
+.swapg .tslot { flex: none; width: 260px; }
 .swapg .brow { display: flex; align-items: center; gap: 30px; flex-wrap: wrap; margin-top: auto; margin-bottom: 30px; }
 .swapg .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
 .swapg .rule.hot { color: #c4127f; }
@@ -564,3 +564,74 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .tug .acts { display: flex; gap: 20px; }
 .calm .tug .rope.move { transition: none; }
 .calm .tug .tteam.on, .calm .tug .twin { animation: none; }
+
+/* ---------- Story Dice ---------- */
+.dicegame { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.dicegame .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.dicegame .dhead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 24px; }
+.dicegame .dhead > * { flex: none; white-space: nowrap; }
+.dicegame .demo { margin-left: auto; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
+.dicegame .dice { position: absolute; left: 50px; right: 50px; top: 235px; height: 420px; display: flex; justify-content: center; align-items: flex-start; gap: 34px; }
+.dicegame .die { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.dicegame .cube { width: 100%; border: 6px solid var(--ink); border-radius: 26px; box-shadow: 10px 10px 0 var(--ink); padding: 14%; display: flex; align-items: center; justify-content: center; background: #fff; }
+.dicegame .die.roll .cube { animation: wu-roll .5s linear infinite; }
+.dicegame .die.on .cube { outline: 10px solid var(--pink); outline-offset: 8px; }
+.dicegame .dpic { width: 100%; height: 100%; }
+.dicegame .qm { font-family: var(--display); font-size: 150px; line-height: 1; }
+.dicegame .dword { max-width: 100%; font-family: var(--display); font-size: 48px; line-height: 1.05; text-align: center; white-space: nowrap; overflow: hidden; }
+.dicegame .dbottom { position: absolute; left: 70px; right: 70px; top: 680px; height: 320px; display: flex; gap: 40px; }
+.dicegame .dleft { flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 16px; }
+.dicegame .tslot { flex: none; width: 260px; }
+.dicegame .big { font-family: var(--display); font-size: 64px; line-height: 1.05; letter-spacing: -0.03em; }
+.dicegame .big.end { font-size: 110px; animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.dicegame .cnt { font-family: var(--display); font-size: 48px; }
+.dicegame .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.dicegame .frame { font-size: 48px; }
+.calm .dicegame .die.roll .cube, .calm .dicegame .big.end { animation: none; }
+
+/* ---------- Word Chain ---------- */
+.chaing { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.chaing .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.chaing .chead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 24px; }
+.chaing .chead > * { flex: none; white-space: nowrap; }
+.chaing .minfo { font-family: var(--display); font-size: 48px; line-height: 1; }
+.chaing .demo { margin-left: auto; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
+.chaing .cmain { position: absolute; left: 70px; top: 230px; width: 1200px; height: 770px; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; }
+.chaing .cturn { width: 100%; max-height: 190px; overflow: hidden; font-family: var(--display); font-size: 88px; line-height: 1.02; letter-spacing: -0.03em; }
+.chaing .crow { display: flex; align-items: center; gap: 36px; min-height: 290px; width: 100%; }
+.chaing .lbox { flex: none; width: 250px; height: 290px; background: var(--ink); color: var(--lime); border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--orange); display: flex; flex-direction: column; align-items: center; justify-content: center; }
+.chaing .ll { font-weight: 800; font-size: 40px; color: #fff; }
+.chaing .lt { font-family: var(--display); font-size: 200px; line-height: .9; }
+.chaing .cpic { flex: none; width: 290px; height: 290px; background: #fff; border: 6px solid var(--ink); padding: 20px; }
+.chaing .cword { flex: 1; min-width: 0; height: 160px; display: flex; align-items: center; font-family: var(--display); font-size: 140px; line-height: 1; letter-spacing: -0.03em; overflow: hidden; }
+.chaing .cword span { color: var(--orange); }
+.chaing .cwarn { display: flex; flex-direction: column; gap: 6px; }
+.chaing .cwarn div { font-weight: 800; font-size: 44px; color: #fff; background: #d0102a; padding: 2px 14px; }
+.chaing .tbar { position: relative; width: 100%; height: 64px; background: #fff; border: 5px solid var(--ink); }
+.chaing .tfill { position: absolute; left: 0; top: 0; bottom: 0; transition: width .1s linear; }
+.chaing .tnum { position: absolute; right: 16px; top: 0; bottom: 0; display: flex; align-items: center; font-family: var(--display); font-size: 48px; }
+.chaing .tup { position: absolute; left: 0; right: 0; top: -6px; text-align: center; font-family: var(--display); font-size: 64px; line-height: 1; color: #d0102a; animation: wu-slam2 .4s both; }
+.chaing .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.chaing .rule.hot { color: #c4127f; }
+.chaing .acts { display: flex; gap: 26px; flex-wrap: wrap; }
+.chaing .chist { display: flex; gap: 14px; margin-top: auto; margin-bottom: 20px; max-width: 100%; overflow: hidden; }
+.chaing .chist div { flex: none; display: flex; align-items: center; gap: 8px; padding: 4px 14px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 40px; }
+.chaing .chist .pic { width: 48px; height: 48px; background: #fff; }
+.chaing .cwin { width: 100%; max-height: 360px; overflow: hidden; font-family: var(--display); font-size: 150px; line-height: 1.05; letter-spacing: -0.04em; animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chaing .cside { position: absolute; left: 1310px; top: 230px; width: 550px; height: 700px; overflow: hidden; display: flex; flex-direction: column; gap: 14px; }
+.chaing .jl { font-weight: 800; font-size: 40px; line-height: 1.1; }
+.chaing .jn { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.chaing .jn div { font-weight: 800; font-size: 40px; line-height: 1.15; padding: 0 10px; background: #fff; border: 4px solid var(--ink); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.calm .chaing .tup, .calm .chaing .cwin { animation: none; }
+
+/* Compact scoreboard: one row (name beside score), so it stays below every game's content. */
+.sb.compact { align-items: stretch; }
+.sb.compact .sb-team { width: auto; min-width: 150px; flex-direction: row; align-items: center; justify-content: center; gap: 12px; padding: 2px 16px; }
+.sb.compact .sb-name { font-size: 40px; max-width: 200px; }
+.sb.compact .sb-score { font-size: 56px; line-height: 1.05; }
+.sb.compact .sb-grip { width: auto; flex-direction: row; padding: 0 6px; }
+.sb.compact .sb-grip > div { display: flex; gap: 6px; }
+.sb.compact .sb-grip .b { margin-top: 0; }
+.sb.compact .sb-name { display: none; }
+.sb.compact .sb-team { min-width: 96px; padding: 2px 14px; }
+.dicegame .dhead .demo, .chaing .chead .demo, .tug .thead .demo { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }

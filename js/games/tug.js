@@ -109,7 +109,7 @@
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [];
     var hs = st.won != null ? [['N', 'new topic'], ['R', 'play again'], ['Esc', 'home']].concat(sc)
-      : [['LEFT', 'pull left'], ['RIGHT', 'pull right'], ['SPACE', 'no pull, next side'], ['N', 'new topic'], ['R', 'reset'], ['Esc', 'home']].concat(sc);
+      : [['LEFT', 'pull left'], ['RIGHT', 'pull right'], ['SPACE', 'no pull'], ['N', 'new topic'], ['R', 'reset'], ['Esc', 'home']].concat(sc);
     kit.hints(root, hs, keyAction);
   }
 

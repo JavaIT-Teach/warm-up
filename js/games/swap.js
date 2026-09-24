@@ -77,7 +77,7 @@
     }
     box.querySelector('.layer').innerHTML = h;
     if (clock && ph === 'talk') box.querySelector('.tslot').appendChild(clock.el);
-    var qt = box.querySelector('.qt'); if (qt) kit.fit(qt, 110, 56);
+    var qt = box.querySelector('.qt'); if (qt) kit.fit(qt, 110, 48);
     box.querySelectorAll('[data-b]').forEach(function (b) { b.onclick = function () { keyAction(b.getAttribute('data-b') === 'again' ? 'R' : 'SPACE'); }; });
     renderHints();
   }
@@ -93,7 +93,7 @@
     if (st.phase !== 'ready') return;
     WU.sound.unlock(); clearT();
     if (clock) clock.destroy();
-    clock = WU.Timer({ seconds: Math.max(15, +scr.get().secs || 90), size: 330, onDone: function () { timers.push(setTimeout(swap, 900)); } });
+    clock = WU.Timer({ seconds: Math.max(15, +scr.get().secs || 90), size: 260, onDone: function () { timers.push(setTimeout(swap, 900)); } });
     st.phase = 'talk'; render(); clock.start();
   }
   function swap() {
