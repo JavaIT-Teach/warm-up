@@ -525,3 +525,42 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .calm .swapg .sw, .calm .swapg .arrows { animation: none; }
 .swapg .shead > * { flex: none; white-space: nowrap; }
 .swapg .shead .demo { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Tug of War ---------- */
+.tug { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.tug .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; overflow: hidden; }
+.tug .thead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 30px; }
+.tug .thead > * { flex: none; white-space: nowrap; }
+.tug .demo { margin-left: auto; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
+.tug .sides { position: absolute; left: 70px; right: 70px; top: 225px; height: 320px; display: flex; align-items: stretch; gap: 30px; }
+.tug .tcard { flex: 1 1 0; min-width: 0; display: flex; align-items: center; justify-content: center; gap: 30px; padding: 20px 30px; background: #fff; border: 6px solid var(--ink); }
+.tug .tpic { flex: none; width: 230px; height: 230px; }
+.tug .tword { flex: 0 1 auto; min-width: 0; max-height: 270px; font-family: var(--display); font-size: 96px; line-height: 1.02; letter-spacing: -0.03em; overflow: hidden; }
+.tug .vs { align-self: center; flex: none; font-family: var(--display); font-size: 96px; }
+.tug .motion { position: absolute; left: 70px; right: 70px; top: 225px; height: 250px; padding: 20px 40px; background: #fff; border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); display: flex; align-items: center; }
+.tug .mt { width: 100%; max-height: 100%; font-family: var(--display); font-size: 96px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; overflow: hidden; }
+.tug .fa { position: absolute; left: 70px; right: 70px; top: 500px; display: flex; justify-content: space-between; }
+.tug .fa span { font-family: var(--display); font-size: 48px; padding: 2px 20px; border: 4px solid var(--ink); }
+.tug .ropebox { position: absolute; left: 0; right: 0; top: 585px; height: 220px; }
+.tug .tline { position: absolute; top: 0; width: 140px; height: 220px; }
+.tug .tline::after { content: ''; position: absolute; left: 64px; top: 0; bottom: 0; width: 12px; background: var(--ink); }
+.tug .tline.c::after { background: repeating-linear-gradient(var(--ink) 0 18px, transparent 18px 30px); width: 8px; left: 66px; }
+.tug .rope { position: absolute; left: 0; top: 80px; width: 1920px; height: 60px; }
+.tug .rope.move { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1); }
+.tug .cord { position: absolute; left: -700px; right: -700px; top: 14px; height: 32px; background: repeating-linear-gradient(115deg, #c89660 0 16px, #8a5a2b 16px 26px); border: 4px solid var(--ink); border-radius: 16px; }
+.tug .flag { position: absolute; left: 952px; top: -70px; width: 16px; height: 150px; background: var(--ink); }
+.tug .flag::after { content: ''; position: absolute; left: 16px; top: 0; width: 90px; height: 62px; background: #ff2020; border: 4px solid var(--ink); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.tug .tteam { position: absolute; top: 20px; width: 300px; height: 180px; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); display: flex; align-items: center; justify-content: center; text-align: center; padding: 10px; z-index: 2; cursor: pointer; }
+.tug .tteam span { font-family: var(--display); font-size: 48px; line-height: 1; overflow: hidden; }
+.tug .tteam.l { left: 30px; }
+.tug .tteam.r { right: 30px; }
+.tug .tteam.on { animation: wu-pulse .9s ease-in-out infinite; outline: 8px solid var(--ink); outline-offset: 6px; }
+.tug .tbottom { position: absolute; left: 70px; right: 70px; top: 830px; height: 170px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.tug .tturn { font-family: var(--display); font-size: 52px; line-height: 1.05; padding: 6px 20px; border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.tug .brow { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.tug .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.tug .frame { font-size: 48px; }
+.tug .twin { align-self: center; margin-top: 10px; font-family: var(--display); font-size: 100px; line-height: 1.05; padding: 6px 30px; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.tug .acts { display: flex; gap: 20px; }
+.calm .tug .rope.move { transition: none; }
+.calm .tug .tteam.on, .calm .tug .twin { animation: none; }
