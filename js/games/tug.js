@@ -152,6 +152,18 @@
 
   WU.views.tug = {
     title: 'Tug of War',
+    teacher: function () {
+      if (!st) return null;
+      var it = topic(), d = dist(), info = [];
+      if (it) info.push({ label: 'Topic', text: it.motion || (it.left + ' vs ' + it.right) });
+      if (st.won != null) info.push({ label: 'Winner', text: sideName(st.won) });
+      else {
+        var s = Math.max(1, +scr.get().strength || 1);
+        info.push({ label: 'Good reasons still needed', text: sideName(0) + ': ' + Math.ceil((d + st.pos) / s) + '   ' + sideName(1) + ': ' + Math.ceil((d - st.pos) / s) });
+        info.push({ label: 'Turn', text: sideName(st.turn) });
+      }
+      return { secret: [], info: info };
+    },
     help: function () { return [['Left / Right', 'good reason: pull'], ['Space', 'no pull: next side'], ['N', 'new topic'], ['R', 'reset the rope'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       root = el;

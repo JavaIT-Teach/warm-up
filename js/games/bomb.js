@@ -244,6 +244,9 @@
     }
     layer.innerHTML = h + '</div>';
     if (st.timerOn && clock) layer.querySelector('.tslot').appendChild(clock.el);
+    // A long challenge: shrink it so the buttons stay above the scoreboard (column ends at y 930).
+    var col = layer.querySelector('.rcol'), t = col && col.querySelector('.res .t');
+    if (t) { var fs = 96; while (fs > 56 && col.scrollHeight > 760) { fs -= 4; t.style.fontSize = fs + 'px'; } }
   }
 
   function wireLayer() {
@@ -378,18 +381,18 @@
     else if (k === 'Esc') WU.go('home');
   }
 
-  function header() {
-    var L = WU.LEVELS[WU.state.level];
-    return '<div class="gh" data-ctrl><div class="logo small" data-act="home" title="Home (Esc)"><span>WARM UP!</span></div><span class="title">/ The Bomb</span><div style="flex:1"></div>' +
-      '<div class="lvchip">' + L.name + '<span>' + L.code + '</span></div>' +
-      (WU.state.teams ? '<div class="tbtn" data-h="scores">Scores</div>' : '') +
-      '<div class="ibtn" data-act="edit" title="Edit mode (E)">' + WU.icons.pencil + '</div>' +
-      '<div class="ibtn" data-act="mute">' + WU.icons.sound() + '</div><div class="ibtn" data-act="full">' + WU.icons.full + '</div>' +
-      '<div class="ibtn" data-act="help">' + WU.icons.help + '</div></div>';
-  }
-
   WU.views.bomb = {
     title: 'The Bomb',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [];
+      if (st.phase === 'ticking') sec.push({ label: 'The bomb explodes in', text: Math.max(0, Math.ceil((st.total - (Date.now() - st.t0)) / 1000)) + ' seconds', big: true, hot: true });
+      else if (st.phase === 'ready') sec.push({ label: 'Fuse', text: 'Random length, set when you press Space. You will see the seconds here.' });
+      if (st.phase === 'spinning' && st.pens && st.res == null) sec.push({ label: 'The wheel is spinning', text: '...' });
+      if (st.cat) info.push({ label: 'Category', text: st.cat.name });
+      if (st.res != null && st.pens) { var r = st.pens[st.res]; info.push({ label: 'Challenge', text: r.text + (r.sub ? ' (' + r.sub + ')' : '') }); }
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['Space', 'start / spin / next round'], ['N', 'new category'], ['R', 'reset'], ['X', 'explode now'], ['T', 'challenge timer'], ['P', 'pick who starts'],
         ['S', 'show / hide scores'], ['1 - 4', 'team point (Shift = minus)']];
@@ -397,7 +400,7 @@
     mount: function (el) {
       root = el;
       st = { phase: 'ready', cat: null, catN: 0, p: 0, tick: 0, rot: 0, live: '', res: null, pens: null, timerOn: false, demo: !!scr().demoShow };
-      el.innerHTML = '<div class="bomb"><div class="layer"></div>' + header() + '<div class="hints"></div></div>';
+      el.innerHTML = '<div class="bomb"><div class="layer"></div>' + WU.kit.header('The Bomb') + '<div class="hints"></div></div>';
       box = el.querySelector('.bomb'); layer = el.querySelector('.layer');
       WU.wireCommon(el);
       sb = WU.Scoreboard(box);

@@ -48,7 +48,12 @@
   function q() { return st.q ? WU.list('swap', st.q.list, WU.state.level).filter(function (x) { return x.id === st.q.id; })[0] || null : null; }
   function total() { return Math.max(1, Math.min(20, +scr.get().rounds || 5)); }
   function clearT() { timers.forEach(clearTimeout); timers = []; }
-  function newQuestion() { var ln = listName(), it = deck(WU.list('swap', ln, WU.state.level)); st.q = it ? { list: ln, id: it.id } : null; }
+  // The next question is drawn in advance so the Teacher screen can show it.
+  function draw() { var ln = listName(), it = deck(WU.list('swap', ln, WU.state.level)); return it ? { list: ln, id: it.id } : null; }
+  function newQuestion() {
+    var up = st.upcoming, ok = up && up.list === listName() && WU.list('swap', up.list, WU.state.level).some(function (x) { return x.id === up.id; });
+    st.q = ok ? up : draw(); st.upcoming = draw();
+  }
 
   function render() {
     var S = scr.get(), ph = st.phase, h = '', it = q();
@@ -135,6 +140,14 @@
 
   WU.views.swap = {
     title: 'Speed Swap',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [], it = q(), up = st.upcoming && WU.list('swap', st.upcoming.list, WU.state.level).filter(function (x) { return x.id === st.upcoming.id; })[0];
+      if (up && st.n < total()) sec.push({ label: 'Next question (after the swap)', text: up.text });
+      info.push({ label: 'Round', text: st.n + ' of ' + total() });
+      if (it) info.push({ label: 'Question now', text: it.text });
+      return { secret: sec, info: info };
+    },
     help: function () { return [['Space', 'start / swap now / next round'], ['Enter', 'pause / go'], ['N', 'another question'], ['R', 'start again'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       root = el;

@@ -11,6 +11,7 @@
     return '<div class="gh" data-ctrl><div class="logo small" data-act="home" title="Home (Esc)"><span>WARM UP!</span></div><span class="title">/ ' + WU.esc(title) + '</span><div style="flex:1"></div>' +
       '<div class="lvchip">' + L.name + '<span>' + L.code + '</span></div>' +
       (WU.state.teams ? '<div class="tbtn" data-h="scores">Scores</div>' : '') +
+      '<div class="ibtn" data-act="teacher" title="Teacher screen for your laptop (V)">' + WU.icons.teacher + '</div>' +
       '<div class="ibtn" data-act="edit" title="Edit mode (E)">' + WU.icons.pencil + '</div>' +
       '<div class="ibtn" data-act="mute">' + WU.icons.sound() + '</div><div class="ibtn" data-act="full">' + WU.icons.full + '</div>' +
       '<div class="ibtn" data-act="help">' + WU.icons.help + '</div></div>';

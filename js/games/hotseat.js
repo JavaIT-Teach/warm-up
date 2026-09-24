@@ -196,6 +196,19 @@
 
   WU.views.hotseat = {
     title: 'Hot Seat',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [], w = word();
+      if (st.phase === 'play' && w) {
+        if (w.pic) sec.push({ label: '', html: WU.pic(w.pic) });
+        sec.push({ label: 'The word', text: w.text, big: true, hot: true });
+        if (w.banned) sec.push({ label: 'Banned words', text: w.banned });
+      }
+      info.push({ label: 'In the hot seat', text: playerName() || '(nobody yet: press P)' });
+      if (st.phase !== 'ready') info.push({ label: 'Score', text: String(st.score) });
+      info.push({ label: 'High score (this level)', text: String(high()) });
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['P', 'pick a student (again = someone else)'], ['Space', 'start / got it / next student'], ['P (in a round)', 'pass'], ['Enter', 'pause / go'],
         ['R', 'reset the high score'], ['1 - 4', 'after a round: give the score to a team'], ['S', 'show / hide scores']];

@@ -49,6 +49,25 @@ Keys: Space correct · X out · P pass · T topic · R start again.
 
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
+## Teacher screen (your laptop)
+With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
+the hidden picture and its name (Mystery Tiles), the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next question (Speed Swap),
+plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
+
+Setup (once per lesson):
+1. Connect the laptop to the board. On Windows press **Windows + P** and choose **Extend**.
+2. Open Warm Up and move its window to the board. Click it once, then press **F** for fullscreen.
+3. On the board window, press **V** (or click the laptop button at the top right). A second window opens.
+4. Move that window to your laptop screen (drag it, or press **Windows + Shift + Left/Right arrow**) and maximise it.
+5. Play. Keys work in both windows, and the buttons on your laptop work too. No internet needed.
+
+If something goes wrong:
+- Nothing opens: the browser blocked the pop-up. Click the blocked pop-up icon in the address bar, choose "Always allow", press **V** again.
+- The laptop window says "Waiting for the board": the board window was closed or reloaded. Press **V** on the board again.
+- No sound: click the board window once (browsers only play sound after a click or key press in that window).
+- Fullscreen (**F**) and opening the teacher screen (**V**) only work when pressed on the board window itself.
+
 ## Change the content
 - Press **E** (or the pencil) for **Edit mode**. Everything you can change gets a pink outline.
 - Click it, or use **Tab** + **Enter**. Rename, add (**N**), delete (**Del**), or pick a picture from the library or upload your own.

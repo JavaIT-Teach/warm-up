@@ -224,6 +224,22 @@
 
   WU.views.chain = {
     title: 'Word Chain',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [];
+      if ((st.phase === 'turn' || st.phase === 'timeup') && mode() === 'pictures') {
+        var it = picById(st.pic);
+        if (it) { sec.push({ label: '', html: WU.pic(it.pic) }); sec.push({ label: 'The word', text: it.text, big: true, hot: true }); }
+        var max = Math.max(0, +S().passes || 0); info.push({ label: 'Passes left', text: String(Math.max(0, max - (st.passes[st.cur] || 0))) });
+      }
+      if (st.buf) sec.push({ label: 'Typed', text: st.buf + (check().length ? '  (' + check().map(function (b) { return b[1]; }).join(', ') + ')' : '  (OK)') });
+      if (st.letter) info.push({ label: 'Next word starts with', text: st.letter.toUpperCase() });
+      if (st.cur && st.phase !== 'ready' && st.phase !== 'win') info.push({ label: 'Turn', text: st.cur });
+      info.push({ label: 'Still playing (' + st.alive.length + ')', text: st.alive.join(', ') });
+      if (st.judges.length) info.push({ label: 'Judges', text: st.judges.join(', ') });
+      if (st.winner) info.push({ label: 'Winner', text: st.winner });
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['Space / Enter', 'correct: next student'], ['X', 'out (becomes a judge)'], ['P', 'pass (Beginner)'], ['T', 'choose a topic (at the start)'],
         ['A - Z', 'type the word (optional)'], ['Shift + X', 'type an X'], ['R', 'start again']];

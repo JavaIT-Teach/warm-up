@@ -171,7 +171,7 @@
     var d = document, el = d.documentElement;
     try {
       if (d.fullscreenElement || d.webkitFullscreenElement) (d.exitFullscreen || d.webkitExitFullscreen).call(d);
-      else (el.requestFullscreen || el.webkitRequestFullscreen).call(el);
+      else { var r = (el.requestFullscreen || el.webkitRequestFullscreen).call(el); if (r && r.catch) r.catch(function () {}); }
     } catch (e) {}
   };
 
@@ -203,7 +203,7 @@
     if (ov.el.parentNode) ov.el.parentNode.removeChild(ov.el);
   };
 
-  var GLOBAL_KEYS = [['E', 'edit mode (teacher)'], ['Tab + Enter', 'choose a button'], ['Esc', 'home / close'], ['M', 'mute'], ['F', 'fullscreen'], ['?', 'this help']];
+  var GLOBAL_KEYS = [['V', 'teacher screen (for your laptop)'], ['E', 'edit mode (teacher)'], ['Tab + Enter', 'choose a button'], ['Esc', 'home / close'], ['M', 'mute'], ['F', 'fullscreen'], ['?', 'this help']];
   WU.showHelp = function () {
     var v = WU.current && WU.views[WU.current];
     var keys = (v && v.help ? v.help() : []).concat(GLOBAL_KEYS);
@@ -238,6 +238,7 @@
       else if (a === 'full') b.onclick = WU.toggleFullscreen;
       else if (a === 'help') b.onclick = WU.showHelp;
       else if (a === 'home') b.onclick = function () { WU.go('home'); };
+      else if (a === 'teacher') b.onclick = function () { if (WU.teacher) WU.teacher.open(); };
       else if (a === 'edit') { b.onclick = function () { WU.toggleEdit(); }; b.classList.toggle('on', !!WU.editing); }
     });
   };
@@ -292,7 +293,8 @@
     if (k === '?') { e.preventDefault(); WU.showHelp(); }
     else if (k === 'Escape') { if (WU.current !== 'home') WU.go('home'); }
     else if (k === 'm' || k === 'M') WU.toggleMute();
-    else if (k === 'f' || k === 'F') WU.toggleFullscreen();
+    else if (k === 'f' || k === 'F') { if (e.forwarded) WU.toast('Fullscreen: press F on the board window.'); else WU.toggleFullscreen(); }
+    else if ((k === 'v' || k === 'V') && WU.teacher && !e.forwarded) WU.teacher.open();
   };
 
   /* ---------- boot ---------- */
@@ -309,6 +311,8 @@
     WU.on('change', function () { WU.refreshMuteIcons(); });
     window.addEventListener('hashchange', WU.route);
     // Uploaded images live in IndexedDB; load them before the first screen draws.
-    (WU.images ? WU.images.load() : Promise.resolve()).then(function () { WU.route(); WU.emit('booted'); });
+    // The teacher window (index.html?teacher) only mirrors the board: no game, no sync.
+    if (WU.teacher && WU.teacher.isTeacher) { WU.teacher.start(); return; }
+    (WU.images ? WU.images.load() : Promise.resolve()).then(function () { WU.route(); WU.emit('booted'); if (WU.teacher) WU.teacher.start(); });
   };
 })();

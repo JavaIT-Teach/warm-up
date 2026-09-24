@@ -172,6 +172,14 @@
 
   WU.views.dice = {
     title: 'Story Dice',
+    teacher: function () {
+      if (!st) return null;
+      var info = [], words = st.faces.map(function (f) { var it = f && face(f); return it ? it.text : ''; }).filter(Boolean);
+      if (words.length && st.phase !== 'rolling') info.push({ label: 'Dice', text: words.join(', ') });
+      var S = scr.get(); if (st.phase !== 'ready') info.push({ label: 'Rule', text: st.ruleAlt ? S.ruleAlt : S.rule });
+      if (st.phase === 'class') info.push({ label: 'Sentence ' + st.n, text: st.who });
+      return { secret: [], info: info };
+    },
     help: function () { return [['Space', 'roll the dice'], ['Enter', 'pause / go (pair time)'], ['C', 'class story now'], ['N', 'next student'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       root = el;

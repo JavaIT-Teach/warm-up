@@ -25,3 +25,10 @@ Use `WU.kit` so every game looks and behaves the same:
 `kit.frame` (sentence frames with drawn gaps), `kit.chip`, `kit.fill` (`{name}`, `{n}`...), `kit.fit` (shrink text to its box),
 `kit.deck` (no repeats until the list is used up), `kit.student` (a random student, avoiding some names), `kit.normWord` (word + a / an from the picture library).
 Every field listed in a screen record needs a default at every level; the automated check fails otherwise.
+
+## Teacher screen (`js/teacher.js`)
+Opened with V on the board: `index.html?teacher` in a second window. The board runs the game; the teacher window only draws
+what the board sends and sends key presses back (postMessage between the two windows, BroadcastChannel as a backup).
+Each game adds `teacher()` to its view and returns `{ secret: [...], info: [...] }`, items `{ label, text, html, big, hot }`.
+Put in `secret` everything the teacher needs but the board must hide. Timer, scores and key buttons are added automatically
+from the board's timer, scoreboard and key hints.

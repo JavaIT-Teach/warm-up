@@ -84,7 +84,8 @@
       '<div class="seg">' + [['first', 'First lesson'], ['regular', 'Regular lesson']].map(function (l) {
         return '<div class="' + (s.lesson === l[0] ? 'on' : '') + '" data-lesson="' + l[0] + '">' + l[1] + '</div>';
       }).join('') + '</div>' +
-      '<div style="display:flex;gap:12px"><div class="ibtn" data-act="edit" title="Edit mode (E)">' + WU.icons.pencil + '</div>' +
+      '<div style="display:flex;gap:12px"><div class="ibtn" data-act="teacher" title="Teacher screen for your laptop (V)">' + WU.icons.teacher + '</div>' +
+      '<div class="ibtn" data-act="edit" title="Edit mode (E)">' + WU.icons.pencil + '</div>' +
       '<div class="ibtn" data-h="settings" title="Settings (S)">' + WU.icons.settings + '</div>' +
       '<div class="ibtn" data-act="mute" title="Mute (M)">' + WU.icons.sound() + '</div>' +
       '<div class="ibtn" data-act="full" title="Fullscreen (F)">' + WU.icons.full + '</div>' +
@@ -135,7 +136,7 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9', 'open a game'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['Tab + Enter', 'choose a tile']];
+      return [['1 - 9', 'open a game'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
     },
     mount: function (el) {
       root = el; render();

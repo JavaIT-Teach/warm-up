@@ -218,6 +218,20 @@
 
   WU.views.tiles = {
     title: 'Mystery Tiles',
+    teacher: function () {
+      if (!st) return null;
+      var it = item(), sec = [], info = [];
+      if (it) {
+        var pic = it.pic ? WU.pic(it.pic) : '<div class="tw-scene">' + sceneHTML(it.scene) + '</div>';
+        sec.push({ label: 'The hidden picture', html: pic });
+        sec.push({ label: 'Answer', text: answerText(it), big: true, hot: true });
+        if (it.reveal) sec.push({ label: 'Sentence at the end', text: it.reveal });
+      }
+      info.push({ label: 'Tiles opened', text: st.used + ' of ' + st.n * st.n });
+      if (WU.state.teams) info.push({ label: 'Turn', text: teamName(st.turn % WU.state.teams) });
+      if (st.phase === 'award') info.push({ label: 'Now', text: 'Press the number of the team that guessed. It gets ' + st.points + ' points.' });
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['Arrows', 'choose a tile'], ['Enter / Space', 'good question: open the tile'], ['X', 'bad question: nothing opens'], ['G', 'guessed it / reveal'],
         ['N', 'next picture'], ['1 - 4', 'after a guess: the team that guessed'], ['S', 'show / hide scores']];

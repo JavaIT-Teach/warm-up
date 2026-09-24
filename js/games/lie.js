@@ -214,6 +214,20 @@
 
   WU.views.lie = {
     title: 'Lie Detector',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [], it = q();
+      if (st.phase === 'ask' || st.phase === 'vote' || st.phase === 'scan') {
+        sec.push({ label: 'Secret answer', text: st.secret === 'T' ? 'TRUTH' : st.secret === 'L' ? 'LIE' : 'Not set yet: press T or L', big: true, hot: !st.secret });
+      }
+      if (st.phase === 'done') sec.push({ label: 'Secret answer', text: st.secret === 'L' ? 'LIE' : 'TRUTH' });
+      if (name()) info.push({ label: 'Student', text: name() });
+      if (it && st.phase !== 'idle') info.push({ label: 'Question', text: it.text });
+      if (st.followers.length) info.push({ label: 'Follow-up question', text: st.followers.join(', ') });
+      if (st.explainers.length) info.push({ label: 'Explain why it is a lie', text: st.explainers.join(', ') });
+      if (st.votes != null) info.push({ label: 'Lie votes', text: st.votes + ' of ' + WU.roster().length });
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['P', 'pick a student'], ['T / L', 'secret: truth / lie'], ['Space', 'next step'], ['Up / Down', 'count lie votes (optional)'],
         ['R', 'reveal'], ['N', 'another question'], ['S', 'show / hide scores']];

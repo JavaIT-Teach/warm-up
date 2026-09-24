@@ -260,6 +260,18 @@
 
   WU.views.slot = {
     title: 'Slot Machine of Chaos',
+    teacher: function () {
+      if (!st) return null;
+      var sec = [], info = [], v = st.val || {}, lv = WU.state.level;
+      var txt = function (list, x) { var it = x && WU.list('slot', list, lv).filter(function (i) { return i.id === x.id; })[0]; return it ? it.text : ''; };
+      var who = v.who ? (v.who.demo ? scr.get().demoWho : v.who.name) : '';
+      var parts = [['Who', who], ['Topic', v.topic ? txt(v.topic.list, v.topic) : ''], ['How', txt('styles', v.how)], ['Twist', txt('twists', v.twist)]].filter(function (p) { return p[1]; });
+      if (st.phase === 'spinning') sec.push({ label: 'The reels will stop on', text: parts.map(function (p) { return p[0] + ': ' + p[1]; }).join('  |  '), hot: true });
+      else parts.forEach(function (p) { info.push({ label: p[0], text: p[1] }); });
+      if (st.askers && st.askers.length) info.push({ label: 'Ask a question', text: st.askers.join(', ') });
+      info.push({ label: 'Reels', text: 'HOW ' + (st.how ? 'on' : 'off') + ', TWIST ' + (st.twist ? 'on' : 'off') });
+      return { secret: sec, info: info };
+    },
     help: function () {
       return [['Space', 'spin'], ['Enter', 'pause / go (timer)'], ['Q', 'questions now'], ['H', 'speaking styles on / off'], ['W', 'twist reel on / off'],
         ['S', 'show / hide scores'], ['1 - 4', 'team point (Shift = minus)']];
