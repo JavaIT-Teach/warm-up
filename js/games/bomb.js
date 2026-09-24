@@ -239,7 +239,7 @@
       h += '<div class="res"' + ek('text') + ' style="background:' + SEGC[st.res] + '">' + (r.pic ? '<div' + ek('pic') + '>' + WU.pic(r.pic) + '</div>' : '') +
         '<div><div class="t"' + ek('text') + '>' + WU.esc(fill(r.text)) + '</div>' + (sub ? '<div class="s"' + ek('sub') + '>' + WU.esc(sub) + '</div>' : '') +
         (r.frame ? '<div class="s"' + ek('frame') + ' style="margin-top:22px">' + frameHTML(r.frame) + '</div>' : '') + '</div></div>' +
-        '<div class="acts" data-ctrl>' + (r.timer ? '<div class="btn sm" data-b="timer"><span class="key">T</span><span>' + (st.timerOn ? 'Pause / go' : 'Start the ' + r.timer + '-second timer') + '</span></div>' : '') +
+        '<div class="acts" data-ctrl>' + (r.timer ? '<div class="btn sm" data-b="timer"><span class="key">T</span><span>' + (st.timerOn ? 'Pause / go' : r.timer + ' s timer') + '</span></div>' : '') +
         '<div class="btn sm" data-b="next"><span class="key">SPACE</span><span>Next round</span></div></div>';
     }
     layer.innerHTML = h + '</div>';
