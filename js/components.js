@@ -121,7 +121,7 @@
       onKey: function (e) {
         if (e.code === 'Space' || e.key === 'Enter') { e.preventDefault(); run(WU.overlay.el); return true; }
       },
-      onClose: function () { clearTimeout(to); }
+      onClose: function () { clearTimeout(to); if (o.onClose) o.onClose(); }
     });
   };
 

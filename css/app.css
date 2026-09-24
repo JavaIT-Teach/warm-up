@@ -467,3 +467,33 @@ body.editing .tiles .tgrid { opacity: .35; pointer-events: none; }
 .calm .hseat .wrow.in, .calm .hseat .result, .calm .hseat .pname, .calm .hseat .newhigh { animation: none; }
 .tiles .answer.long { font-size: 88px; }
 .tiles .tcol.end { gap: 14px; }
+
+/* ---------- Lie Detector ---------- */
+.lie { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.lie .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.lie .lhead { position: absolute; left: 70px; right: 70px; top: 150px; display: flex; align-items: center; gap: 30px; }
+.lie .lhead .chip-label { align-self: center; }
+.lie .lname { font-family: var(--display); font-size: 180px; line-height: 1.1; letter-spacing: -0.04em; max-width: 1700px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.lie .lname.sm { font-size: 72px; animation: none; max-width: 1200px; }
+.lie .demo { position: absolute; right: 90px; top: 160px; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); z-index: 3; }
+.lie .lidle { position: absolute; left: 70px; right: 70px; top: 260px; bottom: 90px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 30px; }
+.lie .hq { font-family: var(--display); font-size: 72px; line-height: 1; letter-spacing: -0.03em; }
+.lie .acts { display: flex; gap: 26px; flex-wrap: wrap; align-items: center; }
+.lie .lq { position: absolute; left: 70px; right: 70px; top: 270px; height: 400px; display: flex; align-items: center; gap: 44px; padding: 30px 50px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--yellow); }
+.lie .qpic { flex: none; width: 300px; height: 300px; }
+.lie .qt { flex: 1; min-width: 0; height: 100%; display: flex; align-items: center; font-family: var(--display); font-size: 110px; line-height: 1.05; letter-spacing: -0.03em; overflow: hidden; }
+.lie .lbottom { position: absolute; left: 70px; right: 70px; top: 710px; height: 290px; display: flex; flex-direction: column; justify-content: flex-start; gap: 16px; }
+.lie .brow { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.lie .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.lie .rule.big { font-family: var(--display); font-weight: normal; font-size: 52px; line-height: 1.05; }
+.lie .rule.hot { color: #c4127f; }
+.lie .count { font-family: var(--display); font-size: 64px; line-height: 1; }
+.lie .poly { position: absolute; left: 70px; right: 70px; top: 290px; height: 420px; background: var(--ink); border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--yellow); overflow: hidden; }
+.lie .poly svg { position: absolute; left: 0; top: 30px; width: 100%; height: 360px; }
+.lie .poly .grid-l { position: absolute; left: 0; top: 0; right: 0; bottom: 0; background-image: linear-gradient(rgba(255, 255, 255, .08) 2px, transparent 2px), linear-gradient(90deg, rgba(255, 255, 255, .08) 2px, transparent 2px); background-size: 80px 70px; pointer-events: none; }
+.lie .scan { position: absolute; left: 0; right: 0; top: 760px; text-align: center; font-family: var(--display); font-size: 96px; animation: wu-flicker .4s steps(1) infinite alternate; }
+.lie .stamp { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; top: 360px; transform: rotate(-6deg); padding: 10px 60px; border: 14px solid currentColor; font-family: var(--display); font-size: 220px; line-height: 1; background: var(--paper); animation: wu-slam .6s cubic-bezier(.2, .9, .3, 1.3) both; white-space: nowrap; }
+.lie .stamp.is-truth { color: #0a8a3a; }
+.lie .stamp.is-lie { color: #d0102a; }
+.lie .verdict { position: absolute; left: 0; right: 0; top: 780px; text-align: center; font-family: var(--display); font-size: 80px; line-height: 1.1; }
+.calm .lie .scan, .calm .lie .stamp, .calm .lie .lname { animation: none; }

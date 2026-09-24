@@ -283,8 +283,10 @@
       else if (e.key === 'f' || e.key === 'F') WU.toggleFullscreen();
       return;
     }
-    if (WU.editKey && WU.editKey(e)) return;
     var v = WU.views[WU.current];
+    // A game that is taking typed letters (Word Chain) gets them before the E / M / F shortcuts.
+    if (!WU.editing && v && v.grabKey && v.grabKey(e) === true) return;
+    if (WU.editKey && WU.editKey(e)) return;
     if (v && v.onKey && v.onKey(e) === true) return;
     var k = e.key;
     if (k === '?') { e.preventDefault(); WU.showHelp(); }
