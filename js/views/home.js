@@ -99,7 +99,7 @@
           '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
           '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
           '<div class="name">' + WU.esc(g.name) + '</div>' +
-          (g.ready ? '<div class="hook">' + WU.esc(g.hook) + '</div>' : '<div class="soon" style="color:' + g.color + '">COMING SOON</div>') +
+          '<div class="hook">' + WU.esc(g.hook) + '</div>' +
           '</div>';
       }).join('') + '</div></div>';
     root.innerHTML = html;
@@ -128,7 +128,7 @@
   function open(id) {
     var g = WU.content.games.filter(function (x) { return x.id === id; })[0];
     if (!g) return;
-    if (!g.ready || !WU.views[id]) { WU.sound.buzzer(); WU.toast(g.name + ' is coming soon.'); return; }
+    if (!WU.views[id]) return;
     WU.sound.unlock(); WU.go(id);
   }
 

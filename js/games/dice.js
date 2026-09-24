@@ -52,7 +52,7 @@
   function clearT() { timers.forEach(clearTimeout); timers = []; }
 
   function dieHTML(i) {
-    var id = st.faces[i], it = id && face(id), S = scr.get(), n = nDice(), size = n <= 3 ? 330 : n <= 4 ? 300 : n <= 5 ? 280 : 250;
+    var id = st.faces[i], it = id && face(id), S = scr.get(), n = nDice(), size = n <= 3 ? 330 : n <= 4 ? 300 : n <= 5 ? 290 : 268;
     var on = st.phase === 'class' && st.focus === i;
     var h = '<div class="die' + (st.rolling[i] ? ' roll' : '') + (on ? ' on' : '') + '" style="width:' + size + 'px">' +
       '<div class="cube" style="height:' + size + 'px;background:' + (st.rolling[i] ? COLS[(i + st.tick) % 6] : '#fff') + '">';
@@ -183,6 +183,8 @@
       if (sb && WU.store.get('dice-sb', true) === false) sb.show(false);
       var sbtn = el.querySelector('[data-h="scores"]'); if (sbtn) sbtn.onclick = toggleScores;
       render();
+      // Measure text again once the bundled fonts have loaded.
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st && box && st.phase !== 'rolling') render(); });
       offContent = WU.on('content', refresh);
     },
     unmount: function () { clearT(); if (clock) clock.destroy(); clock = null; if (offContent) offContent(); if (sb) sb.destroy(); sb = null; root = box = st = null; },

@@ -140,7 +140,7 @@
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [];
-    var hs = st.phase === 'play' ? [['ARROWS', 'choose a tile'], ['ENTER', 'open it'], ['X', 'bad question'], ['G', 'guessed / reveal'], ['N', 'next picture'], ['Esc', 'home']].concat(sc)
+    var hs = st.phase === 'play' ? [['ARROWS', 'choose'], ['ENTER', 'open'], ['X', 'bad question'], ['G', 'reveal'], ['N', 'next'], ['Esc', 'home']].concat(sc)
       : st.phase === 'award' ? [['1-' + WU.state.teams, 'who guessed?'], ['N', 'next picture'], ['Esc', 'home']].concat(sc)
       : [['N', 'next picture'], ['Esc', 'home']].concat(sc);
     kit.hints(root, hs, function (k) { keyAction(k === 'ARROWS' ? null : k); });

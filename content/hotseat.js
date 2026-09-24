@@ -466,12 +466,12 @@ WU.content.hotseatScreen = {
     tag: 'HOT SEAT', secs: 60, who: "Who's in the hot seat?", qMark: '?',
     rule: 'Back to the board! The class describes, you guess.', ruleShow: true,
     rule2: 'Describe it in full sentences. No pointing!', rule2Show: true,
-    banned: "Don't say:", score: 'Score', high: 'High score: {n}', beat: 'Beat {n}!',
+    frame: '', banned: "Don't say:", score: 'Score', high: 'High score: {n}', beat: 'Beat {n}!',
     result: '{name} scored {n}!', newHigh: 'NEW HIGH SCORE!', award: 'Which team? Press 1-4', points: '+{n} points!',
     demo: 'TEACHER DEMO: I sit first!', demoShow: false, demoWho: 'TEACHER'
   },
   levels: [
-    { secs: 90, rule2: 'One word is OK! Gestures are OK!', demoShow: true },
+    { secs: 90, rule2: 'One word is OK! Gestures are OK!', frame: "It's ___. It has ___.", demoShow: true },
     {}, {}, {},
     { rule2: 'Full sentences. Do not say the banned words!' },
     { rule2: 'Full sentences. Do not say the banned words!' },

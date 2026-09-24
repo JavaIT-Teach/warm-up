@@ -228,6 +228,8 @@
       if (sb && WU.store.get('lie-sb', true) === false) sb.show(false);
       var sbtn = el.querySelector('[data-h="scores"]'); if (sbtn) sbtn.onclick = toggleScores;
       render();
+      // Measure text again once the bundled fonts have loaded.
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st && box && st.phase !== 'rolling') render(); });
       offContent = WU.on('content', refresh);
     },
     unmount: function () { clearT(); if (offContent) offContent(); if (sb) sb.destroy(); sb = null; root = box = st = null; },

@@ -89,9 +89,21 @@
   // Shrink text until it fits its box (measured, so any edited text fits). Never below min.
   kit.fit = function (el, max, min) {
     if (!el) return;
+    // Fonts still loading: fit again as soon as they are ready (the bundled font is wider than the fallback).
+    if (document.fonts && document.fonts.status !== 'loaded' && !el._wuFitWait) {
+      el._wuFitWait = true;
+      document.fonts.ready.then(function () { if (el.isConnected) kit.fit(el, max, min); });
+    }
+    if (!el._wuFit) { el._wuFit = [max, min]; if (fitted.length > 300) fitted = fitted.filter(function (x) { return x.isConnected; }); fitted.push(el); }
     var fs = max; el.style.fontSize = fs + 'px';
     while (fs > min && (el.scrollHeight > el.clientHeight + 2 || el.scrollWidth > el.clientWidth + 2)) { fs -= 4; el.style.fontSize = fs + 'px'; }
   };
+  // Any font that finishes loading later: fit every fitted text on screen again.
+  var fitted = [];
+  if (document.fonts && document.fonts.addEventListener) document.fonts.addEventListener('loadingdone', function () {
+    fitted = fitted.filter(function (el) { return el.isConnected; });
+    fitted.forEach(function (el) { kit.fit(el, el._wuFit[0], el._wuFit[1]); });
+  });
   // A shuffled deck: draws every item once before repeating. key(item) identifies items across edits.
   kit.deck = function () {
     var left = [], sig = '';

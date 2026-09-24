@@ -146,6 +146,8 @@
       if (sb && WU.store.get('swap-sb', true) === false) sb.show(false);
       var sbtn = el.querySelector('[data-h="scores"]'); if (sbtn) sbtn.onclick = toggleScores;
       newQuestion(); render();
+      // Measure text again once the bundled fonts have loaded.
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st && box && st.phase !== 'rolling') render(); });
       offContent = WU.on('content', refresh);
     },
     unmount: function () { clearT(); if (clock) clock.destroy(); clock = null; if (offContent) offContent(); if (sb) sb.destroy(); sb = null; root = box = st = null; },

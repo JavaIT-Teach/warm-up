@@ -22,6 +22,7 @@
       { k: 'demoWho', label: 'Name in the demo round', type: 'text', max: 16 },
       { type: 'head', label: 'During the round' },
       { k: 'secs', label: 'Round length (seconds)', type: 'num', min: 15, max: 300 },
+      { k: 'frame', label: 'Sentence frame for the class (empty = none)', type: 'text', max: 60, hint: 'Use ___ for the gap.' },
       { k: 'banned', label: 'Label before the banned words', type: 'text', max: 20 },
       { k: 'score', label: 'Score label', type: 'text', max: 16 },
       { k: 'high', label: 'High score ({n})', type: 'text', max: 30 },
@@ -76,6 +77,7 @@
         var ek = function (f) { return ' data-edit="hotseat:words:' + w.id + ':' + f + '"'; };
         h += '<div class="wrow' + (st.flash ? ' in' : '') + '">' + (w.pic ? '<div class="wpic"' + ek('pic') + '>' + WU.pic(w.pic) + '</div>' : '') +
           '<div class="word"' + ek('text') + '>' + WU.esc(w.text) + '</div></div>';
+        if (S.frame) h += kit.frame(S.frame, scr.ea('frame'));
         if (w.banned) {
           h += '<div class="banned">' + (S.banned ? '<span class="bl"' + scr.ea('banned') + '>' + WU.esc(S.banned) + '</span>' : '') +
             w.banned.split(',').map(function (b) { return b.trim(); }).filter(Boolean).map(function (b) { return '<span class="bw"' + ek('banned') + '>' + WU.esc(b) + '</span>'; }).join('') + '</div>';
