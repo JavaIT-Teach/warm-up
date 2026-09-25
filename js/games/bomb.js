@@ -104,7 +104,48 @@
   }
 
   /* ---------- category ---------- */
+  /* ---------- the teacher's choice of categories ----------
+     Kept in memory only (per level and lesson mode): it lasts until changed or until the app reloads.
+     once = the category for the next round only; set = ticked categories, played in tick order, over and over. */
+  var PICK = {};
+  function pk() { var k = WU.state.level + '|' + WU.state.lesson; return PICK[k] || (PICK[k] = { once: null, set: [], pos: 0, tick: [] }); }
+  function catLists() { return WU.state.lesson === 'first' && WU.list('bomb', 'first', WU.state.level).length ? ['first', 'cats'] : ['cats']; }
+  function findRef(r) {
+    var p = String(r || '').split(':'), it = p.length === 2 && WU.list('bomb', p[0], WU.state.level).filter(function (x) { return x.id === p[1]; })[0];
+    return it ? { c: it, ln: p[0] } : null;
+  }
+  function refName(r) { var f = findRef(r); return f ? f.c.text : ''; }
+  function tidy() { var P = pk(); P.tick = P.tick.filter(findRef); P.set = P.set.filter(findRef); if (P.once && !findRef(P.once)) P.once = null; return P; }
+  // What comes next (for the Teacher screen only).
+  function nextLabel() {
+    var P = tidy();
+    if (P.once) return refName(P.once);
+    if (P.set.length) return refName(P.set[P.pos % P.set.length]) + '  (set: ' + (P.pos % P.set.length + 1) + ' of ' + P.set.length + ')';
+    return 'Random';
+  }
+  function chosenCat() {
+    var P = tidy(), f;
+    if (P.once) { f = findRef(P.once); P.once = null; if (f) return f; }
+    if (P.set.length) { f = findRef(P.set[P.pos % P.set.length]); P.pos++; if (f) return f; }
+    return null;
+  }
+  function pickOne(ref) {
+    if (!findRef(ref)) return;
+    pk().once = ref;
+    // Before the round starts the choice shows at once; otherwise it comes next round.
+    if (st.phase === 'ready') { newCat(); renderPhase(); }
+  }
+  function toggleTick(ref) { var P = pk(), i = P.tick.indexOf(ref); if (i >= 0) P.tick.splice(i, 1); else if (findRef(ref)) P.tick.push(ref); }
+  function playSet() {
+    var P = tidy(); if (!P.tick.length) { WU.toast('Tick some categories first.'); return; }
+    P.set = P.tick.slice(); P.pos = 0; P.once = null;
+    if (st.phase === 'ready') { newCat(); renderPhase(); }
+  }
+  function randomCats() { var P = pk(); P.once = null; P.set = []; P.pos = 0; P.tick = []; }
+
   function newCat() {
+    var chosen = chosenCat();
+    if (chosen) { st.cat = buildCat(chosen.c, chosen.ln); st.catN++; return; }
     var lv = WU.state.level, ln = 'cats';
     if (WU.state.lesson === 'first' && WU.list('bomb', 'first', lv).length && Math.random() < 0.5) ln = 'first';
     var list = WU.list('bomb', ln, lv);
@@ -263,7 +304,7 @@
   /* ---------- hints (also tappable) ---------- */
   function renderHints() {
     var ph = st.phase, res = st.res != null && st.pens ? st.pens[st.res] : null, sc = WU.state.teams ? [['S', 'scores']] : [];
-    var hs = ph === 'ready' ? [['SPACE', 'start'], ['N', 'new category'], ['P', 'who starts?'], ['R', 'reset'], ['Esc', 'home']].concat(sc)
+    var hs = ph === 'ready' ? [['SPACE', 'start'], ['N', 'new category'], ['C', 'categories'], ['P', 'who starts?'], ['R', 'reset'], ['Esc', 'home']].concat(sc)
       : ph === 'ticking' ? [['R', 'reset'], ['X', 'explode now'], ['Esc', 'home']].concat(sc)
       : ph === 'boom' ? [['R', 'reset'], ['Esc', 'home']]
       : ph === 'boomed' ? [['SPACE', 'spin the wheel'], ['R', 'reset'], ['Esc', 'home']].concat(sc)
@@ -368,6 +409,51 @@
     if (!sb) { WU.toast('Turn on teams in Settings first.'); return; }
     sb.show(!sb.visible()); WU.store.set('bomb-sb', sb.visible());
   }
+  // C: the category list on the board. Tip: use the Teacher screen (V) to choose without the class seeing the list.
+  function openCats() {
+    var cur = 0;
+    function items() { var out = []; catLists().forEach(function (ln) { WU.list('bomb', ln, WU.state.level).forEach(function (c) { out.push({ ref: ln + ':' + c.id, c: c, ln: ln }); }); }); return out; }
+    function draw(el) {
+      var P = tidy(), its = items(), groups = catLists(), h = '<div class="panel catpanel"><div class="cp-top"><span class="help-title">Categories</span><span style="flex:1"></span>' +
+        '<span class="sbtn dark" tabindex="0" data-cp="random">R: Random</span><span class="sbtn dark" tabindex="0" data-cp="set">P: Play ticked in order (' + P.tick.length + ')</span>' +
+        '<span class="sbtn" tabindex="0" data-cp="close">Esc: Close</span></div>' +
+        '<div class="note">Arrows + Enter: this category next round. Space: tick it for a set (plays in the order you tick). Now next: <b>' + WU.esc(nextLabel()) + '</b></div><div class="cp-list">';
+      var i = 0;
+      groups.forEach(function (ln) {
+        if (groups.length > 1) h += '<div class="cp-h">' + (ln === 'first' ? 'First-lesson categories' : 'Categories') + '</div>';
+        WU.list('bomb', ln, WU.state.level).forEach(function (c) {
+          var ref = ln + ':' + c.id, t = P.tick.indexOf(ref) + 1, isNow = st.cat && st.cat.list === ln && st.cat.id === c.id;
+          h += '<div class="cp-i' + (i === cur ? ' cur' : '') + (isNow ? ' now' : '') + (P.once === ref ? ' next' : '') + '" data-i="' + i + '">' +
+            '<span class="cp-t' + (t ? ' on' : '') + '" data-tick="' + i + '">' + (t || '') + '</span>' + (c.pic ? '<span class="ed-th">' + WU.pic(c.pic) + '</span>' : '') +
+            '<span class="cp-n">' + WU.esc(c.text) + (c.custom ? ' <em>(yours)</em>' : '') + '</span></div>';
+          i++;
+        });
+      });
+      el.innerHTML = h + '</div></div>';
+      el.querySelectorAll('[data-i]').forEach(function (r) { r.onclick = function (e) { if (e.target.closest('[data-tick]')) return; cur = +r.getAttribute('data-i'); pickOne(items()[cur].ref); WU.closeOverlay(); }; });
+      el.querySelectorAll('[data-tick]').forEach(function (b) { b.onclick = function () { cur = +b.getAttribute('data-tick'); toggleTick(items()[cur].ref); draw(el); }; });
+      el.querySelectorAll('[data-cp]').forEach(function (b) {
+        b.onclick = function () { var a = b.getAttribute('data-cp'); if (a === 'random') { randomCats(); WU.closeOverlay(); } else if (a === 'set') { playSet(); WU.closeOverlay(); } else WU.closeOverlay(); };
+      });
+      var c = el.querySelector('.cp-i.cur'); if (c) c.scrollIntoView({ block: 'nearest' });
+    }
+    WU.openOverlay({
+      cls: 'cats', render: draw,
+      onKey: function (e) {
+        var n = items().length, el = WU.overlay.el, cols = 3, k = e.key;
+        if (!n) return false;
+        if (k === 'ArrowDown') cur = Math.min(n - 1, cur + cols); else if (k === 'ArrowUp') cur = Math.max(0, cur - cols);
+        else if (k === 'ArrowRight') cur = Math.min(n - 1, cur + 1); else if (k === 'ArrowLeft') cur = Math.max(0, cur - 1);
+        else if (e.code === 'Space') { e.preventDefault(); toggleTick(items()[cur].ref); }
+        else if (k === 'Enter') { e.preventDefault(); pickOne(items()[cur].ref); WU.closeOverlay(); return true; }
+        else if (k === 'p' || k === 'P') { playSet(); WU.closeOverlay(); return true; }
+        else if (k === 'r' || k === 'R') { randomCats(); WU.toast('Categories: random'); WU.closeOverlay(); return true; }
+        else if (k === 'c' || k === 'C') { WU.closeOverlay(); return true; }
+        else return false;
+        draw(el); return true;
+      }
+    });
+  }
   function keyAction(k) {
     var ph = st.phase;
     if (k === 'SPACE') { if (ph === 'ready') start(); else if (ph === 'boomed') spin(); else if (ph === 'result') next(); }
@@ -378,6 +464,7 @@
     else if (k === 'P') { if (ph === 'ready') { var S = scr(), k = function (f) { return 'bomb:screen:bomb-screen:' + f; };
       WU.pickStudent({ title: S.pickTitle, landed: S.pickLanded, sub: S.pickSub, edit: { title: k('pickTitle'), landed: k('pickLanded'), sub: k('pickSub') } }); } }
     else if (k === 'S') toggleScores();
+    else if (k === 'C') openCats();
     else if (k === 'Esc') WU.go('home');
   }
 
@@ -391,10 +478,22 @@
       if (st.phase === 'spinning' && st.pens && st.res == null) sec.push({ label: 'The wheel is spinning', text: '...' });
       if (st.cat) info.push({ label: 'Category', text: st.cat.name });
       if (st.res != null && st.pens) { var r = st.pens[st.res]; info.push({ label: 'Challenge', text: r.text + (r.sub ? ' (' + r.sub + ')' : '') }); }
-      return { secret: sec, info: info };
+      sec.push({ label: 'Next category', text: nextLabel(), hot: true });
+      var P = tidy(), groups = catLists().map(function (ln) {
+        return { title: catLists().length > 1 ? (ln === 'first' ? 'First-lesson categories' : 'Categories') : '', items: WU.list('bomb', ln, WU.state.level).map(function (c) {
+          var ref = ln + ':' + c.id;
+          return { ref: ref, label: c.text + (c.custom ? ' (yours)' : ''), tick: P.tick.indexOf(ref) + 1, now: !!(st.cat && st.cat.list === ln && st.cat.id === c.id), next: P.once === ref };
+        }) };
+      });
+      return { secret: sec, info: info, choices: { title: 'Choose categories', help: 'Click a category: it plays next round (at once if the round has not started). Tick several (the box on the left) and press "Play ticked in order" for a set.',
+        actions: [['random', 'Random'], ['playSet', 'Play ticked in order (' + P.tick.length + ')']], groups: groups } };
+    },
+    teacherAct: function (name, arg) {
+      if (!st) return;
+      if (name === 'pickOne') pickOne(arg); else if (name === 'toggle') toggleTick(arg); else if (name === 'playSet') playSet(); else if (name === 'random') randomCats();
     },
     help: function () {
-      return [['Space', 'start / spin / next round'], ['N', 'new category'], ['R', 'reset'], ['X', 'explode now'], ['T', 'challenge timer'], ['P', 'pick who starts'],
+      return [['Space', 'start / spin / next round'], ['N', 'new category'], ['C', 'choose categories'], ['R', 'reset'], ['X', 'explode now'], ['T', 'challenge timer'], ['P', 'pick who starts'],
         ['S', 'show / hide scores'], ['1 - 4', 'team point (Shift = minus)']];
     },
     mount: function (el) {
@@ -414,7 +513,7 @@
       if (sb && sb.onKey(e)) return true;
       var k = e.key.toLowerCase();
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
-      var map = { n: 'N', r: 'R', x: 'X', t: 'T', p: 'P', s: 'S' };
+      var map = { n: 'N', r: 'R', x: 'X', t: 'T', p: 'P', s: 'S', c: 'C' };
       if (map[k]) { keyAction(map[k]); return true; }
     }
   };

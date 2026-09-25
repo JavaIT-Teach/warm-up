@@ -697,3 +697,30 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .swapg .udraw svg { display: block; }
 .swapg .setup .brow { gap: 40px; }
 .calm .swapg .instr.fresh, .calm .swapg .switchbig { animation: none; }
+/* Teacher screen: choices (The Bomb categories) */
+.tw-choices { background: #fff; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--lime); padding: 12px 14px; margin-top: 14px; display: flex; flex-direction: column; gap: 10px; }
+.tw-h2 { font-family: var(--display); font-size: 24px; }
+.tw-cacts { display: flex; gap: 10px; flex-wrap: wrap; }
+.tw-cacts button { padding: 8px 14px; min-height: 48px; background: var(--ink); color: var(--lime); border: 3px solid var(--ink); font: 800 18px var(--body); cursor: pointer; }
+.tw-clist { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 8px; }
+.tw-ci { display: flex; align-items: stretch; border: 3px solid var(--ink); background: #fff; }
+.tw-ci.now { background: var(--yellow); }
+.tw-ci.next { background: var(--lime); }
+.tw-ci .tick { flex: none; width: 44px; border: 0; border-right: 3px solid var(--ink); background: #fff; font: 800 18px var(--body); cursor: pointer; }
+.tw-ci .tick.on { background: var(--ink); color: var(--lime); }
+.tw-ci .pick { flex: 1; min-height: 44px; border: 0; background: transparent; text-align: left; padding: 6px 10px; font: 700 17px var(--body); cursor: pointer; }
+.tw-ci .pick i { font-style: normal; font-size: 12px; font-weight: 800; background: var(--ink); color: #fff; padding: 1px 5px; margin-left: 4px; }
+/* The Bomb: category chooser (C) */
+.catpanel { width: 1700px; height: 940px; padding: 26px 34px; gap: 14px; }
+.catpanel .cp-top { display: flex; align-items: center; gap: 14px; }
+.catpanel .note { font-size: 24px; font-weight: 600; }
+.catpanel .cp-list { flex: 1; min-height: 0; overflow: auto; display: grid; grid-template-columns: repeat(3, 1fr); align-content: start; gap: 10px; padding: 6px 12px 12px 6px; }
+.catpanel .cp-h { grid-column: 1 / -1; font-family: var(--display); font-size: 28px; margin-top: 6px; }
+.catpanel .cp-i { display: flex; align-items: center; gap: 12px; padding: 6px 12px; min-height: 64px; background: #fff; border: 3px solid var(--ink); cursor: pointer; }
+.catpanel .cp-i.cur { outline: 5px solid var(--blue); outline-offset: 2px; }
+.catpanel .cp-i.now { background: var(--yellow); }
+.catpanel .cp-i.next { background: var(--lime); }
+.catpanel .cp-t { flex: none; width: 40px; height: 40px; border: 3px solid var(--ink); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 22px; }
+.catpanel .cp-t.on { background: var(--ink); color: var(--lime); }
+.catpanel .cp-n { font-size: 26px; font-weight: 800; line-height: 1.1; }
+.catpanel .cp-n em { font-style: normal; font-size: 18px; color: #666; }

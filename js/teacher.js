@@ -47,7 +47,7 @@
     var n = WU.state.teams, scores = WU.store.get('scores', [0, 0, 0, 0]);
     return {
       type: 'state', view: WU.current, title: v.title || 'Home', level: L.name + ' ' + L.code, lesson: WU.state.lesson,
-      editing: !!WU.editing, overlay: !!WU.overlay, secret: (t && t.secret) || [], info: (t && t.info) || [],
+      editing: !!WU.editing, overlay: !!WU.overlay, secret: (t && t.secret) || [], info: (t && t.info) || [], choices: (t && t.choices) || null,
       timer: cd ? { text: cd.textContent, label: cl ? cl.textContent : '' } : null, hints: hints,
       teams: n ? WU.state.teamNames.slice(0, n).map(function (nm, i) { return { name: nm || 'TEAM ' + (i + 1), color: WU.TEAM_COLORS[WU.state.teamColors[i]] || '#fff', score: scores[i] || 0 }; }) : []
     };
@@ -65,6 +65,7 @@
       if (m.type === 'hello') { heard = true; lastSent = ''; push(true); }
       else if (m.type === 'key') { WU.onKeyDown(keyEvent(m)); pushSoon(); }
       else if (m.type === 'go') { WU.go(m.view); }
+      else if (m.type === 'act') { var v = WU.views[WU.current]; if (v && v.teacherAct) v.teacherAct(m.name, m.arg); pushSoon(); }
     });
     // The board keeps the teacher window up to date: on every change on screen, and twice a second for timers.
     observer = new MutationObserver(pushSoon);
@@ -136,7 +137,20 @@
     h += '</div></div>';
     var btns = [];
     s.hints.forEach(function (x) { expand(x).forEach(function (b) { btns.push(b); }); });
-    var k = '<div class="tw-keys">' + btns.map(function (b) {
+    // A game can offer a list to choose from here (The Bomb: categories). Only the teacher sees it.
+    var k = '';
+    if (s.choices) {
+      var c = s.choices;
+      k += '<div class="tw-choices" id="tw-choices"><div class="tw-h2">' + esc(c.title) + '</div>' + (c.help ? '<div class="tw-note">' + esc(c.help) + '</div>' : '') +
+        '<div class="tw-cacts">' + (c.actions || []).map(function (a) { return '<button data-act-n="' + esc(a[0]) + '">' + esc(a[1]) + '</button>'; }).join('') + '</div>' +
+        (c.groups || []).map(function (g) {
+          return (g.title ? '<div class="tw-l">' + esc(g.title) + '</div>' : '') + '<div class="tw-clist">' + g.items.map(function (it) {
+            return '<div class="tw-ci' + (it.now ? ' now' : '') + (it.next ? ' next' : '') + '"><button class="tick' + (it.tick ? ' on' : '') + '" data-act-n="toggle" data-arg="' + esc(it.ref) + '" title="Tick for a set">' + (it.tick ? it.tick : '') + '</button>' +
+              '<button class="pick" data-act-n="pickOne" data-arg="' + esc(it.ref) + '">' + esc(it.label) + (it.now ? ' <i>NOW</i>' : '') + (it.next ? ' <i>NEXT</i>' : '') + '</button></div>';
+          }).join('') + '</div>';
+        }).join('') + '</div>';
+    }
+    k += '<div class="tw-keys">' + btns.map(function (b) {
       return '<button data-k="' + esc(b[0]) + '"><span class="k">' + esc(b[0]) + '</span><span>' + esc(b[1]) + '</span></button>';
     }).join('') + (s.view !== 'home' ? '' : '<div class="tw-games">' + WU.content.games.map(function (g, i) {
       return '<button data-go="' + g.id + '"><span class="k">' + (i + 1) + '</span><span>' + esc(g.name) + '</span></button>'; }).join('') + '</div>') + '</div>';
@@ -157,6 +171,7 @@
         };
       });
       bEl.querySelectorAll('[data-go]').forEach(function (b) { b.onclick = function () { send({ type: 'go', view: b.getAttribute('data-go') }); }; });
+      bEl.querySelectorAll('[data-act-n]').forEach(function (b) { b.onclick = function () { send({ type: 'act', name: b.getAttribute('data-act-n'), arg: b.getAttribute('data-arg') || '' }); }; });
     }
   }
   function startTeacher() {
@@ -170,6 +185,8 @@
     // Every key pressed here goes to the board (V and browser shortcuts stay here).
     document.addEventListener('keydown', function (e) {
       if (e.ctrlKey || e.metaKey || e.altKey || e.key === 'v' || e.key === 'V' || /^F\d+$/.test(e.key)) return;
+      // A list is already on this screen: C jumps to it here instead of opening it on the board.
+      if ((e.key === 'c' || e.key === 'C') && last && last.choices) { var ch = document.getElementById('tw-choices'); if (ch) ch.scrollIntoView({ block: 'start' }); return; }
       if (e.key === ' ' || e.key === 'Enter' || /^Arrow/.test(e.key) || e.key === 'Backspace' || e.key === 'Tab') e.preventDefault();
       send({ type: 'key', key: e.key, code: e.code, shift: e.shiftKey });
     });

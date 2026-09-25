@@ -20,7 +20,9 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 At Beginner every game starts with a **teacher demo** (you go first) and shows a sentence frame. One word, pointing or a gesture counts.
 
 **1. The Bomb.** A category appears. Students pass an object around the room; whoever holds it says one word (a sentence at higher levels) and passes it on. **Space** lights the fuse; nobody knows when it explodes. Whoever holds it spins the challenge wheel and answers a short speaking challenge from their seat.
-Keys: Space start / spin / next · N new category · P who starts · X explode now · T challenge timer · R reset.
+**Choose the category:** press **C** (or tap "C categories"). Arrows + **Enter**: that category comes next (at once if the round hasn't started). **Space** ticks categories for a set; **P** plays the ticked ones in the order you ticked them, again and again. **R** goes back to random. Your own categories (added in Edit mode) are in the list too. The choice lasts until you change it or reload the app.
+To choose without the class seeing the list, use the Teacher screen (**V**): the same list is there, and only you see "Next category".
+Keys: Space start / spin / next · N new category · C choose categories · P who starts · X explode now · T challenge timer · R reset.
 
 **2. Slot Machine of Chaos.** **Space** spins: WHO (a student), TOPIC, HOW (a speaking style) and, from Intermediate, a TWIST. The student talks until the timer ends (it starts by itself). Then the screen names two classmates who each ask the speaker one question.
 Keys: Space spin · Enter pause · Q questions now · H styles on / off · W twist on / off.
