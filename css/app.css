@@ -724,3 +724,56 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .catpanel .cp-t.on { background: var(--ink); color: var(--lime); }
 .catpanel .cp-n { font-size: 26px; font-weight: 800; line-height: 1.1; }
 .catpanel .cp-n em { font-style: normal; font-size: 18px; color: #666; }
+
+/* Home: game 10 and later sit in one more row below the nine. The home screen slides up to show it (wheel, touch, Tab, Down arrow);
+   at rest nothing above changes. */
+.home.moved { transition: transform .35s ease; }
+.home .grid2 { position: absolute; left: 48px; right: 48px; top: calc(100% - 6px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 36px; padding: 6px 14px 40px 4px; }
+
+/* ---------- Name Wall ---------- */
+.namesg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.namesg .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.namesg .nwhead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 20px; }
+.namesg .nwhead > * { flex: none; white-space: nowrap; }
+.namesg .demo { margin-left: auto; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
+.namesg .nwspot { position: absolute; left: 70px; top: 228px; width: 900px; bottom: 84px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.namesg .nwname { width: 100%; height: 140px; display: flex; align-items: center; font-family: var(--display); font-size: 120px; line-height: 1.1; letter-spacing: -0.04em; white-space: nowrap; overflow: hidden; }
+.namesg .frame { font-size: 48px; }
+.namesg .nwreply { min-height: 56px; font-family: var(--display); font-size: 52px; line-height: 1.05; color: #c4127f; }
+.namesg .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.namesg .rule.hot { color: #c4127f; }
+.namesg .nwform { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; padding: 12px 14px; background: #fff; border: 3px dashed #999; }
+.namesg .nwform label { display: flex; align-items: center; gap: 8px; font-size: 24px; font-weight: 800; }
+.namesg .nw-in { font: 700 28px var(--body); border: 3px solid var(--ink); padding: 6px 10px; width: 230px; background: #fff; color: var(--ink); user-select: text; -webkit-user-select: text; }
+.namesg .nw-in[data-f="name"] { width: 260px; }
+.namesg .nw-in:focus { outline: 5px solid var(--blue); outline-offset: 1px; }
+.namesg .nw-pic { width: 66px; height: 66px; padding: 4px; border: 3px solid var(--ink); background: #fff; font: 800 15px var(--body); cursor: pointer; }
+.namesg .nw-pic:focus, .namesg .nw-add:focus { outline: 5px solid var(--blue); outline-offset: 2px; }
+.namesg .nw-add { padding: 10px 18px; border: 3px solid var(--ink); background: var(--lime); box-shadow: 4px 4px 0 var(--ink); font: 800 22px var(--body); cursor: pointer; }
+.namesg .nwwall { position: absolute; display: grid; gap: 16px; align-content: start; overflow-y: auto; scrollbar-width: none; padding: 6px 14px 14px 6px; }
+.namesg .nwwall::-webkit-scrollbar { display: none; }
+.namesg .nwwall.meet { left: 1000px; right: 40px; top: 222px; bottom: 84px; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 200px; }
+.namesg .nwwall.rem { left: 60px; right: 40px; top: 430px; bottom: 84px; grid-template-columns: repeat(6, minmax(0, 1fr)); grid-auto-rows: 205px; }
+.namesg .nwwall.meet.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.namesg .nwwall.rem.two { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.namesg .nwempty { grid-column: 1 / -1; font-family: var(--display); font-size: 48px; color: #888; }
+.namesg .nwc { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 8px 6px; background: #fff; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.namesg .nwc.new { animation: nw-in .6s cubic-bezier(.2, .9, .3, 1.2) both; }
+.namesg .nwc.flip { animation: nw-flip .6s ease-out both; }
+.namesg .nwc.hl { outline: 8px solid var(--pink); outline-offset: 4px; animation: wu-pulse .9s ease-in-out infinite; z-index: 2; }
+.namesg .nwfs { flex: 1; min-height: 0; width: 100%; display: flex; align-items: center; justify-content: center; gap: 8px; }
+.namesg .nwf { min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 2px; }
+.namesg .nwp { width: 92px; height: 92px; }
+.namesg .nwk { max-width: 100%; font-size: 40px; font-weight: 800; line-height: 1.05; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.namesg .nwn { width: 100%; text-align: center; font-family: var(--display); font-size: 40px; line-height: 1.15; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.namesg .nwc.down .nwn { background: var(--ink); color: var(--lime); }
+.namesg .nwf.only .nwk { white-space: normal; text-align: center; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow-wrap: break-word; }
+.namesg .nwtop { position: absolute; left: 70px; right: 70px; top: 222px; display: flex; flex-direction: column; gap: 14px; }
+.namesg .nwwho { font-family: var(--display); font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.namesg .brow { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+.nwpanel { width: 1500px; height: 880px; }
+.nwpanel .row b { font-size: 26px; }
+.nwpanel .ed-grid { grid-template-columns: repeat(8, 1fr); }
+@keyframes nw-in { 0% { transform: translate(-400px, 60px) rotate(-8deg); opacity: 0 } 100% { transform: none; opacity: 1 } }
+@keyframes nw-flip { 0% { transform: rotateY(90deg) } 100% { transform: none } }
+.calm .namesg .nwc.new, .calm .namesg .nwc.flip, .calm .namesg .nwc.hl { animation: none; }

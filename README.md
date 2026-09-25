@@ -13,6 +13,7 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 
 ## In class
 - Press **1–9** (or click a tile) to open a game. **Esc** goes back home.
+- Game 10 (Name Wall) is below the first nine: press **↓** (or scroll, or Tab past tile 9) to see it, **↑** to go back. Key **0** opens it directly.
 - Every game works with the keyboard alone. Press **?** in any game to see its keys.
 - Nothing needs to be set up. With no class list, the picker uses "Student 1, 2, 3...".
 
@@ -53,12 +54,17 @@ Keys: Space roll · Enter pause · C class story now · N next student.
 Optional: type the word on the keyboard (Backspace to fix, Enter to accept) so the class sees it and the screen checks the first letter, length and repeats. While typing, use the pencil button for Edit mode (letters go into the word); Shift + X types an X.
 Keys: Space correct · X out · P pass · T topic · R start again.
 
+**10. Name Wall** (icebreaker). **Round 1: Meet.** The screen picks a student from the class list (no class list: point to a student and type the name). The student says the frame ("Hi! I'm ___. I like ___."); the class answers "Hi, ___!". Type or fix the name, add the fact (a picture at Beginner; a keyword and / or picture in the middle levels, two facts; a keyword for the name story at IELTS), press **Enter**: the card slides onto the wall. **Space** = next student.
+**Round 2: Remember** (**R**, needs 2+ cards). Names are hidden, facts stay visible. The screen picks a student and a card (never their own). The student says the frame ("That's ___! He / She likes ___." / reported speech at IELTS). **Space** flips the card. **X** = wrong: the class helps, then Space flips. It ends when every card is flipped.
+Keys: Enter add / next field · Space next student / flip · R remember round · X wrong · N another card · A back to adding people · Delete clear wall.
+**Privacy:** the names and facts you type stay on this device only. They are never saved to GitHub and are not in the backup file. **Delete** (when you are not typing in a box) → Enter clears the wall. The Teacher screen lists every name and fact.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)
 With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
 the hidden picture and its name (Mystery Tiles), the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
-the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap), every name and fact on the wall (Name Wall),
 plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
 
 Setup (once per lesson):
@@ -92,6 +98,7 @@ If something goes wrong:
 - In Edit mode the top bar shows **Saved / Saving... / Offline: will save later**. Offline edits wait on the device and save when the internet is back.
 - If two devices change the same thing at the same time, both changes are kept where possible; if they changed the very same field, the last one saved wins and the other value is kept in a conflict log (in the backup file).
 - The repo is public, so your edits and uploaded pictures are public too. Do not upload photos of students.
+- Class lists (Settings) and Name Wall names stay on the device. They are never saved to GitHub. Class lists are in the backup file (keep it private); Name Wall names are not.
 
 ## Backup and reset
 - **Settings → Backup file → Export / Import**: a spare copy only. Import replaces the edits on that device, then on GitHub.

@@ -69,6 +69,14 @@
           WU.esc(w.slice(0, -1)) + '<span style="color:' + col + '">' + w.slice(-1) + '</span></div>';
       }).join('') + '</div>';
     }
+    if (id === 'names') {
+      var N = [['ANA', 'cat', 0], ['OMAR', 'pizza', 1.1], ['LENA', 'guitar', 2.2], ['KENJI', 'ball', 3.3]];
+      return '<div style="display:flex;gap:16px;padding-left:8px">' + N.map(function (n) {
+        return '<div style="position:relative;width:104px;height:112px;background:#fff;border:4px solid ' + K + ';box-shadow:5px 5px 0 ' + K + ';display:flex;flex-direction:column;align-items:center;justify-content:center;padding:4px">' +
+          '<div style="width:62px;height:62px">' + WU.pic(n[1]) + '</div><div style="position:relative;width:100%;height:30px">' +
+          '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:22px;color:' + K + ';animation:wu-flipc 4s ' + n[2] + 's infinite">' + n[0] + '</div></div></div>';
+      }).join('') + '</div>';
+    }
     return '';
   }
 
@@ -93,26 +101,67 @@
       '<div class="levels">' + WU.LEVELS.map(function (l, i) {
         return '<div class="pill' + (i === s.level ? ' on' : '') + '" data-level="' + i + '"><b>' + l.name + '</b><i>' + l.code + '</i></div>';
       }).join('') + '</div>' +
-      '<div class="grid">' + games.map(function (g, i) {
-        var dim = first && !g.first;
-        return '<div class="tile' + (dim ? ' dim' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + rots()[i] + 'deg)">' +
-          (first && g.first ? '<div class="fit">ICEBREAKER</div>' : '') +
-          '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
-          '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
-          '<div class="name">' + WU.esc(g.name) + '</div>' +
-          '<div class="hook">' + WU.esc(g.hook) + '</div>' +
-          '</div>';
-      }).join('') + '</div></div>';
+      '<div class="grid">' + games.slice(0, 9).map(tile).join('') + '</div></div>';
+    function tile(g, i) {
+      var dim = first && !g.first;
+      return '<div class="tile' + (dim ? ' dim' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
+        ((first && g.first) || g.sticker ? '<div class="fit">' + WU.esc(g.sticker || 'ICEBREAKER') + '</div>' : '') +
+        '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
+        '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
+        '<div class="name">' + WU.esc(g.name) + '</div>' +
+        '<div class="hook">' + WU.esc(g.hook) + '</div>' +
+        '</div>';
+    }
     root.innerHTML = html;
+    // Game 10 and later: one more row below the nine, built only when the teacher goes down to it
+    // (so at rest the home screen is exactly what it was before).
+    moreRow = function () {
+      var home = root.querySelector('.home'), g2 = root.querySelector('.grid2');
+      if (g2 || games.length <= 9) return g2;
+      home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') + '</div>');
+      g2 = root.querySelector('.grid2');
+      var t1 = root.querySelector('.grid .tile'); if (t1) g2.style.gridAutoRows = t1.offsetHeight + 'px';
+      wireTiles(g2); return g2;
+    };
+    wireSlide();
     WU.wireCommon(root);
     root.querySelectorAll('[data-level]').forEach(function (b) { b.onclick = function () { setLevel(+b.getAttribute('data-level')); }; });
     root.querySelectorAll('[data-lesson]').forEach(function (b) { b.onclick = function () { WU.setState({ lesson: b.getAttribute('data-lesson') }); render(); }; });
     root.querySelector('[data-h="settings"]').onclick = function () { WU.openSettings(); };
     root.querySelector('[data-h="class"]').onclick = cycleClass;
-    root.querySelectorAll('[data-game]').forEach(function (t) {
+    wireTiles(root);
+  }
+  function wireTiles(el) {
+    el.querySelectorAll('[data-game]').forEach(function (t) {
       t.onclick = function () { open(t.getAttribute('data-game')); };
-      t.onkeydown = function (e) { if (e.key === 'Enter') { e.preventDefault(); open(t.getAttribute('data-game')); } };
+      t.onkeydown = function (e) {
+        if (e.key === 'Enter') { e.preventDefault(); open(t.getAttribute('data-game')); }
+        // Tab past the last of the nine: bring up the row below and go on into it.
+        else if (e.key === 'Tab' && !e.shiftKey && t.getAttribute('data-game') === WU.content.games[8].id && WU.content.games.length > 9) {
+          e.preventDefault(); slideTo(99999); var n = root.querySelector('.grid2 .tile'); if (n) n.focus();
+        }
+      };
     });
+  }
+
+  // Show the row below the nine by sliding the whole home screen up (not a scroll box: the nine cards render exactly as before).
+  var slid = 0, moreRow = function () { return null; };
+  function slideTo(y) {
+    var home = root && root.querySelector('.home'); if (!home) return;
+    var g2 = y > 0 ? moreRow() : root.querySelector('.grid2'); if (!g2) return;
+    var max = Math.max(0, g2.offsetTop + g2.offsetHeight - home.offsetHeight);
+    slid = Math.max(0, Math.min(max, y));
+    home.classList.add('moved'); home.style.transform = slid ? 'translateY(' + (-slid) + 'px)' : '';
+  }
+  function wireSlide() {
+    var home = root.querySelector('.home'), y0 = null, s0 = 0;
+    slid = 0;
+    home.addEventListener('wheel', function (e) { e.preventDefault(); slideTo(slid + e.deltaY / (WU.scale || 1)); }, { passive: false });
+    home.addEventListener('touchstart', function (e) { y0 = e.touches[0].clientY; s0 = slid; }, { passive: true });
+    home.addEventListener('touchmove', function (e) { if (y0 != null) slideTo(s0 - (e.touches[0].clientY - y0) / (WU.scale || 1)); }, { passive: true });
+    home.addEventListener('touchend', function () { y0 = null; });
+    // Tab into the new row: slide down; Tab back up: slide back.
+    home.addEventListener('focusin', function (e) { var t = e.target.closest && e.target.closest('.tile'); if (t && slid) slideTo(t.closest('.grid2') ? 99999 : 0); });
   }
 
   function setLevel(i) {
@@ -136,7 +185,7 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9', 'open a game'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show game 10 / back']];
     },
     mount: function (el) {
       root = el; render();
@@ -146,6 +195,9 @@
     onKey: function (e) {
       var k = e.key;
       if (/^[1-9]$/.test(k)) { var g = WU.content.games[+k - 1]; if (g) open(g.id); return true; }
+      if (k === '0') { var g10 = WU.content.games[9]; if (g10) open(g10.id); return true; }
+      if (k === 'ArrowDown' || k === 'PageDown') { slideTo(99999); return true; }
+      if (k === 'ArrowUp' || k === 'PageUp') { slideTo(0); return true; }
       if (k === 'ArrowRight') { setLevel(WU.state.level + 1); return true; }
       if (k === 'ArrowLeft') { setLevel(WU.state.level - 1); return true; }
       if (k === 'l' || k === 'L') { WU.setState({ lesson: WU.state.lesson === 'first' ? 'regular' : 'first' }); render(); return true; }
