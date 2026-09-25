@@ -1,13 +1,45 @@
 {
  "app": "warm-up",
  "version": 2,
- "updated": "2026-09-23T19:58:19.136Z",
+ "updated": "2026-09-25T17:14:13.197Z",
  "edits": {
   "_v": 2,
   "bomb:screen:6": {
    "mod": {
     "bomb-screen": {
      "ruleShow": true
+    }
+   }
+  },
+  "bomb:cats:0": {
+   "mod": {
+    "a1-home": {
+     "examples": [
+      {
+       "w": "sofa",
+       "art": "a",
+       "pl": "",
+       "pic": "sofa"
+      },
+      {
+       "w": "pan",
+       "art": "a",
+       "pl": "",
+       "pic": "pan"
+      },
+      {
+       "w": "TV",
+       "art": "a",
+       "pl": "",
+       "pic": "TV"
+      },
+      {
+       "w": "bath",
+       "art": "a",
+       "pl": "",
+       "pic": "bath"
+      }
+     ]
     }
    }
   }
