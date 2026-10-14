@@ -79,7 +79,27 @@
     return function () { return o.kid ? grp('translate(12 23) scale(.77)', d) : draw(d); };
   }
 
-  var SPLASH = 'M50 8 Q58 22 66 12 Q70 28 86 24 Q80 40 94 48 Q80 56 88 72 Q70 70 68 88 Q56 78 48 94 Q42 78 26 86 Q28 70 10 68 Q20 56 6 46 Q22 40 14 24 Q32 28 34 12 Q44 22 50 8 Z';
+  /* ---------- activities: a simple figure in a pose ----------
+     limb(): a thick line with a black outline. fig(): h head, n neck, p hip, a = two arms [elbow, hand], l = two legs [knee, foot].
+     o.c body colour, o.lc legs, o.hr hair, o.b drawn behind, o.f drawn in front. */
+  function pts(a) { return 'M' + a.map(function (q) { return q[0] + ' ' + q[1]; }).join(' L'); }
+  function limb(a, c, w) { return 'p - ' + pts(a) + ' s=K w=' + (w + 6) + '|p - ' + pts(a) + ' s=' + c + ' w=' + w; }
+  function fig(o) {
+    var h = o.h, n = o.n, p = o.p, c = o.c || 'B', lc = o.lc || 'Z', s = [];
+    if (o.b) s.push(o.b);
+    o.l.forEach(function (g) { s.push(limb([p, g[0], g[1]], lc, 8)); });
+    s.push(limb([n, p], c, 14));
+    o.a.forEach(function (g) { s.push(limb([n, g[0], g[1]], c, 7) + '|c ' + g[1][0] + ' ' + g[1][1] + ' 4.5 S w=3'); });
+    s.push('c ' + h[0] + ' ' + h[1] + ' 10 S');
+    s.push('p ' + (o.hr || 'M') + ' M' + (h[0] - 10) + ' ' + (h[1] - 1) + ' Q' + (h[0] - 10) + ' ' + (h[1] - 12) + ' ' + h[0] + ' ' + (h[1] - 12) +
+      ' Q' + (h[0] + 10) + ' ' + (h[1] - 12) + ' ' + (h[0] + 10) + ' ' + (h[1] - 1) + ' Q' + h[0] + ' ' + (h[1] - 7) + ' ' + (h[0] - 10) + ' ' + (h[1] - 1) + ' Z w=3');
+    if (o.f) s.push(o.f);
+    return s.join('|');
+  }
+  function act(o) { return function () { return (o.pre || '') + draw(fig(o)) + (o.post || ''); }; }
+  function note(x, y) { return 'e ' + x + ' ' + y + ' 5 4 K* -20|l ' + (x + 4) + ' ' + (y - 1) + ' ' + (x + 4) + ' ' + (y - 16) + ' w=3|l ' + (x + 4) + ' ' + (y - 16) + ' ' + (x + 10) + ' ' + (y - 12) + ' w=3'; }
+
+  var SPLASH ='M50 8 Q58 22 66 12 Q70 28 86 24 Q80 40 94 48 Q80 56 88 72 Q70 70 68 88 Q56 78 48 94 Q42 78 26 86 Q28 70 10 68 Q20 56 6 46 Q22 40 14 24 Q32 28 34 12 Q44 22 50 8 Z';
   function splash(c) { return 'p ' + c + ' ' + SPLASH + '|e 38 36 8 5 W* -30'; }
   var CLOUD = 'M22 76 Q6 76 8 60 Q10 46 26 48 Q28 26 50 28 Q66 18 76 36 Q94 36 92 56 Q92 76 74 76 Z';
   var HORSE = 'M22 94 L28 50 Q30 22 54 16 L58 6 L64 18 Q82 26 90 52 Q94 66 82 70 Q70 72 64 60 L54 64 L54 94 Z';
@@ -320,6 +340,63 @@
     ['swimming', 'swimming', 'sport beach', 'c 34 52 11 S|p R M23 52 Q23 40 34 40 Q45 40 45 52 Z|p S M44 60 Q52 26 82 28 L86 36 Q60 36 56 62 Z|p B M2 60 Q14 50 26 60 Q38 70 50 60 Q62 50 74 60 Q86 70 98 60 L98 96 L2 96 Z'],
     ['golf', 'golf', 'sport', 'e 50 84 44 10 G|l 58 84 58 10 w=4|g R 60,10 88,20 60,30|c 30 80 5 W'],
 
+    /* activities (verbs, no article): "I can swim", "I like to dance" */
+    ['a-run', 'run', 'action sport', act({ h: [60, 16], n: [56, 28], p: [46, 56], c: 'R',
+      a: [[[66, 42], [76, 34]], [[42, 38], [30, 46]]], l: [[[62, 70], [58, 90]], [[36, 72], [20, 76]]],
+      b: 'l 4 34 20 34 s=A w=4|l 8 48 22 48 s=A w=4|l 4 62 18 62 s=A w=4' })],
+    ['a-swim', 'swim', 'action sport beach', act({ h: [26, 48], n: [36, 50], p: [70, 56], c: 'R', lc: 'S',
+      a: [[[38, 28], [16, 30]], [[52, 66], [62, 72]]], l: [[[84, 56], [96, 50]], [[84, 62], [96, 64]]],
+      f: 'p B* M0 58 Q14 50 26 58 Q38 66 50 58 Q62 50 74 58 Q86 66 100 58 L100 100 L0 100 Z|p - M0 58 Q14 50 26 58 Q38 66 50 58 Q62 50 74 58 Q86 66 100 58 w=4|p - M14 78 Q26 72 38 78 M58 84 Q70 78 82 84 s=U w=4' })],
+    ['a-dance', 'dance', 'action music', act({ h: [48, 16], n: [48, 28], p: [50, 56], c: 'P',
+      a: [[[34, 20], [28, 6]], [[64, 32], [78, 22]]], l: [[[40, 72], [34, 92]], [[64, 66], [80, 62]]],
+      b: note(82, 82) + '|' + note(14, 54) })],
+    ['a-sing', 'sing', 'action music', act({ h: [38, 22], n: [38, 34], p: [38, 64], c: 'V',
+      a: [[[54, 50], [52, 34]], [[24, 48], [18, 62]]], l: [[[34, 80], [32, 96]], [[44, 80], [46, 96]]],
+      f: 'r 49 34 6 14 K 2|c 52 32 6 A', b: note(70, 36) + '|' + note(84, 60) })],
+    ['a-cook', 'cook', 'action kitchen', act({ h: [30, 22], n: [30, 34], p: [28, 64], c: 'W',
+      a: [[[44, 48], [56, 46]], [[18, 48], [14, 60]]], l: [[[24, 80], [22, 96]], [[34, 80], [36, 96]]],
+      b: 'p - M74 36 Q68 28 74 20 Q80 12 74 4 M86 36 Q80 28 86 20 s=A w=4',
+      f: 'c 20 8 7 W|c 30 6 8 W|c 40 8 7 W|r 21 9 18 6 W 2|r 54 42 14 6 K 3|p K M64 40 L98 40 Q96 56 82 56 Q66 56 64 40 Z|e 81 41 15 3 X' })],
+    ['a-draw', 'draw', 'action school', act({ h: [26, 22], n: [26, 34], p: [24, 64], c: 'T',
+      a: [[[42, 42], [54, 32]], [[14, 48], [10, 60]]], l: [[[20, 80], [18, 96]], [[30, 80], [32, 96]]],
+      b: 'l 62 96 68 52 w=5|l 94 96 88 52 w=5|r 56 8 40 48 W 2|c 68 20 6 Y|p G M60 50 Q76 34 92 50 Z|l 54 32 50 40 s=N w=4' })],
+    ['a-read', 'read', 'action school', act({ h: [50, 18], n: [50, 30], p: [50, 62], c: 'G',
+      a: [[[36, 46], [36, 50]], [[64, 46], [64, 50]]], l: [[[44, 80], [42, 96]], [[56, 80], [58, 96]]],
+      f: 'p B M26 38 L26 62 Q38 60 50 66 Q62 60 74 62 L74 38 Z|p W M50 38 Q40 32 29 35 L29 60 Q40 58 50 63 Z|p W M50 38 Q60 32 71 35 L71 60 Q60 58 50 63 Z|p - M34 44 L45 46 M34 51 L45 53 M55 46 L66 44 M55 53 L66 51 w=2' })],
+    ['a-write', 'write', 'action school', 'r 10 10 64 82 W 3|p - M20 26 L64 26 M20 38 L64 38 M20 50 L64 50 M20 62 L44 62 s=B w=3|p - M20 26 Q24 20 28 26 Q32 32 36 26 Q40 20 44 26 s=K w=3|g #e8e8e8 48,72 58,82 42,90|g O 48,72 58,82 94,40 84,30'],
+    ['a-bike', 'ride a bike', 'action sport transport', function () {
+      return grp('translate(0 18) scale(1 .82)', 'c 22 66 17 - w=5|c 78 66 17 - w=5|p - M22 66 L40 40 L66 40 L78 66 M40 40 L50 66 L66 40 M50 66 L22 66 s=B w=5|p - M66 40 L62 24 L72 22 w=5|p - M40 40 L38 30 M32 30 L46 30 w=5') +
+        draw(fig({ h: [58, 10], n: [52, 22], p: [38, 40], c: 'O', a: [[[60, 30], [62, 36]]], l: [[[52, 50], [48, 70]]] }));
+    }],
+    ['a-football', 'play football', 'action sport', act({ h: [34, 14], n: [34, 26], p: [36, 56], c: 'B',
+      a: [[[22, 38], [10, 32]], [[48, 36], [60, 30]]], l: [[[50, 66], [66, 74]], [[34, 76], [32, 94]]],
+      f: 'c 82 80 13 W|g K* 82,74 87.7,78.1 85.5,84.9 78.5,84.9 76.3,78.1' })],
+    ['a-guitar', 'play the guitar', 'action music', function () {
+      var n = [46, 26], body = fig({ h: [46, 14], n: n, p: [46, 58], c: 'L', a: [], l: [[[40, 76], [38, 96]], [[52, 76], [54, 96]]] });
+      return draw(body) + '<g transform="translate(48 56) rotate(-55) scale(.78) translate(-50 -62)">' + draw('r 45 2 10 40 N 2|p X ' + GUITAR + '|c 50 64 8 K*|r 40 80 20 6 M 2') + '</g>' +
+        draw(limb([n, [34, 48], [44, 60]], 'L', 7) + '|c 44 60 4.5 S w=3|' + limb([n, [60, 36], [72, 30]], 'L', 7) + '|c 72 30 4.5 S w=3');
+    }],
+    ['a-chess', 'play chess', 'action toy', function () {
+      var s = 'r 8 52 84 40 W 2';
+      for (var r = 0; r < 2; r++) for (var c = 0; c < 4; c++) if ((r + c) % 2) s += '|r ' + (8 + c * 21) + ' ' + (52 + r * 20) + ' 21 20 K*';
+      return draw(s + '|r 8 52 84 40 - 2|c 34 18 7 K|p K M24 50 L28 26 L40 26 L44 50 Z|r 20 46 28 6 K 2|r 62 10 8 18 W 1|r 58 16 16 6 W 1|p W M56 50 L60 26 L72 26 L76 50 Z|r 52 46 28 6 W 2');
+    }],
+    ['a-skate', 'skateboard', 'action sport toy', act({ h: [52, 14], n: [50, 26], p: [50, 54], c: 'X',
+      a: [[[34, 30], [20, 26]], [[66, 34], [80, 30]]], l: [[[40, 68], [36, 82]], [[60, 68], [64, 82]]],
+      f: 'r 16 82 68 7 R 3|c 28 94 5 K|c 72 94 5 K' })],
+    ['a-ski', 'ski', 'action sport cold', act({ h: [44, 22], n: [46, 34], p: [56, 56], c: 'R',
+      a: [[[38, 46], [30, 54]], [[58, 44], [66, 50]]], l: [[[46, 68], [52, 82]], [[64, 68], [68, 82]]],
+      b: 'p W M0 60 L100 96 L0 96 Z s=U w=3|l 30 54 26 92 s=K w=3|l 66 50 72 88 s=K w=3',
+      f: 'l 32 74 82 92 s=B w=5|l 46 76 94 94 s=B w=5' })],
+    ['a-jump', 'jump', 'action sport', act({ h: [50, 12], n: [50, 24], p: [50, 52], c: 'Y',
+      a: [[[34, 16], [24, 4]], [[66, 16], [76, 4]]], l: [[[36, 62], [24, 72]], [[64, 62], [76, 72]]],
+      b: 'e 50 94 22 4 A*|l 50 78 50 86 s=A w=3|l 38 80 34 86 s=A w=3|l 62 80 66 86 s=A w=3' })],
+    ['a-climb', 'climb', 'action sport', act({ h: [52, 30], n: [52, 42], p: [50, 70], c: 'O',
+      a: [[[42, 28], [38, 14]], [[64, 34], [70, 22]]], l: [[[40, 80], [36, 92]], [[62, 80], [70, 86]]],
+      b: 'r 8 2 84 96 F 3|c 38 12 5 R|c 70 20 5 B|c 24 46 5 G|c 80 52 5 P|c 36 92 5 B|c 70 86 5 R|c 86 12 4 G' })],
+    ['a-drive', 'drive', 'action transport', 'c 50 50 40 - w=10|c 50 50 40 - s=Z w=4|c 50 50 12 Z|l 50 62 50 90 s=K w=10|l 50 62 50 89 s=Z w=4|l 38 50 11 52 s=K w=10|l 38 50 12 52 s=Z w=4|l 62 50 89 52 s=K w=10|l 62 50 88 52 s=Z w=4|c 50 50 5 R*|c 14 34 8 S|c 86 34 8 S'],
+    ['a-games', 'play video games', 'action toy', 'p Z M20 30 L80 30 Q96 30 96 52 L96 64 Q96 80 82 80 Q74 80 68 68 L32 68 Q26 80 18 80 Q4 80 4 64 L4 52 Q4 30 20 30 Z|r 18 44 8 22 W* 1|r 11 51 22 8 W* 1|c 72 44 5 R|c 82 54 5 B|c 62 54 5 Y|c 72 64 5 G|r 42 44 6 4 W* 1|r 52 44 6 4 W* 1'],
+
     /* things, toys, music, nature */
     ['key', 'key', 'bag small', 'r 74 55 8 14 Y|r 84 55 8 10 Y|r 40 45 54 12 Y 2|c 26 51 18 Y|c 26 51 7 C'],
     ['phone', 'phone', 'bag', 'r 28 6 44 88 K 8|r 33 14 34 64 U 2|c 50 86 4 A*'],
@@ -364,7 +441,7 @@
   var THE = { sun: 1, moon: 1 };
   var PLURAL = { mouse: 'mice', sheep: 'sheep', fish: 'fish', knife: 'knives', leaf: 'leaves', foot: 'feet', tooth: 'teeth', tomato: 'tomatoes', potato: 'potatoes', octopus: 'octopuses', scarf: 'scarves', snowman: 'snowmen' };
   function article(o) {
-    if (o.colour) return '';
+    if (o.colour || o.tags.indexOf('action') >= 0) return '';
     if (NO_ART.split(' ').indexOf(o.name) >= 0) return '';
     if (THE[o.name]) return 'the';
     return /^[aeiou]/i.test(o.name) ? 'an' : 'a';

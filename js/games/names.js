@@ -25,6 +25,8 @@
       { k: 'factMode', label: 'Facts are', type: 'select', options: [['pic', 'A picture (Beginner)'], ['both', 'A keyword and / or a picture'], ['text', 'A keyword (IELTS)']] },
       { k: 'fact1Label', label: 'Fact 1: what you ask for (teacher form)', type: 'text', max: 30 },
       { k: 'fact2Label', label: 'Fact 2: what you ask for (teacher form)', type: 'text', max: 30 },
+      { k: 'fact1Pics', label: 'Fact 1: picture chooser shows', type: 'select', options: [['all', 'All pictures'], ['actions', 'Activities first (swim, run...)']] },
+      { k: 'fact2Pics', label: 'Fact 2: picture chooser shows', type: 'select', options: [['all', 'All pictures'], ['actions', 'Activities first (swim, run...)']] },
       { k: 'demo', label: 'Teacher demo banner (first card only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' },
       { k: 'demoWho', label: 'Name filled in for the demo card', type: 'text', max: 20 },
@@ -181,7 +183,13 @@
   // A library picture for one fact. Type to search, arrows + Enter to choose, Esc to go back.
   function chooser(i) {
     var q = '', cur = 0, COLS = 8;
-    function list() { var t = lc(q); return WU.PIC_LIST.filter(function (p) { return !t || p.name.toLowerCase().indexOf(t) >= 0 || p.tags.join(' ').indexOf(t) >= 0; }); }
+    var S0 = scr.get(), acts = (i === 0 ? S0.fact1Pics : S0.fact2Pics) === 'actions';
+    // "Activities first": verbs (swim, run...), then sports and music, then everything else.
+    function rank(p) { return !acts ? 0 : p.tags.indexOf('action') >= 0 ? 0 : p.tags.indexOf('sport') >= 0 || p.tags.indexOf('music') >= 0 ? 1 : 2; }
+    function list() {
+      var t = lc(q), L = WU.PIC_LIST.filter(function (p) { return !t || p.name.toLowerCase().indexOf(t) >= 0 || p.tags.join(' ').indexOf(t) >= 0; });
+      return L.map(function (p, k) { return [rank(p), k, p]; }).sort(function (a, b) { return a[0] - b[0] || a[1] - b[1]; }).map(function (x) { return x[2]; });
+    }
     function grid(el) {
       var L = list(); cur = Math.min(cur, Math.max(0, L.length - 1));
       el.querySelector('.ed-grid').innerHTML = L.map(function (p, k) { return '<div class="ed-cell' + (k === cur ? ' cur' : '') + '" data-p="' + p.id + '">' + WU.pic(p.id) + '<span>' + WU.esc(p.name) + '</span></div>'; }).join('');

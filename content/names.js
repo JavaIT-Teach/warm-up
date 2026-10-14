@@ -2,6 +2,7 @@
    {name} is filled in. The names and facts typed in class are NOT content: they stay on this device only.
    facts = facts per student (1 or 2). factMode: pic (a library picture), both (a keyword and / or a picture), text (a keyword).
    fact1Label / fact2Label = what the teacher is asked for (the form under the spotlight).
+   fact1Pics / fact2Pics = what the picture chooser shows first: 'all' or 'actions' (swim, run, dance...).
    id is PERMANENT: teacher edits (Edit mode) point at it. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.namesScreen = {
@@ -11,7 +12,7 @@ WU.content.namesScreen = {
     point: 'Point to a student!', qMark: '?',
     meetFrame: "Hi! I'm ___. I'm from ___. I can ___.", reply: 'Everyone: "Hi, {name}!"',
     meetRule: 'Say your name and your two facts.', meetRuleShow: true,
-    facts: 2, factMode: 'both', fact1Label: "I'm from", fact2Label: 'I can',
+    facts: 2, factMode: 'both', fact1Label: "I'm from", fact2Label: 'I can', fact1Pics: 'all', fact2Pics: 'actions',
     who: '{name}: who is this?', recallFrame: "That's ___! He / She is from ___ and can ___.",
     recallRule: 'Look at the card. Say the name and both facts.', recallRuleShow: true,
     wrong: 'Not quite! Class, help!', done: 'Great memory! Every name is back on the wall.', empty: 'The wall is empty.',
