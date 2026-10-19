@@ -14,5 +14,6 @@ WU.content.games = [
   { id: 'chain', name: 'Word Chain', hook: 'The last letter starts the next word.', color: '#ff5a1f' },
   { id: 'names', name: 'Name Wall', hook: 'Meet everyone. Then remember every name.', color: '#ff4fc3', first: true, sticker: 'ICEBREAKER' },
   { id: 'standup', name: 'Stand Up If...', hook: 'True for you? Stand up and tell us more.', color: '#ffe600', first: true, sticker: 'GET UP!' },
-  { id: 'zones', name: 'Four Zones', hook: 'Pick an answer. Walk to its zone.', color: '#00e5c7', first: true, sticker: 'GET UP!' }
+  { id: 'zones', name: 'Four Zones', hook: 'Pick an answer. Walk to its zone.', color: '#00e5c7', first: true, sticker: 'GET UP!' },
+  { id: 'opinion', name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] }
 ];
