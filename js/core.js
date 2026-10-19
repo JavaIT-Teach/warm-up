@@ -264,7 +264,7 @@
   WU.route = function () {
     var name = (location.hash || '').replace('#', '') || 'home';
     if (!WU.views[name] || (WU.views[name].ready === false)) name = 'home';
-    if (name !== 'home' && !WU.gameOk(name)) { setTimeout(function () { WU.toast(WU.gameLevelText(name) + '. Change the level on the home screen.'); }, 50); name = 'home'; if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
+    if (name !== 'home' && !WU.gameOk(name)) { var blocked = name, g = WU.content.games.filter(function (x) { return x.id === blocked; })[0]; setTimeout(function () { WU.toast((g ? g.name + ': ' : '') + WU.gameLevelText(blocked) + '. Change the level on the home screen.'); }, 50); name = 'home'; if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
     WU.closeOverlay();
     if (WU.current && WU.views[WU.current].unmount) WU.views[WU.current].unmount();
     var screen = document.getElementById('screen');

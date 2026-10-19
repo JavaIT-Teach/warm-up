@@ -116,6 +116,13 @@
     };
   };
 
+  // The classroom seen from above (moving games): the board at the top, desks in a U, the open middle in between.
+  // board = editable "BOARD" label (text + data-edit attribute), inner = what stands in the middle (zones, a line...).
+  kit.roomMap = function (board, boardAttr, inner, cls) {
+    return '<div class="rmap ' + (cls || '') + '"><div class="rboard"' + (boardAttr || '') + '>' + WU.esc(board || '') + '</div>' +
+      '<div class="rdesk l"></div><div class="rdesk r"></div><div class="rdesk b"></div><div class="rmid">' + inner + '</div></div>';
+  };
+
   // Team turns: which team asks next. Returns null when teams are off.
   kit.turns = function () {
     var i = 0;
