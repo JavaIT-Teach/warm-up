@@ -252,9 +252,19 @@
     var h = name === 'home' ? '' : name;
     if ((location.hash || '').replace('#', '') === h) WU.route(); else location.hash = h;
   };
+  // Games made for some levels only (games.js "levels: [from, to]"). Outside them the home card is grey and the game does not open.
+  WU.gameLevels = function (id) { var g = (WU.content.games || []).filter(function (x) { return x.id === id; })[0]; return g && g.levels ? g.levels : null; };
+  WU.gameOk = function (id, l) { var r = WU.gameLevels(id), v = l == null ? WU.state.level : l; return !r || (v >= r[0] && v <= r[1]); };
+  WU.gameLevelText = function (id) {
+    var r = WU.gameLevels(id); if (!r) return '';
+    if (r[1] >= WU.LEVELS.length - 1) return 'From ' + WU.LEVELS[r[0]].name;
+    if (r[0] === 0) return WU.LEVELS.slice(0, r[1] + 1).map(function (x) { return x.name; }).join(' & ') + ' only';
+    return WU.LEVELS[r[0]].name + ' to ' + WU.LEVELS[r[1]].name;
+  };
   WU.route = function () {
     var name = (location.hash || '').replace('#', '') || 'home';
     if (!WU.views[name] || (WU.views[name].ready === false)) name = 'home';
+    if (name !== 'home' && !WU.gameOk(name)) { setTimeout(function () { WU.toast(WU.gameLevelText(name) + '. Change the level on the home screen.'); }, 50); name = 'home'; if (location.hash) history.replaceState(null, '', location.pathname + location.search); }
     WU.closeOverlay();
     if (WU.current && WU.views[WU.current].unmount) WU.views[WU.current].unmount();
     var screen = document.getElementById('screen');

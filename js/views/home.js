@@ -77,6 +77,25 @@
           '<div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:22px;color:' + K + ';animation:wu-flipc 4s ' + n[2] + 's infinite">' + n[0] + '</div></div></div>';
       }).join('') + '</div>';
     }
+    // Moving games: little figures that stand up, walk to zones, line up, mingle, freeze.
+    var man = function (c, anim) {
+      return '<div style="width:44px;height:96px;display:flex;flex-direction:column;align-items:center;transform-origin:bottom center;animation:' + anim + '">' +
+        '<div style="width:30px;height:30px;border-radius:50%;background:' + c + ';border:4px solid ' + K + '"></div><div style="width:40px;height:58px;margin-top:4px;background:' + c + ';border:4px solid ' + K + ';border-radius:14px 14px 4px 4px"></div></div>';
+    };
+    if (id === 'standup') return '<div style="display:flex;align-items:flex-end;gap:22px;height:130px;padding-left:10px">' +
+      [0, 0.5, 1.1, 0.2, 1.6, 0.8].map(function (d, i) { return man(i % 2 ? '#fff' : K, 'wu-standup 2.4s ease-in-out ' + d + 's infinite'); }).join('') + '</div>';
+    if (id === 'zones') return '<div style="display:grid;grid-template-columns:repeat(2,150px);grid-template-rows:repeat(2,58px);gap:8px">' +
+      ['#ff3b3b', '#3d6bff', '#33c24d', '#ffe600'].map(function (c, i) {
+        return '<div style="background:' + c + ';border:4px solid ' + K + ';display:flex;align-items:center;justify-content:center"><div style="width:26px;height:26px;border-radius:50%;background:#fff;border:4px solid ' + K + ';animation:wu-pulse 1.2s ' + (i * 0.3) + 's infinite"></div></div>';
+      }).join('') + '</div>';
+    if (id === 'opinion') return '<div style="position:relative;width:560px;height:110px"><div style="position:absolute;left:0;right:0;top:50px;height:10px;background:' + K + '"></div>' +
+      '<div style="position:absolute;left:0;top:0;font-family:' + F + ';font-size:26px;color:' + K + '">AGREE</div><div style="position:absolute;right:0;top:0;font-family:' + F + ';font-size:26px;color:' + K + '">DISAGREE</div>' +
+      [0, 0.7, 1.4].map(function (d) { return '<div style="position:absolute;top:36px;left:0;width:38px;height:38px;border-radius:50%;background:#fff;border:5px solid ' + K + ';animation:wu-slide 3s ease-in-out ' + d + 's infinite alternate"></div>'; }).join('') + '</div>';
+    if (id === 'findwho') return '<div style="display:flex;align-items:center;gap:18px;padding-left:10px">' + man(K, 'wu-walk 1.6s ease-in-out infinite alternate') +
+      '<div style="padding:6px 14px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:30px;color:' + K + '">CAN YOU SWIM?</div>' + man('#fff', 'wu-walk 1.6s ease-in-out .8s infinite alternate') +
+      '<div style="font-family:' + F + ';font-size:44px;color:' + K + ';animation:wu-flicker .8s steps(1) infinite alternate">YES!</div></div>';
+    if (id === 'says') return '<div style="display:flex;align-items:center;gap:30px;padding-left:10px"><div style="padding:8px 18px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:34px;line-height:1.1">TEACHER SAYS:<br>TOUCH YOUR NOSE!</div>' +
+      man('#fff', 'wu-pulse 1s ease-in-out infinite') + '</div>';
     return '';
   }
 
@@ -103,8 +122,9 @@
       }).join('') + '</div>' +
       '<div class="grid">' + games.slice(0, 9).map(tile).join('') + '</div></div>';
     function tile(g, i) {
-      var dim = first && !g.first;
-      return '<div class="tile' + (dim ? ' dim' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
+      var dim = first && !g.first, off = !WU.gameOk(g.id);
+      return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
+        (off ? '<div class="lvlock">' + WU.esc(WU.gameLevelText(g.id)) + '</div>' : '') +
         ((first && g.first) || g.sticker ? '<div class="fit">' + WU.esc(g.sticker || 'ICEBREAKER') + '</div>' : '') +
         '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
         '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
@@ -138,7 +158,7 @@
         if (e.key === 'Enter') { e.preventDefault(); open(t.getAttribute('data-game')); }
         // Tab past the last of the nine: bring up the row below and go on into it.
         else if (e.key === 'Tab' && !e.shiftKey && t.getAttribute('data-game') === WU.content.games[8].id && WU.content.games.length > 9) {
-          e.preventDefault(); slideTo(99999); var n = root.querySelector('.grid2 .tile'); if (n) n.focus();
+          e.preventDefault(); moreRow(); var n = root.querySelector('.grid2 .tile'); if (n) n.focus();
         }
       };
     });
@@ -153,6 +173,8 @@
     slid = Math.max(0, Math.min(max, y));
     home.classList.add('moved'); home.style.transform = slid ? 'translateY(' + (-slid) + 'px)' : '';
   }
+  // One row of cards (card + gap), in stage pixels.
+  function rowStep() { var t = root && root.querySelector('.grid .tile'); return t ? t.offsetHeight + 30 : 300; }
   function wireSlide() {
     var home = root.querySelector('.home'), y0 = null, s0 = 0;
     slid = 0;
@@ -161,7 +183,13 @@
     home.addEventListener('touchmove', function (e) { if (y0 != null) slideTo(s0 - (e.touches[0].clientY - y0) / (WU.scale || 1)); }, { passive: true });
     home.addEventListener('touchend', function () { y0 = null; });
     // Tab into the new row: slide down; Tab back up: slide back.
-    home.addEventListener('focusin', function (e) { var t = e.target.closest && e.target.closest('.tile'); if (t && slid) slideTo(t.closest('.grid2') ? 99999 : 0); });
+    home.addEventListener('focusin', function (e) {
+      var t = e.target.closest && e.target.closest('.tile'); if (!t) return;
+      if (!t.closest('.grid2')) { if (slid) slideTo(0); return; }
+      // Bring the focused card fully into view (the stage is 1080 high).
+      var top = t.offsetTop + t.parentNode.offsetTop, bottom = top + t.offsetHeight + 40;
+      if (bottom - slid > WU.H) slideTo(bottom - WU.H); else if (top - slid < 0) slideTo(top - 20);
+    });
   }
 
   function setLevel(i) {
@@ -179,13 +207,14 @@
     var g = WU.content.games.filter(function (x) { return x.id === id; })[0];
     if (!g) return;
     if (!WU.views[id]) return;
+    if (!WU.gameOk(id)) { WU.sound.buzzer(); WU.toast(g.name + ': ' + WU.gameLevelText(id) + '. Change the level (Left / Right).'); return; }
     WU.sound.unlock(); WU.go(id);
   }
 
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show game 10 / back']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back']];
     },
     mount: function (el) {
       root = el; render();
@@ -196,8 +225,10 @@
       var k = e.key;
       if (/^[1-9]$/.test(k)) { var g = WU.content.games[+k - 1]; if (g) open(g.id); return true; }
       if (k === '0') { var g10 = WU.content.games[9]; if (g10) open(g10.id); return true; }
-      if (k === 'ArrowDown' || k === 'PageDown') { slideTo(99999); return true; }
-      if (k === 'ArrowUp' || k === 'PageUp') { slideTo(0); return true; }
+      // Shift + 1-9: games 11-19 (below the nine).
+      if (e.shiftKey && /^Digit[1-9]$/.test(e.code || '')) { var gs = WU.content.games[9 + +e.code.slice(5)]; if (gs) open(gs.id); return true; }
+      if (k === 'ArrowDown' || k === 'PageDown') { slideTo(slid + rowStep()); return true; }
+      if (k === 'ArrowUp' || k === 'PageUp') { slideTo(slid - rowStep()); return true; }
       if (k === 'ArrowRight') { setLevel(WU.state.level + 1); return true; }
       if (k === 'ArrowLeft') { setLevel(WU.state.level - 1); return true; }
       if (k === 'l' || k === 'L') { WU.setState({ lesson: WU.state.lesson === 'first' ? 'regular' : 'first' }); render(); return true; }
