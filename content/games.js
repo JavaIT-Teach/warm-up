@@ -16,5 +16,6 @@ WU.content.games = [
   { id: 'standup', name: 'Stand Up If...', hook: 'True for you? Stand up and tell us more.', color: '#ffe600', first: true, sticker: 'GET UP!' },
   { id: 'zones', name: 'Four Zones', hook: 'Pick an answer. Walk to its zone.', color: '#00e5c7', first: true, sticker: 'GET UP!' },
   { id: 'opinion', name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] },
-  { id: 'findwho', name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', color: '#c6ff00', first: true, sticker: 'GET UP!' }
+  { id: 'findwho', name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', color: '#c6ff00', first: true, sticker: 'GET UP!' },
+  { id: 'says', name: 'Teacher Says', hook: 'Only move when the teacher says!', color: '#3d6bff', sticker: 'GET UP!', levels: [0, 1] }
 ];
