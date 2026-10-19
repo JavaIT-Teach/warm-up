@@ -15,5 +15,6 @@ WU.content.games = [
   { id: 'names', name: 'Name Wall', hook: 'Meet everyone. Then remember every name.', color: '#ff4fc3', first: true, sticker: 'ICEBREAKER' },
   { id: 'standup', name: 'Stand Up If...', hook: 'True for you? Stand up and tell us more.', color: '#ffe600', first: true, sticker: 'GET UP!' },
   { id: 'zones', name: 'Four Zones', hook: 'Pick an answer. Walk to its zone.', color: '#00e5c7', first: true, sticker: 'GET UP!' },
-  { id: 'opinion', name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] }
+  { id: 'opinion', name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] },
+  { id: 'findwho', name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', color: '#c6ff00', first: true, sticker: 'GET UP!' }
 ];
