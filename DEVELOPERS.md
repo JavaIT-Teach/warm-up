@@ -32,3 +32,10 @@ what the board sends and sends key presses back (postMessage between the two win
 Each game adds `teacher()` to its view and returns `{ secret: [...], info: [...] }`, items `{ label, text, html, big, hot }`.
 Put in `secret` everything the teacher needs but the board must hide. Timer, scores and key buttons are added automatically
 from the board's timer, scoreboard and key hints.
+
+## Level-limited games and the room map
+A game entry in `content/games.js` can have `levels: [from, to]` (0 = Beginner ... 6 = IELTS 3). Outside that range the home
+card is grey with a label (`WU.gameLevelText`), Enter / click / Shift + number do nothing, and `WU.route` sends a direct link home.
+Its content still needs an entry for all seven levels (an empty list is fine for the levels it is not made for).
+`kit.roomMap(board, boardAttr, inner, cls)` draws the classroom from above (board at the top, desks in a U, the open middle)
+for the moving games; `inner` is what stands in the middle (Four Zones: four coloured zones; Opinion Line: the agree line).
