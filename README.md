@@ -13,7 +13,7 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 
 ## In class
 - Press **1–9** (or click a tile) to open a game. **Esc** goes back home.
-- Games 10–15 are below the first nine: press **↓** (one row at a time; or scroll, or Tab past tile 9), **↑** to go back. Key **0** opens game 10, **Shift + 1–5** open games 11–15.
+- Games 10–16 are below the first nine: press **↓** (one row at a time; or scroll, or Tab past tile 9), **↑** to go back. Key **0** opens game 10, **Shift + 1–6** open games 11–16.
 - Some games are made for some levels only. At other levels their card is **grey** with a label ("From Pre-Intermediate") and does not open. Change the level and it opens.
 - Every game works with the keyboard alone. Press **?** in any game to see its keys.
 - Nothing needs to be set up. With no class list, the picker uses "Student 1, 2, 3...".
@@ -60,7 +60,7 @@ Keys: Space correct · X out · P pass · T topic · R start again.
 Keys: Enter add / next field · Space next student / flip · R remember round · X wrong · N another card · A back to adding people · Delete clear wall.
 **Privacy:** the names and facts you type stay on this device only. They are never saved to GitHub and are not in the backup file. **Delete** (when you are not typing in a box) → Enter clears the wall. The Teacher screen lists every name and fact.
 
-### Moving games (11–15): students stand up and walk
+### Moving games (11–16): students stand up and walk
 The map on screen is your room seen from above: the board at the top, desks in a U, the open middle in between. "Front" = near the board.
 
 **11. Stand Up If...** (all levels). A sentence: "Stand up if you have a sister." **Space**: a 3-second countdown, then STAND UP! Everyone it is true for stands at their seat. Optional: **↑ / ↓** counts them ("7 stood up!"). **Space**: the standing students say more (a frame for each sentence), the sitting students ask one of them a question. **Space**: sit down, next sentence. At IELTS the sentences are opinions: stand = agree.
@@ -78,12 +78,16 @@ Keys: Space walk / stop / report / next · Enter pause · N other task · P othe
 **15. Teacher Says** (Beginner and Elementary only; grey above). Everyone stands. A command appears, sometimes with "Teacher says:" (random, about 7 times in 10). Do it only with "Teacher says". Someone moved without it: **X** — they become a CALLER and read the next commands aloud to the class. **A** = automatic (a new command every 5 seconds). The Teacher screen shows "should they do it? YES / NO".
 Keys: Space next command · X someone moved · A automatic · R start again. Commands stay at the seat (touch, point, clap, stand on one leg): no dancing.
 
+**16. Speed Chat** (all levels; made for Beginners). Everyone stands. One question on the board with its answer frame ("Do you like football?" / "Yes, I do. / No, I don't."). **Space**: the timer starts. Students find a partner, ask, answer, find a NEW partner, and count their partners on their fingers. At the buzzer a new question appears and the next round starts by itself after 3 seconds. Each round is shorter (Beginner: 60, 50, 40, 30 seconds), so the pace goes up. After the last round: FREEZE. **Space**: "Hands up: 3 people or more!" Press **↑** for 4, 5, 6...: the last hand up wins and reports first. **Space**: the screen picks students to report ("I talked to Sara. Sara likes football."); the report frames of every question played are on screen.
+Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
+Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)
 With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
 the hidden picture and its name (Mystery Tiles), the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
-the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap), every name and fact on the wall (Name Wall), whether the class should move (Teacher Says), who reports (Find Someone Who),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap), every name and fact on the wall (Name Wall), whether the class should move (Teacher Says), who reports (Find Someone Who), the round and question (Speed Chat),
 plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
 
 Setup (once per lesson):

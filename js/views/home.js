@@ -96,6 +96,9 @@
       '<div style="font-family:' + F + ';font-size:44px;color:' + K + ';animation:wu-flicker .8s steps(1) infinite alternate">YES!</div></div>';
     if (id === 'says') return '<div style="display:flex;align-items:center;gap:30px;padding-left:10px"><div style="padding:8px 18px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:34px;line-height:1.1">TEACHER SAYS:<br>TOUCH YOUR NOSE!</div>' +
       man('#fff', 'wu-pulse 1s ease-in-out infinite') + '</div>';
+    if (id === 'chat') return '<div style="display:flex;align-items:center;gap:16px;padding-left:10px">' + man(K, 'wu-walk 1.2s ease-in-out infinite alternate') +
+      '<div style="padding:6px 14px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:28px;color:' + K + '">LIKE FOOTBALL?</div>' + man('#fff', 'wu-walk 1.2s ease-in-out .6s infinite alternate') +
+      '<div style="padding:0 12px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:44px;animation:wu-pulse .9s ease-in-out infinite">x7</div></div>';
     return '';
   }
 

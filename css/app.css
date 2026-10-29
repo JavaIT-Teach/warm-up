@@ -904,3 +904,39 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tsg .twrong { padding: 8px 28px; background: #ff3b3b; color: #fff; border: 6px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); font-family: var(--display); font-size: 52px; line-height: 1.1; animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
 .tsg .tcaller { padding: 6px 24px; background: #ffe600; border: 5px solid var(--ink); font-family: var(--display); font-size: 56px; line-height: 1.1; }
 .calm .tsg .tcmd.flash, .calm .tsg .twrong, .calm .tsg .tauto { animation: none; }
+
+/* ---------- Speed Chat ---------- */
+.chg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.chg .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.chg .chead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 30px; }
+.chg .chead > * { flex: none; white-space: nowrap; }
+.chg .cround { padding: 4px 20px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 44px; }
+.chg .demo { margin-left: auto; flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; transform: rotate(-2deg); }
+.chg .ccard { position: absolute; left: 70px; right: 84px; top: 228px; height: 250px; display: flex; align-items: center; gap: 36px; padding: 16px 40px; background: #fff; border: 7px solid var(--ink); box-shadow: 14px 14px 0 #ff4fc3, 14px 14px 0 7px var(--ink); }
+.chg .ccard.flash { animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chg .cpic { flex: none; width: 200px; height: 200px; }
+.chg .cq { flex: 1 1 auto; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 4px; }
+.chg .cqt { max-height: 200px; font-family: var(--display); font-size: 110px; line-height: 1.02; letter-spacing: -0.03em; overflow: hidden; }
+.chg .clab { flex: none; font-size: 40px; font-weight: 800; color: #5f5f5f; }
+.chg .cmid { position: absolute; left: 70px; right: 70px; top: 505px; height: 340px; display: flex; align-items: center; gap: 40px; }
+.chg .cans { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.chg .cframe { max-width: 100%; max-height: 230px; overflow: hidden; font-size: 64px; }
+.chg .ctimer { flex: none; width: 330px; height: 330px; }
+.chg .cbottom { position: absolute; left: 70px; right: 70px; top: 865px; bottom: 100px; display: flex; align-items: center; gap: 30px; }
+.chg .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
+.chg .rule.big { font-size: 50px; }
+.chg .cgo { padding: 4px 24px; background: var(--ink); color: #c6ff00; font-family: var(--display); font-size: 60px; line-height: 1.1; }
+.chg .cgo.hot { background: var(--pink); color: var(--ink); border: 5px solid var(--ink); animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chg .cnum { font-family: var(--display); font-size: 90px; line-height: 1; }
+.chg .cbigbox { position: absolute; left: 70px; right: 70px; top: 230px; height: 620px; display: flex; align-items: center; justify-content: center; }
+.chg .cbigbox.col { flex-direction: column; gap: 40px; }
+.chg .cfreeze { padding: 10px 70px; background: #3d6bff; color: #fff; border: 10px solid var(--ink); box-shadow: 18px 18px 0 var(--ink); font-family: var(--display); font-size: 220px; line-height: 1; transform: rotate(-2deg); animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chg .chands { max-width: 100%; max-height: 300px; overflow: hidden; text-align: center; font-family: var(--display); font-size: 130px; line-height: 1.04; letter-spacing: -0.03em; animation: wu-slam2 .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chg .cwin { padding: 6px 30px; background: #ffe600; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); font-family: var(--display); font-size: 64px; line-height: 1.1; }
+.chg .crep { position: absolute; left: 70px; right: 70px; top: 240px; bottom: 110px; display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 30px; }
+.chg .cwho { max-width: 100%; max-height: 140px; padding: 6px 30px; background: var(--pink); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); font-family: var(--display); font-size: 96px; line-height: 1.05; white-space: nowrap; overflow: hidden; animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.chg .brow { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
+.chg .frame { font-size: 56px; }
+.chg .cframes { display: flex; flex-wrap: wrap; gap: 16px 22px; }
+.chg .cframes .frame.small { font-size: 36px; }
+.calm .chg .ccard.flash, .calm .chg .cgo.hot, .calm .chg .cfreeze, .calm .chg .chands, .calm .chg .cwho { animation: none; }
