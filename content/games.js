@@ -7,10 +7,8 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.games = [
   { id: 'bomb', name: 'The Bomb', hook: "Say a word. Pass it on. Don't be holding it.", trains: 'Vocabulary by topic · fast speaking', color: '#c6ff00', first: true },
   { id: 'slot', name: 'Slot Machine of Chaos', hook: 'Three reels. One ridiculous talk.', trains: 'Fluency · speaking at length', color: '#ff5a1f', first: true },
-  { id: 'tiles', name: 'Mystery Tiles', hook: 'Ask yes/no questions. Uncover the picture.', trains: 'Yes / no questions: Is it...? Can it...?', color: '#3d6bff' },
   { id: 'hotseat', name: 'Hot Seat', hook: 'Back to the board. The class describes.', trains: 'Describing · paraphrasing', color: '#ff4fc3' },
   { id: 'lie', name: 'Lie Detector', hook: 'Truth or lie? The machine knows.', trains: 'Answering · follow-up questions', color: '#ffe600', first: true },
-  { id: 'swap', name: 'Speed Swap', hook: 'Talk in pairs. Buzzer. Swap seats.', trains: 'Pair conversation · asking & answering', color: '#00e5c7', first: true },
   { id: 'tug', name: 'Tug of War', hook: 'Two teams. Good reasons pull the rope.', trains: 'Giving reasons · persuading', color: '#3d6bff', first: true },
   { id: 'dice', name: 'Story Dice', hook: 'Roll the pictures. Build one story.', trains: 'Storytelling · past simple · linking words', color: '#c6ff00' },
   { id: 'chain', name: 'Word Chain', hook: 'The last letter starts the next word.', trains: 'Vocabulary recall · spelling', color: '#ff5a1f' },
@@ -19,7 +17,6 @@ WU.content.games = [
   { id: 'zones', name: 'Four Zones', hook: 'Pick an answer. Walk to its zone.', trains: 'Choosing & giving reasons', color: '#00e5c7', first: true, sticker: 'GET UP!' },
   { id: 'opinion', name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', trains: 'Agreeing & disagreeing · justifying', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] },
   { id: 'findwho', name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', trains: 'Questions & short answers', color: '#c6ff00', first: true, sticker: 'GET UP!' },
-  { id: 'says', name: 'Teacher Says', hook: 'Only move when the teacher says!', trains: 'Listening · imperatives · body & classroom words', color: '#3d6bff', sticker: 'GET UP!', levels: [0, 1] },
   { id: 'chat', name: 'Speed Chat', hook: 'One question. New partner. Again and again.', trains: 'Questions · short answers · reporting', color: '#ff4fc3', first: true, sticker: 'GET UP!' },
   /* ---------- Grammar games: one grammar point each (G1, G2... on the home screen) ---------- */
   { id: 'articles', grammar: true, name: 'Article Showdown', hook: '3, 2, 1... fingers up: a, an, the or nothing?', trains: 'Articles: a / an / the / no article', color: '#c6ff00' },

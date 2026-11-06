@@ -21,12 +21,6 @@
           w.concat(w).map(function (x) { return '<div style="height:96px;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:26px;color:' + col + ';white-space:nowrap">' + x + '</div>'; }).join('') + '</div></div>';
       }).join('') + '</div>';
     }
-    if (id === 'tiles') {
-      var D = [0, 1.3, 2.6, .6, 3.1, 1.9, 2.2, .3, 3.5, 1.1, 2.9, .9];
-      return '<div style="display:grid;grid-template-columns:repeat(6,62px);grid-template-rows:repeat(2,62px);gap:10px">' + D.map(function (d) {
-        return '<div style="position:relative;background:' + K + ';animation:wu-flip 4s ' + d + 's infinite"><div style="position:absolute;left:0;top:0;right:0;bottom:0;background:#fff;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:30px;color:' + K + ';animation:wu-flipc 4s ' + d + 's infinite">?</div></div>';
-      }).join('') + '</div>';
-    }
     if (id === 'hotseat') {
       var words = ['CAT', 'HAPPY', 'PIZZA'];
       return '<div style="display:flex;align-items:center;gap:40px;padding-left:10px">' +
@@ -42,13 +36,6 @@
       return '<div style="display:flex;align-items:center;gap:28px"><div style="width:360px;height:110px;overflow:hidden;background:' + K + ';border:4px solid ' + K + '">' +
         '<svg width="540" height="100" viewBox="0 0 540 100" style="animation:wu-scroll 1.6s linear infinite"><polyline points="' + path + '" fill="none" stroke="' + col + '" stroke-width="6" stroke-linejoin="round"></polyline></svg></div>' +
         '<div style="font-family:' + F + ';font-size:52px;color:' + K + ';animation:wu-flicker .5s steps(1) infinite alternate">LIE?</div></div>';
-    }
-    if (id === 'swap') {
-      var dot = function (c) { return '<div style="width:44px;height:44px;border-radius:50%;background:' + c + ';border:4px solid ' + K + '"></div>'; };
-      return '<div style="display:flex;align-items:center;gap:40px;padding-left:10px"><div style="display:flex;flex-direction:column;gap:18px">' +
-        '<div style="display:flex;gap:28px;animation:wu-swap 1.8s ease-in-out infinite alternate">' + dot(K) + dot('#fff') + dot(K) + dot('#fff') + '</div>' +
-        '<div style="display:flex;gap:28px">' + dot('#fff') + dot(K) + dot('#fff') + dot(K) + '</div></div>' +
-        '<div style="font-family:' + F + ';font-size:60px;padding:0 14px;background:' + K + ';color:' + col + ';transform:rotate(-4deg);animation:wu-pulse .9s ease-in-out infinite">SWAP!</div></div>';
     }
     if (id === 'tug') {
       return '<div style="position:relative;width:640px;height:120px"><div style="position:absolute;left:0;top:30px;width:90px;height:60px;background:' + K + '"></div>' +
@@ -94,8 +81,6 @@
     if (id === 'findwho') return '<div style="display:flex;align-items:center;gap:18px;padding-left:10px">' + man(K, 'wu-walk 1.6s ease-in-out infinite alternate') +
       '<div style="padding:6px 14px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:30px;color:' + K + '">CAN YOU SWIM?</div>' + man('#fff', 'wu-walk 1.6s ease-in-out .8s infinite alternate') +
       '<div style="font-family:' + F + ';font-size:44px;color:' + K + ';animation:wu-flicker .8s steps(1) infinite alternate">YES!</div></div>';
-    if (id === 'says') return '<div style="display:flex;align-items:center;gap:30px;padding-left:10px"><div style="padding:8px 18px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:34px;line-height:1.1">TEACHER SAYS:<br>TOUCH YOUR NOSE!</div>' +
-      man('#fff', 'wu-pulse 1s ease-in-out infinite') + '</div>';
     if (id === 'chat') return '<div style="display:flex;align-items:center;gap:16px;padding-left:10px">' + man(K, 'wu-walk 1.2s ease-in-out infinite alternate') +
       '<div style="padding:6px 14px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:28px;color:' + K + '">LIKE FOOTBALL?</div>' + man('#fff', 'wu-walk 1.2s ease-in-out .6s infinite alternate') +
       '<div style="padding:0 12px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:44px;animation:wu-pulse .9s ease-in-out infinite">x7</div></div>';
