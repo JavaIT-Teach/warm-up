@@ -42,7 +42,7 @@ for the moving games; `inner` is what stands in the middle (Four Zones: four col
 
 ## Grammar games (G1, G2...) and the TRAINS note
 Every entry in `content/games.js` has `trains`: a short note on its home card saying what the game practises. Add one to every new game.
-`grammar: true` puts a game in the GRAMMAR GAMES section (numbered G1, G2... in list order; key G then the number) instead of the numbered games.
+`grammar: true` puts a game in the GRAMMAR GAMES section (numbered G1, G2... in list order; key G then the number, G then 0 = G10) instead of the numbered games.
 Grammar games share `js/grammarkit.js` (`WU.gram`): `shell` (screen, header, hints, scoreboard), `who` (picked student line),
 `answer` (the model answer strip), `gaps` (___ gaps, filled on reveal) and `bar` (a thin time bar). Model answers built from editable
 content are `data-auto`.

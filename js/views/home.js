@@ -113,6 +113,19 @@
     if (id === 'domino') return '<div style="display:flex;align-items:flex-end;gap:18px;height:120px;padding-left:10px">' + [0, 1, 2, 3, 4, 5, 6].map(function (i) {
       return '<div style="width:34px;height:96px;background:' + K + ';border-radius:6px;box-shadow:inset 0 0 0 4px #fff;transform-origin:bottom right;animation:wu-domino 3s ' + (i * 0.12) + 's ease-in infinite"></div>';
     }).join('') + '<div style="font-family:' + F + ';font-size:40px;color:' + K + ';padding-left:10px">IF...</div></div>';
+    if (id === 'pinit') return '<div style="display:flex;align-items:center;gap:16px;padding-left:10px">' + chip('AT', '#fff', K, 'wu-flicker 1.1s steps(1) infinite alternate') +
+      chip('ON', K, col, 'wu-pulse .9s ease-in-out infinite') + chip('IN', '#fff', K, 'wu-flicker 1.1s steps(1) .55s infinite alternate') +
+      '<div style="font-family:' + F + ';font-size:40px;color:' + K + ';padding-left:10px;line-height:1.05">___ MONDAY<br>___ THE BUS</div></div>';
+    if (id === 'sticky') return '<div style="display:flex;align-items:center;gap:18px;padding-left:10px">' +
+      '<div style="padding:6px 16px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:40px;color:' + K + '">INTERESTED ___</div>' +
+      chip('1', '#c6ff00', K, 'wu-pulse .8s ease-in-out infinite') + chip('2', '#ff4fc3', K, 'wu-pulse .8s ease-in-out .4s infinite') + '</div>';
+    if (id === 'phrasal') {
+      var V = [['GIVE', 'LOOK', 'PUT', 'TAKE'], ['UP', 'AFTER', 'OFF', 'OVER']];
+      return '<div style="display:flex;align-items:center;gap:12px;padding-right:40px">' + V.map(function (w, i) {
+        return '<div style="width:170px;height:90px;overflow:hidden;background:#fff;border:4px solid ' + K + '"><div style="animation:wu-reel ' + (0.9 + i * 0.5) + 's linear infinite">' +
+          w.concat(w).map(function (x) { return '<div style="height:90px;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:36px;color:' + K + '">' + x + '</div>'; }).join('') + '</div></div>' + (i ? '' : '<div style="font-family:' + F + ';font-size:50px;color:' + K + '">+</div>');
+      }).join('') + '</div>';
+    }
     return '';
   }
 
@@ -157,7 +170,7 @@
       var home = root.querySelector('.home'), g2 = root.querySelector('.grid2');
       if (g2 || (games.length <= 9 && !gram.length)) return g2;
       home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') +
-        (gram.length ? '<div class="gsec"><b>GRAMMAR GAMES</b><span>One grammar point per game. Key: G, then the number.</span></div>' + gram.map(function (g, j) { return tile(g, 9 + j, j + 1); }).join('') : '') + '</div>');
+        (gram.length ? '<div class="gsec"><b>GRAMMAR GAMES</b><span>One grammar point per game. Key: G, then the number (0 = G10).</span></div>' + gram.map(function (g, j) { return tile(g, 9 + j, j + 1); }).join('') : '') + '</div>');
       g2 = root.querySelector('.grid2');
       var t1 = root.querySelector('.grid .tile'); if (t1) g2.querySelectorAll('.tile').forEach(function (x) { x.style.height = t1.offsetHeight + 'px'; });
       wireTiles(g2); return g2;
@@ -238,7 +251,7 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['G then 1 - 7', 'open grammar game G1, G2...'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['G then 1 - 9, 0', 'open grammar game G1, G2... (0 = G10)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back']];
     },
     mount: function (el) {
       root = el; render();
@@ -248,13 +261,13 @@
     onKey: function (e) {
       var k = e.key, main = mainGames();
       // G then 1-9: grammar game G1, G2...
-      if (gWait && Date.now() - gWait < 3000 && /^Digit[1-9]$/.test(e.code || '')) {
-        gWait = 0; var gg = grammarGames()[+e.code.slice(5) - 1]; if (gg) open(gg.id); return true;
+      if (gWait && Date.now() - gWait < 3000 && /^Digit[0-9]$/.test(e.code || '')) {
+        gWait = 0; var gn = +e.code.slice(5), gg = grammarGames()[(gn || 10) - 1]; if (gg) open(gg.id); return true;
       }
       gWait = 0;
       if (k === 'g' || k === 'G') {
         gWait = Date.now(); slideTo(1e5);
-        WU.toast('Grammar game: press 1-' + grammarGames().length); return true;
+        WU.toast('Grammar game: press 1-' + Math.min(9, grammarGames().length) + (grammarGames().length >= 10 ? ' (0 = G10)' : '')); return true;
       }
       if (/^[1-9]$/.test(k)) { var g = main[+k - 1]; if (g) open(g.id); return true; }
       if (k === '0') { var g10 = main[9]; if (g10) open(g10.id); return true; }

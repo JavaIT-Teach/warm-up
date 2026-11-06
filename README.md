@@ -15,7 +15,7 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 - Press **1–9** (or click a tile) to open a game. **Esc** goes back home.
 - Games 10–13 are below the first nine: press **↓** (one row at a time; or scroll, or Tab past tile 9), **↑** to go back. Key **0** opens game 10, **Shift + 1–3** open games 11–13.
 - Every card has a small **TRAINS** note: what the game practises (for example "Articles: a / an / the / no article").
-- **Grammar games G1–G7** are in their own section at the bottom of the home screen: press **G**, then **1–7** (or scroll down and click).
+- **Grammar games G1–G10** are in their own section at the bottom of the home screen: press **G**, then **1–9**, or **G** then **0** for G10 (or scroll down and click).
 - Some games are made for some levels only. At other levels their card is **grey** with a label ("From Pre-Intermediate") and does not open. Change the level and it opens.
 - Every game works with the keyboard alone. Press **?** in any game to see its keys.
 - Nothing needs to be set up. With no class list, the picker uses "Student 1, 2, 3...".
@@ -71,7 +71,7 @@ Keys: Space walk / stop / report / next · Enter pause · N other task · P othe
 Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
 Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
 
-### Grammar games (G1–G7): one grammar point per game
+### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
 
 **G1. Article Showdown** (all levels) · *a / an / the / no article.* A sentence with a gap ("I want ___ ice cream."). **Space**: 3, 2, 1... SHOW! Every student shows fingers at once: 1 = a, 2 = an, 3 = the, fist = no article. **Space** reveals the answer and the rule ("WHY? ice starts with a vowel sound") and picks a student to say the whole sentence. Beginner uses a / an only. Higher levels: zero article, the + superlatives, the rich, the Netherlands, the Silk Road...
@@ -99,12 +99,21 @@ Keys: Space reveal / spin · T tense family · Z silly mode · P other student.
 **G7. Domino Effect** (Pre-Intermediate and up) · *conditionals.* A starter: "If it rains tomorrow, ..." The student finishes it; the next student turns that result into a new If-clause ("If I stay at home, I'll watch TV."), and so on. Each good sentence stands up one more domino; a wrong form knocks the whole line down. Pre-Intermediate 1st conditional, Intermediate 2nd, IELTS 1 3rd, IELTS 2 mixed, IELTS 3 inversion ("Had I known..., Were I to..."). The record stays per level.
 Keys: Space good sentence / new chain · X chain broken · N other starter · P other student.
 
+**G8. Pin It!** (Beginner to Intermediate) · *prepositions of time and place: at / on / in.* Same rhythm as Article Showdown: a sentence with a gap ("I get up ___ 7 o'clock.", "She's ___ the bus."), 3, 2, 1... fingers up (1 = at, 2 = on, 3 = in), then the answer and the rule ("WHY? at + a clock time"). **T** chooses time only, place only, or both. Intermediate adds for / since / during / by / until (1 to 5 fingers).
+Keys: Space countdown / reveal / next · T time / place / both · N other sentence · P other student.
+
+**G9. Sticky Words** (Intermediate and up) · *dependent prepositions and fixed phrases.* A team race. A word with a gap appears ("interested ___", "rely ___", "___ purpose", "on the verge ___"). The first team to shout the preposition **and** a sentence with it wins the point: press its number (**1**, **2**...; or tap its score box). Nobody, or wrong: **X**, and the word comes back a few cards later ("BACK AGAIN!"). First to 10 wins. With teams off it is LEFT SIDE (1) against RIGHT SIDE (2).
+Keys: Space next word · 1–4 point · Shift + 1–4 take a point back · X nobody / wrong · R new match.
+
+**G10. Phrasal Roulette** (Pre-Intermediate and up) · *phrasal verbs.* Two reels spin: VERB + PARTICLE (give + up). The student says what it means; **Space** shows the meaning and an example; **Space** again gives another student a personal question to answer with it ("What would you like to give up?"). **T** turns it round: the meaning shows and the student finds the phrasal verb.
+Keys: Space reveal / question / spin · T direction · P other student.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)
 With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
 the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
-the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), every name and fact on the wall (Name Wall), who reports (Find Someone Who), the round and question (Speed Chat), the answer in every grammar game (G1–G7),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), every name and fact on the wall (Name Wall), who reports (Find Someone Who), the round and question (Speed Chat), the answer in every grammar game (G1–G10),
 plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
 
 Setup (once per lesson):

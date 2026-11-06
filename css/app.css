@@ -1023,3 +1023,46 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 @keyframes wu-lava { from { height: 20% } to { height: 95% } }
 @keyframes wu-domino { 0%, 30% { transform: rotate(0) } 50%, 85% { transform: rotate(72deg) } 100% { transform: rotate(0) } }
 .tmg .tmsilly { background: var(--pink); color: var(--ink); border: 4px solid var(--ink); transform: rotate(-3deg); }
+/* G8 Pin It! (reuses the Article Showdown layout: .arg) */
+.pig .pimode { background: #33c24d; color: var(--ink); border: 4px solid var(--ink); cursor: pointer; }
+.arg .arcards.five { gap: 18px; }
+.arg .arcards.five .arc { flex: 0 1 330px; grid-template-columns: 84px 1fr; padding: 10px 14px; }
+.arg .arcards.five .arc .arhand { width: 84px; height: 84px; }
+.arg .arcards.five .arw { font-size: 52px; }
+.arg .arcards.five .arh { font-size: 21px; }
+/* G9 Sticky Words */
+.swg .swteams { margin-left: auto; display: flex; align-items: center; gap: 14px; }
+.swg .swt { display: flex; align-items: center; gap: 12px; padding: 4px 16px 4px 4px; border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); cursor: pointer; }
+.swg .swt.hit { animation: wu-popin .45s cubic-bezier(.2, .9, .3, 1.2) both; box-shadow: 6px 6px 0 var(--ink), 0 0 0 8px #fff; }
+.swg .swk { padding: 0 10px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 30px; }
+.swg .swn { font-size: 26px; font-weight: 800; max-width: 230px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.swg .swt b { font-family: var(--display); font-size: 48px; line-height: 1; }
+.swg .swtarget { font-family: var(--display); font-size: 34px; }
+.swg .swready { position: absolute; left: 70px; right: 70px; top: 260px; bottom: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; text-align: center; }
+.swg .swready .gbig { font-size: 96px; }
+.swg .swwin { padding: 20px 60px; border: 8px solid var(--ink); box-shadow: 16px 16px 0 var(--ink); font-family: var(--display); font-size: 150px; line-height: 1; transform: rotate(-2deg); animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
+.swg .swcard { position: absolute; left: 70px; right: 70px; top: 250px; height: 520px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; padding: 30px 60px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
+.swg .swcard.lit { box-shadow: 14px 14px 0 var(--yellow), 14px 14px 0 6px var(--ink); }
+.swg .swback { position: absolute; left: 30px; top: -26px; padding: 4px 18px; background: var(--orange); color: #fff; border: 4px solid var(--ink); font-family: var(--display); font-size: 32px; transform: rotate(-3deg); }
+.swg .swtext { width: 100%; max-height: 340px; overflow: hidden; text-align: center; font-family: var(--display); font-size: 170px; line-height: 1.05; letter-spacing: -0.03em; }
+.swg .swex { display: flex; align-items: center; gap: 16px; font-size: 42px; font-weight: 800; }
+.swg .swex b { flex: none; padding: 2px 12px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 28px; font-weight: 400; }
+.swg .swbottom { position: absolute; left: 70px; right: 70px; top: 800px; bottom: 92px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; }
+.swg .swpoint { padding: 6px 30px; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); font-family: var(--display); font-size: 70px; transform: rotate(-2deg); animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.calm .swg .swt.hit, .calm .swg .swwin, .calm .swg .swpoint { animation: none; }
+/* G10 Phrasal Roulette */
+.prg .prmode { background: var(--orange); color: var(--ink); border: 4px solid var(--ink); cursor: pointer; }
+.prg .prrow { position: absolute; left: 70px; right: 70px; top: 250px; height: 380px; display: flex; align-items: center; justify-content: center; gap: 30px; padding: 24px; background: var(--ink); border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--orange); }
+.prg .prwin { flex: 0 1 700px; min-width: 0; height: 100%; display: flex; flex-direction: column; background: #fff; border: 5px solid #333; }
+.prg .prv { flex: 1 1 auto; min-height: 0; display: flex; align-items: center; justify-content: center; padding: 0 20px; overflow: hidden; font-family: var(--display); font-size: 150px; line-height: 1; white-space: nowrap; }
+.prg .prv.hid { color: #ccc; }
+.prg .prrow.spin .prv { filter: blur(2px); opacity: .7; }
+.prg .prplus { font-family: var(--display); font-size: 110px; color: #fff; }
+.prg .prbottom { position: absolute; left: 70px; right: 70px; top: 670px; bottom: 92px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 18px; }
+.prg .prmean, .prg .prq { display: flex; align-items: center; gap: 18px; max-width: 100%; font-family: var(--display); font-size: 56px; line-height: 1.1; animation: wu-popin .4s both; }
+.prg .prmean.ex { font-family: inherit; font-size: 40px; font-weight: 800; }
+.prg .prmean b, .prg .prq b { flex: none; padding: 4px 14px; background: var(--ink); color: var(--orange); font-size: 30px; font-family: var(--display); font-weight: 400; }
+.prg .prq span { display: block; max-height: 150px; overflow: hidden; }
+.prg .prbottom .gwho { font-size: 44px; }
+.calm .prg .prmean, .calm .prg .prq { animation: none; }
+.prg .tml { flex: none; padding: 8px 16px; background: var(--yellow); border-bottom: 5px solid var(--ink); font-family: var(--display); font-size: 34px; }
