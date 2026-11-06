@@ -1117,3 +1117,4 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 @keyframes wu-peek { 0%, 100% { transform: translateY(40px) } 40%, 70% { transform: translateY(0) } }
 @keyframes wu-lava { from { height: 20% } to { height: 95% } }
 @keyframes wu-domino { 0%, 30% { transform: rotate(0) } 50%, 85% { transform: rotate(72deg) } 100% { transform: rotate(0) } }
+.tmg .tmsilly { background: var(--pink); color: var(--ink); border: 4px solid var(--ink); transform: rotate(-3deg); }

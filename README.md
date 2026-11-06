@@ -103,8 +103,11 @@ Keys: Space reveal / next · R move again · N other place · P other student. E
 Keys: Space start / right / next · X wrong · N other verb · P other student.
 
 **G6. Time Machine** (all levels) · *tenses, one family at a time.* **Space** spins WHO (she), DO WHAT (play football), WHEN (since this morning) and TYPE (+ / − / ?). WHEN gives away the tense. The student builds the sentence; **Space** reveals it with the tense name ("She has been playing football since this morning." · PRESENT PERFECT CONTINUOUS).
-**T** chooses the family: all tenses, simple only, continuous only, perfect only, perfect continuous only, present only, past only, future only. Only the tenses of the current level are used (Beginner: present simple and continuous; IELTS: all 12). Edit mode: tenses per level, subjects, verbs, time phrases.
-Keys: Space reveal / spin · T tense family · P other student.
+**T** chooses the family: all tenses, simple only, continuous only, perfect only, perfect continuous only, present only, past only, future only. Only the tenses of the current level are used (Beginner: present simple and continuous; IELTS: all 12).
+**Z = Silly mode**: about half the subjects and verbs become silly ("Three tiny aliens had been riding a camel for two hours before the rain started."). The grammar stays correct.
+So the sentences make sense, each verb is a *task* (you finish it: write an email) or an *activity* (no end: listen to music). Deadlines ("by 2030", "by the time the film started") only go with tasks; lengths of time ("for two hours", "all day") only with activities. Questions with "I" only come in the present simple.
+Edit mode: tenses per level, subjects, verbs (with their kind), time phrases (with what they go with), the silly lists and how often they come.
+Keys: Space reveal / spin · T tense family · Z silly mode · P other student.
 
 **G7. Domino Effect** (Pre-Intermediate and up) · *conditionals.* A starter: "If it rains tomorrow, ..." The student finishes it; the next student turns that result into a new If-clause ("If I stay at home, I'll watch TV."), and so on. Each good sentence stands up one more domino; a wrong form knocks the whole line down. Pre-Intermediate 1st conditional, Intermediate 2nd, IELTS 1 3rd, IELTS 2 mixed, IELTS 3 inversion ("Had I known..., Were I to..."). The record stays per level.
 Keys: Space good sentence / new chain · X chain broken · N other starter · P other student.

@@ -3,7 +3,9 @@
    WHEN gives away the tense. The picked student builds the sentence; Space reveals it with the tense name.
    T chooses the family: all tenses, simple only, continuous only, perfect only, perfect continuous only,
    present only, past only or future only (from the tenses this level uses).
-   Keys: Space spin / reveal, T tense family, P other student, 1-4 team points.
+   Silly mode (Z) mixes in silly subjects and verbs (a penguin, three tiny aliens, steal the moon).
+   Verbs are tasks (finish) or activities (no end): deadlines (by 2030) only go with tasks, lengths of time (for two hours) only with activities.
+   Keys: Space spin / reveal, T tense family, Z silly mode, P other student, 1-4 team points.
    Content: content/timemachine.js (the same lists at every level) and Screen text & timing (tenses per level). */
 (function () {
   'use strict';
@@ -31,6 +33,10 @@
     { k: 'sMinus', label: 'Negative', type: 'bool', on: 'Use', off: "Don't use" }, { k: 'minus', label: 'Negative: symbol', type: 'text', max: 4 }, { k: 'minusName', label: 'Negative: word', type: 'text', max: 16 },
     { k: 'sQ', label: 'Question', type: 'bool', on: 'Use', off: "Don't use" }, { k: 'q', label: 'Question: symbol', type: 'text', max: 4 }, { k: 'qName', label: 'Question: word', type: 'text', max: 16 },
     { k: 'goingTo', label: 'Future simple: also show "going to"', type: 'bool', on: 'Show', off: 'Hide' }, { k: 'orWord', label: 'Word between the two answers', type: 'text', max: 8 },
+    { k: 'noIQ', label: 'Questions with "I" (Am I...? Have I...?)', type: 'bool', on: 'Present simple only', off: 'All tenses' },
+    { type: 'head', label: 'Silly mode (Z key)' },
+    { k: 'silly', label: 'Label when Silly mode is on', type: 'text', max: 20 },
+    { k: 'sillyChance', label: 'Silly mode: how often a silly subject / verb comes (%)', type: 'num', min: 0, max: 100 },
     { type: 'head', label: 'Tenses used at this level' }
   ];
   TENSES.forEach(function (t) { fields.push({ k: 't_' + t, label: TNAMES[t], type: 'bool', on: 'Use', off: "Don't use" }); });
@@ -41,32 +47,52 @@
 
   var scr = kit.screen({ game: 'timemachine', title: 'Time Machine', content: function () { return WU.content.timemachineScreen; }, fields: fields });
   var C = function () { return WU.content.timemachine; };
+  var KINDS = [['activity', 'activity: no end (listen to music)'], ['task', 'task: you finish it (write an email)']];
+  function normVerb(r) { return { base: r.base || '', s: r.s || '', ing: r.ing || '', past: r.past || '', pp: r.pp || '', rest: r.rest || '', pic: r.pic || '', kind: r.kind === 'task' ? 'task' : 'activity' }; }
+  function verbTitle(it) { return (it.base + ' ' + it.rest).trim() || '(empty)'; }
+  function verbFields() {
+    return [{ k: 'base', label: 'Verb (play)', type: 'text', max: 20 }, { k: 's', label: 'he / she form (plays)', type: 'text', max: 20 }, { k: 'ing', label: '-ing form (playing)', type: 'text', max: 20 },
+      { k: 'past', label: 'Past simple (played)', type: 'text', max: 20 }, { k: 'pp', label: 'Past participle (played)', type: 'text', max: 20 },
+      { k: 'rest', label: 'Words after the verb (football)', type: 'text', max: 30 }, { k: 'pic', label: 'Picture', type: 'pic' },
+      { k: 'kind', label: 'Kind (decides which time phrases it gets)', type: 'select', options: KINDS }];
+  }
+  function subjectFields() { return [{ k: 'text', label: 'Subject', type: 'text', max: 30 }, { k: 'p', label: 'Person', type: 'select', options: [['1s', 'I'], ['2s', 'you'], ['3s', 'he / she / it'], ['1p', 'we'], ['3p', 'they']] }]; }
   WU.registerList('timemachine', 'subjects', {
     gameTitle: 'Time Machine', label: 'WHO (subjects)', global: true,
     defaults: function () { return C().subjects; },
     norm: function (r) { return { text: r.text || '', p: r.p || '3s' }; },
-    fields: function () { return [{ k: 'text', label: 'Subject', type: 'text', max: 30 }, { k: 'p', label: 'Person', type: 'select', options: [['1s', 'I'], ['2s', 'you'], ['3s', 'he / she / it'], ['1p', 'we'], ['3p', 'they']] }]; },
+    fields: subjectFields,
     blank: function () { return { text: 'my sister', p: '3s' }; }
   });
   WU.registerList('timemachine', 'verbs', {
     gameTitle: 'Time Machine', label: 'DO WHAT (verbs)', global: true,
     defaults: function () { return C().verbs; },
-    norm: function (r) { return { base: r.base || '', s: r.s || '', ing: r.ing || '', past: r.past || '', pp: r.pp || '', rest: r.rest || '', pic: r.pic || '' }; },
-    title: function (it) { return (it.base + ' ' + it.rest).trim() || '(empty)'; },
-    fields: function () {
-      return [{ k: 'base', label: 'Verb (play)', type: 'text', max: 20 }, { k: 's', label: 'he / she form (plays)', type: 'text', max: 20 }, { k: 'ing', label: '-ing form (playing)', type: 'text', max: 20 },
-        { k: 'past', label: 'Past simple (played)', type: 'text', max: 20 }, { k: 'pp', label: 'Past participle (played)', type: 'text', max: 20 },
-        { k: 'rest', label: 'Words after the verb (football)', type: 'text', max: 30 }, { k: 'pic', label: 'Picture', type: 'pic' }];
-    },
-    blank: function () { return { base: 'play', s: 'plays', ing: 'playing', past: 'played', pp: 'played', rest: 'tennis', pic: '' }; }
+    norm: normVerb, title: verbTitle, fields: verbFields,
+    blank: function () { return { base: 'play', s: 'plays', ing: 'playing', past: 'played', pp: 'played', rest: 'tennis', pic: '', kind: 'activity' }; }
+  });
+  WU.registerList('timemachine', 'sillySubjects', {
+    gameTitle: 'Time Machine', label: 'Silly mode: WHO', global: true,
+    defaults: function () { return C().sillySubjects; },
+    norm: function (r) { return { text: r.text || '', p: r.p || '3s' }; },
+    fields: subjectFields,
+    blank: function () { return { text: 'a dancing cow', p: '3s' }; }
+  });
+  WU.registerList('timemachine', 'sillyVerbs', {
+    gameTitle: 'Time Machine', label: 'Silly mode: DO WHAT', global: true,
+    defaults: function () { return C().sillyVerbs; },
+    norm: normVerb, title: verbTitle, fields: verbFields,
+    blank: function () { return { base: 'dance', s: 'dances', ing: 'dancing', past: 'danced', pp: 'danced', rest: 'with a bear', pic: '', kind: 'activity' }; }
   });
   WU.registerList('timemachine', 'markers', {
     gameTitle: 'Time Machine', label: 'WHEN (time phrases)', global: true,
     defaults: function () { return C().markers; },
-    norm: function (r) { return { tense: r.tense || 'ps', text: r.text || '' }; },
+    norm: function (r) { return { tense: r.tense || 'ps', text: r.text || '', kind: r.kind === 'deadline' || r.kind === 'duration' ? r.kind : 'any' }; },
     title: function (it) { return it.text + ' (' + TNAMES[it.tense] + ')'; },
-    fields: function () { return [{ k: 'text', label: 'Time phrase (goes at the end)', type: 'text', max: 50 }, { k: 'tense', label: 'Tense it fits', type: 'select', options: TOPTS }]; },
-    blank: function () { return { tense: 'ps', text: 'every morning' }; }
+    fields: function () {
+      return [{ k: 'text', label: 'Time phrase (goes at the end)', type: 'text', max: 50 }, { k: 'tense', label: 'Tense it fits', type: 'select', options: TOPTS },
+        { k: 'kind', label: 'Goes with', type: 'select', options: [['any', 'any verb'], ['deadline', 'tasks only (a deadline: by 2030, by the time...)'], ['duration', 'activities only (a length of time: for two hours, all day)']] }];
+    },
+    blank: function () { return { tense: 'ps', text: 'every morning', kind: 'any' }; }
   });
 
   var sh, box, st, offContent = null, spinT = null, bar = gram.bar();
@@ -127,20 +153,34 @@
   }
   function family() { var fs = families(); return fs.filter(function (f) { return f.id === st.fam; })[0] || fs[0] || null; }
   function signs() { var S = scr.get(), o = []; if (S.sPlus) o.push('plus'); if (S.sMinus) o.push('minus'); if (S.sQ) o.push('q'); return o.length ? o : ['plus']; }
+  // A task (write an email) never gets a length of time; an activity (listen to music) never gets a deadline.
+  function fits(v, m) { return m.kind === 'deadline' ? v.kind === 'task' : m.kind === 'duration' ? v.kind !== 'task' : true; }
+  function silly() { return !!WU.store.get('tm-silly', false); }
+  function L(n) { return WU.list('timemachine', n, 0).filter(function (x) { return x.text || x.base; }); }
   function pickRound() {
     var f = family(); if (!f) return null;
-    var subs = WU.list('timemachine', 'subjects', 0).filter(function (x) { return x.text; });
-    var verbs = WU.list('timemachine', 'verbs', 0).filter(function (x) { return x.base; });
+    var S = scr.get(), on = silly(), ch = Math.max(0, Math.min(100, +S.sillyChance || 0));
+    var subs = L('subjects'), verbs = L('verbs'), ss = on ? L('sillySubjects') : [], sv = on ? L('sillyVerbs') : [];
     var mk = WU.list('timemachine', 'markers', 0).filter(function (m) { return m.text && f.tenses.indexOf(m.tense) >= 0; });
-    if (!subs.length || !verbs.length || !mk.length) return null;
+    // Silly mode: each window is silly or normal on its own.
+    var sl = ss.length && (WU.rand(100) < ch || !subs.length) ? 'sillySubjects' : 'subjects', vl = sv.length && (WU.rand(100) < ch || !verbs.length) ? 'sillyVerbs' : 'verbs';
+    var sp = sl === 'subjects' ? subs : ss, vp = vl === 'verbs' ? verbs : sv;
+    if (!sp.length || !vp.length || !mk.length) return null;
+    // Only tenses that have a time phrase with at least one verb that fits it.
+    var ok = function (m) { return vp.some(function (v) { return fits(v, m); }); };
+    var ts = f.tenses.filter(function (x) { return mk.some(function (m) { return m.tense === x && ok(m); }); });
+    if (!ts.length) return null;
     // Pick the tense first (so a tense with many time phrases does not come up more often).
-    var t = WU.pick(f.tenses.filter(function (x) { return mk.some(function (m) { return m.tense === x; }); }));
-    return { sid: WU.pick(subs).id, vid: WU.pick(verbs).id, mid: WU.pick(mk.filter(function (m) { return m.tense === t; })).id, sign: WU.pick(signs()) };
+    var t = WU.pick(ts), m = WU.pick(mk.filter(function (x) { return x.tense === t && ok(x); }));
+    var v = WU.pick(vp.filter(function (x) { return fits(x, m); })), sign = WU.pick(signs());
+    // "Am I...? Have I...?" sound odd: questions with I only in the present simple (unless switched off).
+    var sp2 = sign === 'q' && t !== 'ps' && S.noIQ ? sp.filter(function (x) { return x.p !== '1s'; }) : sp;
+    return { sid: WU.pick(sp2.length ? sp2 : sp).id, sl: sl, vid: v.id, vl: vl, mid: m.id, sign: sign };
   }
   function round() {
     if (!st.r) return null;
-    var s = WU.list('timemachine', 'subjects', 0).filter(function (x) { return x.id === st.r.sid; })[0];
-    var v = WU.list('timemachine', 'verbs', 0).filter(function (x) { return x.id === st.r.vid; })[0];
+    var s = WU.list('timemachine', st.r.sl || 'subjects', 0).filter(function (x) { return x.id === st.r.sid; })[0];
+    var v = WU.list('timemachine', st.r.vl || 'verbs', 0).filter(function (x) { return x.id === st.r.vid; })[0];
     var m = WU.list('timemachine', 'markers', 0).filter(function (x) { return x.id === st.r.mid; })[0];
     return s && v && m ? { s: s, v: v, m: m, sign: st.r.sign } : null;
   }
@@ -151,15 +191,16 @@
     var S = scr.get(), ph = st.phase, r = round(), f = family(), h = '';
     h += '<div class="ghead">' + kit.chip(S.tag, scr.ea('tag'), '#3d6bff') +
       (f ? '<div class="gpill tmfam" data-h="fam"' + scr.ea('f_' + f.id) + '>' + WU.esc(S['f_' + f.id]) + '</div>' : '') +
+      (silly() && S.silly ? '<div class="gpill tmsilly"' + scr.ea('silly') + '>' + WU.esc(S.silly) + '</div>' : '') +
       (st.demo && S.demo ? '<div class="demo"' + scr.ea('demo') + '>' + WU.esc(S.demo) + '</div>' : '') + '</div>';
     if (+S.seconds > 0) h += bar.html();
     var spin = ph === 'spin';
     if (r) {
       var sym = { plus: S.plus, minus: S.minus, q: S.q }[r.sign], nm = { plus: S.plusName, minus: S.minusName, q: S.qName }[r.sign], sk = { plus: 'plus', minus: 'minus', q: 'q' }[r.sign];
       h += '<div class="tmrow' + (spin ? ' spin' : '') + '">' +
-        win(S.lWho, 'lWho', '<div class="tmt" data-edit="timemachine:subjects:' + r.s.id + ':text">' + WU.esc(r.s.text) + '</div>', 'who') +
-        win(S.lWhat, 'lWhat', (r.v.pic ? '<div class="tmpic" data-edit="timemachine:verbs:' + r.v.id + ':pic">' + WU.pic(r.v.pic) + '</div>' : '') +
-          '<div class="tmt" data-edit="timemachine:verbs:' + r.v.id + ':base">' + WU.esc((r.v.base + ' ' + r.v.rest).trim()) + '</div>', 'what') +
+        win(S.lWho, 'lWho', '<div class="tmt" data-edit="timemachine:' + (st.r.sl || 'subjects') + ':' + r.s.id + ':text">' + WU.esc(r.s.text) + '</div>', 'who') +
+        win(S.lWhat, 'lWhat', (r.v.pic ? '<div class="tmpic" data-edit="timemachine:' + (st.r.vl || 'verbs') + ':' + r.v.id + ':pic">' + WU.pic(r.v.pic) + '</div>' : '') +
+          '<div class="tmt" data-edit="timemachine:' + (st.r.vl || 'verbs') + ':' + r.v.id + ':base">' + WU.esc((r.v.base + ' ' + r.v.rest).trim()) + '</div>', 'what') +
         win(S.lWhen, 'lWhen', '<div class="tmt" data-edit="timemachine:markers:' + r.m.id + ':text">' + WU.esc(r.m.text) + '</div>', 'when') +
         win(S.lSign, 'lSign', '<div class="tmsym ' + r.sign + '"' + scr.ea(sk) + '>' + WU.esc(sym) + '</div><div class="tmsn"' + scr.ea(sk + 'Name') + '>' + WU.esc(nm) + '</div>', 'sign') + '</div>';
     } else h += '<div class="tmrow"><div class="gbig" data-ctrl>No tenses or time phrases for this level (Edit mode).</div></div>';
@@ -182,9 +223,9 @@
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [], ph = st.phase;
-    var hs = ph === 'ask' ? [['SPACE', 'reveal'], ['T', 'tenses'], ['P', 'other student'], ['Esc', 'home']]
+    var hs = ph === 'ask' ? [['SPACE', 'reveal'], ['T', 'tenses'], ['Z', silly() ? 'silly off' : 'silly mode'], ['P', 'other student'], ['Esc', 'home']]
       : ph === 'spin' ? [['Esc', 'home']]
-      : [['SPACE', 'spin'], ['T', 'tenses'], ['Esc', 'home']];
+      : [['SPACE', 'spin'], ['T', 'tenses'], ['Z', silly() ? 'silly off' : 'silly mode'], ['Esc', 'home']];
     kit.hints(sh.root, hs.concat(sc), keyAction);
   }
 
@@ -217,6 +258,7 @@
     var ph = st.phase;
     if (k === 'SPACE') { st.moved = true; if (ph === 'ask') reveal(); else if (ph === 'reveal') { st.demo = false; spin(); } }
     else if (k === 'T') { st.moved = true; cycleFamily(); }
+    else if (k === 'Z') { st.moved = true; WU.store.set('tm-silly', !silly()); WU.sound.pop(); WU.toast(silly() ? 'Silly mode ON' : 'Silly mode OFF'); if (st.phase !== 'spin') { st.demo = false; spin(); } }
     else if (k === 'P') { if (ph === 'ask') { st.who = kit.student([st.who]); WU.sound.clack(); render(); } }
     else if (k === 'S') sh.toggleScores();
     else if (k === 'Esc') WU.go('home');
@@ -230,9 +272,10 @@
       if (r && st.phase !== 'spin') { sec.push({ label: 'Answer', text: answers().map(asText).join(' / '), big: true }); sec.push({ label: 'Tense', text: S['n_' + r.m.tense] }); }
       if (f) info.push({ label: 'Tenses (T)', text: S['f_' + f.id] + ': ' + f.tenses.map(function (t) { return S['n_' + t]; }).join(', ') });
       info.push({ label: 'Student', text: st.who || '' });
+      if (silly()) info.push({ label: 'Silly mode', text: 'on (Z = off)' });
       return { secret: sec, info: info };
     },
-    help: function () { return [['Space', 'reveal / spin again'], ['T', 'tense family: all, simple, continuous, perfect...'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
+    help: function () { return [['Space', 'reveal / spin again'], ['T', 'tense family: all, simple, continuous, perfect...'], ['Z', 'silly mode on / off (penguins, pirates, aliens...)'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       sh = gram.shell(el, 'tmg', 'Time Machine', 'timemachine-sb'); box = sh.box;
       st = { phase: 'ask', r: null, fam: WU.store.get('tm-fam-' + WU.state.level, 'all'), demo: !!scr.get().demoShow, who: null };
@@ -244,7 +287,7 @@
     onKey: function (e) {
       if (sh.sb && sh.sb.onKey(e)) return true;
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
-      var map = { t: 'T', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
+      var map = { t: 'T', z: 'Z', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
   };
