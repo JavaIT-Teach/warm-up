@@ -1017,3 +1017,23 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .calm .flg .flook, .calm .flg .flcell.new { animation: none; }
 .flg .flbottom .gwho, .flg .flbottom .frame { font-size: 42px; }
 .flg .flbottom .rule { font-size: 32px; }
+/* G3 Near & Far */
+.nfg .nfscene { position: absolute; left: 70px; right: 70px; top: 240px; height: 600px; overflow: hidden; background: linear-gradient(#bfe9ff, #e8f7ff 30%); border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
+.nfg .nffloor { position: absolute; left: 0; right: 0; top: 22%; bottom: 0; background: #9be37a; }
+.nfg .nffloor::after { content: ''; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: repeating-linear-gradient(0deg, #f2c26b 0 46px, #e5b257 46px 92px); clip-path: polygon(46% 0, 54% 0, 92% 100%, 8% 100%); border: 0; }
+.nfg .nfhz { position: absolute; left: 0; right: 0; top: 22%; height: 5px; background: var(--ink); }
+.nfg .nftag { position: absolute; padding: 2px 14px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 30px; }
+.nfg .nftag.far { left: 50%; top: 3%; transform: translateX(-50%); }
+.nfg .nftag.near { right: 4%; bottom: 5%; }
+.nfg .nfitems { position: absolute; display: flex; align-items: flex-end; justify-content: center; }
+.nfg .nfitems.far { left: 30%; right: 30%; top: 12%; height: 15%; gap: 4px; }
+.nfg .nfitems.far .nfp { height: 100%; aspect-ratio: 1; }
+.nfg .nfitems.near { left: 22%; right: 22%; bottom: 4%; height: 52%; gap: 16px; }
+.nfg .nfitems.near .nfp { height: 100%; aspect-ratio: 1; }
+.nfg .nfitems.near.many .nfp { height: 74%; }
+.nfg .nfhand { position: absolute; width: 230px; }
+.nfg .nfhand.near { left: 3%; bottom: 12%; transform: rotate(8deg); }
+.nfg .nfhand.far { left: 31%; top: 27%; width: 160px; transform: rotate(-22deg); }
+.nfg .nfbottom { position: absolute; left: 70px; right: 70px; top: 868px; bottom: 92px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 12px; }
+.nfg .nfbottom .gwho { font-size: 44px; }
+.nfg .nfbottom .rule { font-size: 34px; }
