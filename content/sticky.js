@@ -123,9 +123,10 @@ WU.content.sticky = [
 WU.content.stickyScreen = {
   shared: {
     id: 'sticky-screen',
-    tag: 'STICKY WORDS', rule: 'First team to say the preposition AND a sentence wins the point!', ruleShow: true,
+    tag: 'STICKY WORDS', rule: 'Shout first, then say the preposition AND a sentence. Wrong? The other team tries!', ruleShow: true,
     seconds: 10, target: 10, ready: 'Teams ready? Space = first word!',
-    sideA: 'LEFT SIDE', sideB: 'RIGHT SIDE', point: 'POINT!', nobody: 'Nobody! It comes back later.', back: 'BACK AGAIN!',
+    sideA: 'LEFT SIDE', sideB: 'RIGHT SIDE', point: 'POINT!',
+    answers: '{team}: answer!', steal: 'Wrong! {team}: your chance!', others: '{team}: wrong! Other teams, shout!', nobody: 'Nobody! It comes back later.', back: 'BACK AGAIN!',
     win: '{team} WINS!', exampleLabel: 'EXAMPLE'
   },
   levels: [ {}, {}, {}, {}, { seconds: 9 }, { seconds: 8 }, { seconds: 8 } ]

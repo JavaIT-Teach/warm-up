@@ -1,8 +1,10 @@
 /* Warm Up: STICKY WORDS (grammar game G9, Intermediate and up). Trains: dependent prepositions and fixed phrases.
-   A team race. A word with a gap appears ("interested ___", "___ purpose"). The first team to shout the preposition
-   AND a sentence with it wins the point: press its number (1, 2, 3, 4). Nobody, or wrong: X, and the word comes back
-   a few cards later. First team to the target (10) wins. With teams off, the room plays LEFT SIDE (1) against RIGHT SIDE (2).
-   Keys: Space next word, 1-4 point to a team, Shift + 1-4 take one back, X nobody / wrong, R new match.
+   A team race. A word with a gap appears ("interested ___", "___ purpose"). The first team to shout presses its number
+   (1, 2, 3, 4): that team answers (the preposition AND a sentence). Nothing is revealed yet: the teacher checks the answer
+   (Teacher screen, or A = a 2-second peek in the corner). Space = right: the point. X = wrong: the other team gets a try
+   (with 3-4 teams, the next team to shout). Nobody right: the word comes back a few cards later.
+   First team to the target (10) wins. With teams off, the room plays LEFT SIDE (1) against RIGHT SIDE (2).
+   Keys: 1-4 this team answers, Space right / next word, X wrong / nobody, A peek at the answer, Shift + 1-4 take a point back, R new match.
    Content: content/sticky.js through the edit layer (Edit mode, E). */
 (function () {
   'use strict';
@@ -19,6 +21,9 @@
       { k: 'target', label: 'Points to win', type: 'num', min: 1, max: 50 },
       { k: 'sideA', label: 'Teams off: side 1', type: 'text', max: 16 }, { k: 'sideB', label: 'Teams off: side 2', type: 'text', max: 16 },
       { type: 'head', label: 'After each word' },
+      { k: 'answers', label: 'A team answers ({team})', type: 'text', max: 40 },
+      { k: 'steal', label: 'Wrong: the other team tries ({team})', type: 'text', max: 50 },
+      { k: 'others', label: 'Wrong: 3-4 teams, the others can shout ({team} = who was wrong)', type: 'text', max: 60 },
       { k: 'point', label: 'A team got it', type: 'text', max: 16 },
       { k: 'nobody', label: 'Nobody / wrong (X)', type: 'text', max: 50 },
       { k: 'back', label: 'A word that comes back', type: 'text', max: 20 },
@@ -58,10 +63,10 @@
     var S = scr.get(), ph = st.phase, it = word(), h = '', n = nTeams();
     h += '<div class="ghead">' + kit.chip(S.tag, scr.ea('tag'), '#ffe600') + '<div class="swteams">' +
       Array.apply(null, Array(n)).map(function (x, i) {
-        return '<div class="swt' + (st.got === i && ph === 'got' ? ' hit' : '') + '" style="background:' + teamColor(i) + '"><span class="swk" data-ctrl>' + (i + 1) + '</span>' +
+        return '<div class="swt' + (st.got === i && ph === 'got' ? ' hit' : '') + (ph === 'try' && st.trying === i ? ' now' : '') + (st.out.indexOf(i) >= 0 && (ph === 'race' || ph === 'try') ? ' out' : '') + '" style="background:' + teamColor(i) + '"><span class="swk" data-ctrl>' + (i + 1) + '</span>' +
           '<span class="swn"' + (WU.state.teams ? ' data-auto' : scr.ea(i ? 'sideB' : 'sideA')) + '>' + WU.esc(teamName(i)) + '</span><b data-auto>' + st.score[i] + '</b></div>';
       }).join('') + '<div class="swtarget" data-auto>/ ' + target() + '</div></div></div>';
-    if (+S.seconds > 0 && ph === 'race') h += bar.html();
+    if (+S.seconds > 0 && ph === 'race' && !st.out.length) h += bar.html();
     if (ph === 'ready') h += '<div class="swready"><div class="gbig"' + scr.ea('ready') + '>' + WU.esc(S.ready) + '</div>' + (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>' : '') + '</div>';
     else if (ph === 'end') h += '<div class="swready"><div class="swwin" style="background:' + teamColor(st.winner) + '"' + scr.ea('win') + '>' + WU.esc(kit.fill(S.win, { team: teamName(st.winner) })) + '</div></div>';
     else if (it) {
@@ -72,19 +77,25 @@
       h += '<div class="swbottom">';
       if (ph === 'got') h += '<div class="swpoint" style="background:' + teamColor(st.got) + '"><span data-auto>' + WU.esc(teamName(st.got)) + '</span> <span' + scr.ea('point') + '>' + WU.esc(S.point) + '</span></div>';
       else if (ph === 'miss') h += '<div class="gbig"' + scr.ea('nobody') + '>' + WU.esc(S.nobody) + '</div>';
+      else if (ph === 'try') { var stl = st.out.length > 0, key = stl ? 'steal' : 'answers'; h += '<div class="swpoint swtry" style="background:' + teamColor(st.trying) + '"' + scr.ea(key) + '>' + WU.esc(kit.fill(S[key], { team: teamName(st.trying) })) + '</div>'; }
+      else if (st.out.length) h += '<div class="gbig"' + scr.ea('others') + '>' + WU.esc(kit.fill(S.others, { team: st.out.map(teamName).join(', ') })) + '</div>';
       else if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
       h += '</div>';
     }
     box.querySelector('.layer').innerHTML = h;
+    if (st.peek && it) h = '<div class="swpeek" data-auto>' + WU.esc(it.answer) + '</div>';
+    else h = '';
+    if (h) box.querySelector('.layer').insertAdjacentHTML('beforeend', h);
     kit.fit(box.querySelector('.swtext'), 170, 70);
-    // Touch: tap a team to give it the point.
-    box.querySelectorAll('.swt').forEach(function (el, i) { el.onclick = function (e) { if (!WU.editing) { e.stopPropagation(); point(i); } }; });
+    // Touch: tap a team: that team answers.
+    box.querySelectorAll('.swt').forEach(function (el, i) { el.onclick = function (e) { if (!WU.editing) { e.stopPropagation(); answer(i); } }; });
     bar.redraw(box);
     renderHints();
   }
   function renderHints() {
     var ph = st.phase, n = nTeams(), nums = n === 2 ? '1 / 2' : '1 - ' + n;
-    var hs = ph === 'race' ? [[nums, 'point to a team'], ['X', 'nobody / wrong'], ['Esc', 'home']]
+    var hs = ph === 'race' ? [[nums, 'this team answers'], ['X', 'nobody'], ['A', 'peek'], ['Esc', 'home']]
+      : ph === 'try' ? [['SPACE', 'right: point'], ['X', 'wrong'], ['A', 'peek'], ['Esc', 'home']]
       : ph === 'end' ? [['SPACE', 'new match'], ['Esc', 'home']]
       : ph === 'ready' ? [['SPACE', 'first word'], ['Esc', 'home']]
       : [['SPACE', 'next word'], ['R', 'new match'], ['Esc', 'home']];
@@ -94,30 +105,53 @@
   /* ---------- flow ---------- */
   function race() {
     var S = scr.get(); if (!words().length) return;
-    st.id = nextId(); st.phase = 'race'; st.got = null; WU.sound.pop(); render();
+    st.id = nextId(); st.phase = 'race'; st.got = null; st.trying = null; st.out = []; st.peek = false; WU.sound.pop(); render();
     bar.start(box, Math.max(0, Math.min(60, +S.seconds || 0)), function () { if (st && st.phase === 'race') render(); });
   }
+  // A team shouted first: it answers. Nothing is revealed until the teacher judges (Space right, X wrong).
+  function answer(i) {
+    if (st.phase !== 'race' || i >= nTeams() || st.out.indexOf(i) >= 0) return;
+    bar.stop(); st.trying = i; st.phase = 'try'; WU.sound.beep(880); render();
+  }
+  function wrong() {
+    if (st.phase !== 'try') return;
+    st.out.push(st.trying); WU.sound.buzzer();
+    var left = []; for (var i = 0; i < nTeams(); i++) if (st.out.indexOf(i) < 0) left.push(i);
+    if (!left.length) { st.phase = 'race'; miss(); return; }
+    // One team left: it gets the try straight away. More: the next team to shout.
+    if (left.length === 1) { st.trying = left[0]; st.phase = 'try'; }
+    else { st.trying = null; st.phase = 'race'; }
+    render();
+  }
   function point(i) {
-    if (st.phase !== 'race' || i >= nTeams()) return;
-    bar.stop(); st.score[i]++; st.got = i; st.phase = 'got'; WU.sound.ding();
+    if (st.phase !== 'try' || i == null) return;
+    bar.stop(); st.peek = false; st.score[i]++; st.got = i; st.phase = 'got'; WU.sound.ding();
     if (WU.state.teams && sh.sb) sh.sb.add(i, 1);
     if (st.score[i] >= target()) { st.winner = i; render(); setTimeout(function () { if (st && st.phase === 'got') { st.phase = 'end'; WU.sound.boom(); render(); } }, 1600); return; }
     render();
   }
   function miss() {
     if (st.phase !== 'race') return;
-    bar.stop(); st.phase = 'miss'; WU.sound.buzzer();
+    bar.stop(); st.phase = 'miss'; st.peek = false; WU.sound.buzzer();
     // The word comes back a few cards later.
     st.queue.splice(Math.min(3, st.queue.length), 0, st.id); st.backIds.push(st.id);
     render();
+  }
+  // A quick look at the answer for the teacher (small, bottom right, 2 seconds).
+  var peekT = null;
+  function peek() {
+    if (st.phase !== 'race' && st.phase !== 'try') return;
+    clearTimeout(peekT); st.peek = true; render();
+    peekT = setTimeout(function () { if (st) { st.peek = false; render(); } }, 2000);
   }
   function takeBack(i) { if (i < nTeams() && st.score[i] > 0) { st.score[i]--; if (WU.state.teams && sh.sb) sh.sb.add(i, -1); WU.sound.clack(); render(); } }
   function newMatch() { bar.stop(); st.score = [0, 0, 0, 0]; st.queue = []; st.backIds = []; st.phase = 'ready'; st.winner = null; WU.sound.clack(); render(); }
   function refresh() { if (!st) return; if (st.phase !== 'ready' && st.phase !== 'end' && !word()) { st.phase = 'ready'; } render(); }
   function keyAction(k) {
     var ph = st.phase;
-    if (k === 'SPACE') { if (ph === 'ready' || ph === 'got' || ph === 'miss') { if (ph === 'got' && st.winner != null) return; race(); } else if (ph === 'end') newMatch(); }
-    else if (k === 'X') miss();
+    if (k === 'SPACE') { if (ph === 'try') point(st.trying); else if (ph === 'ready' || ph === 'got' || ph === 'miss') { if (ph === 'got' && st.winner != null) return; race(); } else if (ph === 'end') newMatch(); }
+    else if (k === 'X') { if (ph === 'try') wrong(); else miss(); }
+    else if (k === 'A') peek();
     else if (k === 'R') newMatch();
     else if (k === 'Esc') WU.go('home');
   }
@@ -128,24 +162,25 @@
       if (!st) return null;
       var it = word(), sec = [], info = [];
       if (it && st.phase !== 'ready' && st.phase !== 'end') { sec.push({ label: 'Answer', text: it.answer, big: true }); if (it.example) sec.push({ label: 'Example', text: it.example }); }
+      if (st.phase === 'try') info.push({ label: 'Now answering', text: teamName(st.trying) + ' (Space = right, X = wrong)' });
       info.push({ label: 'Score', text: Array.apply(null, Array(nTeams())).map(function (x, i) { return teamName(i) + ' ' + st.score[i]; }).join(' · ') + ' (to ' + target() + ')' });
       return { secret: sec, info: info };
     },
-    help: function () { return [['Space', 'first word / next word'], ['1 - 4', 'point to that team (the first with a right sentence)'], ['Shift + 1 - 4', 'take a point back'], ['X', 'nobody / wrong: the word comes back later'], ['R', 'new match']]; },
+    help: function () { return [['1 - 4', 'this team shouted first: it answers'], ['Space', 'right: the point / next word'], ['X', 'wrong: the other team tries / nobody: the word comes back later'], ['A', 'peek at the answer (2 seconds, small)'], ['Shift + 1 - 4', 'take a point back'], ['R', 'new match']]; },
     mount: function (el) {
       sh = gram.shell(el, 'swg', 'Sticky Words', 'sticky-sb'); box = sh.box;
       if (sh.sb) sh.sb.show(false); // the race has its own score bar
-      st = { phase: 'ready', score: [0, 0, 0, 0], queue: [], backIds: [], got: null, winner: null, isBack: false };
+      st = { phase: 'ready', score: [0, 0, 0, 0], queue: [], backIds: [], got: null, winner: null, isBack: false, trying: null, out: [], peek: false };
       render();
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st) render(); });
       offContent = WU.on('content', refresh);
     },
-    unmount: function () { bar.stop(); if (offContent) offContent(); if (sh) sh.destroy(); sh = box = st = null; },
+    unmount: function () { bar.stop(); clearTimeout(peekT); if (offContent) offContent(); if (sh) sh.destroy(); sh = box = st = null; },
     onKey: function (e) {
       var m = /^(Digit|Numpad)([1-4])$/.exec(e.code || '');
-      if (m) { var i = +m[2] - 1; if (e.shiftKey) takeBack(i); else point(i); return true; }
+      if (m) { var i = +m[2] - 1; if (e.shiftKey) takeBack(i); else answer(i); return true; }
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
-      var map = { x: 'X', r: 'R' }, k = map[e.key.toLowerCase()];
+      var map = { x: 'X', r: 'R', a: 'A' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
   };
