@@ -14,6 +14,8 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 ## In class
 - Press **1–9** (or click a tile) to open a game. **Esc** goes back home.
 - Games 10–16 are below the first nine: press **↓** (one row at a time; or scroll, or Tab past tile 9), **↑** to go back. Key **0** opens game 10, **Shift + 1–6** open games 11–16.
+- Every card has a small **TRAINS** note: what the game practises (for example "Articles: a / an / the / no article").
+- **Grammar games G1–G7** are in their own section at the bottom of the home screen: press **G**, then **1–7** (or scroll down and click).
 - Some games are made for some levels only. At other levels their card is **grey** with a label ("From Pre-Intermediate") and does not open. Change the level and it opens.
 - Every game works with the keyboard alone. Press **?** in any game to see its keys.
 - Nothing needs to be set up. With no class list, the picker uses "Student 1, 2, 3...".
@@ -82,12 +84,40 @@ Keys: Space next command · X someone moved · A automatic · R start again. Com
 Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
 Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
 
+### Grammar games (G1–G7): one grammar point per game
+Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
+
+**G1. Article Showdown** (all levels) · *a / an / the / no article.* A sentence with a gap ("I want ___ ice cream."). **Space**: 3, 2, 1... SHOW! Every student shows fingers at once: 1 = a, 2 = an, 3 = the, fist = no article. **Space** reveals the answer and the rule ("WHY? ice starts with a vowel sound") and picks a student to say the whole sentence. Beginner uses a / an only. Higher levels: zero article, the + superlatives, the rich, the Netherlands, the Silk Road...
+Keys: Space countdown / reveal / next · N other sentence · P other student.
+
+**G2. Flash Room** (Beginner to Intermediate) · *there is / there are (there was / there were from Pre-Intermediate).* **Space**: a room full of things (1 to 5 of each) shows for a few seconds, then hides. The picked student says one thing ("There were three apples."); **Space** shows the next thing with its sentence. Then quick questions about things that were there, or were not ("Was there a dog?" "No, there wasn't.").
+Keys: Space show the room / show one thing / question / answer · A show everything · P other student.
+
+**G3. Near & Far** (Beginner to Pre-Intermediate) · *this / that / these / those.* A picture road: things appear near the hand (this / these) or far away (that / those), one or more. The student says the sentence; **Space** reveals it. Pre-Intermediate: two things at once ("These are cats and that is a dog."), with a time bar.
+Keys: Space reveal / next · N other things · P other student.
+
+**G4. Hide & Seek Cat** (Beginner to Intermediate) · *prepositions of place, then movement.* The cat (or a dog, a ball...) hides: in the box, on / under / next to the table, behind / in front of the box, between two boxes, above the table. From Pre-Intermediate it moves (animated): into / out of / over the box; Intermediate adds around the tree, past / towards / away from the house, across the road, through the tunnel, up / down the hill ("The cat went through the tunnel.").
+Keys: Space reveal / next · R move again · N other place · P other student. Edit mode: which places each level uses and their words.
+
+**G5. Verb Volcano** (Elementary and up) · *irregular verbs.* A verb sits on the volcano and the lava rises. The student says the forms (go - went - gone; Elementary: past only) before it reaches the top. **Space** = right: SAFE! **X** or time up: it ERUPTS. Then a follow-up ("Have you ever ___?"). With teams on, the team on turn gets the point automatically.
+Keys: Space start / right / next · X wrong · N other verb · P other student.
+
+**G6. Time Machine** (all levels) · *tenses, one family at a time.* **Space** spins WHO (she), DO WHAT (play football), WHEN (since this morning) and TYPE (+ / − / ?). WHEN gives away the tense. The student builds the sentence; **Space** reveals it with the tense name ("She has been playing football since this morning." · PRESENT PERFECT CONTINUOUS).
+**T** chooses the family: all tenses, simple only, continuous only, perfect only, perfect continuous only, present only, past only, future only. Only the tenses of the current level are used (Beginner: present simple and continuous; IELTS: all 12).
+**Z = Silly mode**: about half the subjects and verbs become silly ("Three tiny aliens had been riding a camel for two hours before the rain started."). The grammar stays correct.
+So the sentences make sense, each verb is a *task* (you finish it: write an email) or an *activity* (no end: listen to music). Deadlines ("by 2030", "by the time the film started") only go with tasks; lengths of time ("for two hours", "all day") only with activities. Questions with "I" only come in the present simple.
+Edit mode: tenses per level, subjects, verbs (with their kind), time phrases (with what they go with), the silly lists and how often they come.
+Keys: Space reveal / spin · T tense family · Z silly mode · P other student.
+
+**G7. Domino Effect** (Pre-Intermediate and up) · *conditionals.* A starter: "If it rains tomorrow, ..." The student finishes it; the next student turns that result into a new If-clause ("If I stay at home, I'll watch TV."), and so on. Each good sentence stands up one more domino; a wrong form knocks the whole line down. Pre-Intermediate 1st conditional, Intermediate 2nd, IELTS 1 3rd, IELTS 2 mixed, IELTS 3 inversion ("Had I known..., Were I to..."). The record stays per level.
+Keys: Space good sentence / new chain · X chain broken · N other starter · P other student.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)
 With the laptop connected to the board, Warm Up can show a second window on your laptop with what only you should see:
 the hidden picture and its name (Mystery Tiles), the word and banned words (Hot Seat), whether you pressed T or L (Lie Detector),
-the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap), every name and fact on the wall (Name Wall), whether the class should move (Teacher Says), who reports (Find Someone Who), the round and question (Speed Chat),
+the seconds left before the bomb explodes, the word of the Beginner picture (Word Chain), the next round and question and who asks first (Speed Swap), every name and fact on the wall (Name Wall), whether the class should move (Teacher Says), who reports (Find Someone Who), the round and question (Speed Chat), the answer in every grammar game (G1–G7),
 plus the timer, the scores and big buttons for the game's keys. The board never shows any of this.
 
 Setup (once per lesson):
