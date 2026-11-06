@@ -3,7 +3,8 @@
    The next student turns that result into a new If-clause ("If I stay at home, I will watch TV."), and so on.
    Every good sentence (Space) stands up one more domino. A wrong form or a stop (X) knocks the whole line down.
    Pre-Intermediate 1st conditional, Intermediate 2nd, IELTS 1 3rd, IELTS 2 mixed, IELTS 3 inversion.
-   Keys: Space good sentence / new chain, X chain broken, N other starter, P other student, 1-4 team points.
+   The example chain stays on the card; H shows a model ending for the current starter.
+   Keys: Space good sentence / new chain, X chain broken, H example ending, N other starter, P other student, 1-4 team points.
    Content: content/domino.js through the edit layer (Edit mode, E). */
 (function () {
   'use strict';
@@ -16,7 +17,10 @@
       { k: 'tag', label: 'Tag at the top (empty = hide)', type: 'text', max: 24 },
       { k: 'type', label: 'Grammar name (e.g. 2nd CONDITIONAL)', type: 'text', max: 30 },
       { k: 'frame', label: 'The pattern (every starter at this level)', type: 'text', max: 110 },
-      { k: 'example', label: 'Example chain', type: 'text', max: 160 }, { k: 'exampleShow', label: 'Example chain (before the first sentence)', type: 'bool' },
+      { k: 'example', label: 'Example chain (always on the card)', type: 'text', max: 160 }, { k: 'exampleShow', label: 'Example chain', type: 'bool' },
+      { k: 'exampleLabel', label: 'Label in front of the example', type: 'text', max: 14 },
+      { k: 'modelLabel', label: 'Label in front of a model ending (H key)', type: 'text', max: 16 },
+      { k: 'modelShow', label: 'Model endings (H key)', type: 'bool', on: 'On', off: 'Off' },
       { k: 'first', label: 'First student ({name})', type: 'text', max: 50 },
       { k: 'next', label: 'Next students ({name})', type: 'text', max: 60 },
       { k: 'rule', label: 'Rule line', type: 'text', max: 90 }, { k: 'ruleShow', label: 'Rule line', type: 'bool' },
@@ -31,12 +35,13 @@
   WU.registerList('domino', 'starters', {
     gameTitle: 'Domino Effect', label: 'Starters',
     defaults: function (l) { return WU.content.domino[l].starters; },
-    norm: function (r) { return { text: r.text || '', frame: r.frame || '' }; },
+    norm: function (r) { return { text: r.text || '', frame: r.frame || '', model: r.model || '' }; },
     fields: function () {
       return [{ k: 'text', label: 'First If-clause', type: 'text', max: 90 },
-        { k: 'frame', label: 'Its own pattern', type: 'text', max: 110, ph: function (it, l) { return 'Level pattern: ' + scr.get(l).frame; }, hint: "Empty = the level's pattern." }];
+        { k: 'frame', label: 'Its own pattern', type: 'text', max: 110, ph: function (it, l) { return 'Level pattern: ' + scr.get(l).frame; }, hint: "Empty = the level's pattern." },
+        { k: 'model', label: 'Model ending (H key shows it)', type: 'text', max: 100 }];
     },
-    blank: function () { return { text: 'If ___,', frame: '' }; }
+    blank: function () { return { text: 'If ___,', frame: '', model: '' }; }
   });
 
   var sh, box, st, offContent = null, bar = gram.bar(), deck = kit.deck(), fallT = null;
@@ -53,7 +58,10 @@
       (st.demo && S.demo ? '<div class="demo"' + scr.ea('demo') + '>' + WU.esc(S.demo) + '</div>' : '') + '</div>';
     if (+S.seconds > 0) h += bar.html();
     h += '<div class="dmcard"><div class="dmstart"' + (it ? ek(it, 'text') : '') + '>' + (it ? WU.esc(it.text) : '') + ' <span class="dmdots" data-ctrl>...</span></div>' +
-      (it && it.frame ? kit.frame(it.frame, ek(it, 'frame'), 'dmframe') : S.frame ? kit.frame(S.frame, scr.ea('frame'), 'dmframe') : '') + '</div>';
+      (it && it.frame ? kit.frame(it.frame, ek(it, 'frame'), 'dmframe') : S.frame ? kit.frame(S.frame, scr.ea('frame'), 'dmframe') : '') +
+      (st.model && it && it.model && S.modelShow ? '<div class="dmmodel">' + (S.modelLabel ? '<b' + scr.ea('modelLabel') + '>' + WU.esc(S.modelLabel) + '</b>' : '') +
+        '<span' + ek(it, 'text') + '>' + WU.esc(it.text.replace(/\s*\([^)]*\)\s*$/, '')) + '</span> <em' + ek(it, 'model') + '>' + WU.esc(it.model) + '</em></div>'
+      : S.exampleShow && S.example ? '<div class="dmex">' + (S.exampleLabel ? '<b' + scr.ea('exampleLabel') + '>' + WU.esc(S.exampleLabel) + '</b>' : '') + '<span' + scr.ea('example') + '>' + WU.esc(S.example) + '</span></div>' : '') + '</div>';
     // The domino line: one domino for every good sentence, then they fall when the chain breaks.
     var size = n > 14 ? Math.max(46, Math.floor(1700 / n) - 14) : 104;
     h += '<div class="dmline' + (ph === 'broken' ? ' fall' : '') + '">' + st.chain.map(function (name, i) {
@@ -64,8 +72,7 @@
     if (ph === 'broken') h += '<div class="dmbroken"' + scr.ea('broken') + '>' + WU.esc(S.broken) + '</div>';
     else {
       h += '<div class="brow">' + (n ? gram.who(S.next, scr.ea('next'), st.who) : gram.who(S.first, scr.ea('first'), st.who)) + '</div>';
-      if (!n && S.exampleShow && S.example) h += '<div class="rule dmex"' + scr.ea('example') + '>' + WU.esc(S.example) + '</div>';
-      else if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
+      if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
     }
     h += '</div>';
     box.querySelector('.layer').innerHTML = h;
@@ -77,7 +84,8 @@
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [];
-    var hs = st.phase === 'play' ? [['SPACE', 'good sentence'], ['X', 'chain broken'], ['P', 'other student']].concat(st.chain.length ? [] : [['N', 'other starter']], [['Esc', 'home']])
+    var hm = scr.get().modelShow && starter() && starter().model ? [['H', st.model ? 'hide example' : 'example ending']] : [];
+    var hs = st.phase === 'play' ? [['SPACE', 'good sentence'], ['X', 'chain broken']].concat(hm, [['P', 'other student']]).concat(st.chain.length ? [] : [['N', 'other starter']], [['Esc', 'home']])
       : [['SPACE', 'new chain'], ['Esc', 'home']];
     kit.hints(sh.root, hs.concat(sc), keyAction);
   }
@@ -90,13 +98,14 @@
     st.demo = false; st.who = kit.student([st.who]); render(); startBar();
   }
   function broken() { bar.stop(); st.phase = 'broken'; WU.sound.boom(); render(); }
-  function newChain() { bar.stop(); st.demo = false; newStarter(); st.chain = []; st.added = false; st.phase = 'play'; st.who = kit.student(st.who ? [st.who] : null); WU.sound.pop(); render(); startBar(); }
+  function newChain() { bar.stop(); st.demo = false; st.model = false; newStarter(); st.chain = []; st.added = false; st.phase = 'play'; st.who = kit.student(st.who ? [st.who] : null); WU.sound.pop(); render(); startBar(); }
   function refresh() { if (!st) return; if (!st.moved) st.demo = !!scr.get().demoShow; if (!starter()) newStarter(); render(); }
   function keyAction(k) {
     var ph = st.phase;
     if (k === 'SPACE') { st.moved = true; if (ph === 'play') good(); else newChain(); }
     else if (k === 'X') { if (ph === 'play') broken(); }
-    else if (k === 'N') { if (ph === 'play' && !st.chain.length) { st.moved = true; st.demo = false; newStarter(); WU.sound.clack(); render(); } }
+    else if (k === 'H') { st.model = !st.model; WU.sound.clack(); render(); }
+    else if (k === 'N') { if (ph === 'play' && !st.chain.length) { st.moved = true; st.demo = false; st.model = false; newStarter(); WU.sound.clack(); render(); } }
     else if (k === 'P') { if (ph === 'play') { st.who = kit.student([st.who]); st.added = false; WU.sound.clack(); render(); } }
     else if (k === 'S') sh.toggleScores();
     else if (k === 'Esc') WU.go('home');
@@ -109,11 +118,12 @@
       var it = starter(), S = scr.get(), info = [];
       if (it) info.push({ label: 'Starter', text: it.text });
       info.push({ label: 'Pattern', text: (it && it.frame) || S.frame });
+      if (it && it.model) info.push({ label: 'Example ending (H)', text: it.text.replace(/\s*\([^)]*\)\s*$/, '') + ' ' + it.model });
       info.push({ label: 'Chain', text: st.chain.length + (st.chain.length ? ' (' + st.chain.join(', ') + ')' : '') });
       info.push({ label: 'Now', text: st.who || '' });
       return { secret: [], info: info };
     },
-    help: function () { return [['Space', 'good sentence: one more domino / new chain'], ['X', 'chain broken: the dominoes fall'], ['N', 'other starter (before the first sentence)'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
+    help: function () { return [['Space', 'good sentence: one more domino / new chain'], ['X', 'chain broken: the dominoes fall'], ['H', 'show / hide an example ending for this starter'], ['N', 'other starter (before the first sentence)'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       sh = gram.shell(el, 'dmg', 'Domino Effect', 'domino-sb'); box = sh.box;
       st = { phase: 'play', id: null, chain: [], demo: !!scr.get().demoShow, who: kit.student(), added: false };
@@ -125,7 +135,7 @@
     onKey: function (e) {
       if (sh.sb && sh.sb.onKey(e)) return true;
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
-      var map = { x: 'X', n: 'N', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
+      var map = { x: 'X', h: 'H', n: 'N', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
   };
