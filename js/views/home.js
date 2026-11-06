@@ -99,6 +99,35 @@
     if (id === 'chat') return '<div style="display:flex;align-items:center;gap:16px;padding-left:10px">' + man(K, 'wu-walk 1.2s ease-in-out infinite alternate') +
       '<div style="padding:6px 14px;background:#fff;border:4px solid ' + K + ';font-family:' + F + ';font-size:28px;color:' + K + '">LIKE FOOTBALL?</div>' + man('#fff', 'wu-walk 1.2s ease-in-out .6s infinite alternate') +
       '<div style="padding:0 12px;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:44px;animation:wu-pulse .9s ease-in-out infinite">x7</div></div>';
+    // Grammar games
+    var chip = function (t, bg, fg, anim) { return '<div style="padding:6px 16px;background:' + bg + ';color:' + fg + ';border:4px solid ' + K + ';font-family:' + F + ';font-size:40px;line-height:1.05' + (anim ? ';animation:' + anim : '') + '">' + t + '</div>'; };
+    if (id === 'articles') return '<div style="display:flex;align-items:center;gap:16px;padding-left:10px">' + chip('A', '#fff', K, 'wu-flicker 1.2s steps(1) infinite alternate') +
+      chip('AN', K, col, 'wu-pulse .9s ease-in-out infinite') + chip('THE', '#fff', K, 'wu-flicker 1.2s steps(1) .6s infinite alternate') +
+      '<div style="font-family:' + F + ';font-size:44px;color:' + K + ';padding-left:10px">___ APPLE</div></div>';
+    if (id === 'flash') return '<div style="display:grid;grid-template-columns:repeat(4,82px);grid-template-rows:repeat(2,62px);gap:8px">' +
+      ['apple', 'cat', 'ball', 'car', 'book', 'duck', 'cup', 'key'].map(function (pc, i) {
+        return '<div style="position:relative;background:#fff;border:4px solid ' + K + ';padding:4px">' + WU.pic(pc) + '<div style="position:absolute;inset:0;background:' + K + ';animation:wu-flipc 3.4s ' + (i * 0.25) + 's infinite"></div></div>';
+      }).join('') + '</div>';
+    if (id === 'nearfar') return '<div style="position:relative;width:520px;height:130px"><div style="position:absolute;left:150px;right:150px;bottom:0;height:120px;background:repeating-linear-gradient(0deg,#f2c26b 0 16px,#e5b257 16px 32px);clip-path:polygon(44% 0,56% 0,100% 100%,0 100%)"></div>' +
+      '<div style="position:absolute;left:60px;bottom:0;width:120px;height:120px;animation:wu-pulse 1.4s ease-in-out infinite">' + WU.pic('dog') + '</div>' +
+      '<div style="position:absolute;left:300px;top:0;width:44px;height:44px">' + WU.pic('dog') + '</div>' +
+      '<div style="position:absolute;right:0;top:20px;font-family:' + F + ';font-size:34px;color:' + K + ';line-height:1.1">THIS?<br>THAT?</div></div>';
+    if (id === 'where') return '<div style="position:relative;width:520px;height:130px"><div style="position:absolute;left:120px;bottom:0;width:150px;height:96px;background:#d9a066;border:5px solid ' + K + ';z-index:2"></div>' +
+      '<div style="position:absolute;left:150px;bottom:40px;width:90px;height:90px;z-index:1;animation:wu-peek 2.4s ease-in-out infinite">' + WU.pic('cat') + '</div>' +
+      '<div style="position:absolute;left:310px;top:30px;font-family:' + F + ';font-size:40px;color:' + K + '">IN? ON?</div></div>';
+    if (id === 'volcano') return '<div style="display:flex;align-items:flex-end;gap:30px;padding-left:10px"><div style="position:relative;width:200px;height:120px;background:' + K + ';clip-path:polygon(0 100%,38% 0,62% 0,100% 100%)">' +
+      '<div style="position:absolute;left:0;right:0;bottom:0;height:60%;background:#ff3b3b;animation:wu-lava 1.8s ease-in-out infinite alternate"></div></div>' +
+      '<div style="font-family:' + F + ';font-size:42px;line-height:1.05;color:' + K + '">GO &rarr; WENT<br>&rarr; <span style="animation:wu-flicker .6s steps(1) infinite alternate">GONE</span></div></div>';
+    if (id === 'timemachine') {
+      var R = [['SHE', 'THEY', 'I', 'WE'], ['PLAY', 'SWIM', 'READ', 'COOK'], ['NOW', 'SINCE 9', 'BY 2030', 'YESTERDAY']];
+      return '<div style="display:flex;gap:12px;width:100%;padding-right:40px">' + R.map(function (w, i) {
+        return '<div style="flex:1;height:90px;overflow:hidden;background:#fff;border:4px solid ' + K + '"><div style="animation:wu-reel ' + (1 + i * 0.4) + 's linear infinite">' +
+          w.concat(w).map(function (x) { return '<div style="height:90px;display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:28px;color:' + K + ';white-space:nowrap">' + x + '</div>'; }).join('') + '</div></div>';
+      }).join('') + '<div style="width:70px;height:90px;display:flex;align-items:center;justify-content:center;background:' + K + ';color:' + col + ';font-family:' + F + ';font-size:56px">?</div></div>';
+    }
+    if (id === 'domino') return '<div style="display:flex;align-items:flex-end;gap:18px;height:120px;padding-left:10px">' + [0, 1, 2, 3, 4, 5, 6].map(function (i) {
+      return '<div style="width:34px;height:96px;background:' + K + ';border-radius:6px;box-shadow:inset 0 0 0 4px #fff;transform-origin:bottom right;animation:wu-domino 3s ' + (i * 0.12) + 's ease-in infinite"></div>';
+    }).join('') + '<div style="font-family:' + F + ';font-size:40px;color:' + K + ';padding-left:10px">IF...</div></div>';
     return '';
   }
 

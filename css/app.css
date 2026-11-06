@@ -1095,3 +1095,25 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tmg .tmor { font-family: var(--body, inherit); font-size: .6em; color: #777; padding: 0 6px; }
 .tmg .tmbottom .gwho { font-size: 48px; }
 .calm .tmg .tmtense { animation: none; }
+/* G7 Domino Effect */
+.dmg .dmcard { position: absolute; left: 70px; right: 70px; top: 240px; height: 280px; display: flex; flex-direction: column; justify-content: center; gap: 22px; padding: 20px 44px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
+.dmg .dmstart { max-height: 180px; overflow: hidden; font-family: var(--display); font-size: 84px; line-height: 1.06; letter-spacing: -0.03em; }
+.dmg .dmdots { color: #aaa; }
+.dmg .dmframe { align-self: flex-start; max-width: 100%; height: 60px; overflow: hidden; display: flex; align-items: center; font-size: 40px; background: var(--lime); }
+.dmg .dmline { position: absolute; left: 70px; right: 70px; top: 560px; height: 220px; display: flex; align-items: flex-end; gap: 14px; padding-left: 10px; border-bottom: 8px solid var(--ink); }
+.dmg .dmd { flex: none; height: 200px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; padding: 10px 4px; background: var(--ink); color: #fff; border: 4px solid var(--ink); border-radius: 10px; box-shadow: inset 0 0 0 4px #fff; transform-origin: bottom right; transition: transform .35s cubic-bezier(.5, 0, .8, .4); }
+.dmg .dmd.new { animation: wu-popin .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.dmg .dmd.ghost { background: transparent; border: 4px dashed #999; box-shadow: none; }
+.dmg .dmn { font-family: var(--display); font-size: 48px; line-height: 1; color: var(--lime); }
+.dmg .dmname { writing-mode: vertical-rl; transform: rotate(180deg); max-height: 128px; overflow: hidden; font-size: 21px; font-weight: 800; white-space: nowrap; }
+.dmg .dmline.down .dmd { transform: rotate(78deg); }
+.dmg .dmcount { position: absolute; right: 70px; top: 800px; padding: 2px 16px; background: var(--ink); color: var(--lime); font-family: var(--display); font-size: 40px; }
+.dmg .dmcount.bad { background: var(--orange); color: #fff; }
+.dmg .dmbottom { position: absolute; left: 70px; right: 420px; top: 800px; bottom: 92px; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 20px; }
+.dmg .dmbottom .gwho { font-size: 44px; }
+.dmg .dmbottom .rule { font-size: 32px; }
+.dmg .dmbroken { padding: 6px 30px; background: var(--orange); color: #fff; -webkit-text-stroke: 2px var(--ink); border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); font-family: var(--display); font-size: 80px; transform: rotate(-2deg); animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.calm .dmg .dmd { transition: none; } .calm .dmg .dmd.new, .calm .dmg .dmbroken { animation: none; }
+@keyframes wu-peek { 0%, 100% { transform: translateY(40px) } 40%, 70% { transform: translateY(0) } }
+@keyframes wu-lava { from { height: 20% } to { height: 95% } }
+@keyframes wu-domino { 0%, 30% { transform: rotate(0) } 50%, 85% { transform: rotate(72deg) } 100% { transform: rotate(0) } }
