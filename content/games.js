@@ -23,7 +23,7 @@ WU.content.games = [
   { id: 'chat', name: 'Speed Chat', hook: 'One question. New partner. Again and again.', trains: 'Questions · short answers · reporting', color: '#ff4fc3', first: true, sticker: 'GET UP!' },
   /* ---------- Grammar games: one grammar point each (G1, G2... on the home screen) ---------- */
   { id: 'articles', grammar: true, name: 'Article Showdown', hook: '3, 2, 1... fingers up: a, an, the or nothing?', trains: 'Articles: a / an / the / no article', color: '#c6ff00' },
-  { id: 'flash', grammar: true, name: 'Flash Room', hook: "Look fast. It's gone. What was there?", trains: 'There is / There are · was / were', color: '#00e5c7' },
+  { id: 'flash', grammar: true, name: 'Flash Room', hook: "Look fast. It's gone. What was there?", trains: 'There is / There are · was / were', color: '#00e5c7', levels: [0, 3] },
   { id: 'nearfar', grammar: true, name: 'Near & Far', hook: 'Close or far? One or many? Say it right.', trains: 'this / that / these / those', color: '#ffe600', levels: [0, 2] },
   { id: 'where', grammar: true, name: 'Hide & Seek Cat', hook: 'The cat moves. Where is it now?', trains: 'Prepositions of place & movement', color: '#ff4fc3', levels: [0, 3] },
   { id: 'volcano', grammar: true, name: 'Verb Volcano', hook: 'Say the forms before it erupts!', trains: 'Irregular verbs: past simple · past participle', color: '#ff5a1f', levels: [1, 6] },
