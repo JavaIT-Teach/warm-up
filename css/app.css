@@ -1071,3 +1071,8 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .dmg .dmmodel { font-family: var(--display); font-size: 40px; color: var(--ink); animation: wu-popin .35s both; }
 .dmg .dmmodel em { font-style: normal; background: var(--lime); padding: 0 8px; }
 .calm .dmg .dmmodel { animation: none; }
+.swg .swt.now { outline: 8px solid var(--ink); outline-offset: 4px; animation: wu-pulse .9s ease-in-out infinite; }
+.swg .swt.out { opacity: .35; filter: grayscale(1); }
+.swg .swtry { font-size: 64px; }
+.swg .swpeek { position: absolute; right: 30px; bottom: 26px; z-index: 5; padding: 2px 12px; background: #e9e5db; color: #777; font-size: 24px; font-weight: 800; }
+.calm .swg .swt.now { animation: none; }
