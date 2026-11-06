@@ -1076,3 +1076,21 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .swg .swtry { font-size: 64px; }
 .swg .swpeek { position: absolute; right: 30px; bottom: 26px; z-index: 5; padding: 2px 12px; background: #e9e5db; color: #777; font-size: 24px; font-weight: 800; }
 .calm .swg .swt.now { animation: none; }
+.tmg .tmbottom { gap: 12px; }
+.tmg .tmhint { display: flex; flex-direction: column; gap: 8px; max-width: 100%; }
+.tmg .tmpat { display: flex; align-items: baseline; gap: 14px; font-size: 32px; font-weight: 800; line-height: 1.15; }
+.tmg .tmpat.ex { font-family: var(--display); font-weight: 400; font-size: 36px; }
+.tmg .tmpat b { flex: none; padding: 2px 12px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 24px; font-weight: 400; }
+.tmg .tmpat em { font-style: normal; background: #dbe4ff; padding: 0 6px; }
+.tmg .tmrow { height: 420px; }
+.tmg .tmbottom { top: 708px; bottom: 84px; }
+.tmg .tmbottom .gans-t { font-size: 52px; }
+.tmg .tmtense { font-size: 32px; }
+.tmg .tmrow { grid-template-rows: minmax(0, 1fr); }
+.tmg .tmwin { min-height: 0; overflow: hidden; }
+.tmg .tmbottom .gans { max-width: 100%; }
+.tmg .tmbottom .gans-t { white-space: nowrap; overflow: hidden; }
+.tmg .tmtop { gap: 20px; flex-wrap: nowrap; }
+.tmg .tmpat { min-width: 0; max-width: 100%; }
+.tmg .tmpat span { min-width: 0; white-space: nowrap; overflow: hidden; }
+.tmg .tmbottom .gans { margin: 4px 0 24px; }
