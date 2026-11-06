@@ -132,11 +132,15 @@ WU.content.timemachineScreen = {
     n_fs: 'future simple', n_fc: 'future continuous', n_fp: 'future perfect', n_fpc: 'future perfect continuous',
     f_all: 'ALL TENSES', f_simple: 'SIMPLE ONLY', f_cont: 'CONTINUOUS ONLY', f_perf: 'PERFECT ONLY', f_perfc: 'PERFECT CONTINUOUS ONLY',
     f_present: 'PRESENT ONLY', f_past: 'PAST ONLY', f_future: 'FUTURE ONLY',
+    x_ps: 'verb (he / she / it: verb + s) · do / does + verb', x_pc: 'am / is / are + verb-ing', x_pp: 'have / has + past participle', x_ppc: 'have / has been + verb-ing',
+    x_pas: 'past form (went, played) · did + verb', x_pac: 'was / were + verb-ing', x_pap: 'had + past participle', x_papc: 'had been + verb-ing',
+    x_fs: 'will + verb · am / is / are going to + verb', x_fc: 'will be + verb-ing', x_fp: 'will have + past participle', x_fpc: 'will have been + verb-ing',
+    lPattern: 'PATTERN', lExample: 'EXAMPLE', hintAuto: false, revealExample: true,
     demo: 'TEACHER DEMO: I go first!', demoShow: false
   },
   levels: [
-    { t_pp: false, t_ppc: false, t_pas: false, t_pac: false, t_pap: false, t_papc: false, t_fs: false, t_fc: false, t_fp: false, t_fpc: false, sQ: true, demoShow: true },
-    { t_pp: false, t_ppc: false, t_pac: false, t_pap: false, t_papc: false, t_fc: false, t_fp: false, t_fpc: false },
+    { t_pp: false, t_ppc: false, t_pas: false, t_pac: false, t_pap: false, t_papc: false, t_fs: false, t_fc: false, t_fp: false, t_fpc: false, sQ: true, demoShow: true, hintAuto: true },
+    { t_pp: false, t_ppc: false, t_pac: false, t_pap: false, t_papc: false, t_fc: false, t_fp: false, t_fpc: false, hintAuto: true },
     { t_ppc: false, t_pap: false, t_papc: false, t_fc: false, t_fp: false, t_fpc: false },
     { t_papc: false, t_fp: false, t_fpc: false },
     {}, {}, {}

@@ -5,7 +5,8 @@
    present only, past only or future only (from the tenses this level uses).
    Silly mode (Z) mixes in silly subjects and verbs (a penguin, three tiny aliens, steal the moon).
    Verbs are tasks (finish) or activities (no end): deadlines (by 2030) only go with tasks, lengths of time (for two hours) only with activities.
-   Keys: Space spin / reveal, T tense family, Z silly mode, P other student, 1-4 team points.
+   H shows the pattern and an example in the same tense and type (another subject and verb); the reveal shows them too.
+   Keys: Space spin / reveal, H pattern + example, T tense family, Z silly mode, P other student, 1-4 team points.
    Content: content/timemachine.js (the same lists at every level) and Screen text & timing (tenses per level). */
 (function () {
   'use strict';
@@ -40,6 +41,11 @@
     { type: 'head', label: 'Tenses used at this level' }
   ];
   TENSES.forEach(function (t) { fields.push({ k: 't_' + t, label: TNAMES[t], type: 'bool', on: 'Use', off: "Don't use" }); });
+  fields.push({ type: 'head', label: 'Pattern and example (H key)' },
+    { k: 'lPattern', label: 'Label: pattern', type: 'text', max: 14 }, { k: 'lExample', label: 'Label: example', type: 'text', max: 14 },
+    { k: 'hintAuto', label: 'Pattern + example before the answer', type: 'bool', on: 'Always', off: 'Only with H' },
+    { k: 'revealExample', label: 'Pattern + example after the reveal', type: 'bool', on: 'Show', off: 'Hide' });
+  TENSES.forEach(function (t) { fields.push({ k: 'x_' + t, label: 'Pattern: ' + TNAMES[t], type: 'text', max: 70 }); });
   fields.push({ type: 'head', label: 'Names on screen' });
   TENSES.forEach(function (t) { fields.push({ k: 'n_' + t, label: 'Name: ' + TNAMES[t], type: 'text', max: 32 }); });
   FAMILIES.forEach(function (f) { fields.push({ k: 'f_' + f[0], label: 'Family (T key): ' + f[0], type: 'text', max: 28 }); });
@@ -185,6 +191,28 @@
     return s && v && m ? { s: s, v: v, m: m, sign: st.r.sign } : null;
   }
 
+  // An example in the same tense and type (+ / - / ?) with another subject, verb and time phrase:
+  // it shows the pattern without giving the answer away.
+  function makeExample() {
+    var r = round(); if (!r) return null;
+    var S = scr.get(), t = r.m.tense;
+    var subs = L('subjects').filter(function (x) { return x.id !== r.s.id && !(r.sign === 'q' && t !== 'ps' && S.noIQ && x.p === '1s'); });
+    var mk = WU.list('timemachine', 'markers', 0).filter(function (m) { return m.text && m.tense === t; });
+    var vs = L('verbs').filter(function (v) { return v.id !== r.v.id && v.base !== r.v.base && mk.some(function (m) { return fits(v, m); }); });
+    if (!subs.length || !vs.length) return null;
+    var v = WU.pick(vs), ms = mk.filter(function (m) { return fits(v, m); }), m2 = ms.filter(function (m) { return m.id !== r.m.id; });
+    return { s: WU.pick(subs), v: v, m: WU.pick(m2.length ? m2 : ms), sign: r.sign };
+  }
+  function patternHTML() {
+    var S = scr.get(), r = round(); if (!r) return '';
+    return '<div class="tmpat"><b' + scr.ea('lPattern') + '>' + WU.esc(S.lPattern) + '</b><span' + scr.ea('x_' + r.m.tense) + '>' + WU.esc(S['x_' + r.m.tense]) + '</span></div>';
+  }
+  function exampleLine() {
+    var S = scr.get(), e = st.ex; if (!e) return '';
+    return '<div class="tmpat ex"><b' + scr.ea('lExample') + '>' + WU.esc(S.lExample) + '</b><span data-auto>' + asHTML(build(e.m.tense, e.sign, e.s, e.v, e.m.text)) + '</span></div>';
+  }
+  function exampleHTML() { return round() ? '<div class="tmhint">' + patternHTML() + exampleLine() + '</div>' : ''; }
+
   /* ---------- screen ---------- */
   function win(label, la, body, cls) { return '<div class="tmwin ' + (cls || '') + '"><div class="tml"' + scr.ea(la) + '>' + WU.esc(label) + '</div><div class="tmv">' + body + '</div></div>'; }
   function render() {
@@ -207,23 +235,27 @@
     h += '<div class="tmbottom">';
     if (ph === 'reveal' && r) {
       var ans = answers();
-      h += '<div class="tmtense"' + scr.ea('n_' + r.m.tense) + '>' + WU.esc(S['n_' + r.m.tense]) + '</div>';
+      h += '<div class="brow tmtop"><div class="tmtense"' + scr.ea('n_' + r.m.tense) + '>' + WU.esc(S['n_' + r.m.tense]) + '</div>' + (S.revealExample ? patternHTML() : '') + '</div>';
       h += gram.answer('', '', ans.map(asHTML).join(' <span class="tmor">' + WU.esc(S.orWord || 'or') + '</span> '), ' data-auto');
+      if (S.revealExample) h += exampleLine();
     } else if (!spin) {
       h += '<div class="brow">' + gram.who(S.who, scr.ea('who'), st.who) + '</div>';
-      if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
+      if (r && (st.hint || S.hintAuto)) h += exampleHTML();
+      else if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
     }
     h += '</div>';
     box.querySelector('.layer').innerHTML = h;
     box.querySelectorAll('.tmwin .tmt').forEach(function (t) { kit.fit(t, 76, 34); });
-    var a = box.querySelector('.gans-t'); if (a) kit.fit(a, 58, 30);
+    var a = box.querySelector('.gans-t'); if (a) kit.fit(a, 56, 26);
+    box.querySelectorAll('.tmpat span').forEach(function (x) { kit.fit(x, x.parentNode.classList.contains('ex') ? 36 : 32, 20); });
     var fb = box.querySelector('[data-h="fam"]'); if (fb) fb.onclick = function (e) { if (!WU.editing) { e.stopPropagation(); cycleFamily(); } };
     bar.redraw(box);
     renderHints();
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [], ph = st.phase;
-    var hs = ph === 'ask' ? [['SPACE', 'reveal'], ['T', 'tenses'], ['Z', silly() ? 'silly off' : 'silly mode'], ['P', 'other student'], ['Esc', 'home']]
+    var hk = scr.get().hintAuto ? [] : [['H', st.hint ? 'hide example' : 'example']];
+    var hs = ph === 'ask' ? [['SPACE', 'reveal']].concat(hk, [['T', 'tenses']]).concat([ ['Z', silly() ? 'silly off' : 'silly mode'], ['P', 'other student'], ['Esc', 'home']])
       : ph === 'spin' ? [['Esc', 'home']]
       : [['SPACE', 'spin'], ['T', 'tenses'], ['Z', silly() ? 'silly off' : 'silly mode'], ['Esc', 'home']];
     kit.hints(sh.root, hs.concat(sc), keyAction);
@@ -242,7 +274,7 @@
     }, 80);
   }
   function land() {
-    var S = scr.get(); st.phase = 'ask'; st.who = kit.student(st.who ? [st.who] : null); WU.sound.slam(); render();
+    var S = scr.get(); st.phase = 'ask'; st.hint = false; st.ex = makeExample(); st.who = kit.student(st.who ? [st.who] : null); WU.sound.slam(); render();
     bar.start(box, Math.max(0, Math.min(60, +S.seconds || 0)), function () { if (st && st.phase === 'ask') render(); });
   }
   function reveal() { bar.stop(); st.phase = 'reveal'; WU.sound.ding(); render(); }
@@ -258,6 +290,7 @@
     var ph = st.phase;
     if (k === 'SPACE') { st.moved = true; if (ph === 'ask') reveal(); else if (ph === 'reveal') { st.demo = false; spin(); } }
     else if (k === 'T') { st.moved = true; cycleFamily(); }
+    else if (k === 'H') { if (ph === 'ask') { st.hint = !st.hint; WU.sound.clack(); render(); } }
     else if (k === 'Z') { st.moved = true; WU.store.set('tm-silly', !silly()); WU.sound.pop(); WU.toast(silly() ? 'Silly mode ON' : 'Silly mode OFF'); if (st.phase !== 'spin') { st.demo = false; spin(); } }
     else if (k === 'P') { if (ph === 'ask') { st.who = kit.student([st.who]); WU.sound.clack(); render(); } }
     else if (k === 'S') sh.toggleScores();
@@ -271,11 +304,12 @@
       var r = round(), S = scr.get(), f = family(), sec = [], info = [];
       if (r && st.phase !== 'spin') { sec.push({ label: 'Answer', text: answers().map(asText).join(' / '), big: true }); sec.push({ label: 'Tense', text: S['n_' + r.m.tense] }); }
       if (f) info.push({ label: 'Tenses (T)', text: S['f_' + f.id] + ': ' + f.tenses.map(function (t) { return S['n_' + t]; }).join(', ') });
+      if (r && st.ex && st.phase !== 'spin') info.push({ label: 'Example (H)', text: S['x_' + r.m.tense] + ' · ' + asText(build(st.ex.m.tense, st.ex.sign, st.ex.s, st.ex.v, st.ex.m.text)) });
       info.push({ label: 'Student', text: st.who || '' });
       if (silly()) info.push({ label: 'Silly mode', text: 'on (Z = off)' });
       return { secret: sec, info: info };
     },
-    help: function () { return [['Space', 'reveal / spin again'], ['T', 'tense family: all, simple, continuous, perfect...'], ['Z', 'silly mode on / off (penguins, pirates, aliens...)'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
+    help: function () { return [['Space', 'reveal / spin again'], ['H', 'pattern + an example in the same tense'], ['T', 'tense family: all, simple, continuous, perfect...'], ['Z', 'silly mode on / off (penguins, pirates, aliens...)'], ['P', 'other student'], ['1 - 4', 'team point'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       sh = gram.shell(el, 'tmg', 'Time Machine', 'timemachine-sb'); box = sh.box;
       st = { phase: 'ask', r: null, fam: WU.store.get('tm-fam-' + WU.state.level, 'all'), demo: !!scr.get().demoShow, who: null };
@@ -287,7 +321,7 @@
     onKey: function (e) {
       if (sh.sb && sh.sb.onKey(e)) return true;
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
-      var map = { t: 'T', z: 'Z', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
+      var map = { t: 'T', z: 'Z', h: 'H', p: 'P', s: 'S' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
   };
