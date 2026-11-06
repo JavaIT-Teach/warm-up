@@ -105,7 +105,7 @@
   function rots() { return [-1.2, 0.8, -0.6, 1, -0.9, 0.7, 0.6, -1, 0.9]; }
 
   function render() {
-    var s = WU.state, games = WU.content.games, first = s.lesson === 'first', cls = WU.activeClass();
+    var s = WU.state, games = mainGames(), gram = grammarGames(), first = s.lesson === 'first', cls = WU.activeClass();
     // The home screen is the teacher's menu: controls, not learning content.
     var html = '<div class="home" data-ctrl>' +
       '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
@@ -123,16 +123,17 @@
       '<div class="levels">' + WU.LEVELS.map(function (l, i) {
         return '<div class="pill' + (i === s.level ? ' on' : '') + '" data-level="' + i + '"><b>' + l.name + '</b><i>' + l.code + '</i></div>';
       }).join('') + '</div>' +
-      '<div class="grid">' + games.slice(0, 9).map(tile).join('') + '</div></div>';
-    function tile(g, i) {
+      '<div class="grid">' + games.slice(0, 9).map(function (g, i) { return tile(g, i); }).join('') + '</div></div>';
+    function tile(g, i, gnum) {
       var dim = first && !g.first, off = !WU.gameOk(g.id);
       return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
         (off ? '<div class="lvlock">' + WU.esc(WU.gameLevelText(g.id)) + '</div>' : '') +
         ((first && g.first) || g.sticker ? '<div class="fit">' + WU.esc(g.sticker || 'ICEBREAKER') + '</div>' : '') +
-        '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
+        '<div class="num' + (gnum ? ' g' : '') + '" style="color:' + g.color + '">' + (gnum ? 'G' + gnum : i + 1) + '</div>' +
         '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
         '<div class="name">' + WU.esc(g.name) + '</div>' +
         '<div class="hook">' + WU.esc(g.hook) + '</div>' +
+        (g.trains ? '<div class="trains"><b>TRAINS</b><span>' + WU.esc(g.trains) + '</span></div>' : '') +
         '</div>';
     }
     root.innerHTML = html;
@@ -140,10 +141,11 @@
     // (so at rest the home screen is exactly what it was before).
     moreRow = function () {
       var home = root.querySelector('.home'), g2 = root.querySelector('.grid2');
-      if (g2 || games.length <= 9) return g2;
-      home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') + '</div>');
+      if (g2 || (games.length <= 9 && !gram.length)) return g2;
+      home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') +
+        (gram.length ? '<div class="gsec"><b>GRAMMAR GAMES</b><span>One grammar point per game. Key: G, then the number.</span></div>' + gram.map(function (g, j) { return tile(g, 9 + j, j + 1); }).join('') : '') + '</div>');
       g2 = root.querySelector('.grid2');
-      var t1 = root.querySelector('.grid .tile'); if (t1) g2.style.gridAutoRows = t1.offsetHeight + 'px';
+      var t1 = root.querySelector('.grid .tile'); if (t1) g2.querySelectorAll('.tile').forEach(function (x) { x.style.height = t1.offsetHeight + 'px'; });
       wireTiles(g2); return g2;
     };
     wireSlide();
@@ -160,7 +162,7 @@
       t.onkeydown = function (e) {
         if (e.key === 'Enter') { e.preventDefault(); open(t.getAttribute('data-game')); }
         // Tab past the last of the nine: bring up the row below and go on into it.
-        else if (e.key === 'Tab' && !e.shiftKey && t.getAttribute('data-game') === WU.content.games[8].id && WU.content.games.length > 9) {
+        else if (e.key === 'Tab' && !e.shiftKey && t.getAttribute('data-game') === mainGames()[8].id && WU.content.games.length > 9) {
           e.preventDefault(); moreRow(); var n = root.querySelector('.grid2 .tile'); if (n) n.focus();
         }
       };
@@ -195,6 +197,11 @@
     });
   }
 
+  // The numbered games (1-9, 0, Shift + 1-9) and the grammar games (G1, G2...: key G then the number).
+  function mainGames() { return WU.content.games.filter(function (g) { return !g.grammar; }); }
+  function grammarGames() { return WU.content.games.filter(function (g) { return g.grammar; }); }
+  var gWait = 0;
+
   function setLevel(i) {
     if (i < 0 || i >= WU.LEVELS.length) return;
     WU.setState({ level: i }); render();
@@ -217,7 +224,7 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['G then 1 - 7', 'open grammar game G1, G2...'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back']];
     },
     mount: function (el) {
       root = el; render();
@@ -225,11 +232,20 @@
     },
     unmount: function () { if (offChange) offChange(); root = null; },
     onKey: function (e) {
-      var k = e.key;
-      if (/^[1-9]$/.test(k)) { var g = WU.content.games[+k - 1]; if (g) open(g.id); return true; }
-      if (k === '0') { var g10 = WU.content.games[9]; if (g10) open(g10.id); return true; }
+      var k = e.key, main = mainGames();
+      // G then 1-9: grammar game G1, G2...
+      if (gWait && Date.now() - gWait < 3000 && /^Digit[1-9]$/.test(e.code || '')) {
+        gWait = 0; var gg = grammarGames()[+e.code.slice(5) - 1]; if (gg) open(gg.id); return true;
+      }
+      gWait = 0;
+      if (k === 'g' || k === 'G') {
+        gWait = Date.now(); slideTo(1e5);
+        WU.toast('Grammar game: press 1-' + grammarGames().length); return true;
+      }
+      if (/^[1-9]$/.test(k)) { var g = main[+k - 1]; if (g) open(g.id); return true; }
+      if (k === '0') { var g10 = main[9]; if (g10) open(g10.id); return true; }
       // Shift + 1-9: games 11-19 (below the nine).
-      if (e.shiftKey && /^Digit[1-9]$/.test(e.code || '')) { var gs = WU.content.games[9 + +e.code.slice(5)]; if (gs) open(gs.id); return true; }
+      if (e.shiftKey && /^Digit[1-9]$/.test(e.code || '')) { var gs = main[9 + +e.code.slice(5)]; if (gs) open(gs.id); return true; }
       if (k === 'ArrowDown' || k === 'PageDown') { slideTo(slid + rowStep()); return true; }
       if (k === 'ArrowUp' || k === 'PageUp') { slideTo(slid - rowStep()); return true; }
       if (k === 'ArrowRight') { setLevel(WU.state.level + 1); return true; }

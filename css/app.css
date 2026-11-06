@@ -732,6 +732,13 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
    at rest nothing above changes. */
 .home.moved { transition: transform .35s ease; }
 .home .grid2 { position: absolute; left: 48px; right: 48px; top: calc(100% - 6px); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 30px 36px; padding: 6px 14px 40px 4px; }
+.tile .trains { display: flex; align-items: center; gap: 10px; margin-top: 8px; min-width: 0; font-size: 19px; font-weight: 700; line-height: 1.1; }
+.tile .trains b { flex: none; padding: 3px 8px; background: var(--ink); color: #fff; font-size: 15px; font-weight: 800; letter-spacing: .08em; }
+.tile .trains span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.tile .num.g { width: 78px; font-size: 30px; }
+.home .gsec { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 24px; padding: 18px 0 0; border-top: 6px solid var(--ink); }
+.home .gsec b { font-family: var(--display); font-size: 46px; letter-spacing: -0.02em; }
+.home .gsec span { font-size: 24px; font-weight: 700; }
 
 /* ---------- Name Wall ---------- */
 .namesg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
