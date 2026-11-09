@@ -175,18 +175,20 @@
       var t1 = root.querySelector('.grid .tile'); if (t1) g2.querySelectorAll('.tile').forEach(function (x) { x.style.height = t1.offsetHeight + 'px'; });
       wireTiles(g2); return g2;
     };
-    // Jump buttons in the right margin (outside .home, so they stay put while the menu slides).
+    // Jump buttons in the side margins (outside .home, so they stay put while the menu slides).
     if (games.length > 9 || gram.length) {
       var arr = function (d, two) {
         var a = d < 0 ? 'M6 22L18 10L30 22' : 'M6 12L18 24L30 12', o = two ? (d < 0 ? 8 : -8) : 0;
         return '<svg width="36" height="36" viewBox="0 0 36 36"><path d="' + a + '" fill="none" stroke="currentColor" stroke-width="5" transform="translate(0 ' + (two ? -o / 2 : 0) + ')"></path>' +
           (two ? '<path d="' + a + '" fill="none" stroke="currentColor" stroke-width="5" transform="translate(0 ' + (o / 2) + ')"></path>' : '') + '</svg>';
       };
-      root.insertAdjacentHTML('beforeend', '<div class="hjump at-top" data-ctrl>' +
+      var jumps = '<div class="hjump at-top" data-ctrl>' +
         '<div class="ibtn" data-j="top" title="Top of the menu (Home)">' + arr(-1, true) + '</div>' +
         '<div class="ibtn" data-j="up" title="Up one row (Up)">' + arr(-1) + '</div>' +
         '<div class="ibtn" data-j="down" title="Down one row (Down)">' + arr(1) + '</div>' +
-        '<div class="ibtn" data-j="end" title="Bottom of the menu (End)">' + arr(1, true) + '</div></div>');
+        '<div class="ibtn" data-j="end" title="Bottom of the menu (End)">' + arr(1, true) + '</div></div>';
+      // One column in each margin, so the teacher can reach it from either side of the board.
+      root.insertAdjacentHTML('beforeend', jumps.replace('hjump', 'hjump left') + jumps.replace('hjump', 'hjump right'));
       root.querySelectorAll('[data-j]').forEach(function (b) {
         b.onclick = function () { var j = b.getAttribute('data-j'); slideTo(j === 'top' ? 0 : j === 'end' ? 1e5 : slid + (j === 'up' ? -1 : 1) * rowStep()); };
       });
@@ -216,12 +218,11 @@
   var slid = 0, moreRow = function () { return null; };
   function slideTo(y) {
     var home = root && root.querySelector('.home'); if (!home) return;
-    var g2 = y > 0 ? moreRow() : root.querySelector('.grid2'); if (!g2) { var j0 = root.querySelector('.hjump'); if (j0) j0.classList.add('at-top'); return; }
+    var g2 = y > 0 ? moreRow() : root.querySelector('.grid2'); if (!g2) { root.querySelectorAll('.hjump').forEach(function (j0) { j0.classList.add('at-top'); }); return; }
     var max = Math.max(0, g2.offsetTop + g2.offsetHeight - home.offsetHeight);
     slid = Math.max(0, Math.min(max, y));
     home.classList.add('moved'); home.style.transform = slid ? 'translateY(' + (-slid) + 'px)' : '';
-    var jb = root.querySelector('.hjump');
-    if (jb) { jb.classList.toggle('at-top', slid <= 0); jb.classList.toggle('at-end', slid >= max); }
+    root.querySelectorAll('.hjump').forEach(function (jb) { jb.classList.toggle('at-top', slid <= 0); jb.classList.toggle('at-end', slid >= max); });
   }
   // One row of cards (card + gap), in stage pixels.
   function rowStep() { var t = root && root.querySelector('.grid .tile'); return t ? t.offsetHeight + 30 : 300; }
