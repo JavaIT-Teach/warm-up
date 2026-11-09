@@ -660,6 +660,9 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tile .trains span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .tile .num.g { width: 78px; font-size: 30px; }
 .home .gsec { grid-column: 1 / -1; display: flex; align-items: baseline; gap: 24px; padding: 18px 0 0; border-top: 6px solid var(--ink); }
+.hjump { position: absolute; right: 6px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 14px; z-index: 5; }
+.hjump .ibtn { width: 44px; height: 84px; cursor: pointer; transition: opacity .2s; }
+.hjump.at-top [data-j="top"], .hjump.at-top [data-j="up"], .hjump.at-end [data-j="end"], .hjump.at-end [data-j="down"] { opacity: .3; }
 .home .gsec b { font-family: var(--display); font-size: 46px; letter-spacing: -0.02em; }
 .home .gsec span { font-size: 24px; font-weight: 700; }
 
