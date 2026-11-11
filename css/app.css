@@ -508,6 +508,7 @@ body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-off
 .tug .acts { display: flex; gap: 20px; }
 .tug .tround { font-family: var(--display); font-size: 40px; padding: 2px 18px; background: var(--ink); color: #fff; }
 .tug .tnext { background: #ffe600; }
+.tug .tdraw { background: #ffe600; }
 .tug .tslot { position: absolute; right: 80px; top: 826px; }
 .tug .tslot .wut-l { font-size: 22px !important; }
 .calm .tug .rope.move { transition: none; }

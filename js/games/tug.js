@@ -2,7 +2,8 @@
    Rounds. Each round both sides get a topic (left side's word / right side's word, or FOR / AGAINST a statement).
    Each side has one turn per round: a timed think (45 s by default, Enter starts it), then one argument.
    The teacher pulls for a good one (Left / Right) or not (Space). When both sides have had their turn, the next round
-   starts with a new topic and the rope stays where it is. The first side to pull the flag over its line wins.
+   starts with a new topic and the rope stays where it is. A side wins by pulling the flag over its line, or by having
+   the flag on its half after the last round (10 by default). Flag in the middle after the last round: a draw.
    Teams off: left side of the room against right side.
    Keys: Enter timer, Left / Right pull, Space no pull, N next round now, R reset.
    Content: content/tug.js through the edit layer (Edit mode, E). */
@@ -18,7 +19,8 @@
       { k: 'distance', label: 'Distance to win (steps from the middle)', type: 'num', min: 1, max: 15 },
       { type: 'head', label: 'Rounds' },
       { k: 'secs', label: 'Seconds per side to think and argue', type: 'num', min: 10, max: 180 },
-      { k: 'round', label: 'Round tag ({n})', type: 'text', max: 24 },
+      { k: 'rounds', label: 'Number of rounds', type: 'num', min: 1, max: 30 },
+      { k: 'round', label: 'Round tag ({n} = round, {total} = rounds)', type: 'text', max: 24 },
       { k: 'next', label: 'Round over banner', type: 'text', max: 40 },
       { type: 'head', label: 'Screen' },
       { k: 'tag', label: 'Tag at the top (empty = hide)', type: 'text', max: 24 },
@@ -31,6 +33,7 @@
       { k: 'rule', label: 'Rule line ({n} = seconds)', type: 'text', max: 80 }, { k: 'ruleShow', label: 'Rule line', type: 'bool' },
       { k: 'turn', label: 'Whose turn ({side})', type: 'text', max: 40 },
       { k: 'win', label: 'Winner ({side})', type: 'text', max: 30 },
+      { k: 'draw', label: 'Draw (flag in the middle after the last round)', type: 'text', max: 30 },
       { k: 'demo', label: 'Teacher demo banner (first topic only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
     ]
@@ -67,6 +70,7 @@
   function sideAttr(i) { return teams() ? ' data-auto' : scr.ea(i ? 'rightSide' : 'leftSide'); }
   function sideColor(i) { return teams() ? (WU.TEAM_COLORS[WU.state.teamColors[i]] || '#fff') : (i ? '#ff4fc3' : '#3d6bff'); }
   function dist() { return Math.max(1, Math.min(15, +scr.get().distance || 5)); }
+  function rounds() { return Math.max(1, Math.min(30, +scr.get().rounds || 10)); }
   function secs() { return Math.max(10, Math.min(180, +scr.get().secs || 45)); }
   function clearT() { timers.forEach(clearTimeout); timers = []; }
   function newClock() {
@@ -95,7 +99,7 @@
   function render() {
     var S = scr.get(), it = topic(), h = '';
     h += '<div class="thead">' + kit.chip(S.tag, scr.ea('tag'), '#3d6bff') +
-      (S.round ? '<div class="tround"' + scr.ea('round') + '>' + WU.esc(kit.fill(S.round, { n: st.round })) + '</div>' : '') + (st.demo && S.demo ? '<div class="demo"' + scr.ea('demo') + '>' + WU.esc(S.demo) + '</div>' : '') + '</div>';
+      (S.round ? '<div class="tround"' + scr.ea('round') + '>' + WU.esc(kit.fill(S.round, { n: st.round, total: rounds() })) + '</div>' : '') + (st.demo && S.demo ? '<div class="demo"' + scr.ea('demo') + '>' + WU.esc(S.demo) + '</div>' : '') + '</div>';
     if (it && it.motion) {
       h += '<div class="motion"><div class="mt" data-edit="tug:topics:' + it.id + ':motion">' + WU.esc(it.motion) + '</div></div>' +
         '<div class="fa"><span' + scr.ea('forLabel') + ' style="background:' + sideColor(0) + '">' + WU.esc(S.forLabel) + '</span><span' + scr.ea('againstLabel') + ' style="background:' + sideColor(1) + '">' + WU.esc(S.againstLabel) + '</span></div>';
@@ -106,10 +110,12 @@
     var x = (st.pos / dist()) * HALF, from = st.drawX == null ? x : st.drawX;
     h += '<div class="ropebox"><div class="tline l" style="left:' + (960 - HALF - 70) + 'px"></div><div class="tline c" style="left:' + (960 - 70) + 'px"></div><div class="tline r" style="left:' + (960 + HALF - 70) + 'px"></div>' +
       '<div class="rope" style="transform:translateX(' + from + 'px)"><div class="cord"></div><div class="flag"></div></div>' +
-      '<div class="tteam l' + (st.turn === 0 && !st.won ? ' on' : '') + '" style="background:' + sideColor(0) + '"><span' + sideAttr(0) + '>' + WU.esc(sideName(0)) + '</span></div>' +
-      '<div class="tteam r' + (st.turn === 1 && !st.won ? ' on' : '') + '" style="background:' + sideColor(1) + '"><span' + sideAttr(1) + '>' + WU.esc(sideName(1)) + '</span></div></div>';
+      '<div class="tteam l' + (st.turn === 0 && st.won == null ? ' on' : '') + '" style="background:' + sideColor(0) + '"><span' + sideAttr(0) + '>' + WU.esc(sideName(0)) + '</span></div>' +
+      '<div class="tteam r' + (st.turn === 1 && st.won == null ? ' on' : '') + '" style="background:' + sideColor(1) + '"><span' + sideAttr(1) + '>' + WU.esc(sideName(1)) + '</span></div></div>';
     h += '<div class="tbottom">';
-    if (st.won != null) {
+    if (st.won === -1) {
+      h += '<div class="twin tdraw"' + scr.ea('draw') + '>' + WU.esc(S.draw) + '</div>';
+    } else if (st.won != null) {
       h += '<div class="twin"' + scr.ea('win') + ' style="background:' + sideColor(st.won) + '">' + WU.esc(kit.fill(S.win, { side: sideName(st.won) })) + '</div>';
     } else if (st.over) {
       if (S.next) h += '<div class="tturn tnext"' + scr.ea('next') + '>' + WU.esc(S.next) + '</div>';
@@ -132,7 +138,7 @@
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [];
-    var hs = st.won != null ? [['N', 'new topic'], ['R', 'play again'], ['Esc', 'home']].concat(sc)
+    var hs = st.won != null ? [['R', 'play again'], ['Esc', 'home']].concat(sc)
       : [['ENTER', 'timer'], ['LEFT', 'pull left'], ['RIGHT', 'pull right'], ['SPACE', 'no pull'], ['N', 'next round'], ['R', 'reset'], ['Esc', 'home']].concat(sc);
     kit.hints(root, hs, keyAction);
   }
@@ -141,7 +147,13 @@
   // The side whose turn it is has argued: next side, or the round is over (new topic after a short pause).
   function endTurn() {
     st.gone[st.turn] = true; st.demo = false;
-    if (st.gone[0] && st.gone[1]) {
+    if (st.gone[0] && st.gone[1] && st.round >= rounds()) {
+      // Last round done: the flag's half decides.
+      st.won = st.pos < 0 ? 0 : st.pos > 0 ? 1 : -1;
+      if (clock) { clock.destroy(); clock = null; }
+      if (st.won >= 0 && sb && teams()) sb.add(st.won, 1);
+      timers.push(setTimeout(function () { WU.sound.ding(); }, 250));
+    } else if (st.gone[0] && st.gone[1]) {
       st.over = true; if (clock) { clock.destroy(); clock = null; }
       timers.push(setTimeout(function () { if (!st || st.won != null) return; nextRound(); WU.sound.clack(); render(); }, 1800));
     } else { st.turn = 1 - st.turn; newClock(); }
@@ -189,12 +201,13 @@
     teacher: function () {
       if (!st) return null;
       var it = topic(), d = dist(), info = [];
-      info.push({ label: 'Round', text: String(st.round) });
+      info.push({ label: 'Round', text: st.round + ' of ' + rounds() });
       if (it) info.push({ label: 'Topic', text: it.motion || (sideName(0) + ': ' + it.left + '   ' + sideName(1) + ': ' + it.right) });
-      if (st.won != null) info.push({ label: 'Winner', text: sideName(st.won) });
+      if (st.won != null) info.push({ label: 'Winner', text: st.won === -1 ? 'Draw' : sideName(st.won) });
       else {
         var s = Math.max(1, +scr.get().strength || 1);
         info.push({ label: 'Good reasons still needed', text: sideName(0) + ': ' + Math.ceil((d + st.pos) / s) + '   ' + sideName(1) + ': ' + Math.ceil((d - st.pos) / s) });
+        info.push({ label: 'Flag now on', text: st.pos < 0 ? sideName(0) + '\'s half' : st.pos > 0 ? sideName(1) + '\'s half' : 'the middle' });
         info.push({ label: 'Turn', text: st.over ? 'Round over: new topic next' : sideName(st.turn) });
       }
       return { secret: [], info: info };
