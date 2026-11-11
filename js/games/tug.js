@@ -1,6 +1,6 @@
 /* Warm Up: TUG OF WAR.
    Rounds. Each round both sides get a topic (left side's word / right side's word, or FOR / AGAINST a statement).
-   Each side has one turn per round: a timed think (45 s by default, Enter starts it), then one argument.
+   Each side has one turn per round: a timed think (45 s by default, starts by itself; Enter pauses), then one argument.
    The teacher pulls for a good one (Left / Right) or not (Space). When both sides have had their turn, the next round
    starts with a new topic and the rope stays where it is. A side wins by pulling the flag over its line, or by having
    the flag on its half after the last round (10 by default). Flag in the middle after the last round: a draw.
@@ -73,15 +73,17 @@
   function rounds() { return Math.max(1, Math.min(30, +scr.get().rounds || 10)); }
   function secs() { return Math.max(10, Math.min(180, +scr.get().secs || 45)); }
   function clearT() { timers.forEach(clearTimeout); timers = []; }
-  function newClock() {
+  // go = start counting now (a new turn starts by itself); without it the timer waits for Enter.
+  function newClock(go) {
     if (clock) clock.destroy();
     clock = WU.Timer({ seconds: secs(), size: 170 });
+    if (go) clock.start();
   }
   // A new topic for the round. The rope does not move.
   function newTopic() {
     var it = deck(WU.list('tug', 'topics', WU.state.level));
     st.id = it ? it.id : null; st.gone = [false, false]; st.over = false;
-    newClock();
+    newClock(true);
   }
   function nextRound() {
     clearT(); st.round++; st.first = 1 - st.first; st.turn = st.first; newTopic();
@@ -139,7 +141,7 @@
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [];
     var hs = st.won != null ? [['R', 'play again'], ['Esc', 'home']].concat(sc)
-      : [['ENTER', 'timer'], ['LEFT', 'pull left'], ['RIGHT', 'pull right'], ['SPACE', 'no pull'], ['N', 'next round'], ['R', 'reset'], ['Esc', 'home']].concat(sc);
+      : [['ENTER', 'pause timer'], ['LEFT', 'pull left'], ['RIGHT', 'pull right'], ['SPACE', 'no pull'], ['N', 'next round'], ['R', 'reset'], ['Esc', 'home']].concat(sc);
     kit.hints(root, hs, keyAction);
   }
 
@@ -156,7 +158,7 @@
     } else if (st.gone[0] && st.gone[1]) {
       st.over = true; if (clock) { clock.destroy(); clock = null; }
       timers.push(setTimeout(function () { if (!st || st.won != null) return; nextRound(); WU.sound.clack(); render(); }, 1800));
-    } else { st.turn = 1 - st.turn; newClock(); }
+    } else { st.turn = 1 - st.turn; newClock(true); }
   }
   function pull(dir) {
     if (st.won != null || st.over) return;
@@ -212,7 +214,7 @@
       }
       return { secret: [], info: info };
     },
-    help: function () { return [['Enter', 'start / pause the side\'s timer'], ['Left / Right', 'good argument: pull'], ['Space', 'no pull: next side'], ['N', 'next round now (new topic, rope stays)'], ['R', 'new game: rope to the middle, round 1'], ['S', 'show / hide scores']]; },
+    help: function () { return [['Enter', 'pause / restart the side\'s timer'], ['Left / Right', 'good argument: pull'], ['Space', 'no pull: next side'], ['N', 'next round now (new topic, rope stays)'], ['R', 'new game: rope to the middle, round 1'], ['S', 'show / hide scores']]; },
     mount: function (el) {
       root = el;
       st = { pos: 0, won: null, turn: 0, first: 0, round: 1, gone: [false, false], over: false, id: null, demo: !!scr.get().demoShow };
