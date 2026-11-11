@@ -489,7 +489,9 @@ body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-off
 .tug .tline { position: absolute; top: 0; width: 140px; height: 220px; }
 .tug .tline::after { content: ''; position: absolute; left: 64px; top: 0; bottom: 0; width: 12px; background: var(--ink); }
 .tug .tline.c::after { background: repeating-linear-gradient(var(--ink) 0 18px, transparent 18px 30px); width: 8px; left: 66px; }
-.tug .rope { position: absolute; left: 0; top: 80px; width: 1920px; height: 60px; }
+/* The rope is clipped inside the two team boxes, so its ends never show. */
+.tug .rclip { position: absolute; left: 150px; right: 150px; top: 0; height: 220px; overflow: hidden; }
+.tug .rope { position: absolute; left: -150px; top: 80px; width: 1920px; height: 60px; }
 .tug .rope.move { transition: transform .45s cubic-bezier(.3, 1.6, .5, 1); }
 .tug .cord { position: absolute; left: -700px; right: -700px; top: 14px; height: 32px; background: repeating-linear-gradient(115deg, #c89660 0 16px, #8a5a2b 16px 26px); border: 4px solid var(--ink); border-radius: 16px; }
 .tug .flag { position: absolute; left: 952px; top: -70px; width: 16px; height: 150px; background: var(--ink); }
