@@ -499,13 +499,18 @@ body.editing .not-editable { outline: 6px dashed #ff2020 !important; outline-off
 .tug .tteam.l { left: 30px; }
 .tug .tteam.r { right: 30px; }
 .tug .tteam.on { animation: wu-pulse .9s ease-in-out infinite; outline: 8px solid var(--ink); outline-offset: 6px; }
-.tug .tbottom { position: absolute; left: 70px; right: 70px; top: 830px; height: 170px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
+.tug .tbottom { position: absolute; left: 70px; right: 270px; top: 830px; height: 170px; display: flex; flex-direction: column; align-items: flex-start; gap: 14px; }
 .tug .tturn { font-family: var(--display); font-size: 52px; line-height: 1.05; padding: 6px 20px; border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
 .tug .brow { display: flex; align-items: center; gap: 26px; flex-wrap: wrap; }
 .tug .rule { font-size: 44px; font-weight: 800; line-height: 1.15; }
 .tug .frame { font-size: 48px; }
 .tug .twin { align-self: center; margin-top: 10px; font-family: var(--display); font-size: 100px; line-height: 1.05; padding: 6px 30px; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); animation: wu-slam2 .5s cubic-bezier(.2, .9, .3, 1.2) both; }
 .tug .acts { display: flex; gap: 20px; }
+.tug .tround { font-family: var(--display); font-size: 40px; padding: 2px 18px; background: var(--ink); color: #fff; }
+.tug .tnext { background: #ffe600; }
+.tug .tdraw { background: #ffe600; }
+.tug .tslot { position: absolute; right: 80px; top: 826px; }
+.tug .tslot .wut-l { font-size: 22px !important; }
 .calm .tug .rope.move { transition: none; }
 .calm .tug .tteam.on, .calm .tug .twin { animation: none; }
 
