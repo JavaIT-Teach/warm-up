@@ -1,6 +1,7 @@
 /* Warm Up: TUG OF WAR.
    Rounds. Each round both sides get a topic (left side's word / right side's word, or FOR / AGAINST a statement).
-   Each side has one turn per round: a timed think (45 s by default, starts by itself; Enter pauses), then one argument.
+   Each side has one turn per round: a 3-2-1 countdown, then a timed think (45 s by default, starts by itself;
+   Enter pauses, or skips the countdown), then one argument.
    The teacher pulls for a good one (Left / Right) or not (Space). When both sides have had their turn, the next round
    starts with a new topic and the rope stays where it is. A side wins by pulling the flag over its line, or by having
    the flag on its half after the last round (10 by default). Flag in the middle after the last round: a draw.
@@ -19,6 +20,8 @@
       { k: 'distance', label: 'Distance to win (steps from the middle)', type: 'num', min: 1, max: 15 },
       { type: 'head', label: 'Rounds' },
       { k: 'secs', label: 'Seconds per side to think and argue', type: 'num', min: 10, max: 180 },
+      { k: 'countdown', label: 'Countdown before the timer (seconds, 0 = none)', type: 'num', min: 0, max: 5 },
+      { k: 'go', label: 'Word at the end of the countdown', type: 'text', max: 10 },
       { k: 'rounds', label: 'Number of rounds', type: 'num', min: 1, max: 30 },
       { k: 'round', label: 'Round tag ({n} = round, {total} = rounds)', type: 'text', max: 24 },
       { k: 'next', label: 'Round over banner', type: 'text', max: 40 },
@@ -57,7 +60,7 @@
     blank: function () { return { left: 'cats', leftPic: 'cat', right: 'dogs', rightPic: 'dog', motion: '', frame: '' }; }
   });
 
-  var root, box, st, sb = null, clock = null, offContent = null, timers = [];
+  var root, box, st, sb = null, clock = null, offContent = null, timers = [], cdT = null;
   var deck = kit.deck();
 
   function topic() { return WU.list('tug', 'topics', WU.state.level).filter(function (x) { return x.id === st.id; })[0] || null; }
@@ -72,12 +75,33 @@
   function dist() { return Math.max(1, Math.min(15, +scr.get().distance || 5)); }
   function rounds() { return Math.max(1, Math.min(30, +scr.get().rounds || 10)); }
   function secs() { return Math.max(10, Math.min(180, +scr.get().secs || 45)); }
-  function clearT() { timers.forEach(clearTimeout); timers = []; }
-  // go = start counting now (a new turn starts by itself); without it the timer waits for Enter.
+  function cdSecs() { return Math.max(0, Math.min(5, +scr.get().countdown || 0)); }
+  function stopCd() { clearTimeout(cdT); cdT = null; if (st) st.cd = null; }
+  function clearT() { timers.forEach(clearTimeout); timers = []; stopCd(); }
+  // go = a new turn: count down (3, 2, 1, GO!) on screen, then start the timer. Without go it waits for Enter.
   function newClock(go) {
+    stopCd();
     if (clock) clock.destroy();
     clock = WU.Timer({ seconds: secs(), size: 170 });
-    if (go) clock.start();
+    if (go) { if (cdSecs()) { st.cd = cdSecs(); cdTick(); } else clock.start(); }
+  }
+  function drawCd() {
+    var el = box && box.querySelector('.tcd'), S = scr.get();
+    if (!el) return;
+    if (st.cd == null) { el.style.display = 'none'; return; }
+    var isGo = st.cd === 0, n = el.firstChild;
+    el.style.display = '';
+    el.classList.toggle('go', isGo);
+    n.textContent = isGo ? S.go : String(st.cd);
+    if (isGo) n.setAttribute('data-edit', 'tug:screen:' + WU.content.tugScreen.shared.id + ':go'); else n.removeAttribute('data-edit');
+    if (isGo) n.removeAttribute('data-auto'); else n.setAttribute('data-auto', '');
+    WU.restartAnim(n, 'pop');
+  }
+  function cdTick() {
+    drawCd();
+    WU.sound.beep(st.cd ? 660 : 880);
+    if (st.cd === 0) { cdT = setTimeout(function () { st.cd = null; drawCd(); if (clock) clock.start(); }, 700); return; }
+    cdT = setTimeout(function () { st.cd--; cdTick(); }, 1000);
   }
   // A new topic for the round. The rope does not move.
   function newTopic() {
@@ -126,9 +150,10 @@
       var fr = it && it.frame ? kit.frame(it.frame, ' data-edit="tug:topics:' + it.id + ':frame"') : kit.frame(S.frame, scr.ea('frame'));
       h += '<div class="brow">' + fr + (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(kit.fill(S.rule, { n: secs() })) + '</div>' : '') + '</div>';
     }
-    h += '</div><div class="tslot"></div>';
+    h += '</div><div class="tslot"></div><div class="tcd" style="display:none"><span></span></div>';
     box.querySelector('.layer').innerHTML = h;
     if (clock && st.won == null && !st.over) box.querySelector('.tslot').appendChild(clock.el);
+    if (st.cd != null) drawCd();
     // Slide the rope from where it was to where it is now.
     var rope = box.querySelector('.rope'); st.drawX = x;
     if (from !== x) { rope.getBoundingClientRect(); rope.classList.add('move'); rope.style.transform = 'translateX(' + x + 'px)'; }
@@ -188,7 +213,11 @@
     sb.show(!sb.visible()); WU.store.set('tug-sb', sb.visible());
   }
   function keyAction(k) {
-    if (k === 'ENTER') { if (clock && st.won == null && !st.over) { st.moved = true; clock.toggle(); } }
+    if (k === 'ENTER') {
+      if (!clock || st.won != null || st.over) return;
+      st.moved = true;
+      if (st.cd != null) { stopCd(); drawCd(); clock.start(); } else clock.toggle();  // during the countdown: start now
+    }
     else if (k === 'LEFT') { st.moved = true; pull(-1); }
     else if (k === 'RIGHT') { st.moved = true; pull(1); }
     else if (k === 'SPACE') pass();
