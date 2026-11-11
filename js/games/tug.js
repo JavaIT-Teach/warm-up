@@ -109,7 +109,7 @@
     // Rope, flag, lines, team blocks.
     var x = (st.pos / dist()) * HALF, from = st.drawX == null ? x : st.drawX;
     h += '<div class="ropebox"><div class="tline l" style="left:' + (960 - HALF - 70) + 'px"></div><div class="tline c" style="left:' + (960 - 70) + 'px"></div><div class="tline r" style="left:' + (960 + HALF - 70) + 'px"></div>' +
-      '<div class="rope" style="transform:translateX(' + from + 'px)"><div class="cord"></div><div class="flag"></div></div>' +
+      '<div class="rclip"><div class="rope" style="transform:translateX(' + from + 'px)"><div class="cord"></div><div class="flag"></div></div></div>' +
       '<div class="tteam l' + (st.turn === 0 && st.won == null ? ' on' : '') + '" style="background:' + sideColor(0) + '"><span' + sideAttr(0) + '>' + WU.esc(sideName(0)) + '</span></div>' +
       '<div class="tteam r' + (st.turn === 1 && st.won == null ? ' on' : '') + '" style="background:' + sideColor(1) + '"><span' + sideAttr(1) + '>' + WU.esc(sideName(1)) + '</span></div></div>';
     h += '<div class="tbottom">';
