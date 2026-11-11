@@ -208,13 +208,15 @@ WU.content.tug = [
 ];
 
 /* Screen text & rules for Tug of War, per level. Editable in Edit mode. {side} is filled in.
-   strength = steps per good reason; distance = steps from the middle to a team's line. */
+   strength = steps per good reason; distance = steps from the middle to a team's line.
+   secs = seconds each side gets per round; round = round tag ({n}); next = banner between rounds. Rule: {n} = secs. */
 WU.content.tugScreen = {
   shared: {
     id: 'tug-screen',
     tag: 'TUG OF WAR', vs: 'VS', leftSide: 'LEFT SIDE', rightSide: 'RIGHT SIDE', forLabel: 'FOR', againstLabel: 'AGAINST',
     strength: 1, distance: 5, frame: '___ is better because ___.',
-    rule: 'Give a NEW reason. Good reason = PULL!', ruleShow: true,
+    secs: 45, round: 'ROUND {n}', next: 'Round over! New topics coming...',
+    rule: 'ONE argument. {n} seconds!', ruleShow: true,
     turn: '{side}: your turn!', win: '{side} WINS!',
     demo: 'TEACHER DEMO: I pull first!', demoShow: false
   },
