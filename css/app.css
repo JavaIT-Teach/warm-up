@@ -14,7 +14,7 @@
   --body: 'Archivo', 'Arial', sans-serif;
 }
 * { box-sizing: border-box; }
-html, body { margin: 0; height: 100%; background: var(--ink); overflow: hidden; }
+html, body { margin: 0; height: 100%; background: var(--paper); overflow: hidden; } /* paper, so the space around the 16:9 stage blends in */
 body { font-family: var(--body); color: var(--ink); -webkit-font-smoothing: antialiased; }
 #wrap { position: fixed; left: 0; top: 0; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; overflow: hidden; }
 #stage { position: relative; flex: none; width: 1920px; height: 1080px; overflow: hidden; background: var(--paper); user-select: none; -webkit-user-select: none; }
