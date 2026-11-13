@@ -15,6 +15,8 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 - The home screen asks **what to train today**: **1 Vocabulary · 2 Grammar · 3 Speaking · 4 Reading · 5 Writing · 6 New this week** (or click; **G** opens Grammar).
 - Inside a skill: press **1–9** (or click a tile) to open a game. More than nine: press **↓**, then **0** = game 10, **Shift + 1–9** = games 11–19. **Esc** goes back to the skills; **Esc** in a game goes back to its skill.
 - New games arrive every Saturday, built from what your groups learned. They have a **NEW** badge (with the unit they review), go first in their skill, and are also in **New this week** for 14 days.
+- **Occasions:** one week a month the app dresses up for an occasion (New Year, Navruz, Halloween...): new colours, floating decorations, and themed content in the games. It turns on by itself for each group's **first lesson** of that week and off for its later lessons, so a group sees it once. The chip next to the logo shows the state; press **T** (or click the chip) to switch it for today. Calendar: `content/themes.js`.
+- **Your group is detected from the clock** (`content/groups.js`, from the Lesson Plan Builder): from 15 minutes before a lesson, the app sets that group's level by itself.
 - Every card has a small **TRAINS** note: what the game practises (for example "Articles: a / an / the / no article").
 - The grammar games are in the **Grammar** menu (press **G**).
 - Some games are made for some levels only. At other levels their card is **grey** with a label ("From Pre-Intermediate") and does not open. Change the level and it opens.

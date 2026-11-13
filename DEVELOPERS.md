@@ -48,6 +48,14 @@ Every game entry needs `skills: [...]` (one or more skill ids). Optional: `added
 Weekly games built from the lesson plans follow every rule in this file: content in `content/<id>.js`, view in `js/games/<id>.js`,
 both added to `index.html`, entry in `content/games.js`, all content editable, a default at every level.
 
+## Occasion themes and groups
+`content/themes.js` lists the occasions (date, which week, colours, decorations, theme words); `js/themes.js` decides which one
+is live and whether it is ON (a group's first lesson in the occasion week; T toggles it for today). `content/groups.js` is the
+timetable from the Lesson Plan Builder (refreshed by the weekly job). Themed content lives in `content/occasions/<id>.js`:
+it pushes items with `theme: '<id>'` into the games' lists (normal permanent ids). `WU.list` hides themed items when their theme
+is off; with 3 or more for the active theme in a list, only those play. Hard-coded `#f4f1ea` backgrounds must use `var(--paper)`
+(or `WU.C.paper`) so screens take the theme colour.
+
 ## Grammar games and the TRAINS note
 Every entry in `content/games.js` has `trains`: a short note on its home card saying what the game practises. Add one to every new game.
 `grammar: true` puts a game in the GRAMMAR GAMES section (numbered G1, G2... in list order; key G then the number, G then 0 = G10) instead of the numbered games.

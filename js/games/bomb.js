@@ -206,7 +206,7 @@
   /* ---------- phase rendering ---------- */
   function renderPhase() {
     var ph = st.phase, h = '';
-    box.style.background = (ph === 'boom' || ph === 'boomed') ? '#ff5a1f' : '#f4f1ea';
+    box.style.background = (ph === 'boom' || ph === 'boomed') ? '#ff5a1f' : 'var(--paper)';
     layer.classList.remove('shake');
     if (ph === 'ready' || ph === 'ticking') {
       var c = st.cat, S = scr(), L = c.name.length, fs = L <= 20 ? 132 : L <= 28 ? 112 : 98, lit = ph === 'ticking', ek = ' data-edit="bomb:' + c.list + ':' + c.id + '"';

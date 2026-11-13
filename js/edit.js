@@ -128,9 +128,15 @@
       var id = raw.id; if (del.indexOf(id) >= 0) return;
       var it = def.norm(raw); it.id = id;
       if (mod[id]) { Object.keys(mod[id]).forEach(function (f) { it[f] = mod[id][f]; }); it.edited = true; }
+      if (raw.theme) it.theme = raw.theme;
       out.push(it);
     });
     (e.add || []).forEach(function (a) { var it = clone(a); it.custom = true; out.push(it); });
+    // Occasion themes (js/themes.js): themed items only while their theme is on. With 3 or more of them, they replace
+    // the usual items (in Edit mode the usual items stay visible so they can still be edited).
+    var th = WU.theme && WU.theme.active ? WU.theme.active() : null, tid = th ? th.id : '';
+    out = out.filter(function (it) { return !it.theme || it.theme === tid; });
+    if (tid && !WU.editing) { var mine = out.filter(function (it) { return it.theme === tid; }); if (mine.length >= 3) out = mine; }
     return out;
   };
   // One field of a single-record list (screen texts, app texts), with edits applied.

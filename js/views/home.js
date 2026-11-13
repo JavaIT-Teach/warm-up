@@ -152,7 +152,11 @@
   }
 
   function topBar(cls, s) {
+    var ts = WU.theme ? WU.theme.status() : null, gr = WU.theme ? WU.theme.group() : null;
     return '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
+      (ts ? '<div class="thchip' + (ts.on ? ' on' : '') + '" data-h="theme" title="Occasion theme on / off for today (T)"><span class="n">' + WU.esc(ts.on ? (ts.theme.look.banner || ts.theme.name) : ts.theme.name) + '</span>' +
+        '<i>THEME ' + (ts.on ? 'ON' : 'OFF') + ' · ' + WU.esc((ts.group ? ts.group.name + ' · ' : '') + ts.why) + '</i></div>' :
+        gr ? '<div class="thchip grp"><span class="n">' + WU.esc(gr.name) + '</span><i>IN THE ROOM NOW</i></div>' : '') +
       '<div class="clchip" data-h="class" title="Change class (C)"><span class="t">CLASS</span><span class="n">' +
       WU.esc(cls ? cls.name : WU.state.students + ' students') + '</span></div>' +
       '<div class="seg">' + [['first', 'First lesson'], ['regular', 'Regular lesson']].map(function (l) {
@@ -173,15 +177,16 @@
     var s = WU.state, first = s.lesson === 'first', cls = WU.activeClass();
     if (cat && cat !== 'new' && !skillOf(cat)) cat = null;
     if (cat === 'new' && !catGames('new').length) cat = null;
-    var games = cat ? catGames(cat) : [];
+    var games = cat ? catGames(cat) : [], th = WU.theme ? WU.theme.active() : null, pal = th && th.look.tiles;
+    var colorOf = function (c, i) { return pal ? pal[i % pal.length] : c; };
     // The home screen is the teacher's menu: controls, not learning content.
     var html = '<div class="home" data-ctrl>' + topBar(cls, s);
     if (!cat) {
       html += '<div class="skillgrid">' + skillTiles().map(function (k, i) {
         var list = catGames(k.id), ok = list.filter(function (g) { return WU.gameOk(g.id); }).length, fresh = list.filter(isNew).length;
-        return '<div class="tile skill' + (list.length ? '' : ' empty') + '" tabindex="0" data-skill="' + k.id + '" style="background:' + k.color + ';transform:rotate(' + rots()[i] + 'deg)">' +
+        return '<div class="tile skill' + (list.length ? '' : ' empty') + '" tabindex="0" data-skill="' + k.id + '" style="background:' + colorOf(k.color, i) + ';transform:rotate(' + rots()[i] + 'deg)">' +
           (fresh && k.id !== 'new' ? '<div class="fit newb">' + fresh + ' NEW</div>' : '') +
-          '<div class="num" style="color:' + k.color + '">' + (i + 1) + '</div>' +
+          '<div class="num" style="color:' + colorOf(k.color, i) + '">' + (i + 1) + '</div>' +
           '<div class="sname">' + WU.esc(k.name) + '</div>' +
           '<div class="hook">' + WU.esc(k.hook) + '</div>' +
           '<div class="scount">' + (list.length ? ok + ' game' + (ok === 1 ? '' : 's') + ' at this level' + (ok < list.length ? ' · ' + (list.length - ok) + ' for other levels' : '') : 'New games arrive every Saturday') + '</div>' +
@@ -197,11 +202,11 @@
     function tile(g, i) {
       var dim = first && !g.first, off = !WU.gameOk(g.id), nw = isNew(g);
       var sticker = nw ? 'NEW' + (g.unit ? ' · ' + g.unit : '') : (first && g.first) || g.sticker ? (g.sticker || 'ICEBREAKER') : '';
-      return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
+      return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + colorOf(g.color, i) + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
         (off ? '<div class="lvlock">' + WU.esc(WU.gameLevelText(g.id)) + '</div>' : '') +
         (sticker ? '<div class="fit' + (nw ? ' newb' : '') + '">' + WU.esc(sticker) + '</div>' : '') +
-        '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
-        '<div class="pv"><div class="pv-in">' + (preview(g.id, g.color) || wordPreview(g)) + '</div></div>' +
+        '<div class="num" style="color:' + colorOf(g.color, i) + '">' + (i + 1) + '</div>' +
+        '<div class="pv"><div class="pv-in">' + (preview(g.id, colorOf(g.color, i)) || wordPreview(g)) + '</div></div>' +
         '<div class="name">' + WU.esc(g.name) + '</div>' +
         '<div class="hook">' + WU.esc(g.hook) + '</div>' +
         (g.trains ? '<div class="trains"><b>TRAINS</b><span>' + WU.esc(g.trains) + '</span></div>' : '') +
@@ -240,6 +245,7 @@
     root.querySelectorAll('[data-lesson]').forEach(function (b) { b.onclick = function () { WU.setState({ lesson: b.getAttribute('data-lesson') }); render(); }; });
     root.querySelector('[data-h="settings"]').onclick = function () { WU.openSettings(); };
     root.querySelector('[data-h="class"]').onclick = cycleClass;
+    var thb = root.querySelector('[data-h="theme"]'); if (thb) thb.onclick = function () { WU.theme.toggle(); render(); };
     var bk = root.querySelector('[data-h="back"]'); if (bk) bk.onclick = function () { openCat(null); };
     root.querySelectorAll('[data-skill]').forEach(function (t) {
       t.onclick = function () { openCat(t.getAttribute('data-skill')); };
@@ -324,11 +330,11 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
+      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['T', 'occasion theme on / off for today'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
       return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Esc / Backspace', 'back to all skills'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
     },
     mount: function (el) {
-      root = el; render();
+      root = el; if (WU.theme) { WU.theme.autoLevel(); WU.theme.apply(); } render();
       offChange = WU.on('change', function (p) { if (p && ('classes' in p || 'students' in p || 'classId' in p)) render(); });
     },
     unmount: function () { if (offChange) offChange(); root = null; },
@@ -354,6 +360,7 @@
       if (k === 'ArrowLeft') { setLevel(WU.state.level - 1); return true; }
       if (k === 'l' || k === 'L') { WU.setState({ lesson: WU.state.lesson === 'first' ? 'regular' : 'first' }); render(); return true; }
       if (k === 'c' || k === 'C') { cycleClass(); return true; }
+      if ((k === 't' || k === 'T') && WU.theme && WU.theme.status()) { WU.theme.toggle(); render(); return true; }
       if (k === 's' || k === 'S') { WU.openSettings(); return true; }
       if ((k === 'Enter' || k === ' ') && document.activeElement && document.activeElement.getAttribute('data-game')) {
         e.preventDefault(); open(document.activeElement.getAttribute('data-game')); return true;

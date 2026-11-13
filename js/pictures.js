@@ -159,7 +159,7 @@
     ['cheese', 'cheese', 'food breakfast yellow', 'p Y M8 64 L90 40 L90 82 L8 88 Z|p #ffc400 M8 64 L58 28 L90 40 Z|c 30 76 5 #d9a800|e 60 64 7 5 #d9a800|c 80 70 4 #d9a800'],
     ['egg', 'egg', 'food breakfast', 'p W M18 50 Q10 24 40 22 Q62 10 82 30 Q98 50 82 72 Q62 92 38 82 Q10 76 18 50 Z|c 50 52 15 #ffc400|c 45 47 4 W*'],
     ['pizza', 'pizza', 'food hot', 'g #ffd24d 16,22 84,22 50,94|r 10 12 80 16 #d88c3a 8|c 40 38 7 R|c 62 38 7 R|c 50 60 6 R|c 50 80 3 G*|c 36 48 2.5 G*'],
-    ['cake', 'cake', 'food', 'l 10 92 90 92 w=5|r 18 50 64 40 Q 4|p W M18 62 Q26 72 34 62 Q42 72 50 62 Q58 72 66 62 Q74 72 82 62 L82 52 L18 52 Z|r 46 24 8 26 B 2|p X M50 6 Q58 16 50 22 Q42 16 50 6 Z'],
+    ['cake', 'cake', 'food newyear', 'l 10 92 90 92 w=5|r 18 50 64 40 Q 4|p W M18 62 Q26 72 34 62 Q42 72 50 62 Q58 72 66 62 Q74 72 82 62 L82 52 L18 52 Z|r 46 24 8 26 B 2|p X M50 6 Q58 16 50 22 Q42 16 50 6 Z'],
     ['ice cream', 'ice cream', 'food cold', 'c 38 42 16 Q|c 62 42 16 H|c 50 26 16 N|g F 30,50 70,50 50,96|p - M38 58 L56 82 M47 54 L62 70 M62 58 L44 82 s=N w=2.5'],
     ['sandwich', 'sandwich', 'food', 'r 8 68 84 20 #fbe6bf 6 s=N w=5|r 10 60 80 8 R 3|p G M6 58 Q14 48 22 58 Q30 48 38 58 Q46 48 54 58 Q62 48 70 58 Q78 48 94 58 L94 62 L6 62 Z|g Y 12,50 88,50 80,60 20,60|r 8 22 84 26 #fbe6bf 6 s=N w=5'],
     ['burger', 'burger', 'food hot', 'r 10 72 80 16 #e8a54b 8|r 12 58 76 14 M 7|g Y 14,56 86,56 78,64 22,64|p G M8 56 Q16 46 24 56 Q32 46 40 56 Q48 46 56 56 Q64 46 72 56 Q80 46 92 56 Z|p #e8a54b M10 46 Q10 14 50 14 Q90 14 90 46 Z|e 36 28 3 2 W*|e 52 24 3 2 W*|e 66 30 3 2 W*'],
@@ -261,13 +261,13 @@
     ['sun', 'sun', 'weather sky hot yellow beach', 'p - M50 4 L50 18 M50 82 L50 96 M4 50 L18 50 M82 50 L96 50 M17 17 L27 27 M73 73 L83 83 M17 83 L27 73 M73 27 L83 17 s=X w=7|c 50 50 24 Y'],
     ['cloud', 'cloud', 'weather sky', 'p W ' + CLOUD],
     ['rain', 'rain', 'weather', 'p A M22 60 Q6 60 8 44 Q10 30 26 32 Q28 10 50 12 Q66 2 76 20 Q94 20 92 40 Q92 60 74 60 Z|p U M28 70 Q22 82 28 88 Q34 82 28 70 Z|p U M50 72 Q44 84 50 90 Q56 84 50 72 Z|p U M72 70 Q66 82 72 88 Q78 82 72 70 Z'],
-    ['snow', 'snow', 'weather cold', 'p - M50 8 L50 92 M14 29 L86 71 M14 71 L86 29 M40 12 L50 22 L60 12 M40 88 L50 78 L60 88 s=U w=7|c 50 50 7 W'],
+    ['snow', 'snow', 'weather cold newyear', 'p - M50 8 L50 92 M14 29 L86 71 M14 71 L86 29 M40 12 L50 22 L60 12 M40 88 L50 78 L60 88 s=U w=7|c 50 50 7 W'],
     ['wind', 'wind', 'weather', 'p - M8 34 L60 34 Q76 34 76 22 Q76 10 64 12 M8 52 L78 52 Q94 52 92 66 Q90 80 76 76 M8 70 L46 70 s=B w=7'],
     ['storm', 'storm', 'weather', 'p Z M22 60 Q6 60 8 44 Q10 30 26 32 Q28 10 50 12 Q66 2 76 20 Q94 20 92 40 Q92 60 74 60 Z|g Y 52,46 36,72 48,72 40,96 68,62 56,62 64,46'],
     ['rainbow', 'rainbow', 'weather sky', 'p - M8 82 A42 42 0 0 1 92 82 s=R w=9|p - M17 82 A33 33 0 0 1 83 82 s=X w=9|p - M26 82 A24 24 0 0 1 74 82 s=Y w=9|p - M35 82 A15 15 0 0 1 65 82 s=B w=9|e 14 84 12 8 W|e 86 84 12 8 W'],
     ['moon', 'moon', 'sky', 'p Y M62 8 Q18 14 18 50 Q18 86 62 92 Q34 76 34 50 Q34 24 62 8 Z|c 28 44 3 #e6cf00*|c 26 62 4 #e6cf00*'],
-    ['star', 'star', 'sky yellow', 'g Y ' + star(50, 53, 44, 19)],
-    ['snowman', 'snowman', 'cold', 'c 50 70 24 W|c 50 36 16 W|r 32 20 36 5 K 2|r 38 4 24 18 K 2|g X 50,36 66,40 50,42|c 44 32 2.5 K*|c 56 32 2.5 K*|c 50 62 3 K*|c 50 74 3 K*|l 28 58 10 48 s=N|l 72 58 90 48 s=N'],
+    ['star', 'star', 'sky yellow newyear', 'g Y ' + star(50, 53, 44, 19)],
+    ['snowman', 'snowman', 'cold newyear', 'c 50 70 24 W|c 50 36 16 W|r 32 20 36 5 K 2|r 38 4 24 18 K 2|g X 50,36 66,40 50,42|c 44 32 2.5 K*|c 56 32 2.5 K*|c 50 62 3 K*|c 50 74 3 K*|l 28 58 10 48 s=N|l 72 58 90 48 s=N'],
 
     /* transport */
     ['car', 'car', 'transport wheels red', 'p R M6 66 L6 48 Q8 42 18 42 L28 26 Q30 22 36 22 L64 22 Q70 22 74 28 L82 42 Q94 42 94 54 L94 66 Z|p U M32 42 L37 28 L49 28 L49 42 Z|p U M55 42 L55 28 L65 28 L72 42 Z|c 26 68 10 K|c 26 68 4 A*|c 74 68 10 K|c 74 68 4 A*'],
@@ -295,7 +295,7 @@
     ['TV', 'TV', 'home', 'l 36 88 50 74 w=5|l 64 88 50 74 w=5|l 26 90 74 90 w=5|r 8 16 84 58 K 6|r 14 22 72 46 U 2|p W* M20 60 L36 38 L48 54 L58 44 L80 64 L80 66 L20 66 Z'],
     ['fridge', 'fridge', 'home kitchen cold', 'r 22 4 56 92 W 6|l 22 36 78 36|r 30 14 5 14 A 2|r 30 46 5 20 A 2|r 30 92 8 6 K*|r 62 92 8 6 K*'],
     ['bath', 'bath', 'home', 'c 40 36 7 W|c 52 30 9 W|c 66 36 7 W|p - M18 42 L18 20 Q18 12 28 12 L34 12 w=5|p W M6 42 L94 42 L88 76 Q86 84 76 84 L24 84 Q14 84 12 76 Z|l 22 84 18 94 w=5|l 78 84 82 94 w=5'],
-    ['clock', 'clock', 'home bedroom', 'c 50 50 44 B|c 50 50 35 W|p - M50 19 L50 25 M50 75 L50 81 M19 50 L25 50 M75 50 L81 50 w=4|l 50 50 50 28 w=5|l 50 50 66 58 w=5|c 50 50 4 K*'],
+    ['clock', 'clock', 'home bedroom newyear', 'c 50 50 44 B|c 50 50 35 W|p - M50 19 L50 25 M50 75 L50 81 M19 50 L25 50 M75 50 L81 50 w=4|l 50 50 50 28 w=5|l 50 50 66 58 w=5|c 50 50 4 K*'],
     ['cup', 'cup', 'home kitchen', 'p - M70 38 Q90 38 88 56 Q86 72 68 70 w=6|p P M20 24 L72 24 L68 88 L24 88 Z|r 30 44 32 18 W*'],
     ['plate', 'plate', 'home kitchen', 'e 50 56 46 30 W|e 50 56 32 19 C|e 44 52 6 3 W* -10'],
     ['spoon', 'spoon', 'home kitchen', 'r 45 38 10 56 A 5|e 50 24 16 20 A|e 45 18 4 7 W* 10'],
@@ -304,7 +304,7 @@
     ['pan', 'pan', 'home kitchen hot', 'r 66 48 32 12 K 5|c 38 54 32 K|c 38 54 23 Z*|c 38 54 10 W*|c 38 54 5 Y*'],
     ['kettle', 'kettle', 'home kitchen hot', 'p - M34 32 Q34 10 50 10 Q66 10 66 32 w=7|p A M74 60 L92 42 L95 49 L78 72 Z|p A M22 88 L27 40 Q29 30 50 30 Q71 30 73 40 L78 88 Z|c 50 28 5 K'],
     ['toothbrush', 'toothbrush', 'home', 'r 6 58 66 12 B 6|r 64 56 28 16 B 5|r 66 38 24 18 W 2|p - M72 40 L72 54 M78 40 L78 54 M84 40 L84 54 s=U w=3'],
-    ['candle', 'candle', 'home hot', 'r 36 38 28 56 H 3|l 50 38 50 30 w=3|p X M50 8 Q62 22 50 32 Q38 22 50 8 Z|p Y* M50 18 Q56 24 50 30 Q44 24 50 18 Z|p H M36 44 Q40 56 44 44 Z'],
+    ['candle', 'candle', 'home hot newyear', 'r 36 38 28 56 H 3|l 50 38 50 30 w=3|p X M50 8 Q62 22 50 32 Q38 22 50 8 Z|p Y* M50 18 Q56 24 50 30 Q44 24 50 18 Z|p H M36 44 Q40 56 44 44 Z'],
 
     /* school */
     ['book', 'book', 'school bag', 'p B M4 26 L4 88 Q30 82 50 92 Q70 82 96 88 L96 26 Z|p W M50 24 Q30 12 8 18 L8 82 Q30 76 50 86 Z|p W M50 24 Q70 12 92 18 L92 82 Q70 76 50 86 Z|p - M16 34 Q30 30 42 36 M16 48 Q30 44 42 50 M58 36 Q70 30 84 34 M58 50 Q70 44 84 48 w=3'],
@@ -407,8 +407,8 @@
     ['camera', 'camera', 'bag', 'r 30 16 22 14 K 3|r 8 26 84 60 K 8|c 50 56 21 A|c 50 56 13 B|c 45 51 4 W*|r 72 34 12 8 W 2'],
     ['money', 'money', 'bag', 'r 4 20 70 40 G 4|c 39 40 11 #b6f2a0|r 22 38 70 40 G 4|c 57 58 11 #b6f2a0|c 78 76 16 Y|c 78 76 9 - w=3'],
     ['kite', 'kite', 'toy sky', 'p - M50 86 Q40 92 50 96 Q62 99 70 94 w=3|g P 50,4 84,40 50,86 16,40|l 50 4 50 86 w=3|l 16 40 84 40 w=3|g Y 50,4 84,40 50,40|g Y 50,40 16,40 50,86'],
-    ['balloon', 'balloon', 'toy sky', 'p - M50 76 Q40 86 52 96 w=3|g R 45,78 55,78 50,72|e 50 40 30 34 R|e 38 28 6 10 W* 30'],
-    ['present', 'present', 'toy', 'r 12 40 76 54 P 3|r 44 40 12 54 Y|r 8 28 84 16 P 3|r 44 28 12 16 Y|e 38 20 12 8 Y -20|e 62 20 12 8 Y 20'],
+    ['balloon', 'balloon', 'toy sky newyear', 'p - M50 76 Q40 86 52 96 w=3|g R 45,78 55,78 50,72|e 50 40 30 34 R|e 38 28 6 10 W* 30'],
+    ['present', 'present', 'toy newyear', 'r 12 40 76 54 P 3|r 44 40 12 54 Y|r 8 28 84 16 P 3|r 44 28 12 16 Y|e 38 20 12 8 Y -20|e 62 20 12 8 Y 20'],
     ['guitar', 'guitar', 'music', 'r 45 2 10 40 N 2|p X ' + GUITAR + '|c 50 64 8 K*|r 40 80 20 6 M 2|p - M47 4 L47 82 M53 4 L53 82 s=W w=1.5'],
     ['piano', 'piano', 'music big', function () {
       var s = 'r 4 22 92 60 W 3', w = 92 / 7;
@@ -429,6 +429,8 @@
     ['microphone', 'microphone', 'music', 'r 42 44 16 50 K 6|c 50 28 20 A|p - M36 20 L64 20 M32 30 L68 30 M36 40 L64 40 s=Z w=2.5'],
     ['heart', 'heart', 'red', 'p R M50 88 Q10 62 10 34 Q10 12 30 12 Q44 12 50 28 Q56 12 70 12 Q90 12 90 34 Q90 62 50 88 Z|e 28 32 5 8 W* 30'],
     ['tree', 'tree', 'park green big', 'r 42 56 16 38 N 2|c 30 50 17 G|c 70 50 17 G|c 50 34 26 G|c 50 54 18 G*'],
+    ['ny-tree', 'New Year tree', 'newyear winter', 'g G 50,44 86,84 14,84|g G 50,30 78,62 22,62|g G 50,18 70,44 30,44|r 44 84 12 12 N 2|c 40 58 4 R|c 62 72 4 B|c 32 78 4 Y|c 64 52 4 P|c 52 66 4 W|g Y 50,2 54,12 64,12 56,18 59,28 50,22 41,28 44,18 36,12 46,12'],
+    ['fireworks', 'fireworks', 'newyear sky night', 'p - M50 50 L50 12 M50 50 L77 23 M50 50 L88 50 M50 50 L77 77 M50 50 L50 88 M50 50 L23 77 M50 50 L12 50 M50 50 L23 23 s=P w=6|c 50 10 6 Y|c 79 21 6 B|c 90 50 6 L|c 79 79 6 O|c 50 90 6 Y|c 21 79 6 B|c 10 50 6 L|c 21 21 6 O|c 50 50 9 R'],
     ['flower', 'flower', 'park', 'l 50 56 50 94 s=G w=6|e 62 80 10 5 G -30|c 50 24 12 P|c 67 37 12 P|c 60 57 12 P|c 40 57 12 P|c 33 37 12 P|c 50 42 10 Y'],
     ['leaf', 'leaf', 'park green', 'p G M14 88 Q12 18 88 12 Q88 86 14 88 Z|p - M14 88 L70 30 w=3|p - M36 66 L36 44 M50 52 L50 34 M36 66 L58 66 M50 52 L66 52 w=2'],
     ['fire', 'fire', 'hot', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
@@ -437,7 +439,7 @@
   /* ---------- grammar: article and plural for every picture name ----------
      art: "a" / "an" / "the" / "" (no article: uncountable, plural, colours, sports)
      pl : plural form ("" when it has none). Used by sentence frames and example labels. */
-  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors';
+  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
   var THE = { sun: 1, moon: 1 };
   var PLURAL = { mouse: 'mice', sheep: 'sheep', fish: 'fish', knife: 'knives', leaf: 'leaves', foot: 'feet', tooth: 'teeth', tomato: 'tomatoes', potato: 'potatoes', octopus: 'octopuses', scarf: 'scarves', snowman: 'snowmen' };
   function article(o) {
