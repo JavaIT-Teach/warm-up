@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Present Simple Practice</title>
+<title>Present Simple: самоподготовка</title>
 <style>
 :root{
   --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --soft:#5d6470; --line:#e2ded6;
@@ -70,7 +70,7 @@ footer a{color:var(--accent)}
 </head>
 <body>
 <main id="app"></main>
-<footer>Paper version: <a href="print.html">printable worksheet</a> · <a href="worksheet.pdf">PDF</a></footer>
+<footer>Бумажная версия: <a href="print.html">лист для печати</a> · <a href="worksheet.pdf">PDF</a></footer>
 
 <script>
 /* ---------- helpers ---------- */
@@ -82,68 +82,71 @@ function mc(q,opts,tip){return {t:'mc',q,opts,a:opts[0],tip};}
 function ord(words,tip){return {t:'order',words,a:words.join(' ')+'?',tip};}
 
 /* ---------- content ---------- */
+const CHOOSE_S='Выберите правильное предложение.';
+const CHOOSE_Q='Выберите правильный вопрос.';
 const PARTS=[
 {
  id:'pos', title:'He works, she works', min:3,
  rule:`
-  <p>We use the Present Simple for things that are <b>always true</b> and for <b>habits</b> (every day, on Mondays, usually).</p>
+  <p>Present Simple — это настоящее время для того, что <b>всегда правда</b>, и для <b>привычек</b> (every day — каждый день, on Mondays — по понедельникам, usually — обычно).</p>
   <table class="rule">
    <tr><td><span class="y">I / you / we / they</span></td><td><span class="v">work</span></td></tr>
-   <tr><td><span class="y">he / she / it</span></td><td><span class="v">work<u>s</u></span> &nbsp;← add <b>-s</b></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="v">work<u>s</u></span> &nbsp;← добавляем <b>-s</b></td></tr>
   </table>
   <div class="ex">
-   <div><span class="y">I</span> <span class="v">live</span> in a flat.</div>
-   <div><span class="y">My brother</span> <span class="v">lives</span> in a house.</div>
+   <div><span class="y">I</span> <span class="v">live</span> in a flat. <span class="note">— Я живу в квартире.</span></div>
+   <div><span class="y">My brother</span> <span class="v">lives</span> in a house. <span class="note">— Мой брат живёт в доме.</span></div>
   </div>
-  <p><b>Spelling with he / she / it:</b></p>
+  <p class="note">My brother = he, my mother = she, the shop = it, my friends = they.</p>
+  <p><b>Как пишется с he / she / it:</b></p>
   <table class="rule">
    <tr><td>watch, wash, go, do</td><td>→ watch<b>es</b>, wash<b>es</b>, go<b>es</b>, do<b>es</b></td></tr>
    <tr><td>study, cry</td><td>→ stud<b>ies</b>, cr<b>ies</b></td></tr>
    <tr><td>play, say</td><td>→ play<b>s</b>, say<b>s</b></td></tr>
-   <tr><td>have</td><td>→ <b>has</b> (special!)</td></tr>
+   <tr><td>have</td><td>→ <b>has</b> (исключение!)</td></tr>
   </table>`,
  ruleShort:`<span class="y">I / you / we / they</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="v">works</span> · go→goes, watch→watches, study→studies, have→has`,
  n:6,
  pool:[
-  mc('My brother ___ in a hospital.',['works','work'],'my brother = he → add -s'),
-  mc('I ___ coffee every morning.',['drink','drinks'],'I → no -s'),
-  mc('We ___ in a small flat.',['live','lives'],'we → no -s'),
+  mc('My brother ___ in a hospital.',['works','work'],'my brother = he → добавляем -s'),
+  mc('I ___ coffee every morning.',['drink','drinks'],'I → без -s'),
+  mc('We ___ in a small flat.',['live','lives'],'we → без -s'),
   mc('Anna ___ TV in the evening.',['watches','watchs','watch'],'Anna = she. watch → watches'),
   mc('Tom ___ football on Sundays.',['plays','plaies','play'],'Tom = he. play → plays'),
-  mc('My mother ___ dinner at 7.',['cooks','cook'],'my mother = she → add -s'),
-  mc('They ___ English at school.',['study','studies'],'they → no -s'),
+  mc('My mother ___ dinner at 7.',['cooks','cook'],'my mother = she → добавляем -s'),
+  mc('They ___ English at school.',['study','studies'],'they → без -s'),
   mc('The baby ___ a lot.',['cries','crys','cry'],'the baby = it. cry → cries'),
-  mc('He ___ two children.',['has','haves','have'],'he → has (not haves)'),
-  mc('You ___ very fast.',['speak','speaks'],'you → no -s'),
+  mc('He ___ two children.',['has','haves','have'],'he → has (не haves)'),
+  mc('You ___ very fast.',['speak','speaks'],'you → без -s'),
   mc('My dad ___ to work at 8.',['goes','gos','go'],'my dad = he. go → goes'),
-  mc('The shop ___ at 9 o\'clock.',['opens','open'],'the shop = it → add -s'),
+  mc('The shop ___ at 9 o\'clock.',['opens','open'],'the shop = it → добавляем -s'),
   mc('She ___ her car every Sunday.',['washes','washs','wash'],'she. wash → washes'),
-  mc('My friends ___ in London.',['live','lives'],'my friends = they → no -s'),
-  mc('It ___ a lot in November.',['rains','rain'],'it → add -s'),
-  mc('Sara ___ the bus to work.',['takes','take'],'Sara = she → add -s'),
-  mc('I ___ up at 6:30.',['get','gets'],'I → no -s'),
-  mc('My cat ___ fish.',['likes','like'],'my cat = it → add -s'),
+  mc('My friends ___ in London.',['live','lives'],'my friends = they → без -s'),
+  mc('It ___ a lot in November.',['rains','rain'],'it → добавляем -s'),
+  mc('Sara ___ the bus to work.',['takes','take'],'Sara = she → добавляем -s'),
+  mc('I ___ up at 6:30.',['get','gets'],'I → без -s'),
+  mc('My cat ___ fish.',['likes','like'],'my cat = it → добавляем -s'),
   mc('He ___ his homework after dinner.',['does','dos','do'],'he. do → does'),
-  mc('Ali and I ___ tea.',['drink','drinks'],'Ali and I = we → no -s'),
+  mc('Ali and I ___ tea.',['drink','drinks'],'Ali and I = we → без -s'),
   mc('My son ___ at university.',['studies','studys','study'],'my son = he. study → studies'),
   mc('She ___ a big dog.',['has','have'],'she → has'),
  ]
 },
 {
- id:'neg', title:'Negative: don\'t / doesn\'t', min:2,
+ id:'neg', title:'Отрицание: don\'t / doesn\'t', min:2,
  rule:`
   <table class="rule">
-   <tr><td><span class="y">I / you / we / they</span></td><td><span class="a">don't</span> + <span class="v">verb</span></td></tr>
-   <tr><td><span class="y">he / she / it</span></td><td><span class="a">doesn't</span> + <span class="v">verb</span></td></tr>
+   <tr><td><span class="y">I / you / we / they</span></td><td><span class="a">don't</span> + <span class="v">глагол</span></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="a">doesn't</span> + <span class="v">глагол</span></td></tr>
   </table>
   <div class="ex">
-   <div><span class="y">I</span> <span class="a">don't</span> <span class="v">eat</span> meat.</div>
-   <div><span class="y">She</span> <span class="a">doesn't</span> <span class="v">eat</span> meat.</div>
+   <div><span class="y">I</span> <span class="a">don't</span> <span class="v">eat</span> meat. <span class="note">— Я не ем мясо.</span></div>
+   <div><span class="y">She</span> <span class="a">doesn't</span> <span class="v">eat</span> meat. <span class="note">— Она не ест мясо.</span></div>
   </div>
-  <p><b>Important:</b> after <span class="a">doesn't</span> the verb has <b>no -s</b>. The -s goes into <span class="a">does</span>.</p>
+  <p><b>Важно:</b> после <span class="a">doesn't</span> у глагола <b>нет -s</b>. Окончание -s уже «ушло» в <span class="a">does</span>.</p>
   <div class="ex"><div>✔ She doesn't <b>work</b>.</div><div>✘ <span class="no">She doesn't works.</span></div></div>
   <p class="note">don't = do not · doesn't = does not</p>`,
- ruleShort:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (no -s!)`,
+ ruleShort:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (без -s!)`,
  n:5,
  pool:[
   mc('I ___ eat meat.',['don\'t','doesn\'t'],'I → don\'t'),
@@ -156,25 +159,26 @@ const PARTS=[
   mc('My boss ___ speak French.',['doesn\'t','don\'t'],'my boss = he / she → doesn\'t'),
   mc('It ___ snow in Dubai.',['doesn\'t','don\'t'],'it → doesn\'t'),
   mc('My children ___ like vegetables.',['don\'t','doesn\'t'],'my children = they → don\'t'),
-  mc('Choose the correct sentence.',['She doesn\'t work on Monday.','She doesn\'t works on Monday.','She don\'t work on Monday.'],'she → doesn\'t + verb (no -s)'),
-  mc('Choose the correct sentence.',['I don\'t like rain.','I doesn\'t like rain.','I not like rain.'],'I → don\'t + verb'),
-  mc('Choose the correct sentence.',['He doesn\'t play tennis.','He doesn\'t plays tennis.','He not plays tennis.'],'he → doesn\'t + verb (no -s)'),
-  mc('Choose the correct sentence.',['We don\'t have a dog.','We doesn\'t have a dog.','We don\'t has a dog.'],'we → don\'t + have'),
-  mc('Choose the correct sentence.',['My dad doesn\'t watch TV.','My dad don\'t watch TV.','My dad doesn\'t watches TV.'],'my dad = he → doesn\'t + verb (no -s)'),
-  mc('Choose the correct sentence.',['They don\'t go to the gym.','They doesn\'t go to the gym.','They don\'t goes to the gym.'],'they → don\'t + verb'),
-  mc('Choose the correct sentence.',['Maria doesn\'t eat breakfast.','Maria doesn\'t eats breakfast.','Maria not eat breakfast.'],'Maria = she → doesn\'t + verb (no -s)'),
+  mc(CHOOSE_S,['She doesn\'t work on Monday.','She doesn\'t works on Monday.','She don\'t work on Monday.'],'she → doesn\'t + глагол без -s'),
+  mc(CHOOSE_S,['I don\'t like rain.','I doesn\'t like rain.','I not like rain.'],'I → don\'t + глагол'),
+  mc(CHOOSE_S,['He doesn\'t play tennis.','He doesn\'t plays tennis.','He not plays tennis.'],'he → doesn\'t + глагол без -s'),
+  mc(CHOOSE_S,['We don\'t have a dog.','We doesn\'t have a dog.','We don\'t has a dog.'],'we → don\'t + have'),
+  mc(CHOOSE_S,['My dad doesn\'t watch TV.','My dad don\'t watch TV.','My dad doesn\'t watches TV.'],'my dad = he → doesn\'t + глагол без -s'),
+  mc(CHOOSE_S,['They don\'t go to the gym.','They doesn\'t go to the gym.','They don\'t goes to the gym.'],'they → don\'t + глагол'),
+  mc(CHOOSE_S,['Maria doesn\'t eat breakfast.','Maria doesn\'t eats breakfast.','Maria not eat breakfast.'],'Maria = she → doesn\'t + глагол без -s'),
  ]
 },
 {
- id:'yn', title:'Questions: Do you…? Does she…?', min:2,
+ id:'yn', title:'Вопросы: Do you…? Does she…?', min:2,
  rule:`
-  <div class="formula"><span class="a">Do / Does</span>+<span class="y">person</span>+<span class="v">verb</span>…?</div>
+  <div class="formula"><span class="a">Do / Does</span>+<span class="y">кто</span>+<span class="v">глагол</span>…?</div>
   <div class="ex">
    <div><span class="a">Do</span> <span class="y">you</span> <span class="v">like</span> tea? — Yes, I <b>do</b>. / No, I <b>don't</b>.</div>
    <div><span class="a">Does</span> <span class="y">she</span> <span class="v">like</span> tea? — Yes, she <b>does</b>. / No, she <b>doesn't</b>.</div>
   </div>
   <p><span class="a">Do</span> → I / you / we / they · <span class="a">Does</span> → he / she / it</p>
-  <p>Again: after <span class="a">Does</span> the verb has <b>no -s</b>.</p>
+  <p>Краткий ответ: Yes / No + кто + do / does / don't / doesn't. Глагол не повторяем.</p>
+  <p>И снова: после <span class="a">Does</span> у глагола <b>нет -s</b>.</p>
   <div class="ex"><div>✔ Does he <b>live</b> here?</div><div>✘ <span class="no">Does he lives here?</span></div></div>`,
  ruleShort:`<span class="a">Do</span> you / we / they <span class="v">work</span>? · <span class="a">Does</span> he / she / it <span class="v">work</span>? · Yes, I do. / No, she doesn't.`,
  n:5,
@@ -193,62 +197,62 @@ const PARTS=[
   mc('Does your mum cook? — Yes, she ___.',['does','do','cooks'],'Does she…? → Yes, she does.'),
   mc('Do you work at night? — No, I ___.',['don\'t','doesn\'t','not'],'Do you…? → No, I don\'t.'),
   mc('Does the shop open on Sunday? — No, it ___.',['doesn\'t','don\'t','isn\'t'],'Does it…? → No, it doesn\'t.'),
-  mc('Choose the correct question.',['Does she like pizza?','Does she likes pizza?','Do she like pizza?'],'she → Does + verb (no -s)'),
-  mc('Choose the correct question.',['Do you speak Spanish?','Does you speak Spanish?','You speak Spanish do?'],'you → Do + you + verb'),
-  mc('Choose the correct question.',['Does he live here?','Does he lives here?','Do he live here?'],'he → Does + verb (no -s)'),
-  mc('Choose the correct question.',['Do they have a car?','Does they have a car?','Do they has a car?'],'they → Do + have'),
+  mc(CHOOSE_Q,['Does she like pizza?','Does she likes pizza?','Do she like pizza?'],'she → Does + глагол без -s'),
+  mc(CHOOSE_Q,['Do you speak Spanish?','Does you speak Spanish?','You speak Spanish do?'],'you → Do + you + глагол'),
+  mc(CHOOSE_Q,['Does he live here?','Does he lives here?','Do he live here?'],'he → Does + глагол без -s'),
+  mc(CHOOSE_Q,['Do they have a car?','Does they have a car?','Do they has a car?'],'they → Do + have'),
  ]
 },
 {
- id:'wh', title:'Question words', min:3,
+ id:'wh', title:'Вопросительные слова', min:3,
  rule:`
   <table class="rule">
-   <tr><td class="w">What?</td><td>a thing — <i>What do you eat?</i> — Rice.</td></tr>
-   <tr><td class="w">Where?</td><td>a place — <i>Where do you work?</i> — In a bank.</td></tr>
-   <tr><td class="w">When?</td><td>a time / day — <i>When do you study?</i> — On Tuesdays.</td></tr>
-   <tr><td class="w">What time?</td><td>clock time — <i>What time do you get up?</i> — At 7.</td></tr>
-   <tr><td class="w">Who?</td><td>a person — <i>Who do you live with?</i> — My sister.</td></tr>
-   <tr><td class="w">Why?</td><td>a reason — <i>Why do you learn English?</i> — Because…</td></tr>
-   <tr><td class="w">How?</td><td>the way — <i>How do you go to work?</i> — By bus.</td></tr>
-   <tr><td class="w">How many?</td><td>a number — <i>How many children do you have?</i> — Two.</td></tr>
-   <tr><td class="w">How old?</td><td>age — <i>How old is your son?</i> — He's 8.</td></tr>
+   <tr><td class="w">What?</td><td>что? какой? — <i>What do you eat?</i> — Rice.</td></tr>
+   <tr><td class="w">Where?</td><td>где? куда? — <i>Where do you work?</i> — In a bank.</td></tr>
+   <tr><td class="w">When?</td><td>когда? — <i>When do you study?</i> — On Tuesdays.</td></tr>
+   <tr><td class="w">What time?</td><td>во сколько? — <i>What time do you get up?</i> — At 7.</td></tr>
+   <tr><td class="w">Who?</td><td>кто? с кем? — <i>Who do you live with?</i> — My sister.</td></tr>
+   <tr><td class="w">Why?</td><td>почему? — <i>Why do you learn English?</i> — Because…</td></tr>
+   <tr><td class="w">How?</td><td>как? — <i>How do you go to work?</i> — By bus.</td></tr>
+   <tr><td class="w">How many?</td><td>сколько? — <i>How many children do you have?</i> — Two.</td></tr>
+   <tr><td class="w">How old?</td><td>сколько лет? — <i>How old is your son?</i> — He's 8.</td></tr>
   </table>
-  <p class="note">Tip: look at the answer first. A place? → Where. A person? → Who.</p>`,
- ruleShort:`What = thing · Where = place · When = time/day · What time = clock · Who = person · Why = reason · How = way · How many = number · How old = age`,
+  <p class="note">Подсказка: сначала посмотрите на ответ. Место? → Where. Человек? → Who. Число? → How many.</p>`,
+ ruleShort:`What = что · Where = где · When = когда · What time = во сколько · Who = кто · Why = почему · How = как · How many = сколько · How old = сколько лет`,
  n:6,
  pool:[
-  mc('___ do you live? — In a small town.',['Where','What','Who'],'a place → Where'),
-  mc('___ do you get up? — At 7 o\'clock.',['What time','Where','Who'],'clock time → What time'),
-  mc('___ is your name? — Maria.',['What','Who','Where'],'What is your name?'),
-  mc('___ is that man? — My teacher.',['Who','What','Where'],'a person → Who'),
-  mc('___ old are you? — 35.',['How','What','When'],'age → How old'),
-  mc('___ do you learn English? — Because I need it for my job.',['Why','How','What'],'because… → Why'),
-  mc('___ do you go to work? — By bus.',['How','Where','Why'],'the way → How'),
-  mc('___ do you have for breakfast? — Eggs and bread.',['What','Who','How'],'a thing → What'),
-  mc('___ children do you have? — Two.',['How many','How old','What'],'a number → How many'),
-  mc('___ is your birthday? — In May.',['When','Where','Who'],'a time → When'),
-  mc('___ does she work? — In a hotel.',['Where','When','Who'],'a place → Where'),
-  mc('___ do you live with? — My husband.',['Who','What','Where'],'a person → Who'),
-  mc('___ does the film start? — At 8:30.',['What time','Where','How many'],'clock time → What time'),
-  mc('___ does he do? — He\'s a driver.',['What','Who','How'],'job → What does he do?'),
-  mc('___ do you visit your parents? — On Sundays.',['When','Where','Why'],'a day → When'),
-  mc('___ languages do you speak? — Three.',['How many','How old','Who'],'a number → How many'),
-  mc('___ does your son go to school? — On foot.',['How','Where','What'],'the way → How'),
-  mc('___ do you like this café? — Because the coffee is good.',['Why','Where','How'],'because… → Why'),
+  mc('___ do you live? — In a small town.',['Where','What','Who'],'место → Where'),
+  mc('___ do you get up? — At 7 o\'clock.',['What time','Where','Who'],'время на часах → What time'),
+  mc('___ is your name? — Maria.',['What','Who','Where'],'What is your name? — Как вас зовут?'),
+  mc('___ is that man? — My teacher.',['Who','What','Where'],'человек → Who'),
+  mc('___ old are you? — 35.',['How','What','When'],'возраст → How old'),
+  mc('___ do you learn English? — Because I need it for my job.',['Why','How','What'],'because (потому что) → Why'),
+  mc('___ do you go to work? — By bus.',['How','Where','Why'],'способ → How'),
+  mc('___ do you have for breakfast? — Eggs and bread.',['What','Who','How'],'предмет, вещь → What'),
+  mc('___ children do you have? — Two.',['How many','How old','What'],'число → How many'),
+  mc('___ is your birthday? — In May.',['When','Where','Who'],'время → When'),
+  mc('___ does she work? — In a hotel.',['Where','When','Who'],'место → Where'),
+  mc('___ do you live with? — My husband.',['Who','What','Where'],'человек → Who'),
+  mc('___ does the film start? — At 8:30.',['What time','Where','How many'],'время на часах → What time'),
+  mc('___ does he do? — He\'s a driver.',['What','Who','How'],'профессия → What does he do?'),
+  mc('___ do you visit your parents? — On Sundays.',['When','Where','Why'],'день → When'),
+  mc('___ languages do you speak? — Three.',['How many','How old','Who'],'число → How many'),
+  mc('___ does your son go to school? — On foot.',['How','Where','What'],'способ → How'),
+  mc('___ do you like this café? — Because the coffee is good.',['Why','Where','How'],'because (потому что) → Why'),
  ]
 },
 {
- id:'order', title:'Make Wh- questions', min:3,
+ id:'order', title:'Порядок слов в вопросах', min:3,
  rule:`
-  <div class="formula"><span class="w">Question word</span>+<span class="a">do / does</span>+<span class="y">person</span>+<span class="v">verb</span>…?</div>
+  <div class="formula"><span class="w">вопр. слово</span>+<span class="a">do / does</span>+<span class="y">кто</span>+<span class="v">глагол</span>…?</div>
   <div class="ex">
-   <div><span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>?</div>
-   <div><span class="w">What</span> <span class="a">does</span> <span class="y">your sister</span> <span class="v">do</span>?</div>
-   <div><span class="w">What time</span> <span class="a">do</span> <span class="y">they</span> <span class="v">have</span> lunch?</div>
+   <div><span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>? <span class="note">— Где вы живёте?</span></div>
+   <div><span class="w">What</span> <span class="a">does</span> <span class="y">your sister</span> <span class="v">do</span>? <span class="note">— Кем работает ваша сестра?</span></div>
+   <div><span class="w">What time</span> <span class="a">do</span> <span class="y">they</span> <span class="v">have</span> lunch? <span class="note">— Во сколько они обедают?</span></div>
   </div>
-  <p>It is the same as Yes/No questions — just put the question word at the start.</p>
+  <p>Это тот же вопрос с Do / Does — просто ставим вопросительное слово в начало.</p>
   <div class="ex"><div>Do you live here? → <span class="w">Where</span> do you live?</div></div>
-  <p class="note">In the exercises, tap the words in the correct order.</p>`,
+  <p class="note">В упражнениях нажимайте на слова в правильном порядке.</p>`,
  ruleShort:`<span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>? · <span class="w">What</span> <span class="a">does</span> <span class="y">she</span> <span class="v">do</span>?`,
  n:4,
  pool:[
@@ -306,7 +310,7 @@ function newRound(showRules){
 function progress(){
   const pct=Math.round(S.i/S.steps.length*100);
   const p=PARTS[S.steps[S.i].p];
-  return `<div class="top"><span>Part ${S.steps[S.i].p+1} of ${PARTS.length}</span><div class="bar"><i style="width:${pct}%"></i></div><span>${pct}%</span></div>`;
+  return `<div class="top"><span>Часть ${S.steps[S.i].p+1} из ${PARTS.length}</span><div class="bar"><i style="width:${pct}%"></i></div><span>${pct}%</span></div>`;
 }
 
 function render(){
@@ -321,14 +325,14 @@ function render(){
 
 function renderStart(){
   app.innerHTML=`
-  <h1>Present Simple &amp; Question Words</h1>
+  <h1>Present Simple и вопросительные слова</h1>
   <div class="card">
-    <p>This is for you if you missed the lessons. About <b>15 minutes</b>.</p>
-    <p>There are <b>5 short parts</b>. Each part has:</p>
-    <p>1. a short <b>rule</b> with examples (read it),<br>2. a few <b>exercises</b> (tap the answer).</p>
-    <table class="rule">${PARTS.map((p,i)=>`<tr><td>${i+1}.</td><td>${p.title}</td><td class="note">~${p.min} min</td></tr>`).join('')}</table>
-    <p class="note">When you finish, you can do it again with <b>new</b> sentences.</p>
-    <button class="main" id="go">Start</button>
+    <p>Материал для тех, кто пропустил уроки. Примерно <b>15 минут</b>.</p>
+    <p>Здесь <b>5 коротких частей</b>. В каждой части:</p>
+    <p>1. короткое <b>правило</b> с примерами (прочитайте),<br>2. несколько <b>упражнений</b> (нажмите на ответ).</p>
+    <table class="rule">${PARTS.map((p,i)=>`<tr><td>${i+1}.</td><td>${p.title}</td><td class="note">~${p.min} мин</td></tr>`).join('')}</table>
+    <p class="note">В конце можно пройти всё ещё раз с <b>новыми</b> предложениями.</p>
+    <button class="main" id="go">Начать</button>
   </div>`;
   document.getElementById('go').onclick=()=>newRound(true);
 }
@@ -337,10 +341,10 @@ function renderRule(st){
   const p=PARTS[st.p];
   app.innerHTML=`${progress()}
   <div class="card">
-    <span class="tag">Part ${st.p+1} · Rule</span>
+    <span class="tag">Часть ${st.p+1} · Правило</span>
     <h2>${p.title}</h2>
     ${p.rule}
-    <button class="main" id="next">I understand → Exercises</button>
+    <button class="main" id="next">Понятно → к упражнениям</button>
   </div>`;
   document.getElementById('next').onclick=next;
 }
@@ -349,14 +353,14 @@ function head(st){
   const p=PARTS[st.p];
   const qs=S.steps.filter(s=>s.k==='q'&&s.p===st.p);
   const n=qs.indexOf(st)+1;
-  return `<span class="tag">Part ${st.p+1} · ${esc(p.title)} · ${n}/${qs.length}</span>`;
+  return `<span class="tag">Часть ${st.p+1} · ${esc(p.title)} · ${n}/${qs.length}</span>`;
 }
 function ruleToggle(st){
-  return `<button class="link" id="rt">Show the rule</button><div class="rulebox" id="rb" hidden>${PARTS[st.p].ruleShort}</div>`;
+  return `<button class="link" id="rt">Показать правило</button><div class="rulebox" id="rb" hidden>${PARTS[st.p].ruleShort}</div>`;
 }
 function wireRuleToggle(){
   const b=document.getElementById('rt'),box=document.getElementById('rb');
-  b.onclick=()=>{box.hidden=!box.hidden;b.textContent=box.hidden?'Show the rule':'Hide the rule';};
+  b.onclick=()=>{box.hidden=!box.hidden;b.textContent=box.hidden?'Показать правило':'Скрыть правило';};
 }
 
 function renderMC(st){
@@ -377,7 +381,7 @@ function renderMC(st){
     app.querySelectorAll('.opts button').forEach(x=>{x.disabled=true;if(x.dataset.o===it.a)x.classList.add('ok');});
     if(!ok)b.classList.add('bad');
     if(hasBlank){const bl=document.getElementById('blank');bl.textContent=it.a;bl.classList.add('filled');}
-    record(st,ok,ok?'':it.q.replace('___','['+choice+']')+' → '+it.q.replace('___',it.a));
+    record(st,ok,ok?'':hasBlank?it.q.replace('___','['+choice+']')+' → '+it.q.replace('___',it.a):choice+' → '+it.a);
     feedback(ok,it);
   });
 }
@@ -391,10 +395,10 @@ function renderOrder(st){
   app.innerHTML=`${progress()}
   <div class="card">
     ${head(st)}
-    <p class="q">Tap the words to make a question.</p>
+    <p class="q">Нажимайте на слова, чтобы составить вопрос.</p>
     <div class="answer" id="ans"></div>
     <div class="chips" id="bank"></div>
-    <button class="main" id="check" disabled>Check</button>
+    <button class="main" id="check" disabled>Проверить</button>
     <div id="fb"></div>
     ${ruleToggle(st)}
   </div>`;
@@ -402,7 +406,7 @@ function renderOrder(st){
   const ans=document.getElementById('ans'),bk=document.getElementById('bank'),ck=document.getElementById('check');
   let locked=false;
   function draw(){
-    ans.innerHTML=picked.length?'':'<span class="ph">Your question…</span>';
+    ans.innerHTML=picked.length?'':'<span class="ph">Ваш вопрос…</span>';
     picked.forEach((x,k)=>{const b=el(`<button>${esc(x.w)}</button>`);b.onclick=()=>{if(locked)return;picked.splice(k,1);bank.push(x);draw();};ans.appendChild(b);});
     if(picked.length) ans.appendChild(el('<span><b>?</b></span>'));
     bk.innerHTML='';
@@ -426,8 +430,8 @@ function record(st,ok,miss){
 function feedback(ok,it){
   const fb=document.getElementById('fb');
   const last=S.i===S.steps.length-1;
-  fb.innerHTML=`<div class="fb ${ok?'ok':'bad'}">${ok?'<b>Correct!</b>':'<b>Not quite.</b> Answer: <b>'+esc(it.a)+'</b>'}<br><span class="note">${esc(it.tip)}</span></div>
-  <button class="main" id="next">${last?'See my result':'Next →'}</button>`;
+  fb.innerHTML=`<div class="fb ${ok?'ok':'bad'}">${ok?'<b>Верно!</b>':'<b>Не совсем.</b> Правильный ответ: <b>'+esc(it.a)+'</b>'}<br><span class="note">${esc(it.tip)}</span></div>
+  <button class="main" id="next">${last?'Мой результат':'Дальше →'}</button>`;
   const n=document.getElementById('next');n.onclick=next;n.focus();
 }
 
@@ -436,22 +440,22 @@ function next(){S.i++;render();}
 function renderEnd(){
   const tot=S.results.reduce((a,r)=>a+r.ok,0), n=S.results.reduce((a,r)=>a+r.n,0);
   const pct=Math.round(tot/n*100);
-  const msg=pct>=90?'Excellent! You know this well.':pct>=70?'Good work! Look at your mistakes below, then try again with new sentences.':'Good start. Read the rules again and try a new round — practice helps.';
+  const msg=pct>=90?'Отлично! Вы хорошо знаете эту тему.':pct>=70?'Хорошо! Посмотрите на ошибки ниже и пройдите ещё раз с новыми предложениями.':'Хорошее начало. Прочитайте правила ещё раз и пройдите новый раунд — практика помогает.';
   const weak=S.results.map((r,i)=>({r,i})).filter(x=>x.r.ok<x.r.n);
   app.innerHTML=`
-  <h1>Finished! Round ${S.round}</h1>
+  <h1>Готово! Раунд ${S.round}</h1>
   <div class="card">
     <div class="score">${tot} / ${n}</div>
     <p>${msg}</p>
     <table class="res">${S.results.map((r,i)=>`<tr><td>${i+1}. ${PARTS[i].title}</td><td style="text-align:right"><b>${r.ok}/${r.n}</b> ${r.ok===r.n?'✔':''}</td></tr>`).join('')}</table>
   </div>
-  ${weak.length?`<div class="card"><h2>My mistakes</h2>${weak.map(x=>`<p class="tag">${x.i+1}. ${PARTS[x.i].title}</p>${x.r.miss.map(m=>`<div class="mist">${esc(m)}</div>`).join('')}<p class="note">Rule: ${PARTS[x.i].ruleShort}</p>`).join('')}</div>`:''}
+  ${weak.length?`<div class="card"><h2>Мои ошибки</h2>${weak.map(x=>`<p class="tag">${x.i+1}. ${PARTS[x.i].title}</p>${x.r.miss.map(m=>`<div class="mist">${esc(m)}</div>`).join('')}<p class="note">Правило: ${PARTS[x.i].ruleShort}</p>`).join('')}</div>`:''}
   <div class="card">
-    <h2>Do it again?</h2>
-    <p>Every new round has <b>new sentences</b>.</p>
+    <h2>Ещё раз?</h2>
+    <p>В каждом новом раунде — <b>новые предложения</b>.</p>
     <div class="row">
-      <button class="main" id="again">New exercises only</button>
-      <button class="main" id="againR" style="background:var(--card);color:var(--accent)">New exercises + rules</button>
+      <button class="main" id="again">Только новые упражнения</button>
+      <button class="main" id="againR" style="background:var(--card);color:var(--accent)">Новые упражнения + правила</button>
     </div>
   </div>`;
   document.getElementById('again').onclick=()=>newRound(false);
