@@ -154,9 +154,6 @@
   function topBar(cls, s) {
     var ts = WU.theme ? WU.theme.status() : null, gr = WU.theme ? WU.theme.group() : null;
     return '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
-      (ts ? '<div class="thchip' + (ts.on ? ' on' : '') + '" data-h="theme" title="Occasion theme on / off for today (T)"><span class="n">' + WU.esc(ts.on ? (ts.theme.look.banner || ts.theme.name) : ts.theme.name) + '</span>' +
-        '<i>THEME ' + (ts.on ? 'ON' : 'OFF') + ' · ' + WU.esc((ts.group ? ts.group.name + ' · ' : '') + ts.why) + '</i></div>' :
-        gr ? '<div class="thchip grp"><span class="n">' + WU.esc(gr.name) + '</span><i>IN THE ROOM NOW</i></div>' : '') +
       '<div class="clchip" data-h="class" title="Change class (C)"><span class="t">CLASS</span><span class="n">' +
       WU.esc(cls ? cls.name : WU.state.students + ' students') + '</span></div>' +
       '<div class="seg">' + [['first', 'First lesson'], ['regular', 'Regular lesson']].map(function (l) {
@@ -170,7 +167,20 @@
       '<div class="ibtn" data-act="help" title="Keyboard (?)">' + WU.icons.help + '</div></div></div>' +
       '<div class="levels">' + WU.LEVELS.map(function (l, i) {
         return '<div class="pill' + (i === s.level ? ' on' : '') + '" data-level="' + i + '"><b>' + l.name + '</b><i>' + l.code + '</i></div>';
-      }).join('') + '</div>';
+      }).join('') + '</div>' + dayStrip(ts, gr);
+  }
+  // Today, the group in the room and the occasion, in one strip under the levels (click it = theme on / off).
+  function dayStrip(ts, gr) {
+    var now = new Date(), d = function (x) { return x.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }); };
+    var day = now.toLocaleDateString('en-GB', { weekday: 'long', day: 'numeric', month: 'long' });
+    var g = ts && ts.group || gr, parts = '<b class="day">' + WU.esc(day) + '</b>' + (g ? '<span class="grp">' + WU.esc(g.name) + '</span>' : '');
+    if (!ts) return '<div class="daystrip">' + parts + '</div>';
+    var occ = ts.occ, when = ts.preview ? 'preview' : d(occ.from) + ' – ' + d(occ.to);
+    return '<div class="daystrip occ' + (ts.on ? ' on' : '') + '" data-h="theme" title="Theme on / off for today (T)">' + parts +
+      '<span class="oname">' + WU.esc(ts.on ? (ts.theme.look.banner || ts.theme.name) : ts.theme.name) + '</span>' +
+      '<span class="owhen">' + WU.esc(ts.theme.name + ' week · ' + when) + '</span>' +
+      '<span class="ostate">THEME ' + (ts.on ? 'ON' : 'OFF') + '</span><span class="owhy">' + WU.esc(ts.why) + '</span>' +
+      '<span class="okey">' + (ts.preview ? 'T = end preview' : 'T = turn ' + (ts.on ? 'off' : 'on')) + '</span></div>';
   }
 
   function render() {
@@ -245,7 +255,7 @@
     root.querySelectorAll('[data-lesson]').forEach(function (b) { b.onclick = function () { WU.setState({ lesson: b.getAttribute('data-lesson') }); render(); }; });
     root.querySelector('[data-h="settings"]').onclick = function () { WU.openSettings(); };
     root.querySelector('[data-h="class"]').onclick = cycleClass;
-    var thb = root.querySelector('[data-h="theme"]'); if (thb) thb.onclick = function () { WU.theme.toggle(); render(); };
+    var thb = root.querySelector('[data-h="theme"]'); if (thb) thb.onclick = function () { if (WU.theme.status().preview) WU.theme.preview(); else WU.theme.toggle(); render(); };
     var bk = root.querySelector('[data-h="back"]'); if (bk) bk.onclick = function () { openCat(null); };
     root.querySelectorAll('[data-skill]').forEach(function (t) {
       t.onclick = function () { openCat(t.getAttribute('data-skill')); };
@@ -330,7 +340,7 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['T', 'occasion theme on / off for today'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
+      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['T', 'occasion theme on / off for today'], ['Shift + T', 'preview the occasions, one by one'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
       return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Esc / Backspace', 'back to all skills'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
     },
     mount: function (el) {
@@ -360,7 +370,8 @@
       if (k === 'ArrowLeft') { setLevel(WU.state.level - 1); return true; }
       if (k === 'l' || k === 'L') { WU.setState({ lesson: WU.state.lesson === 'first' ? 'regular' : 'first' }); render(); return true; }
       if (k === 'c' || k === 'C') { cycleClass(); return true; }
-      if ((k === 't' || k === 'T') && WU.theme && WU.theme.status()) { WU.theme.toggle(); render(); return true; }
+      if (k === 'T' && e.shiftKey && WU.theme) { WU.theme.preview(); render(); return true; }
+      if ((k === 't' || k === 'T') && WU.theme && WU.theme.status()) { if (WU.theme.status().preview) WU.theme.preview(); else WU.theme.toggle(); render(); return true; }
       if (k === 's' || k === 'S') { WU.openSettings(); return true; }
       if ((k === 'Enter' || k === ' ') && document.activeElement && document.activeElement.getAttribute('data-game')) {
         e.preventDefault(); open(document.activeElement.getAttribute('data-game')); return true;
