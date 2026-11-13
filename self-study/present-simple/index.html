@@ -1,93 +1,228 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Present Simple: самоподготовка</title>
+<title>Present Simple Practice</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@500;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f6f4ef; --card:#ffffff; --ink:#1f2328; --soft:#5d6470; --line:#e2ded6;
-  --accent:#2f6fde; --ok:#1f8a4c; --okbg:#e5f5ea; --bad:#c23b32; --badbg:#fbe9e7;
-  --you:#2f6fde; --verb:#1f8a4c; --aux:#d26a00; --wh:#8a3ec2; --chip:#eef2fb;
+  --bg1:#fff4dc; --bg2:#ffe3ee; --bg3:#dff0ff;
+  --card:#ffffff; --ink:#22223b; --soft:#6b6b85; --line:#ece8f4; --chip:#f3f0ff;
+  --ok:#14a35a; --okbg:#e3f8ec; --bad:#e2463c; --badbg:#ffecea;
+  --you:#2f6fde; --verb:#14a35a; --aux:#f07a00; --wh:#9b3fd6;
+  --shadow:0 10px 30px rgba(90,60,170,.10);
+  --pc:#ff6b6b; --pc2:#ff9f43;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#16181c; --card:#20242a; --ink:#ecedef; --soft:#a3a9b3; --line:#343941;
-    --accent:#6c9cff; --ok:#4fc77f; --okbg:#173525; --bad:#ff7a70; --badbg:#3c1f1d;
-    --you:#7aa7ff; --verb:#5ad08b; --aux:#ffa24a; --wh:#c58cf0; --chip:#2a3140;
+    --bg1:#1a1730; --bg2:#22183a; --bg3:#13243a;
+    --card:#232241; --ink:#f1f0fa; --soft:#b0aecb; --line:#36345a; --chip:#2e2c55;
+    --ok:#4fd88d; --okbg:#173a2a; --bad:#ff7b72; --badbg:#41201f;
+    --you:#7fa8ff; --verb:#4fd88d; --aux:#ffad5c; --wh:#cf8cff;
+    --shadow:0 10px 30px rgba(0,0,0,.35);
   }
+}
+:root[data-theme="dark"]{
+  --bg1:#1a1730; --bg2:#22183a; --bg3:#13243a;
+  --card:#232241; --ink:#f1f0fa; --soft:#b0aecb; --line:#36345a; --chip:#2e2c55;
+  --ok:#4fd88d; --okbg:#173a2a; --bad:#ff7b72; --badbg:#41201f;
+  --you:#7fa8ff; --verb:#4fd88d; --aux:#ffad5c; --wh:#cf8cff;
+  --shadow:0 10px 30px rgba(0,0,0,.35);
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{background:var(--bg);color:var(--ink);font:18px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-main{max-width:680px;margin:0 auto;padding:16px 16px 48px}
-h1{font-size:1.6rem;margin:.2em 0 .3em;line-height:1.2}
-h2{font-size:1.3rem;margin:0 0 .5em;line-height:1.25}
+body{min-height:100vh;color:var(--ink);font:18px/1.5 "Nunito",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  background:var(--bg1);background:linear-gradient(160deg,var(--bg1) 0%,var(--bg2) 50%,var(--bg3) 100%) fixed}
+main{max-width:680px;margin:0 auto;padding:12px 16px 40px}
+h1{font-size:1.7rem;margin:.2em 0 .3em;line-height:1.2;font-weight:900}
+h2{font-size:1.35rem;margin:.1em 0 .5em;line-height:1.25;font-weight:900}
 p{margin:.5em 0}
-.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;margin:14px 0}
-.top{display:flex;align-items:center;gap:12px;font-size:.85rem;color:var(--soft)}
-.bar{flex:1;height:8px;background:var(--line);border-radius:8px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .3s}
-.tag{display:inline-block;font-size:.8rem;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.04em}
-button{font:inherit;cursor:pointer;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);padding:12px 16px}
-button.main{background:var(--accent);border-color:var(--accent);color:#fff;font-weight:600;width:100%;margin-top:14px}
-button.link{border:none;background:none;color:var(--accent);padding:6px 0;text-decoration:underline}
-button:disabled{opacity:.5;cursor:default}
-.opts{display:grid;gap:10px;margin-top:14px}
-.opts button{text-align:left;font-size:1.05rem}
-.opts button.ok{background:var(--okbg);border-color:var(--ok);color:var(--ink)}
-.opts button.bad{background:var(--badbg);border-color:var(--bad);color:var(--ink)}
-.q{font-size:1.25rem;font-weight:500}
-.blank{display:inline-block;min-width:70px;border-bottom:2px solid var(--soft);text-align:center;padding:0 4px}
-.blank.filled{border-color:var(--ok);color:var(--ok);font-weight:600}
-.fb{margin-top:14px;padding:12px 14px;border-radius:10px;font-size:1rem}
-.fb.ok{background:var(--okbg);border-left:4px solid var(--ok)}
-.fb.bad{background:var(--badbg);border-left:4px solid var(--bad)}
-.rule{border-collapse:collapse;width:100%;margin:10px 0;font-size:1.05rem}
-.rule td{padding:6px 8px;border-bottom:1px solid var(--line);vertical-align:top}
-.ex{background:var(--chip);border-radius:10px;padding:10px 14px;margin:10px 0}
-.ex div{margin:2px 0}
-.y{color:var(--you);font-weight:600}.v{color:var(--verb);font-weight:600}.a{color:var(--aux);font-weight:700}.w{color:var(--wh);font-weight:700}
+b{font-weight:800}
+
+.hdr{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:6px 0 4px}
+.logo{font-weight:900;font-size:1.05rem;letter-spacing:.01em;background:linear-gradient(90deg,#ff6b6b,#ff9f43,#9b3fd6);-webkit-background-clip:text;background-clip:text;color:transparent}
+.langs{display:flex;background:var(--card);border-radius:999px;padding:4px;box-shadow:var(--shadow)}
+.langs button{border:none;background:none;color:var(--soft);font:800 .85rem "Nunito",sans-serif;padding:6px 12px;border-radius:999px;cursor:pointer}
+.langs button.on{background:linear-gradient(135deg,#ff6b6b,#ff9f43);color:#fff}
+
+.card{background:var(--card);border-radius:22px;padding:22px 20px;margin:14px 0;box-shadow:var(--shadow);position:relative;overflow:hidden}
+.card.part{border-top:6px solid var(--pc)}
+.top{display:flex;align-items:center;gap:12px;font-size:.85rem;font-weight:800;color:var(--soft);margin-top:6px}
+.bar{flex:1;height:12px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:inset 0 0 0 1px var(--line)}
+.bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#ff6b6b,#ff9f43,#ffd93d,#38d39f,#4d96ff,#9b3fd6);border-radius:12px;transition:width .4s}
+.tag{display:inline-flex;align-items:center;gap:6px;font-size:.78rem;font-weight:900;color:#fff;background:var(--pc);padding:4px 12px;border-radius:999px;text-transform:uppercase;letter-spacing:.04em}
+
+button{font:inherit;cursor:pointer;border-radius:14px;border:2px solid var(--line);background:var(--card);color:var(--ink);padding:12px 16px;transition:transform .12s,box-shadow .12s,border-color .12s}
+button.main{background:linear-gradient(135deg,var(--pc),var(--pc2));border:none;color:#fff;font-weight:900;width:100%;margin-top:16px;padding:15px 18px;font-size:1.05rem;box-shadow:0 6px 16px rgba(0,0,0,.12)}
+button.main:hover:not(:disabled){transform:translateY(-2px)}
+button.ghost{background:var(--card);color:var(--pc);border:2px solid var(--pc);box-shadow:none}
+button.link{border:none;background:none;color:var(--pc);padding:8px 0 0;text-decoration:underline;font-weight:800}
+button:disabled{opacity:.55;cursor:default}
+
+.opts{display:grid;gap:10px;margin-top:16px}
+.opts button{text-align:left;font-size:1.08rem;font-weight:700;padding:14px 16px}
+.opts button:hover:not(:disabled){border-color:var(--pc);transform:translateX(3px)}
+.opts button.ok{background:var(--okbg);border-color:var(--ok);opacity:1;animation:pop .35s}
+.opts button.bad{background:var(--badbg);border-color:var(--bad);opacity:1;animation:shake .35s}
+.opts button.ok::after{content:" ✔";color:var(--ok)}
+.opts button.bad::after{content:" ✘";color:var(--bad)}
+@keyframes pop{50%{transform:scale(1.04)}}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+
+.q{font-size:1.35rem;font-weight:800;margin-top:14px}
+.blank{display:inline-block;min-width:76px;border-bottom:3px solid var(--pc);text-align:center;padding:0 4px}
+.blank.filled{border-color:var(--ok);color:var(--ok)}
+.fb{margin-top:14px;padding:12px 14px;border-radius:14px;font-size:1rem}
+.fb.ok{background:var(--okbg)}
+.fb.bad{background:var(--badbg)}
+.fb .big{font-size:1.15rem;font-weight:900}
+
+.rule{border-collapse:collapse;width:100%;margin:10px 0;font-size:1.02rem}
+.rule td{padding:7px 8px;border-bottom:2px dashed var(--line);vertical-align:top}
+.rule td:first-child{white-space:nowrap}
+.ex{background:var(--chip);border-radius:14px;padding:12px 14px;margin:10px 0}
+.ex div{margin:3px 0}
+.y{color:var(--you);font-weight:800}.v{color:var(--verb);font-weight:800}.a{color:var(--aux);font-weight:900}.w{color:var(--wh);font-weight:900}
 .no{color:var(--bad);text-decoration:line-through}
-.note{font-size:.95rem;color:var(--soft)}
-.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:10px 0;font-weight:600}
-.formula span{padding:6px 10px;border-radius:8px;background:var(--chip)}
+.note{font-size:.93rem;color:var(--soft)}
+.formula{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin:12px 0;font-weight:800}
+.formula span{padding:7px 12px;border-radius:12px;background:var(--chip)}
+
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px;min-height:52px}
-.chips button{padding:10px 14px;background:var(--chip);border-color:transparent;font-weight:500}
-.answer{min-height:56px;border:2px dashed var(--line);border-radius:10px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:12px}
-.answer button{padding:10px 14px;background:var(--card)}
+.chips button{padding:10px 15px;background:var(--chip);border-color:transparent;font-weight:800}
+.chips button:hover{border-color:var(--pc)}
+.answer{min-height:60px;border:3px dashed var(--line);border-radius:16px;padding:8px;display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-top:14px}
+.answer button{padding:10px 15px;border-color:var(--pc);font-weight:800}
+.answer.ok{border-color:var(--ok);background:var(--okbg)}
+.answer.bad{border-color:var(--bad);background:var(--badbg)}
 .answer .ph{color:var(--soft);font-size:.95rem;padding:0 6px}
-.rulebox{margin-top:12px;border-top:1px solid var(--line);padding-top:8px;font-size:.95rem}
-.score{font-size:2.6rem;font-weight:700;margin:.1em 0}
-.res td{padding:6px 4px;border-bottom:1px solid var(--line)}
+.rulebox{margin-top:10px;background:var(--chip);border-radius:12px;padding:10px 12px;font-size:.95rem}
+
+.hero{text-align:center;padding:26px 20px}
+.hero .big{font-size:3rem;line-height:1}
+.hero h1{font-size:1.9rem}
+.hero h1 span{background:linear-gradient(90deg,#ff6b6b,#ff9f43);-webkit-background-clip:text;background-clip:text;color:transparent}
+.parts{display:grid;gap:10px;margin:16px 0 4px;text-align:left}
+.prow{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:14px;background:var(--chip);font-weight:800}
+.prow .ic{width:40px;height:40px;flex:none;border-radius:12px;display:grid;place-items:center;font-size:1.3rem;color:#fff}
+.prow .t{flex:1}
+.prow .m{font-size:.85rem;color:var(--soft);white-space:nowrap}
+.pickl{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:6px 0 10px}
+.pickl button{font-weight:800;padding:10px 16px;border-radius:999px}
+.pickl button.on{border-color:#ff6b6b;background:linear-gradient(135deg,#ff6b6b,#ff9f43);color:#fff}
+
+.score{font-size:3.4rem;font-weight:900;margin:.05em 0;background:linear-gradient(90deg,#ff6b6b,#ff9f43,#9b3fd6);-webkit-background-clip:text;background-clip:text;color:transparent}
 .res{width:100%;border-collapse:collapse}
-.mist{font-size:.95rem;margin:6px 0;padding:8px 10px;background:var(--badbg);border-radius:8px}
+.res td{padding:8px 4px;border-bottom:2px dashed var(--line);font-weight:700}
+.dot{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:8px;vertical-align:middle}
+.mist{font-size:.95rem;margin:6px 0;padding:8px 12px;background:var(--badbg);border-radius:12px;font-weight:700}
 .row{display:flex;gap:10px;flex-wrap:wrap}
 .row button{flex:1;min-width:200px}
-footer{font-size:.85rem;color:var(--soft);text-align:center;margin-top:20px}
-footer a{color:var(--accent)}
+.confetti{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.confetti i{position:absolute;top:-12px;width:9px;height:14px;border-radius:2px;animation:fall 2.2s ease-in forwards}
+@keyframes fall{to{transform:translateY(420px) rotate(540deg);opacity:0}}
+footer{font-size:.88rem;color:var(--soft);text-align:center;margin-top:18px;font-weight:700}
+footer a{color:#e8573f}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
-<main id="app"></main>
-<footer>Бумажная версия: <a href="print.html">лист для печати</a> · <a href="worksheet.pdf">PDF</a></footer>
+<main>
+  <div class="hdr"><span class="logo">Present Simple ✦</span><div class="langs" id="langs"></div></div>
+  <div id="app"></div>
+  <footer id="foot"></footer>
+</main>
 
 <script>
 /* ---------- helpers ---------- */
 function shuffle(a){a=a.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function el(html){const d=document.createElement('div');d.innerHTML=html.trim();return d.firstChild;}
 function esc(s){return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
-// multiple choice item: first option in list = correct
 function mc(q,opts,tip){return {t:'mc',q,opts,a:opts[0],tip};}
 function ord(words,tip){return {t:'order',words,a:words.join(' ')+'?',tip};}
+function store(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){return null;}}
+
+/* ---------- language ---------- */
+const LANGS=[['en','EN','English'],['ru','RU','Русский'],['uz','UZ',"O'zbekcha"]];
+let L=store('ps-lang');
+if(!['en','ru','uz'].includes(L)){const n=(navigator.language||'').slice(0,2);L=n==='ru'?'ru':n==='uz'?'uz':'en';}
+
+const UI={
+ en:{part:(a,b)=>`Part ${a} of ${b}`, partTag:a=>`Part ${a}`, rule:'Rule', understood:'I understand → Exercises',
+  show:'Show the rule', hide:'Hide the rule', tap:'Tap the words to make a question.', check:'Check', yourQ:'Your question…',
+  correct:'Correct!', wrong:'Not quite.', answer:'Answer:', next:'Next →', result:'See my result',
+  h1:'Present Simple <span>&amp; Question Words</span>', intro1:'For you if you missed the lessons. About <b>15 minutes</b>.',
+  intro2:'<b>5 short parts.</b> Each part: a short <b>rule</b> with examples, then a few <b>exercises</b> — just tap the answer.',
+  intro3:'When you finish, you can do it all again with <b>new</b> sentences.', min:'min', start:"Let's start!", choose:'Choose your language:',
+  done:r=>`Finished! Round ${r}`, m90:'Excellent! You know this well. 🎉', m70:'Good work! Look at your mistakes below, then try again with new sentences.',
+  m0:'Good start. Read the rules again and try a new round — practice helps.', mist:'My mistakes', ruleL:'Rule:',
+  again:'Do it again?', againP:'Every new round has <b>new sentences</b>.', againA:'New exercises only', againB:'New exercises + rules',
+  foot:'Paper version: <a href="print.html">printable worksheet</a> · <a href="worksheet.pdf">PDF</a>',
+  CHOOSE_S:'Choose the correct sentence.', CHOOSE_Q:'Choose the correct question.'},
+ ru:{part:(a,b)=>`Часть ${a} из ${b}`, partTag:a=>`Часть ${a}`, rule:'Правило', understood:'Понятно → к упражнениям',
+  show:'Показать правило', hide:'Скрыть правило', tap:'Нажимайте на слова, чтобы составить вопрос.', check:'Проверить', yourQ:'Ваш вопрос…',
+  correct:'Верно!', wrong:'Не совсем.', answer:'Правильный ответ:', next:'Дальше →', result:'Мой результат',
+  h1:'Present Simple <span>и вопросительные слова</span>', intro1:'Материал для тех, кто пропустил уроки. Примерно <b>15 минут</b>.',
+  intro2:'<b>5 коротких частей.</b> В каждой: короткое <b>правило</b> с примерами, потом несколько <b>упражнений</b> — просто нажмите на ответ.',
+  intro3:'В конце можно пройти всё ещё раз с <b>новыми</b> предложениями.', min:'мин', start:'Начать!', choose:'Выберите язык:',
+  done:r=>`Готово! Раунд ${r}`, m90:'Отлично! Вы хорошо знаете эту тему. 🎉', m70:'Хорошо! Посмотрите на ошибки ниже и пройдите ещё раз с новыми предложениями.',
+  m0:'Хорошее начало. Прочитайте правила ещё раз и пройдите новый раунд — практика помогает.', mist:'Мои ошибки', ruleL:'Правило:',
+  again:'Ещё раз?', againP:'В каждом новом раунде — <b>новые предложения</b>.', againA:'Только новые упражнения', againB:'Новые упражнения + правила',
+  foot:'Бумажная версия: <a href="print.html">лист для печати</a> · <a href="worksheet.pdf">PDF</a>',
+  CHOOSE_S:'Выберите правильное предложение.', CHOOSE_Q:'Выберите правильный вопрос.'},
+ uz:{part:(a,b)=>`Qism ${a} / ${b}`, partTag:a=>`${a}-qism`, rule:'Qoida', understood:'Tushundim → mashqlarga',
+  show:"Qoidani ko'rsatish", hide:'Qoidani yashirish', tap:"So'zlarni bosib, savol tuzing.", check:'Tekshirish', yourQ:'Savolingiz…',
+  correct:"To'g'ri!", wrong:'Unchalik emas.', answer:"To'g'ri javob:", next:'Keyingi →', result:'Natijam',
+  h1:"Present Simple <span>va so'roq so'zlari</span>", intro1:"Darslarni o'tkazib yuborganlar uchun. Taxminan <b>15 daqiqa</b>.",
+  intro2:"<b>5 ta qisqa qism.</b> Har birida: misollar bilan qisqa <b>qoida</b>, keyin bir nechta <b>mashq</b> — javobni bosing.",
+  intro3:"Oxirida hammasini <b>yangi</b> gaplar bilan qaytadan bajarishingiz mumkin.", min:'daq', start:'Boshladik!', choose:'Tilni tanlang:',
+  done:r=>`Tayyor! ${r}-raund`, m90:"A'lo! Siz bu mavzuni yaxshi bilasiz. 🎉", m70:"Yaxshi! Quyidagi xatolarni ko'rib chiqing va yangi gaplar bilan qayta urinib ko'ring.",
+  m0:"Yaxshi boshlanish. Qoidalarni yana o'qing va yangi raundni boshlang — mashq yordam beradi.", mist:'Xatolarim', ruleL:'Qoida:',
+  again:'Yana bir bor?', againP:'Har bir yangi raundda <b>yangi gaplar</b>.', againA:'Faqat yangi mashqlar', againB:'Yangi mashqlar + qoidalar',
+  foot:"Qog'oz versiyasi: <a href=\"print.html\">chop etish uchun varaq</a> · <a href=\"worksheet.pdf\">PDF</a>",
+  CHOOSE_S:"To'g'ri gapni tanlang.", CHOOSE_Q:"To'g'ri savolni tanlang."}
+};
+// words used inside the short tips
+const TIP={
+ en:{S:'add -s',NOS:'no -s',V:'verb',VNOS:'verb (no -s)',has:'has (not haves)',name:'',because:'because…',
+  place:'a place',clock:'clock time',person:'a person',age:'age',way:'the way',thing:'a thing',number:'a number',time:'a time',job:'a job',day:'a day'},
+ ru:{S:'добавляем -s',NOS:'без -s',V:'глагол',VNOS:'глагол без -s',has:'has (не haves)',name:' — Как вас зовут?',because:'because (потому что)',
+  place:'место',clock:'время на часах',person:'человек',age:'возраст',way:'способ',thing:'предмет, вещь',number:'число',time:'время',job:'профессия',day:'день'},
+ uz:{S:"-s qo'shamiz",NOS:"-s qo'shilmaydi",V:"fe'l",VNOS:"fe'l (-s siz)",has:'has (haves emas)',name:' — Ismingiz nima?',because:'because (chunki)',
+  place:'joy',clock:'soat',person:'odam',age:'yosh',way:'usul',thing:'narsa',number:'son',time:'vaqt',job:'kasb',day:'kun'}
+};
+function tr(s){return s.replace(/\{(\w+)\}/g,(m,k)=>typeof UI[L][k]==='string'?UI[L][k]:(TIP[L][k]!==undefined?TIP[L][k]:m));}
+function t(k){return UI[L][k];}
+function loc(o){return typeof o==='string'?o:(o[L]||o.en);}
 
 /* ---------- content ---------- */
-const CHOOSE_S='Выберите правильное предложение.';
-const CHOOSE_Q='Выберите правильный вопрос.';
 const PARTS=[
 {
- id:'pos', title:'He works, she works', min:3,
- rule:`
+ id:'pos', icon:'👤', pc:'#ff6b6b', pc2:'#ff9f43', min:3,
+ title:{en:'He works, she works',ru:'He works, she works',uz:'He works, she works'},
+ rule:{
+ en:`
+  <p>We use the Present Simple for things that are <b>always true</b> and for <b>habits</b> (every day, on Mondays, usually).</p>
+  <table class="rule">
+   <tr><td><span class="y">I / you / we / they</span></td><td><span class="v">work</span></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="v">work<u>s</u></span> &nbsp;← add <b>-s</b></td></tr>
+  </table>
+  <div class="ex">
+   <div><span class="y">I</span> <span class="v">live</span> in a flat.</div>
+   <div><span class="y">My brother</span> <span class="v">lives</span> in a house.</div>
+  </div>
+  <p class="note">my brother = he · my mother = she · the shop = it · my friends = they</p>
+  <p><b>Spelling with he / she / it:</b></p>
+  <table class="rule">
+   <tr><td>watch, wash, go, do</td><td>→ watch<b>es</b>, wash<b>es</b>, go<b>es</b>, do<b>es</b></td></tr>
+   <tr><td>study, cry</td><td>→ stud<b>ies</b>, cr<b>ies</b></td></tr>
+   <tr><td>play, say</td><td>→ play<b>s</b>, say<b>s</b></td></tr>
+   <tr><td>have</td><td>→ <b>has</b> (special!)</td></tr>
+  </table>`,
+ ru:`
   <p>Present Simple — это настоящее время для того, что <b>всегда правда</b>, и для <b>привычек</b> (every day — каждый день, on Mondays — по понедельникам, usually — обычно).</p>
   <table class="rule">
    <tr><td><span class="y">I / you / we / they</span></td><td><span class="v">work</span></td></tr>
@@ -97,7 +232,7 @@ const PARTS=[
    <div><span class="y">I</span> <span class="v">live</span> in a flat. <span class="note">— Я живу в квартире.</span></div>
    <div><span class="y">My brother</span> <span class="v">lives</span> in a house. <span class="note">— Мой брат живёт в доме.</span></div>
   </div>
-  <p class="note">My brother = he, my mother = she, the shop = it, my friends = they.</p>
+  <p class="note">my brother = he · my mother = she · the shop = it · my friends = they</p>
   <p><b>Как пишется с he / she / it:</b></p>
   <table class="rule">
    <tr><td>watch, wash, go, do</td><td>→ watch<b>es</b>, wash<b>es</b>, go<b>es</b>, do<b>es</b></td></tr>
@@ -105,36 +240,68 @@ const PARTS=[
    <tr><td>play, say</td><td>→ play<b>s</b>, say<b>s</b></td></tr>
    <tr><td>have</td><td>→ <b>has</b> (исключение!)</td></tr>
   </table>`,
+ uz:`
+  <p>Present Simple — <b>har doim to'g'ri</b> bo'lgan narsalar va <b>odatlar</b> uchun ishlatiladi (every day — har kuni, on Mondays — dushanba kunlari, usually — odatda).</p>
+  <table class="rule">
+   <tr><td><span class="y">I / you / we / they</span></td><td><span class="v">work</span></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="v">work<u>s</u></span> &nbsp;← <b>-s</b> qo'shamiz</td></tr>
+  </table>
+  <div class="ex">
+   <div><span class="y">I</span> <span class="v">live</span> in a flat. <span class="note">— Men kvartirada yashayman.</span></div>
+   <div><span class="y">My brother</span> <span class="v">lives</span> in a house. <span class="note">— Akam uyda yashaydi.</span></div>
+  </div>
+  <p class="note">my brother = he · my mother = she · the shop = it · my friends = they</p>
+  <p><b>he / she / it bilan yozilishi:</b></p>
+  <table class="rule">
+   <tr><td>watch, wash, go, do</td><td>→ watch<b>es</b>, wash<b>es</b>, go<b>es</b>, do<b>es</b></td></tr>
+   <tr><td>study, cry</td><td>→ stud<b>ies</b>, cr<b>ies</b></td></tr>
+   <tr><td>play, say</td><td>→ play<b>s</b>, say<b>s</b></td></tr>
+   <tr><td>have</td><td>→ <b>has</b> (istisno!)</td></tr>
+  </table>`},
  ruleShort:`<span class="y">I / you / we / they</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="v">works</span> · go→goes, watch→watches, study→studies, have→has`,
  n:6,
  pool:[
-  mc('My brother ___ in a hospital.',['works','work'],'my brother = he → добавляем -s'),
-  mc('I ___ coffee every morning.',['drink','drinks'],'I → без -s'),
-  mc('We ___ in a small flat.',['live','lives'],'we → без -s'),
+  mc('My brother ___ in a hospital.',['works','work'],'my brother = he → {S}'),
+  mc('I ___ coffee every morning.',['drink','drinks'],'I → {NOS}'),
+  mc('We ___ in a small flat.',['live','lives'],'we → {NOS}'),
   mc('Anna ___ TV in the evening.',['watches','watchs','watch'],'Anna = she. watch → watches'),
   mc('Tom ___ football on Sundays.',['plays','plaies','play'],'Tom = he. play → plays'),
-  mc('My mother ___ dinner at 7.',['cooks','cook'],'my mother = she → добавляем -s'),
-  mc('They ___ English at school.',['study','studies'],'they → без -s'),
+  mc('My mother ___ dinner at 7.',['cooks','cook'],'my mother = she → {S}'),
+  mc('They ___ English at school.',['study','studies'],'they → {NOS}'),
   mc('The baby ___ a lot.',['cries','crys','cry'],'the baby = it. cry → cries'),
-  mc('He ___ two children.',['has','haves','have'],'he → has (не haves)'),
-  mc('You ___ very fast.',['speak','speaks'],'you → без -s'),
+  mc('He ___ two children.',['has','haves','have'],'he → {has}'),
+  mc('You ___ very fast.',['speak','speaks'],'you → {NOS}'),
   mc('My dad ___ to work at 8.',['goes','gos','go'],'my dad = he. go → goes'),
-  mc('The shop ___ at 9 o\'clock.',['opens','open'],'the shop = it → добавляем -s'),
+  mc('The shop ___ at 9 o\'clock.',['opens','open'],'the shop = it → {S}'),
   mc('She ___ her car every Sunday.',['washes','washs','wash'],'she. wash → washes'),
-  mc('My friends ___ in London.',['live','lives'],'my friends = they → без -s'),
-  mc('It ___ a lot in November.',['rains','rain'],'it → добавляем -s'),
-  mc('Sara ___ the bus to work.',['takes','take'],'Sara = she → добавляем -s'),
-  mc('I ___ up at 6:30.',['get','gets'],'I → без -s'),
-  mc('My cat ___ fish.',['likes','like'],'my cat = it → добавляем -s'),
+  mc('My friends ___ in London.',['live','lives'],'my friends = they → {NOS}'),
+  mc('It ___ a lot in November.',['rains','rain'],'it → {S}'),
+  mc('Sara ___ the bus to work.',['takes','take'],'Sara = she → {S}'),
+  mc('I ___ up at 6:30.',['get','gets'],'I → {NOS}'),
+  mc('My cat ___ fish.',['likes','like'],'my cat = it → {S}'),
   mc('He ___ his homework after dinner.',['does','dos','do'],'he. do → does'),
-  mc('Ali and I ___ tea.',['drink','drinks'],'Ali and I = we → без -s'),
+  mc('Ali and I ___ tea.',['drink','drinks'],'Ali and I = we → {NOS}'),
   mc('My son ___ at university.',['studies','studys','study'],'my son = he. study → studies'),
   mc('She ___ a big dog.',['has','have'],'she → has'),
  ]
 },
 {
- id:'neg', title:'Отрицание: don\'t / doesn\'t', min:2,
- rule:`
+ id:'neg', icon:'🚫', pc:'#f7a400', pc2:'#ff7a00', min:2,
+ title:{en:"Negative: don't / doesn't",ru:"Отрицание: don't / doesn't",uz:"Inkor: don't / doesn't"},
+ rule:{
+ en:`
+  <table class="rule">
+   <tr><td><span class="y">I / you / we / they</span></td><td><span class="a">don't</span> + <span class="v">verb</span></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="a">doesn't</span> + <span class="v">verb</span></td></tr>
+  </table>
+  <div class="ex">
+   <div><span class="y">I</span> <span class="a">don't</span> <span class="v">eat</span> meat.</div>
+   <div><span class="y">She</span> <span class="a">doesn't</span> <span class="v">eat</span> meat.</div>
+  </div>
+  <p><b>Important:</b> after <span class="a">doesn't</span> the verb has <b>no -s</b>. The -s goes into <span class="a">does</span>.</p>
+  <div class="ex"><div>✔ She doesn't <b>work</b>.</div><div>✘ <span class="no">She doesn't works.</span></div></div>
+  <p class="note">don't = do not · doesn't = does not</p>`,
+ ru:`
   <table class="rule">
    <tr><td><span class="y">I / you / we / they</span></td><td><span class="a">don't</span> + <span class="v">глагол</span></td></tr>
    <tr><td><span class="y">he / she / it</span></td><td><span class="a">doesn't</span> + <span class="v">глагол</span></td></tr>
@@ -146,31 +313,57 @@ const PARTS=[
   <p><b>Важно:</b> после <span class="a">doesn't</span> у глагола <b>нет -s</b>. Окончание -s уже «ушло» в <span class="a">does</span>.</p>
   <div class="ex"><div>✔ She doesn't <b>work</b>.</div><div>✘ <span class="no">She doesn't works.</span></div></div>
   <p class="note">don't = do not · doesn't = does not</p>`,
- ruleShort:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (без -s!)`,
+ uz:`
+  <table class="rule">
+   <tr><td><span class="y">I / you / we / they</span></td><td><span class="a">don't</span> + <span class="v">fe'l</span></td></tr>
+   <tr><td><span class="y">he / she / it</span></td><td><span class="a">doesn't</span> + <span class="v">fe'l</span></td></tr>
+  </table>
+  <div class="ex">
+   <div><span class="y">I</span> <span class="a">don't</span> <span class="v">eat</span> meat. <span class="note">— Men go'sht yemayman.</span></div>
+   <div><span class="y">She</span> <span class="a">doesn't</span> <span class="v">eat</span> meat. <span class="note">— U go'sht yemaydi.</span></div>
+  </div>
+  <p><b>Muhim:</b> <span class="a">doesn't</span> dan keyin fe'lga <b>-s qo'shilmaydi</b>. -s allaqachon <span class="a">does</span> ga «o'tgan».</p>
+  <div class="ex"><div>✔ She doesn't <b>work</b>.</div><div>✘ <span class="no">She doesn't works.</span></div></div>
+  <p class="note">don't = do not · doesn't = does not</p>`},
+ ruleShort:{en:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (no -s!)`,
+  ru:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (без -s!)`,
+  uz:`<span class="y">I / you / we / they</span> <span class="a">don't</span> <span class="v">work</span> · <span class="y">he / she / it</span> <span class="a">doesn't</span> <span class="v">work</span> (-s siz!)`},
  n:5,
  pool:[
-  mc('I ___ eat meat.',['don\'t','doesn\'t'],'I → don\'t'),
-  mc('My sister ___ drink coffee.',['doesn\'t','don\'t'],'my sister = she → doesn\'t'),
-  mc('We ___ work on Sundays.',['don\'t','doesn\'t'],'we → don\'t'),
-  mc('He ___ have a car.',['doesn\'t','don\'t'],'he → doesn\'t'),
-  mc('They ___ live here.',['don\'t','doesn\'t'],'they → don\'t'),
-  mc('The bus ___ stop here.',['doesn\'t','don\'t'],'the bus = it → doesn\'t'),
-  mc('You ___ understand me.',['don\'t','doesn\'t'],'you → don\'t'),
-  mc('My boss ___ speak French.',['doesn\'t','don\'t'],'my boss = he / she → doesn\'t'),
-  mc('It ___ snow in Dubai.',['doesn\'t','don\'t'],'it → doesn\'t'),
-  mc('My children ___ like vegetables.',['don\'t','doesn\'t'],'my children = they → don\'t'),
-  mc(CHOOSE_S,['She doesn\'t work on Monday.','She doesn\'t works on Monday.','She don\'t work on Monday.'],'she → doesn\'t + глагол без -s'),
-  mc(CHOOSE_S,['I don\'t like rain.','I doesn\'t like rain.','I not like rain.'],'I → don\'t + глагол'),
-  mc(CHOOSE_S,['He doesn\'t play tennis.','He doesn\'t plays tennis.','He not plays tennis.'],'he → doesn\'t + глагол без -s'),
-  mc(CHOOSE_S,['We don\'t have a dog.','We doesn\'t have a dog.','We don\'t has a dog.'],'we → don\'t + have'),
-  mc(CHOOSE_S,['My dad doesn\'t watch TV.','My dad don\'t watch TV.','My dad doesn\'t watches TV.'],'my dad = he → doesn\'t + глагол без -s'),
-  mc(CHOOSE_S,['They don\'t go to the gym.','They doesn\'t go to the gym.','They don\'t goes to the gym.'],'they → don\'t + глагол'),
-  mc(CHOOSE_S,['Maria doesn\'t eat breakfast.','Maria doesn\'t eats breakfast.','Maria not eat breakfast.'],'Maria = she → doesn\'t + глагол без -s'),
+  mc('I ___ eat meat.',["don't","doesn't"],"I → don't"),
+  mc('My sister ___ drink coffee.',["doesn't","don't"],"my sister = she → doesn't"),
+  mc('We ___ work on Sundays.',["don't","doesn't"],"we → don't"),
+  mc('He ___ have a car.',["doesn't","don't"],"he → doesn't"),
+  mc('They ___ live here.',["don't","doesn't"],"they → don't"),
+  mc('The bus ___ stop here.',["doesn't","don't"],"the bus = it → doesn't"),
+  mc('You ___ understand me.',["don't","doesn't"],"you → don't"),
+  mc('My boss ___ speak French.',["doesn't","don't"],"my boss = he / she → doesn't"),
+  mc('It ___ snow in Dubai.',["doesn't","don't"],"it → doesn't"),
+  mc('My children ___ like vegetables.',["don't","doesn't"],"my children = they → don't"),
+  mc('{CHOOSE_S}',["She doesn't work on Monday.","She doesn't works on Monday.","She don't work on Monday."],"she → doesn't + {VNOS}"),
+  mc('{CHOOSE_S}',["I don't like rain.","I doesn't like rain.","I not like rain."],"I → don't + {V}"),
+  mc('{CHOOSE_S}',["He doesn't play tennis.","He doesn't plays tennis.","He not plays tennis."],"he → doesn't + {VNOS}"),
+  mc('{CHOOSE_S}',["We don't have a dog.","We doesn't have a dog.","We don't has a dog."],"we → don't + have"),
+  mc('{CHOOSE_S}',["My dad doesn't watch TV.","My dad don't watch TV.","My dad doesn't watches TV."],"my dad = he → doesn't + {VNOS}"),
+  mc('{CHOOSE_S}',["They don't go to the gym.","They doesn't go to the gym.","They don't goes to the gym."],"they → don't + {V}"),
+  mc('{CHOOSE_S}',["Maria doesn't eat breakfast.","Maria doesn't eats breakfast.","Maria not eat breakfast."],"Maria = she → doesn't + {VNOS}"),
  ]
 },
 {
- id:'yn', title:'Вопросы: Do you…? Does she…?', min:2,
- rule:`
+ id:'yn', icon:'❓', pc:'#16b88a', pc2:'#3ad1c2', min:2,
+ title:{en:'Questions: Do you…? Does she…?',ru:'Вопросы: Do you…? Does she…?',uz:"So'roq: Do you…? Does she…?"},
+ rule:{
+ en:`
+  <div class="formula"><span class="a">Do / Does</span>+<span class="y">person</span>+<span class="v">verb</span>…?</div>
+  <div class="ex">
+   <div><span class="a">Do</span> <span class="y">you</span> <span class="v">like</span> tea? — Yes, I <b>do</b>. / No, I <b>don't</b>.</div>
+   <div><span class="a">Does</span> <span class="y">she</span> <span class="v">like</span> tea? — Yes, she <b>does</b>. / No, she <b>doesn't</b>.</div>
+  </div>
+  <p><span class="a">Do</span> → I / you / we / they · <span class="a">Does</span> → he / she / it</p>
+  <p>Short answer: Yes / No + person + do / does / don't / doesn't. Don't repeat the verb.</p>
+  <p>Again: after <span class="a">Does</span> the verb has <b>no -s</b>.</p>
+  <div class="ex"><div>✔ Does he <b>live</b> here?</div><div>✘ <span class="no">Does he lives here?</span></div></div>`,
+ ru:`
   <div class="formula"><span class="a">Do / Does</span>+<span class="y">кто</span>+<span class="v">глагол</span>…?</div>
   <div class="ex">
    <div><span class="a">Do</span> <span class="y">you</span> <span class="v">like</span> tea? — Yes, I <b>do</b>. / No, I <b>don't</b>.</div>
@@ -180,6 +373,16 @@ const PARTS=[
   <p>Краткий ответ: Yes / No + кто + do / does / don't / doesn't. Глагол не повторяем.</p>
   <p>И снова: после <span class="a">Does</span> у глагола <b>нет -s</b>.</p>
   <div class="ex"><div>✔ Does he <b>live</b> here?</div><div>✘ <span class="no">Does he lives here?</span></div></div>`,
+ uz:`
+  <div class="formula"><span class="a">Do / Does</span>+<span class="y">kim</span>+<span class="v">fe'l</span>…?</div>
+  <div class="ex">
+   <div><span class="a">Do</span> <span class="y">you</span> <span class="v">like</span> tea? — Yes, I <b>do</b>. / No, I <b>don't</b>.</div>
+   <div><span class="a">Does</span> <span class="y">she</span> <span class="v">like</span> tea? — Yes, she <b>does</b>. / No, she <b>doesn't</b>.</div>
+  </div>
+  <p><span class="a">Do</span> → I / you / we / they · <span class="a">Does</span> → he / she / it</p>
+  <p>Qisqa javob: Yes / No + kim + do / does / don't / doesn't. Fe'l takrorlanmaydi.</p>
+  <p>Yana: <span class="a">Does</span> dan keyin fe'lga <b>-s qo'shilmaydi</b>.</p>
+  <div class="ex"><div>✔ Does he <b>live</b> here?</div><div>✘ <span class="no">Does he lives here?</span></div></div>`},
  ruleShort:`<span class="a">Do</span> you / we / they <span class="v">work</span>? · <span class="a">Does</span> he / she / it <span class="v">work</span>? · Yes, I do. / No, she doesn't.`,
  n:5,
  pool:[
@@ -192,20 +395,35 @@ const PARTS=[
   mc('___ your children go to school?',['Do','Does'],'your children = they → Do'),
   mc('___ she drink coffee?',['Does','Do'],'she → Does'),
   mc('Do you like tea? — Yes, I ___.',['do','does','like'],'Do you…? → Yes, I do.'),
-  mc('Does he play football? — No, he ___.',['doesn\'t','don\'t','isn\'t'],'Does he…? → No, he doesn\'t.'),
+  mc('Does he play football? — No, he ___.',["doesn't","don't","isn't"],"Does he…? → No, he doesn't."),
   mc('Do they live in Rome? — Yes, they ___.',['do','does','are'],'Do they…? → Yes, they do.'),
   mc('Does your mum cook? — Yes, she ___.',['does','do','cooks'],'Does she…? → Yes, she does.'),
-  mc('Do you work at night? — No, I ___.',['don\'t','doesn\'t','not'],'Do you…? → No, I don\'t.'),
-  mc('Does the shop open on Sunday? — No, it ___.',['doesn\'t','don\'t','isn\'t'],'Does it…? → No, it doesn\'t.'),
-  mc(CHOOSE_Q,['Does she like pizza?','Does she likes pizza?','Do she like pizza?'],'she → Does + глагол без -s'),
-  mc(CHOOSE_Q,['Do you speak Spanish?','Does you speak Spanish?','You speak Spanish do?'],'you → Do + you + глагол'),
-  mc(CHOOSE_Q,['Does he live here?','Does he lives here?','Do he live here?'],'he → Does + глагол без -s'),
-  mc(CHOOSE_Q,['Do they have a car?','Does they have a car?','Do they has a car?'],'they → Do + have'),
+  mc('Do you work at night? — No, I ___.',["don't","doesn't","not"],"Do you…? → No, I don't."),
+  mc('Does the shop open on Sunday? — No, it ___.',["doesn't","don't","isn't"],"Does it…? → No, it doesn't."),
+  mc('{CHOOSE_Q}',['Does she like pizza?','Does she likes pizza?','Do she like pizza?'],'she → Does + {VNOS}'),
+  mc('{CHOOSE_Q}',['Do you speak Spanish?','Does you speak Spanish?','You speak Spanish do?'],'you → Do + you + {V}'),
+  mc('{CHOOSE_Q}',['Does he live here?','Does he lives here?','Do he live here?'],'he → Does + {VNOS}'),
+  mc('{CHOOSE_Q}',['Do they have a car?','Does they have a car?','Do they has a car?'],'they → Do + have'),
  ]
 },
 {
- id:'wh', title:'Вопросительные слова', min:3,
- rule:`
+ id:'wh', icon:'🔎', pc:'#4d7cff', pc2:'#5fb4ff', min:3,
+ title:{en:'Question words',ru:'Вопросительные слова',uz:"So'roq so'zlari"},
+ rule:{
+ en:`
+  <table class="rule">
+   <tr><td class="w">What?</td><td>a thing — <i>What do you eat?</i> — Rice.</td></tr>
+   <tr><td class="w">Where?</td><td>a place — <i>Where do you work?</i> — In a bank.</td></tr>
+   <tr><td class="w">When?</td><td>a time / day — <i>When do you study?</i> — On Tuesdays.</td></tr>
+   <tr><td class="w">What time?</td><td>clock time — <i>What time do you get up?</i> — At 7.</td></tr>
+   <tr><td class="w">Who?</td><td>a person — <i>Who do you live with?</i> — My sister.</td></tr>
+   <tr><td class="w">Why?</td><td>a reason — <i>Why do you learn English?</i> — Because…</td></tr>
+   <tr><td class="w">How?</td><td>the way — <i>How do you go to work?</i> — By bus.</td></tr>
+   <tr><td class="w">How many?</td><td>a number — <i>How many children do you have?</i> — Two.</td></tr>
+   <tr><td class="w">How old?</td><td>age — <i>How old is your son?</i> — He's 8.</td></tr>
+  </table>
+  <p class="note">Tip: look at the answer first. A place? → Where. A person? → Who. A number? → How many.</p>`,
+ ru:`
   <table class="rule">
    <tr><td class="w">What?</td><td>что? какой? — <i>What do you eat?</i> — Rice.</td></tr>
    <tr><td class="w">Where?</td><td>где? куда? — <i>Where do you work?</i> — In a bank.</td></tr>
@@ -218,32 +436,59 @@ const PARTS=[
    <tr><td class="w">How old?</td><td>сколько лет? — <i>How old is your son?</i> — He's 8.</td></tr>
   </table>
   <p class="note">Подсказка: сначала посмотрите на ответ. Место? → Where. Человек? → Who. Число? → How many.</p>`,
- ruleShort:`What = что · Where = где · When = когда · What time = во сколько · Who = кто · Why = почему · How = как · How many = сколько · How old = сколько лет`,
+ uz:`
+  <table class="rule">
+   <tr><td class="w">What?</td><td>nima? qanday? — <i>What do you eat?</i> — Rice.</td></tr>
+   <tr><td class="w">Where?</td><td>qayerda? qayerga? — <i>Where do you work?</i> — In a bank.</td></tr>
+   <tr><td class="w">When?</td><td>qachon? — <i>When do you study?</i> — On Tuesdays.</td></tr>
+   <tr><td class="w">What time?</td><td>soat nechada? — <i>What time do you get up?</i> — At 7.</td></tr>
+   <tr><td class="w">Who?</td><td>kim? kim bilan? — <i>Who do you live with?</i> — My sister.</td></tr>
+   <tr><td class="w">Why?</td><td>nima uchun? — <i>Why do you learn English?</i> — Because…</td></tr>
+   <tr><td class="w">How?</td><td>qanday qilib? — <i>How do you go to work?</i> — By bus.</td></tr>
+   <tr><td class="w">How many?</td><td>nechta? — <i>How many children do you have?</i> — Two.</td></tr>
+   <tr><td class="w">How old?</td><td>necha yoshda? — <i>How old is your son?</i> — He's 8.</td></tr>
+  </table>
+  <p class="note">Maslahat: avval javobga qarang. Joy? → Where. Odam? → Who. Son? → How many.</p>`},
+ ruleShort:{en:'What = thing · Where = place · When = time/day · What time = clock · Who = person · Why = reason · How = way · How many = number · How old = age',
+  ru:'What = что · Where = где · When = когда · What time = во сколько · Who = кто · Why = почему · How = как · How many = сколько · How old = сколько лет',
+  uz:'What = nima · Where = qayerda · When = qachon · What time = soat nechada · Who = kim · Why = nima uchun · How = qanday qilib · How many = nechta · How old = necha yoshda'},
  n:6,
  pool:[
-  mc('___ do you live? — In a small town.',['Where','What','Who'],'место → Where'),
-  mc('___ do you get up? — At 7 o\'clock.',['What time','Where','Who'],'время на часах → What time'),
-  mc('___ is your name? — Maria.',['What','Who','Where'],'What is your name? — Как вас зовут?'),
-  mc('___ is that man? — My teacher.',['Who','What','Where'],'человек → Who'),
-  mc('___ old are you? — 35.',['How','What','When'],'возраст → How old'),
-  mc('___ do you learn English? — Because I need it for my job.',['Why','How','What'],'because (потому что) → Why'),
-  mc('___ do you go to work? — By bus.',['How','Where','Why'],'способ → How'),
-  mc('___ do you have for breakfast? — Eggs and bread.',['What','Who','How'],'предмет, вещь → What'),
-  mc('___ children do you have? — Two.',['How many','How old','What'],'число → How many'),
-  mc('___ is your birthday? — In May.',['When','Where','Who'],'время → When'),
-  mc('___ does she work? — In a hotel.',['Where','When','Who'],'место → Where'),
-  mc('___ do you live with? — My husband.',['Who','What','Where'],'человек → Who'),
-  mc('___ does the film start? — At 8:30.',['What time','Where','How many'],'время на часах → What time'),
-  mc('___ does he do? — He\'s a driver.',['What','Who','How'],'профессия → What does he do?'),
-  mc('___ do you visit your parents? — On Sundays.',['When','Where','Why'],'день → When'),
-  mc('___ languages do you speak? — Three.',['How many','How old','Who'],'число → How many'),
-  mc('___ does your son go to school? — On foot.',['How','Where','What'],'способ → How'),
-  mc('___ do you like this café? — Because the coffee is good.',['Why','Where','How'],'because (потому что) → Why'),
+  mc('___ do you live? — In a small town.',['Where','What','Who'],'{place} → Where'),
+  mc('___ do you get up? — At 7 o\'clock.',['What time','Where','Who'],'{clock} → What time'),
+  mc('___ is your name? — Maria.',['What','Who','Where'],'What is your name?{name}'),
+  mc('___ is that man? — My teacher.',['Who','What','Where'],'{person} → Who'),
+  mc('___ old are you? — 35.',['How','What','When'],'{age} → How old'),
+  mc('___ do you learn English? — Because I need it for my job.',['Why','How','What'],'{because} → Why'),
+  mc('___ do you go to work? — By bus.',['How','Where','Why'],'{way} → How'),
+  mc('___ do you have for breakfast? — Eggs and bread.',['What','Who','How'],'{thing} → What'),
+  mc('___ children do you have? — Two.',['How many','How old','What'],'{number} → How many'),
+  mc('___ is your birthday? — In May.',['When','Where','Who'],'{time} → When'),
+  mc('___ does she work? — In a hotel.',['Where','When','Who'],'{place} → Where'),
+  mc('___ do you live with? — My husband.',['Who','What','Where'],'{person} → Who'),
+  mc('___ does the film start? — At 8:30.',['What time','Where','How many'],'{clock} → What time'),
+  mc('___ does he do? — He\'s a driver.',['What','Who','How'],'{job} → What does he do?'),
+  mc('___ do you visit your parents? — On Sundays.',['When','Where','Why'],'{day} → When'),
+  mc('___ languages do you speak? — Three.',['How many','How old','Who'],'{number} → How many'),
+  mc('___ does your son go to school? — On foot.',['How','Where','What'],'{way} → How'),
+  mc('___ do you like this café? — Because the coffee is good.',['Why','Where','How'],'{because} → Why'),
  ]
 },
 {
- id:'order', title:'Порядок слов в вопросах', min:3,
- rule:`
+ id:'order', icon:'🧩', pc:'#9b3fd6', pc2:'#e056fd', min:3,
+ title:{en:'Make Wh- questions',ru:'Порядок слов в вопросах',uz:"Savolda so'z tartibi"},
+ rule:{
+ en:`
+  <div class="formula"><span class="w">Question word</span>+<span class="a">do / does</span>+<span class="y">person</span>+<span class="v">verb</span>…?</div>
+  <div class="ex">
+   <div><span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>?</div>
+   <div><span class="w">What</span> <span class="a">does</span> <span class="y">your sister</span> <span class="v">do</span>?</div>
+   <div><span class="w">What time</span> <span class="a">do</span> <span class="y">they</span> <span class="v">have</span> lunch?</div>
+  </div>
+  <p>It is the same as a Do / Does question — just put the question word at the start.</p>
+  <div class="ex"><div>Do you live here? → <span class="w">Where</span> do you live?</div></div>
+  <p class="note">In the exercises, tap the words in the correct order.</p>`,
+ ru:`
   <div class="formula"><span class="w">вопр. слово</span>+<span class="a">do / does</span>+<span class="y">кто</span>+<span class="v">глагол</span>…?</div>
   <div class="ex">
    <div><span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>? <span class="note">— Где вы живёте?</span></div>
@@ -253,6 +498,16 @@ const PARTS=[
   <p>Это тот же вопрос с Do / Does — просто ставим вопросительное слово в начало.</p>
   <div class="ex"><div>Do you live here? → <span class="w">Where</span> do you live?</div></div>
   <p class="note">В упражнениях нажимайте на слова в правильном порядке.</p>`,
+ uz:`
+  <div class="formula"><span class="w">so'roq so'zi</span>+<span class="a">do / does</span>+<span class="y">kim</span>+<span class="v">fe'l</span>…?</div>
+  <div class="ex">
+   <div><span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>? <span class="note">— Qayerda yashaysiz?</span></div>
+   <div><span class="w">What</span> <span class="a">does</span> <span class="y">your sister</span> <span class="v">do</span>? <span class="note">— Opangiz kim bo'lib ishlaydi?</span></div>
+   <div><span class="w">What time</span> <span class="a">do</span> <span class="y">they</span> <span class="v">have</span> lunch? <span class="note">— Ular soat nechada tushlik qilishadi?</span></div>
+  </div>
+  <p>Bu Do / Does bilan bo'lgan o'sha savol — faqat so'roq so'zini boshiga qo'yamiz.</p>
+  <div class="ex"><div>Do you live here? → <span class="w">Where</span> do you live?</div></div>
+  <p class="note">Mashqlarda so'zlarni to'g'ri tartibda bosing.</p>`},
  ruleShort:`<span class="w">Where</span> <span class="a">do</span> <span class="y">you</span> <span class="v">live</span>? · <span class="w">What</span> <span class="a">does</span> <span class="y">she</span> <span class="v">do</span>?`,
  n:4,
  pool:[
@@ -276,24 +531,20 @@ const PARTS=[
 
 /* ---------- no-repeat picking (remembers across rounds) ---------- */
 let used={};
-try{used=JSON.parse(localStorage.getItem('ps-used')||'{}')||{};}catch(e){used={};}
-function saveUsed(){try{localStorage.setItem('ps-used',JSON.stringify(used));}catch(e){}}
+try{used=JSON.parse(store('ps-used')||'{}')||{};}catch(e){used={};}
 function pick(part){
   const all=part.pool.map((_,i)=>i);
   let seen=(used[part.id]||[]).filter(i=>i<part.pool.length);
   let fresh=all.filter(i=>!seen.includes(i));
   let chosen;
   if(fresh.length>=part.n){chosen=shuffle(fresh).slice(0,part.n);used[part.id]=seen.concat(chosen);}
-  else{ // pool used up: take what is left, then fill with older ones
-    chosen=shuffle(fresh).concat(shuffle(seen.slice(0,seen.length-part.n))).slice(0,part.n);
-    used[part.id]=chosen.slice();
-  }
+  else{chosen=shuffle(fresh).concat(shuffle(seen.slice(0,seen.length-part.n))).slice(0,part.n);used[part.id]=chosen.slice();}
   return chosen.map(i=>part.pool[i]);
 }
 
 /* ---------- state ---------- */
 const app=document.getElementById('app');
-let S; // {round, showRules, steps, i, results}
+let S=null;
 
 function newRound(showRules){
   const round=S?S.round+1:1;
@@ -302,49 +553,69 @@ function newRound(showRules){
     if(showRules) steps.push({k:'rule',p:pi});
     pick(p).forEach(item=>steps.push({k:'q',p:pi,item}));
   });
-  saveUsed();
-  S={round,showRules,steps,i:0,results:PARTS.map(()=>({ok:0,n:0,miss:[]}))};
-  render();
+  store('ps-used',JSON.stringify(used));
+  S={round,steps,i:0,results:PARTS.map(()=>({ok:0,n:0,miss:[]}))};
+  render(true);
+}
+
+function setLang(l){
+  L=l;store('ps-lang',l);document.documentElement.lang=l;
+  drawLangs();render(false);
+}
+function drawLangs(){
+  const box=document.getElementById('langs');
+  box.innerHTML=LANGS.map(([c,s])=>`<button data-l="${c}" class="${c===L?'on':''}">${s}</button>`).join('');
+  box.querySelectorAll('button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
+  document.getElementById('foot').innerHTML=t('foot');
+}
+
+function setPart(p){
+  document.documentElement.style.setProperty('--pc',p.pc);
+  document.documentElement.style.setProperty('--pc2',p.pc2);
 }
 
 function progress(){
   const pct=Math.round(S.i/S.steps.length*100);
-  const p=PARTS[S.steps[S.i].p];
-  return `<div class="top"><span>Часть ${S.steps[S.i].p+1} из ${PARTS.length}</span><div class="bar"><i style="width:${pct}%"></i></div><span>${pct}%</span></div>`;
+  return `<div class="top"><span>${t('part')(S.steps[S.i].p+1,PARTS.length)}</span><div class="bar"><i style="width:${pct}%"></i></div><span>${pct}%</span></div>`;
 }
 
-function render(){
-  window.scrollTo(0,0);
+function render(scroll){
+  if(scroll!==false) window.scrollTo(0,0);
   if(!S) return renderStart();
   if(S.i>=S.steps.length) return renderEnd();
   const st=S.steps[S.i];
+  setPart(PARTS[st.p]);
   if(st.k==='rule') return renderRule(st);
   if(st.item.t==='mc') return renderMC(st);
   return renderOrder(st);
 }
 
 function renderStart(){
+  setPart(PARTS[0]);
   app.innerHTML=`
-  <h1>Present Simple и вопросительные слова</h1>
-  <div class="card">
-    <p>Материал для тех, кто пропустил уроки. Примерно <b>15 минут</b>.</p>
-    <p>Здесь <b>5 коротких частей</b>. В каждой части:</p>
-    <p>1. короткое <b>правило</b> с примерами (прочитайте),<br>2. несколько <b>упражнений</b> (нажмите на ответ).</p>
-    <table class="rule">${PARTS.map((p,i)=>`<tr><td>${i+1}.</td><td>${p.title}</td><td class="note">~${p.min} мин</td></tr>`).join('')}</table>
-    <p class="note">В конце можно пройти всё ещё раз с <b>новыми</b> предложениями.</p>
-    <button class="main" id="go">Начать</button>
+  <div class="card hero">
+    <div class="big">📚✨</div>
+    <h1>${t('h1')}</h1>
+    <p class="note">${t('choose')}</p>
+    <div class="pickl">${LANGS.map(([c,,n])=>`<button data-l="${c}" class="${c===L?'on':''}">${n}</button>`).join('')}</div>
+    <p>${t('intro1')}</p>
+    <p>${t('intro2')}</p>
+    <div class="parts">${PARTS.map((p,i)=>`<div class="prow"><span class="ic" style="background:linear-gradient(135deg,${p.pc},${p.pc2})">${p.icon}</span><span class="t">${i+1}. ${loc(p.title)}</span><span class="m">~${p.min} ${t('min')}</span></div>`).join('')}</div>
+    <p class="note">${t('intro3')}</p>
+    <button class="main" id="go">${t('start')} 🚀</button>
   </div>`;
+  app.querySelectorAll('.pickl button').forEach(b=>b.onclick=()=>setLang(b.dataset.l));
   document.getElementById('go').onclick=()=>newRound(true);
 }
 
 function renderRule(st){
   const p=PARTS[st.p];
   app.innerHTML=`${progress()}
-  <div class="card">
-    <span class="tag">Часть ${st.p+1} · Правило</span>
-    <h2>${p.title}</h2>
-    ${p.rule}
-    <button class="main" id="next">Понятно → к упражнениям</button>
+  <div class="card part">
+    <span class="tag">${p.icon} ${t('partTag')(st.p+1)} · ${t('rule')}</span>
+    <h2 style="margin-top:12px">${loc(p.title)}</h2>
+    ${loc(p.rule)}
+    <button class="main" id="next">${t('understood')}</button>
   </div>`;
   document.getElementById('next').onclick=next;
 }
@@ -352,117 +623,134 @@ function renderRule(st){
 function head(st){
   const p=PARTS[st.p];
   const qs=S.steps.filter(s=>s.k==='q'&&s.p===st.p);
-  const n=qs.indexOf(st)+1;
-  return `<span class="tag">Часть ${st.p+1} · ${esc(p.title)} · ${n}/${qs.length}</span>`;
+  return `<span class="tag">${p.icon} ${t('partTag')(st.p+1)} · ${qs.indexOf(st)+1}/${qs.length}</span>`;
 }
 function ruleToggle(st){
-  return `<button class="link" id="rt">Показать правило</button><div class="rulebox" id="rb" hidden>${PARTS[st.p].ruleShort}</div>`;
+  const open=!!st.ruleOpen;
+  return `<button class="link" id="rt">${open?t('hide'):t('show')}</button><div class="rulebox" id="rb" ${open?'':'hidden'}>${loc(PARTS[st.p].ruleShort)}</div>`;
 }
-function wireRuleToggle(){
+function wireRuleToggle(st){
   const b=document.getElementById('rt'),box=document.getElementById('rb');
-  b.onclick=()=>{box.hidden=!box.hidden;b.textContent=box.hidden?'Показать правило':'Скрыть правило';};
+  b.onclick=()=>{st.ruleOpen=box.hidden;box.hidden=!box.hidden;b.textContent=box.hidden?t('show'):t('hide');};
 }
 
 function renderMC(st){
   const it=st.item;
-  const hasBlank=it.q.includes('___');
-  const qHtml=esc(it.q).replace('___','<span class="blank" id="blank">&nbsp;</span>');
+  if(!st.order) st.order=shuffle(it.opts);
+  const q=tr(it.q), hasBlank=q.includes('___');
+  const qHtml=esc(q).replace('___',`<span class="blank${st.choice?' filled':''}" id="blank">${st.choice?esc(it.a):'&nbsp;'}</span>`);
   app.innerHTML=`${progress()}
-  <div class="card">
+  <div class="card part">
     ${head(st)}
     <p class="q">${qHtml}</p>
-    <div class="opts">${shuffle(it.opts).map(o=>`<button data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>
+    <div class="opts">${st.order.map(o=>`<button data-o="${esc(o)}">${esc(o)}</button>`).join('')}</div>
     <div id="fb"></div>
     ${ruleToggle(st)}
   </div>`;
-  wireRuleToggle();
-  app.querySelectorAll('.opts button').forEach(b=>b.onclick=()=>{
-    const choice=b.dataset.o, ok=choice===it.a;
-    app.querySelectorAll('.opts button').forEach(x=>{x.disabled=true;if(x.dataset.o===it.a)x.classList.add('ok');});
-    if(!ok)b.classList.add('bad');
-    if(hasBlank){const bl=document.getElementById('blank');bl.textContent=it.a;bl.classList.add('filled');}
-    record(st,ok,ok?'':hasBlank?it.q.replace('___','['+choice+']')+' → '+it.q.replace('___',it.a):choice+' → '+it.a);
-    feedback(ok,it);
+  wireRuleToggle(st);
+  const btns=[...app.querySelectorAll('.opts button')];
+  function showAnswered(){
+    btns.forEach(x=>{x.disabled=true;if(x.dataset.o===it.a)x.classList.add('ok');if(x.dataset.o===st.choice&&st.choice!==it.a)x.classList.add('bad');});
+    feedback(st.choice===it.a,it);
+  }
+  if(st.choice) return showAnswered();
+  btns.forEach(b=>b.onclick=()=>{
+    st.choice=b.dataset.o;const ok=st.choice===it.a;
+    const bl=document.getElementById('blank');if(bl){bl.textContent=it.a;bl.classList.add('filled');}
+    record(st,ok,ok?'':hasBlank?it.q.replace('___','['+st.choice+']')+' → '+it.q.replace('___',it.a):st.choice+' → '+it.a);
+    showAnswered();
   });
 }
 
 function renderOrder(st){
   const it=st.item;
-  let bank=shuffle(it.words.map((w,i)=>({w,i})));
-  // make sure the start order isn't already correct
-  if(bank.map(x=>x.w).join(' ')===it.words.join(' ')) bank.push(bank.shift());
-  const picked=[];
+  if(!st.bank){
+    st.bank=shuffle(it.words.map((w,i)=>({w,i})));
+    if(st.bank.map(x=>x.w).join(' ')===it.words.join(' ')) st.bank.push(st.bank.shift());
+    st.picked=[];
+  }
   app.innerHTML=`${progress()}
-  <div class="card">
+  <div class="card part">
     ${head(st)}
-    <p class="q">Нажимайте на слова, чтобы составить вопрос.</p>
+    <p class="q">${t('tap')}</p>
     <div class="answer" id="ans"></div>
     <div class="chips" id="bank"></div>
-    <button class="main" id="check" disabled>Проверить</button>
+    <button class="main" id="check" disabled>${t('check')}</button>
     <div id="fb"></div>
     ${ruleToggle(st)}
   </div>`;
-  wireRuleToggle();
+  wireRuleToggle(st);
   const ans=document.getElementById('ans'),bk=document.getElementById('bank'),ck=document.getElementById('check');
-  let locked=false;
   function draw(){
-    ans.innerHTML=picked.length?'':'<span class="ph">Ваш вопрос…</span>';
-    picked.forEach((x,k)=>{const b=el(`<button>${esc(x.w)}</button>`);b.onclick=()=>{if(locked)return;picked.splice(k,1);bank.push(x);draw();};ans.appendChild(b);});
-    if(picked.length) ans.appendChild(el('<span><b>?</b></span>'));
+    ans.innerHTML=st.picked.length?'':`<span class="ph">${t('yourQ')}</span>`;
+    st.picked.forEach((x,k)=>{const b=el(`<button>${esc(x.w)}</button>`);b.onclick=()=>{if(st.done)return;st.picked.splice(k,1);st.bank.push(x);draw();};ans.appendChild(b);});
+    if(st.picked.length) ans.appendChild(el('<span><b>?</b></span>'));
     bk.innerHTML='';
-    bank.forEach((x,k)=>{const b=el(`<button>${esc(x.w)}</button>`);b.onclick=()=>{if(locked)return;bank.splice(k,1);picked.push(x);draw();};bk.appendChild(b);});
-    ck.disabled=bank.length>0||locked;
+    st.bank.forEach((x,k)=>{const b=el(`<button>${esc(x.w)}</button>`);b.onclick=()=>{if(st.done)return;st.bank.splice(k,1);st.picked.push(x);draw();};bk.appendChild(b);});
+    ck.disabled=st.bank.length>0||st.done;
   }
+  function showDone(){ck.hidden=true;ans.classList.add(st.ok?'ok':'bad');feedback(st.ok,it);}
   draw();
+  if(st.done) return showDone();
   ck.onclick=()=>{
-    locked=true;ck.disabled=true;ck.hidden=true;
-    const mine=picked.map(x=>x.w).join(' ')+'?';
-    const ok=mine===it.a;
-    record(st,ok,ok?'':mine+' → '+it.a);
-    feedback(ok,it);
+    st.done=true;
+    const mine=st.picked.map(x=>x.w).join(' ')+'?';
+    st.ok=mine===it.a;
+    record(st,st.ok,st.ok?'':mine+' → '+it.a);
+    draw();showDone();
   };
 }
 
-function record(st,ok,miss){
-  const r=S.results[st.p];r.n++;if(ok)r.ok++;else r.miss.push(miss);
-}
+function record(st,ok,miss){const r=S.results[st.p];r.n++;if(ok)r.ok++;else r.miss.push(miss);}
 
 function feedback(ok,it){
   const fb=document.getElementById('fb');
   const last=S.i===S.steps.length-1;
-  fb.innerHTML=`<div class="fb ${ok?'ok':'bad'}">${ok?'<b>Верно!</b>':'<b>Не совсем.</b> Правильный ответ: <b>'+esc(it.a)+'</b>'}<br><span class="note">${esc(it.tip)}</span></div>
-  <button class="main" id="next">${last?'Мой результат':'Дальше →'}</button>`;
-  const n=document.getElementById('next');n.onclick=next;n.focus();
+  fb.innerHTML=`<div class="fb ${ok?'ok':'bad'}">${ok?`<span class="big">🎉 ${t('correct')}</span>`:`<span class="big">${t('wrong')}</span> ${t('answer')} <b>${esc(it.a)}</b>`}<br><span class="note">${esc(tr(it.tip))}</span></div>
+  <button class="main" id="next">${last?t('result'):t('next')}</button>`;
+  document.getElementById('next').onclick=next;
 }
 
-function next(){S.i++;render();}
+function next(){S.i++;render(true);}
+
+function confetti(card){
+  const box=el('<div class="confetti"></div>');
+  const cols=['#ff6b6b','#ff9f43','#ffd93d','#38d39f','#4d96ff','#9b3fd6'];
+  for(let i=0;i<40;i++){const c=document.createElement('i');c.style.left=Math.random()*100+'%';c.style.background=cols[i%cols.length];c.style.animationDelay=(Math.random()*.6)+'s';box.appendChild(c);}
+  card.appendChild(box);
+}
 
 function renderEnd(){
+  setPart(PARTS[0]);
   const tot=S.results.reduce((a,r)=>a+r.ok,0), n=S.results.reduce((a,r)=>a+r.n,0);
   const pct=Math.round(tot/n*100);
-  const msg=pct>=90?'Отлично! Вы хорошо знаете эту тему.':pct>=70?'Хорошо! Посмотрите на ошибки ниже и пройдите ещё раз с новыми предложениями.':'Хорошее начало. Прочитайте правила ещё раз и пройдите новый раунд — практика помогает.';
+  const msg=pct>=90?t('m90'):pct>=70?t('m70'):t('m0');
   const weak=S.results.map((r,i)=>({r,i})).filter(x=>x.r.ok<x.r.n);
   app.innerHTML=`
-  <h1>Готово! Раунд ${S.round}</h1>
-  <div class="card">
+  <div class="card hero" id="endcard">
+    <div class="big">${pct>=90?'🏆':pct>=70?'⭐':'💪'}</div>
+    <h1>${t('done')(S.round)}</h1>
     <div class="score">${tot} / ${n}</div>
     <p>${msg}</p>
-    <table class="res">${S.results.map((r,i)=>`<tr><td>${i+1}. ${PARTS[i].title}</td><td style="text-align:right"><b>${r.ok}/${r.n}</b> ${r.ok===r.n?'✔':''}</td></tr>`).join('')}</table>
+    <table class="res">${S.results.map((r,i)=>`<tr><td style="text-align:left"><span class="dot" style="background:${PARTS[i].pc}"></span>${i+1}. ${loc(PARTS[i].title)}</td><td style="text-align:right">${r.ok}/${r.n} ${r.ok===r.n?'✔':''}</td></tr>`).join('')}</table>
   </div>
-  ${weak.length?`<div class="card"><h2>Мои ошибки</h2>${weak.map(x=>`<p class="tag">${x.i+1}. ${PARTS[x.i].title}</p>${x.r.miss.map(m=>`<div class="mist">${esc(m)}</div>`).join('')}<p class="note">Правило: ${PARTS[x.i].ruleShort}</p>`).join('')}</div>`:''}
+  ${weak.length?`<div class="card"><h2>${t('mist')}</h2>${weak.map(x=>`<p><span class="tag" style="background:${PARTS[x.i].pc}">${PARTS[x.i].icon} ${loc(PARTS[x.i].title)}</span></p>${x.r.miss.map(m=>`<div class="mist">${esc(m)}</div>`).join('')}<p class="note">${t('ruleL')} ${loc(PARTS[x.i].ruleShort)}</p>`).join('')}</div>`:''}
   <div class="card">
-    <h2>Ещё раз?</h2>
-    <p>В каждом новом раунде — <b>новые предложения</b>.</p>
+    <h2>${t('again')} 🔁</h2>
+    <p>${t('againP')}</p>
     <div class="row">
-      <button class="main" id="again">Только новые упражнения</button>
-      <button class="main" id="againR" style="background:var(--card);color:var(--accent)">Новые упражнения + правила</button>
+      <button class="main" id="again">${t('againA')}</button>
+      <button class="main ghost" id="againR">${t('againB')}</button>
     </div>
   </div>`;
+  if(pct>=70 && !S.celebrated){S.celebrated=true;confetti(document.getElementById('endcard'));}
   document.getElementById('again').onclick=()=>newRound(false);
   document.getElementById('againR').onclick=()=>newRound(true);
 }
 
-render();
+document.documentElement.lang=L;
+drawLangs();
+render(true);
 </script>
 </body>
 </html>
