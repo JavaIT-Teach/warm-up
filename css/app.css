@@ -1112,3 +1112,17 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tmg .tmpat { min-width: 0; max-width: 100%; }
 .tmg .tmpat span { min-width: 0; white-space: nowrap; overflow: hidden; }
 .tmg .tmbottom .gans { margin: 4px 0 24px; }
+
+/* ---------- Home: skill picker and skill menus ---------- */
+.home .skillgrid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-template-rows: repeat(2, minmax(0, 1fr)); gap: 40px 44px; padding: 10px 14px 14px 4px; }
+.tile.skill { justify-content: flex-end; padding: 26px 34px 30px; }
+.tile.skill .sname { font-family: var(--display); font-size: 82px; line-height: .95; letter-spacing: -0.04em; }
+.tile.skill .hook { font-size: 30px; margin-top: 10px; white-space: normal; }
+.tile.skill .scount { margin-top: 14px; align-self: flex-start; padding: 5px 12px; background: var(--ink); color: #fff; font-size: 22px; font-weight: 800; }
+.tile.skill.empty { opacity: .55; }
+.tile .fit.newb { background: #fff; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); max-width: calc(100% - 130px); overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.home .cathead { display: flex; align-items: center; gap: 24px; height: 70px; }
+.home .cathead b { font-family: var(--display); font-size: 56px; letter-spacing: -0.03em; padding: 0 22px; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); line-height: 1.15; }
+.home .cathead span { font-size: 24px; font-weight: 700; color: #5a5a5a; }
+.home .catempty { flex: 1; display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 54px; text-align: center; padding: 0 120px; }
+.calm .tile.skill * { animation: none !important; }

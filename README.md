@@ -12,10 +12,11 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 4. Press **F** for fullscreen.
 
 ## In class
-- Press **1–9** (or click a tile) to open a game. **Esc** goes back home.
-- Games 10–13 are below the first nine: press **↓** (one row at a time; or scroll, or Tab past tile 9), **↑** to go back. Key **0** opens game 10, **Shift + 1–3** open games 11–13.
+- The home screen asks **what to train today**: **1 Vocabulary · 2 Grammar · 3 Speaking · 4 Reading · 5 Writing · 6 New this week** (or click; **G** opens Grammar).
+- Inside a skill: press **1–9** (or click a tile) to open a game. More than nine: press **↓**, then **0** = game 10, **Shift + 1–9** = games 11–19. **Esc** goes back to the skills; **Esc** in a game goes back to its skill.
+- New games arrive every Saturday, built from what your groups learned. They have a **NEW** badge (with the unit they review), go first in their skill, and are also in **New this week** for 14 days.
 - Every card has a small **TRAINS** note: what the game practises (for example "Articles: a / an / the / no article").
-- **Grammar games G1–G10** are in their own section at the bottom of the home screen: press **G**, then **1–9**, or **G** then **0** for G10 (or scroll down and click).
+- The grammar games are in the **Grammar** menu (press **G**).
 - Some games are made for some levels only. At other levels their card is **grey** with a label ("From Pre-Intermediate") and does not open. Change the level and it opens.
 - Every game works with the keyboard alone. Press **?** in any game to see its keys.
 - Nothing needs to be set up. With no class list, the picker uses "Student 1, 2, 3...".

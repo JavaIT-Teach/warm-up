@@ -40,7 +40,15 @@ Its content still needs an entry for all seven levels (an empty list is fine for
 `kit.roomMap(board, boardAttr, inner, cls)` draws the classroom from above (board at the top, desks in a U, the open middle)
 for the moving games; `inner` is what stands in the middle (Four Zones: four coloured zones; Opinion Line: the agree line).
 
-## Grammar games (G1, G2...) and the TRAINS note
+## Skill menus, NEW badge and weekly games
+The home screen is a skill picker (`WU.SKILLS` in `content/games.js`: vocab, grammar, speaking, reading, writing) plus "New this week".
+Every game entry needs `skills: [...]` (one or more skill ids). Optional: `added: 'YYYY-MM-DD'` (NEW badge, listed first and in
+"New this week" for `WU.NEW_DAYS` days), `unit: 'Unit 9 · Feeling Good'` (shown on the NEW badge) and `preview: [words]`
+(card preview for games without a drawn one in `js/views/home.js`).
+Weekly games built from the lesson plans follow every rule in this file: content in `content/<id>.js`, view in `js/games/<id>.js`,
+both added to `index.html`, entry in `content/games.js`, all content editable, a default at every level.
+
+## Grammar games and the TRAINS note
 Every entry in `content/games.js` has `trains`: a short note on its home card saying what the game practises. Add one to every new game.
 `grammar: true` puts a game in the GRAMMAR GAMES section (numbered G1, G2... in list order; key G then the number, G then 0 = G10) instead of the numbered games.
 Grammar games share `js/grammarkit.js` (`WU.gram`): `shell` (screen, header, hints, scoreboard), `who` (picked student line),

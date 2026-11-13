@@ -1,4 +1,5 @@
-/* Warm Up: home screen. Level pills, lesson toggle, optional class selector, nine game tiles with animated previews. */
+/* Warm Up: home screen. Level pills, lesson toggle, optional class selector.
+   First a skill picker (Vocabulary, Grammar, Speaking, Reading, Writing, New this week), then that skill's games as tiles with animated previews. */
 (function () {
   'use strict';
   var WU = window.WU, root = null, offChange = null;
@@ -131,11 +132,27 @@
 
   function rots() { return [-1.2, 0.8, -0.6, 1, -0.9, 0.7, 0.6, -1, 0.9]; }
 
-  function render() {
-    var s = WU.state, games = mainGames(), gram = grammarGames(), first = s.lesson === 'first', cls = WU.activeClass();
-    // The home screen is the teacher's menu: controls, not learning content.
-    var html = '<div class="home" data-ctrl>' +
-      '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
+  // cat = the skill menu that is open (null = the skill picker). Kept while a game is open, so Esc from a game comes back here.
+  var cat = null;
+  function isNew(g) {
+    if (!g.added) return false;
+    var t = Date.parse(g.added); return !isNaN(t) && (Date.now() - t) < (WU.NEW_DAYS || 14) * 864e5;
+  }
+  function skillOf(id) { return (WU.SKILLS || []).filter(function (k) { return k.id === id; })[0]; }
+  // The games in a skill menu: new ones first (newest first), then the rest in list order. 'new' = every new game.
+  function catGames(c) {
+    var all = WU.content.games, list = c === 'new' ? all.filter(isNew) : all.filter(function (g) { return (g.skills || []).indexOf(c) >= 0; });
+    var fresh = list.filter(isNew).sort(function (x, y) { return Date.parse(y.added) - Date.parse(x.added); });
+    return fresh.concat(list.filter(function (g) { return !isNew(g); }));
+  }
+  // The skill picker tiles: the five skills, then "New this week".
+  function skillTiles() {
+    return (WU.SKILLS || []).map(function (k) { return { id: k.id, name: k.name, hook: k.hook, color: k.color }; })
+      .concat([{ id: 'new', name: 'New this week', hook: 'Every game added in the last ' + (WU.NEW_DAYS || 14) + ' days', color: '#ff5a1f' }]);
+  }
+
+  function topBar(cls, s) {
+    return '<div class="home-top"><div class="logo"><span>WARM UP!</span></div><div style="flex:1"></div>' +
       '<div class="clchip" data-h="class" title="Change class (C)"><span class="t">CLASS</span><span class="n">' +
       WU.esc(cls ? cls.name : WU.state.students + ' students') + '</span></div>' +
       '<div class="seg">' + [['first', 'First lesson'], ['regular', 'Regular lesson']].map(function (l) {
@@ -149,34 +166,59 @@
       '<div class="ibtn" data-act="help" title="Keyboard (?)">' + WU.icons.help + '</div></div></div>' +
       '<div class="levels">' + WU.LEVELS.map(function (l, i) {
         return '<div class="pill' + (i === s.level ? ' on' : '') + '" data-level="' + i + '"><b>' + l.name + '</b><i>' + l.code + '</i></div>';
-      }).join('') + '</div>' +
-      '<div class="grid">' + games.slice(0, 9).map(function (g, i) { return tile(g, i); }).join('') + '</div></div>';
-    function tile(g, i, gnum) {
-      var dim = first && !g.first, off = !WU.gameOk(g.id);
+      }).join('') + '</div>';
+  }
+
+  function render() {
+    var s = WU.state, first = s.lesson === 'first', cls = WU.activeClass();
+    if (cat && cat !== 'new' && !skillOf(cat)) cat = null;
+    if (cat === 'new' && !catGames('new').length) cat = null;
+    var games = cat ? catGames(cat) : [];
+    // The home screen is the teacher's menu: controls, not learning content.
+    var html = '<div class="home" data-ctrl>' + topBar(cls, s);
+    if (!cat) {
+      html += '<div class="skillgrid">' + skillTiles().map(function (k, i) {
+        var list = catGames(k.id), ok = list.filter(function (g) { return WU.gameOk(g.id); }).length, fresh = list.filter(isNew).length;
+        return '<div class="tile skill' + (list.length ? '' : ' empty') + '" tabindex="0" data-skill="' + k.id + '" style="background:' + k.color + ';transform:rotate(' + rots()[i] + 'deg)">' +
+          (fresh && k.id !== 'new' ? '<div class="fit newb">' + fresh + ' NEW</div>' : '') +
+          '<div class="num" style="color:' + k.color + '">' + (i + 1) + '</div>' +
+          '<div class="sname">' + WU.esc(k.name) + '</div>' +
+          '<div class="hook">' + WU.esc(k.hook) + '</div>' +
+          '<div class="scount">' + (list.length ? ok + ' game' + (ok === 1 ? '' : 's') + ' at this level' + (ok < list.length ? ' · ' + (list.length - ok) + ' for other levels' : '') : 'New games arrive every Saturday') + '</div>' +
+          '</div>';
+      }).join('') + '</div></div>';
+    } else {
+      var sk = cat === 'new' ? skillTiles()[skillTiles().length - 1] : skillOf(cat);
+      html += '<div class="cathead"><div class="ibtn back" data-h="back" title="All skills (Esc)"><svg width="36" height="36" viewBox="0 0 36 36"><path d="M22 6L10 18L22 30" fill="none" stroke="currentColor" stroke-width="5"></path></svg></div>' +
+        '<b style="background:' + sk.color + '">' + WU.esc(sk.name) + '</b><span>' + games.length + ' game' + (games.length === 1 ? '' : 's') + ' · Esc = all skills</span></div>' +
+        (games.length ? '<div class="grid">' + games.slice(0, 9).map(function (g, i) { return tile(g, i); }).join('') + '</div>' :
+          '<div class="catempty">No ' + WU.esc(sk.name.toLowerCase()) + ' games yet. New games arrive every Saturday.</div>') + '</div>';
+    }
+    function tile(g, i) {
+      var dim = first && !g.first, off = !WU.gameOk(g.id), nw = isNew(g);
+      var sticker = nw ? 'NEW' + (g.unit ? ' · ' + g.unit : '') : (first && g.first) || g.sticker ? (g.sticker || 'ICEBREAKER') : '';
       return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + g.color + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
         (off ? '<div class="lvlock">' + WU.esc(WU.gameLevelText(g.id)) + '</div>' : '') +
-        ((first && g.first) || g.sticker ? '<div class="fit">' + WU.esc(g.sticker || 'ICEBREAKER') + '</div>' : '') +
-        '<div class="num' + (gnum ? ' g' : '') + '" style="color:' + g.color + '">' + (gnum ? 'G' + gnum : i + 1) + '</div>' +
-        '<div class="pv"><div class="pv-in">' + preview(g.id, g.color) + '</div></div>' +
+        (sticker ? '<div class="fit' + (nw ? ' newb' : '') + '">' + WU.esc(sticker) + '</div>' : '') +
+        '<div class="num" style="color:' + g.color + '">' + (i + 1) + '</div>' +
+        '<div class="pv"><div class="pv-in">' + (preview(g.id, g.color) || wordPreview(g)) + '</div></div>' +
         '<div class="name">' + WU.esc(g.name) + '</div>' +
         '<div class="hook">' + WU.esc(g.hook) + '</div>' +
         (g.trains ? '<div class="trains"><b>TRAINS</b><span>' + WU.esc(g.trains) + '</span></div>' : '') +
         '</div>';
     }
     root.innerHTML = html;
-    // Game 10 and later: one more row below the nine, built only when the teacher goes down to it
-    // (so at rest the home screen is exactly what it was before).
+    // Game 10 and later: one more row below the nine, built only when the teacher goes down to it.
     moreRow = function () {
       var home = root.querySelector('.home'), g2 = root.querySelector('.grid2');
-      if (g2 || (games.length <= 9 && !gram.length)) return g2;
-      home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') +
-        (gram.length ? '<div class="gsec"><b>GRAMMAR GAMES</b><span>One grammar point per game. Key: G, then the number (0 = G10).</span></div>' + gram.map(function (g, j) { return tile(g, 9 + j, j + 1); }).join('') : '') + '</div>');
+      if (g2 || games.length <= 9) return g2;
+      home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') + '</div>');
       g2 = root.querySelector('.grid2');
       var t1 = root.querySelector('.grid .tile'); if (t1) g2.querySelectorAll('.tile').forEach(function (x) { x.style.height = t1.offsetHeight + 'px'; });
       wireTiles(g2); return g2;
     };
     // Jump buttons in the side margins (outside .home, so they stay put while the menu slides).
-    if (games.length > 9 || gram.length) {
+    if (games.length > 9) {
       var arr = function (d, two) {
         var a = d < 0 ? 'M6 22L18 10L30 22' : 'M6 12L18 24L30 12', o = two ? (d < 0 ? 8 : -8) : 0;
         return '<svg width="36" height="36" viewBox="0 0 36 36"><path d="' + a + '" fill="none" stroke="currentColor" stroke-width="5" transform="translate(0 ' + (two ? -o / 2 : 0) + ')"></path>' +
@@ -187,7 +229,6 @@
         '<div class="ibtn" data-j="up" title="Up one row (Up)">' + arr(-1) + '</div>' +
         '<div class="ibtn" data-j="down" title="Down one row (Down)">' + arr(1) + '</div>' +
         '<div class="ibtn" data-j="end" title="Bottom of the menu (End)">' + arr(1, true) + '</div></div>';
-      // One column in each margin, so the teacher can reach it from either side of the board.
       root.insertAdjacentHTML('beforeend', jumps.replace('hjump', 'hjump left') + jumps.replace('hjump', 'hjump right'));
       root.querySelectorAll('[data-j]').forEach(function (b) {
         b.onclick = function () { var j = b.getAttribute('data-j'); slideTo(j === 'top' ? 0 : j === 'end' ? 1e5 : slid + (j === 'up' ? -1 : 1) * rowStep()); };
@@ -199,7 +240,24 @@
     root.querySelectorAll('[data-lesson]').forEach(function (b) { b.onclick = function () { WU.setState({ lesson: b.getAttribute('data-lesson') }); render(); }; });
     root.querySelector('[data-h="settings"]').onclick = function () { WU.openSettings(); };
     root.querySelector('[data-h="class"]').onclick = cycleClass;
+    var bk = root.querySelector('[data-h="back"]'); if (bk) bk.onclick = function () { openCat(null); };
+    root.querySelectorAll('[data-skill]').forEach(function (t) {
+      t.onclick = function () { openCat(t.getAttribute('data-skill')); };
+      t.onkeydown = function (e) { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openCat(t.getAttribute('data-skill')); } };
+    });
     wireTiles(root);
+  }
+  function openCat(c) {
+    if (c === 'new' && !catGames('new').length) { WU.toast('No new games in the last ' + (WU.NEW_DAYS || 14) + ' days. New games arrive every Saturday.'); return; }
+    cat = c; render();
+    var t = root && root.querySelector(c ? '.grid .tile' : '.skillgrid .tile'); if (t && document.activeElement && document.activeElement.closest && document.activeElement.closest('.tile')) t.focus();
+  }
+  // Card preview for games without a drawn one: their preview words (or name) as sliding chips.
+  function wordPreview(g) {
+    var K = '#0d0d0d', ws = (g.preview && g.preview.length ? g.preview : String(g.name).split(' ')).slice(0, 6);
+    return '<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-right:30px">' + ws.map(function (w, i) {
+      return '<div style="padding:6px 16px;background:' + (i % 2 ? '#fff' : K) + ';color:' + (i % 2 ? K : g.color) + ';border:4px solid ' + K + ';font-family:var(--display);font-size:38px;line-height:1.05;animation:wu-pulse 2.4s ease-in-out ' + (i * 0.3) + 's infinite">' + WU.esc(w) + '</div>';
+    }).join('') + '</div>';
   }
   function wireTiles(el) {
     el.querySelectorAll('[data-game]').forEach(function (t) {
@@ -207,7 +265,7 @@
       t.onkeydown = function (e) {
         if (e.key === 'Enter') { e.preventDefault(); open(t.getAttribute('data-game')); }
         // Tab past the last of the nine: bring up the row below and go on into it.
-        else if (e.key === 'Tab' && !e.shiftKey && t.getAttribute('data-game') === mainGames()[8].id && WU.content.games.length > 9) {
+        else if (e.key === 'Tab' && !e.shiftKey && cat && catGames(cat).length > 9 && t.getAttribute('data-game') === catGames(cat)[8].id) {
           e.preventDefault(); moreRow(); var n = root.querySelector('.grid2 .tile'); if (n) n.focus();
         }
       };
@@ -243,10 +301,6 @@
     });
   }
 
-  // The numbered games (1-9, 0, Shift + 1-9) and the grammar games (G1, G2...: key G then the number).
-  function mainGames() { return WU.content.games.filter(function (g) { return !g.grammar; }); }
-  function grammarGames() { return WU.content.games.filter(function (g) { return g.grammar; }); }
-  var gWait = 0;
 
   function setLevel(i) {
     if (i < 0 || i >= WU.LEVELS.length) return;
@@ -270,7 +324,8 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['G then 1 - 9, 0', 'open grammar game G1, G2... (0 = G10)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
+      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Esc / Backspace', 'back to all skills'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
     },
     mount: function (el) {
       root = el; render();
@@ -278,20 +333,19 @@
     },
     unmount: function () { if (offChange) offChange(); root = null; },
     onKey: function (e) {
-      var k = e.key, main = mainGames();
-      // G then 1-9: grammar game G1, G2...
-      if (gWait && Date.now() - gWait < 3000 && /^Digit[0-9]$/.test(e.code || '')) {
-        gWait = 0; var gn = +e.code.slice(5), gg = grammarGames()[(gn || 10) - 1]; if (gg) open(gg.id); return true;
+      var k = e.key;
+      if (!cat) {
+        // Skill picker: 1-6 open a skill menu, G = Grammar.
+        if (/^[1-9]$/.test(k)) { var sk = skillTiles()[+k - 1]; if (sk) openCat(sk.id); return true; }
+        if (k === 'g' || k === 'G') { openCat('grammar'); return true; }
+      } else {
+        var list = catGames(cat);
+        if (k === 'Escape' || k === 'Backspace') { openCat(null); return true; }
+        if (/^[1-9]$/.test(k)) { var g = list[+k - 1]; if (g) open(g.id); return true; }
+        if (k === '0') { var g10 = list[9]; if (g10) open(g10.id); return true; }
+        // Shift + 1-9: games 11-19 (below the nine).
+        if (e.shiftKey && /^Digit[1-9]$/.test(e.code || '')) { var gs = list[9 + +e.code.slice(5)]; if (gs) open(gs.id); return true; }
       }
-      gWait = 0;
-      if (k === 'g' || k === 'G') {
-        gWait = Date.now(); slideTo(1e5);
-        WU.toast('Grammar game: press 1-' + Math.min(9, grammarGames().length) + (grammarGames().length >= 10 ? ' (0 = G10)' : '')); return true;
-      }
-      if (/^[1-9]$/.test(k)) { var g = main[+k - 1]; if (g) open(g.id); return true; }
-      if (k === '0') { var g10 = main[9]; if (g10) open(g10.id); return true; }
-      // Shift + 1-9: games 11-19 (below the nine).
-      if (e.shiftKey && /^Digit[1-9]$/.test(e.code || '')) { var gs = main[9 + +e.code.slice(5)]; if (gs) open(gs.id); return true; }
       if (k === 'ArrowDown' || k === 'PageDown') { slideTo(slid + rowStep()); return true; }
       if (k === 'ArrowUp' || k === 'PageUp') { slideTo(slid - rowStep()); return true; }
       if (k === 'Home') { slideTo(0); return true; }
