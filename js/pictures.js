@@ -174,7 +174,7 @@
     ['sweets', 'sweets', 'food', 'g P 28,50 10,36 10,64|g P 72,50 90,36 90,64|e 50 50 24 18 P|p - M40 36 Q34 50 40 64 M52 33 Q46 50 52 67 M63 36 Q57 50 63 64 s=W w=4'],
 
     /* drinks */
-    ['water', 'water', 'drink cold', 'p W M24 10 L76 10 L70 92 L30 92 Z|p U* M27 34 L73 34 L70.5 90 L29.5 90 Z|p - M24 10 L76 10 L70 92 L30 92 Z|c 42 60 3 W*|c 56 72 2.5 W*|c 48 80 2 W*'],
+    ['water', 'water', 'drink cold scienceday', 'p W M24 10 L76 10 L70 92 L30 92 Z|p U* M27 34 L73 34 L70.5 90 L29.5 90 Z|p - M24 10 L76 10 L70 92 L30 92 Z|c 42 60 3 W*|c 56 72 2.5 W*|c 48 80 2 W*'],
     ['milk', 'milk', 'drink breakfast', 'p W M28 94 L28 32 L40 12 L60 12 L72 32 L72 94 Z|l 28 32 72 32|r 36 44 28 34 U 3|p W* M42 64 Q50 50 58 64 Q58 70 50 70 Q42 70 42 64 Z'],
     ['juice', 'juice', 'drink breakfast', 'p - M60 26 L64 6 L78 6 w=4|r 22 26 52 68 X 4|c 48 60 14 W|c 48 60 9 X*|e 58 46 6 3 G 20'],
     ['tea', 'tea', 'drink hot breakfast', 'p - M40 30 Q34 20 40 10 M56 30 Q50 20 56 10 s=A w=4|e 46 88 38 6 W|p - M72 48 Q90 48 86 62 Q82 72 70 70 w=5|p W M18 40 L74 40 Q74 82 46 84 Q18 82 18 40 Z|p - M40 40 L36 62 w=2|r 30 60 12 12 Y 1'],
@@ -214,7 +214,7 @@
     ['singer', 'singer', 'job person music', person({ style: 'long', hair: 'V', body: 'P', top: 'l 70 92 76 62 w=5|c 78 56 8 A' })],
 
     /* body */
-    ['eye', 'eye', 'body', 'p W M8 50 Q50 12 92 50 Q50 88 8 50 Z|c 50 50 16 B|c 50 50 8 K*|c 55 45 3 W*|l 30 27 25 18|l 50 21 50 10|l 70 27 75 18'],
+    ['eye', 'eye', 'body scienceday', 'p W M8 50 Q50 12 92 50 Q50 88 8 50 Z|c 50 50 16 B|c 50 50 8 K*|c 55 45 3 W*|l 30 27 25 18|l 50 21 50 10|l 70 27 75 18'],
     ['ear', 'ear', 'body', 'p S M40 14 Q76 8 78 42 Q78 64 60 72 Q52 78 54 88 Q44 96 36 86 Q28 70 34 56 Q22 30 40 14 Z|p - M48 28 Q64 26 64 44 Q62 54 52 56 w=3'],
     ['nose', 'nose', 'body', 'p S M44 12 L40 58 Q24 64 28 78 Q32 88 42 83 Q50 92 58 83 Q68 88 72 78 Q76 64 60 58 L56 12 Z|e 42 77 4.5 3 M*|e 58 77 4.5 3 M*'],
     ['mouth', 'mouth', 'body', 'p R M6 50 Q30 22 50 34 Q70 22 94 50 Q70 88 50 86 Q30 88 6 50 Z|p W M18 50 Q50 45 82 50 Q70 64 50 64 Q30 64 18 50 Z|l 22 50 78 50 w=3'],
@@ -258,15 +258,15 @@
     ['c-grey', 'grey', 'colour', splash('A')],
 
     /* weather and sky */
-    ['sun', 'sun', 'weather sky hot yellow beach', 'p - M50 4 L50 18 M50 82 L50 96 M4 50 L18 50 M82 50 L96 50 M17 17 L27 27 M73 73 L83 83 M17 83 L27 73 M73 27 L83 17 s=X w=7|c 50 50 24 Y'],
+    ['sun', 'sun', 'weather sky hot yellow beach scienceday', 'p - M50 4 L50 18 M50 82 L50 96 M4 50 L18 50 M82 50 L96 50 M17 17 L27 27 M73 73 L83 83 M17 83 L27 73 M73 27 L83 17 s=X w=7|c 50 50 24 Y'],
     ['cloud', 'cloud', 'weather sky', 'p W ' + CLOUD],
     ['rain', 'rain', 'weather', 'p A M22 60 Q6 60 8 44 Q10 30 26 32 Q28 10 50 12 Q66 2 76 20 Q94 20 92 40 Q92 60 74 60 Z|p U M28 70 Q22 82 28 88 Q34 82 28 70 Z|p U M50 72 Q44 84 50 90 Q56 84 50 72 Z|p U M72 70 Q66 82 72 88 Q78 82 72 70 Z'],
     ['snow', 'snow', 'weather cold newyear', 'p - M50 8 L50 92 M14 29 L86 71 M14 71 L86 29 M40 12 L50 22 L60 12 M40 88 L50 78 L60 88 s=U w=7|c 50 50 7 W'],
     ['wind', 'wind', 'weather', 'p - M8 34 L60 34 Q76 34 76 22 Q76 10 64 12 M8 52 L78 52 Q94 52 92 66 Q90 80 76 76 M8 70 L46 70 s=B w=7'],
     ['storm', 'storm', 'weather', 'p Z M22 60 Q6 60 8 44 Q10 30 26 32 Q28 10 50 12 Q66 2 76 20 Q94 20 92 40 Q92 60 74 60 Z|g Y 52,46 36,72 48,72 40,96 68,62 56,62 64,46'],
-    ['rainbow', 'rainbow', 'weather sky', 'p - M8 82 A42 42 0 0 1 92 82 s=R w=9|p - M17 82 A33 33 0 0 1 83 82 s=X w=9|p - M26 82 A24 24 0 0 1 74 82 s=Y w=9|p - M35 82 A15 15 0 0 1 65 82 s=B w=9|e 14 84 12 8 W|e 86 84 12 8 W'],
-    ['moon', 'moon', 'sky', 'p Y M62 8 Q18 14 18 50 Q18 86 62 92 Q34 76 34 50 Q34 24 62 8 Z|c 28 44 3 #e6cf00*|c 26 62 4 #e6cf00*'],
-    ['star', 'star', 'sky yellow newyear', 'g Y ' + star(50, 53, 44, 19)],
+    ['rainbow', 'rainbow', 'weather sky scienceday', 'p - M8 82 A42 42 0 0 1 92 82 s=R w=9|p - M17 82 A33 33 0 0 1 83 82 s=X w=9|p - M26 82 A24 24 0 0 1 74 82 s=Y w=9|p - M35 82 A15 15 0 0 1 65 82 s=B w=9|e 14 84 12 8 W|e 86 84 12 8 W'],
+    ['moon', 'moon', 'sky scienceday', 'p Y M62 8 Q18 14 18 50 Q18 86 62 92 Q34 76 34 50 Q34 24 62 8 Z|c 28 44 3 #e6cf00*|c 26 62 4 #e6cf00*'],
+    ['star', 'star', 'sky yellow newyear scienceday', 'g Y ' + star(50, 53, 44, 19)],
     ['snowman', 'snowman', 'cold newyear', 'c 50 70 24 W|c 50 36 16 W|r 32 20 36 5 K 2|r 38 4 24 18 K 2|g X 50,36 66,40 50,42|c 44 32 2.5 K*|c 56 32 2.5 K*|c 50 62 3 K*|c 50 74 3 K*|l 28 58 10 48 s=N|l 72 58 90 48 s=N'],
 
     /* transport */
@@ -274,13 +274,13 @@
     ['bus', 'bus', 'transport wheels big yellow', 'r 6 18 88 56 Y 8|r 12 26 16 18 U 2|r 32 26 16 18 U 2|r 52 26 16 18 U 2|r 72 26 16 30 U 2|r 6 52 66 6 O*|c 26 76 9 K|c 72 76 9 K|c 26 76 3.5 A*|c 72 76 3.5 A*'],
     ['bike', 'bike', 'transport wheels sport', 'c 22 66 17 - w=5|c 78 66 17 - w=5|p - M22 66 L40 40 L66 40 L78 66 M40 40 L50 66 L66 40 M50 66 L22 66 s=B w=5|p - M66 40 L62 24 L72 22 w=5|p - M40 40 L38 30 M32 30 L46 30 w=5'],
     ['train', 'train', 'transport big', 'r 16 18 12 22 K 2|r 6 38 52 36 G 6|r 54 18 38 56 R 4|r 62 26 22 16 U 2|r 2 62 8 12 K 2|c 20 80 9 K|c 42 80 9 K|c 74 80 11 K'],
-    ['plane', 'plane', 'transport sky big', 'g B 44,48 64,48 50,18 42,18|g B 10,46 24,46 14,26 6,26|p W M4 52 Q8 42 24 42 L82 42 Q96 42 96 52 Q96 62 82 62 L24 62 Q8 62 4 52 Z|g B 42,56 62,56 46,88 36,88|c 34 50 3 U*|c 46 50 3 U*|c 58 50 3 U*|c 70 50 3 U*|p U M84 44 Q92 46 94 50 L84 50 Z'],
+    ['plane', 'plane', 'transport sky big scienceday', 'g B 44,48 64,48 50,18 42,18|g B 10,46 24,46 14,26 6,26|p W M4 52 Q8 42 24 42 L82 42 Q96 42 96 52 Q96 62 82 62 L24 62 Q8 62 4 52 Z|g B 42,56 62,56 46,88 36,88|c 34 50 3 U*|c 46 50 3 U*|c 58 50 3 U*|c 70 50 3 U*|p U M84 44 Q92 46 94 50 L84 50 Z'],
     ['boat', 'boat', 'transport sea beach', 'l 50 8 50 62 w=4|g W 53,10 53,56 86,56|g Y 47,20 47,56 20,56|p N M6 62 L94 62 L80 84 L20 84 Z|p - M2 92 Q12 86 22 92 Q32 98 42 92 Q52 86 62 92 Q72 98 82 92 Q92 86 98 92 s=B w=4'],
     ['taxi', 'taxi', 'transport wheels yellow', 'r 38 12 24 10 K 2|p Y M6 66 L6 48 Q8 42 18 42 L28 26 Q30 22 36 22 L64 22 Q70 22 74 28 L82 42 Q94 42 94 54 L94 66 Z|p U M32 42 L37 28 L49 28 L49 42 Z|p U M55 42 L55 28 L65 28 L72 42 Z|r 8 50 84 6 K*|c 26 68 10 K|c 26 68 4 A*|c 74 68 10 K|c 74 68 4 A*'],
     ['truck', 'truck', 'transport wheels big', 'r 4 16 58 58 O 3|p B M60 32 L80 32 L94 52 L94 74 L60 74 Z|p U M66 38 L78 38 L88 52 L66 52 Z|c 22 76 10 K|c 22 76 4 A*|c 76 76 10 K|c 76 76 4 A*'],
     ['motorbike', 'motorbike', 'transport wheels', 'c 20 70 15 K|c 80 70 15 K|c 20 70 6 A*|c 80 70 6 A*|l 74 34 80 70 w=5|p R M22 64 L34 50 L66 50 L74 62 Z|p R M34 52 Q36 40 52 40 L66 40 Q72 40 72 48 L66 52 Z|p K M36 42 Q44 32 58 38 L58 42 Z|p - M70 40 L76 28 L86 26 w=5'],
     ['helicopter', 'helicopter', 'transport sky', 'l 8 22 92 22 w=5|l 46 22 46 36 w=5|r 0 48 24 8 R 3|c 6 46 7 - w=3|e 48 56 30 20 R|p U M48 42 Q70 40 74 56 L48 56 Z|l 26 86 72 86 w=5|l 34 74 34 86|l 62 74 62 86'],
-    ['rocket', 'rocket', 'transport sky', 'g R 30,52 12,78 30,72|g R 70,52 88,78 70,72|p O M38 72 L62 72 L50 97 Z|p Y* M44 72 L56 72 L50 88 Z|p W M50 4 Q72 24 70 72 L30 72 Q28 24 50 4 Z|p R M50 4 Q61 12 65 24 L35 24 Q39 12 50 4 Z|c 50 42 9 U'],
+    ['rocket', 'rocket', 'transport sky scienceday', 'g R 30,52 12,78 30,72|g R 70,52 88,78 70,72|p O M38 72 L62 72 L50 97 Z|p Y* M44 72 L56 72 L50 88 Z|p W M50 4 Q72 24 70 72 L30 72 Q28 24 50 4 Z|p R M50 4 Q61 12 65 24 L35 24 Q39 12 50 4 Z|c 50 42 9 U'],
     ['van', 'van', 'transport wheels', 'p W M6 72 L6 30 Q6 20 16 20 L66 20 Q74 20 80 30 L92 46 Q94 50 94 56 L94 72 Z|p U M68 28 L76 30 L86 46 L68 46 Z|r 14 28 20 16 U 2|r 40 28 20 16 U 2|r 6 52 88 6 B*|c 26 74 9 K|c 74 74 9 K|c 26 74 3.5 A*|c 74 74 3.5 A*'],
 
     /* home */
@@ -291,7 +291,7 @@
     ['chair', 'chair', 'home school', 'r 24 8 52 42 N 4|l 38 16 38 42 w=3|l 50 16 50 42 w=3|l 62 16 62 42 w=3|r 24 60 7 34 N 2|r 69 60 7 34 N 2|r 18 50 64 12 N 3'],
     ['table', 'table', 'home kitchen', 'r 14 44 9 48 N 2|r 77 44 9 48 N 2|r 6 32 88 14 N 3|e 50 24 12 8 W|p - M44 24 L44 10 M56 24 L56 12 s=G w=4|c 44 10 5 P|c 56 12 5 Y'],
     ['sofa', 'sofa', 'home', 'r 18 84 6 10 K|r 76 84 6 10 K|r 14 22 72 36 P 10|r 20 54 60 24 P 4|r 6 40 18 46 P 8|r 76 40 18 46 P 8'],
-    ['lamp', 'lamp', 'home bedroom', 'r 46 48 8 36 A 2|e 50 88 22 6 K|g Y 30,12 70,12 82,50 18,50'],
+    ['lamp', 'lamp', 'home bedroom scienceday', 'r 46 48 8 36 A 2|e 50 88 22 6 K|g Y 30,12 70,12 82,50 18,50'],
     ['TV', 'TV', 'home', 'l 36 88 50 74 w=5|l 64 88 50 74 w=5|l 26 90 74 90 w=5|r 8 16 84 58 K 6|r 14 22 72 46 U 2|p W* M20 60 L36 38 L48 54 L58 44 L80 64 L80 66 L20 66 Z'],
     ['fridge', 'fridge', 'home kitchen cold', 'r 22 4 56 92 W 6|l 22 36 78 36|r 30 14 5 14 A 2|r 30 46 5 20 A 2|r 30 92 8 6 K*|r 62 92 8 6 K*'],
     ['bath', 'bath', 'home', 'c 40 36 7 W|c 52 30 9 W|c 66 36 7 W|p - M18 42 L18 20 Q18 12 28 12 L34 12 w=5|p W M6 42 L94 42 L88 76 Q86 84 76 84 L24 84 Q14 84 12 76 Z|l 22 84 18 94 w=5|l 78 84 82 94 w=5'],
@@ -312,7 +312,7 @@
     ['pencil', 'pencil', 'school bag', 'g F 22,62 38,78 8,92|g K 12,80 20,88 8,92|g Y 22,62 38,78 80,36 64,20|g A 64,20 80,36 86,30 70,14|g P 70,14 86,30 94,22 78,6'],
     ['ruler', 'ruler', 'school bag', 'r 6 34 88 32 Y 2|p - M16 34 L16 50 M26 34 L26 44 M36 34 L36 50 M46 34 L46 44 M56 34 L56 50 M66 34 L66 44 M76 34 L76 50 M86 34 L86 44 w=3'],
     ['bag', 'bag', 'school', 'p - M34 22 Q34 4 50 4 Q66 4 66 22 w=6|r 16 22 68 72 R 14|r 28 58 44 26 R 6|p R M16 40 Q16 22 34 22 L66 22 Q84 22 84 40 L84 46 L16 46 Z|r 46 42 8 10 Y 2'],
-    ['computer', 'computer', 'school home', 'r 16 12 68 50 K 4|r 22 18 56 38 U 2|p A M6 68 L94 68 L90 82 L10 82 Z|l 16 62 84 62 w=4|r 40 72 20 4 Z*'],
+    ['computer', 'computer', 'school home scienceday', 'r 16 12 68 50 K 4|r 22 18 56 38 U 2|p A M6 68 L94 68 L90 82 L10 82 Z|l 16 62 84 62 w=4|r 40 72 20 4 Z*'],
     ['scissors', 'scissors', 'school', 'p E M40 56 L90 12 L94 18 L50 64 Z|p E M40 44 L90 88 L94 82 L50 36 Z|c 24 34 13 R|c 24 66 13 R|c 24 34 6 W*|c 24 66 6 W*|c 46 50 3 K*'],
     ['eraser', 'eraser', 'school bag small', 'r 16 32 68 36 P 6|r 16 32 26 36 B 6'],
     ['desk', 'desk', 'school', 'r 12 46 10 46 N|r 78 46 10 46 N|r 56 46 22 26 #d9a760 2|r 64 56 6 4 K*|r 6 36 88 12 N 3|r 20 24 30 12 B 2'],
@@ -425,15 +425,17 @@
     }],
     ['yo-yo', 'yo-yo', 'toy', 'l 50 58 50 2 w=3|c 50 60 32 R|c 50 60 12 Y|c 50 60 32 -'],
     ['teddy bear', 'teddy bear', 'toy bedroom', 'c 28 18 10 N|c 72 18 10 N|c 16 66 10 N|c 84 66 10 N|c 32 90 10 N|c 68 90 10 N|e 50 70 26 26 N|e 50 72 14 14 F|c 50 34 22 N|e 50 42 9 7 F|e 50 39 4 3 K*|c 42 30 3 K*|c 58 30 3 K*'],
-    ['robot', 'robot', 'toy', 'l 50 14 50 5 w=4|c 50 5 4 R|r 6 58 12 26 A 4|r 82 58 12 26 A 4|r 26 14 48 36 A 6|c 40 32 6 Y|c 60 32 6 Y|r 38 41 24 5 K*|r 20 54 60 40 B 6|c 50 72 7 R'],
+    ['robot', 'robot', 'toy scienceday', 'l 50 14 50 5 w=4|c 50 5 4 R|r 6 58 12 26 A 4|r 82 58 12 26 A 4|r 26 14 48 36 A 6|c 40 32 6 Y|c 60 32 6 Y|r 38 41 24 5 K*|r 20 54 60 40 B 6|c 50 72 7 R'],
     ['microphone', 'microphone', 'music', 'r 42 44 16 50 K 6|c 50 28 20 A|p - M36 20 L64 20 M32 30 L68 30 M36 40 L64 40 s=Z w=2.5'],
     ['heart', 'heart', 'red', 'p R M50 88 Q10 62 10 34 Q10 12 30 12 Q44 12 50 28 Q56 12 70 12 Q90 12 90 34 Q90 62 50 88 Z|e 28 32 5 8 W* 30'],
     ['tree', 'tree', 'park green big', 'r 42 56 16 38 N 2|c 30 50 17 G|c 70 50 17 G|c 50 34 26 G|c 50 54 18 G*'],
+    ['planet', 'planet', 'scienceday sky space', 'e 50 52 46 13 Y -15|c 50 48 26 O|c 42 40 5 X*|c 58 56 4 X*|p - M10 62 Q50 76 90 40 w=6'],
+    ['microscope', 'microscope', 'scienceday school', 'r 18 84 64 10 Z 2|p - M64 84 Q82 58 58 38 w=7|r 36 8 18 46 B 3|r 30 50 30 8 A 2|r 40 2 10 10 Z 2|c 44 68 6 E'],
     ['ny-tree', 'New Year tree', 'newyear winter', 'g G 50,44 86,84 14,84|g G 50,30 78,62 22,62|g G 50,18 70,44 30,44|r 44 84 12 12 N 2|c 40 58 4 R|c 62 72 4 B|c 32 78 4 Y|c 64 52 4 P|c 52 66 4 W|g Y 50,2 54,12 64,12 56,18 59,28 50,22 41,28 44,18 36,12 46,12'],
     ['fireworks', 'fireworks', 'newyear sky night', 'p - M50 50 L50 12 M50 50 L77 23 M50 50 L88 50 M50 50 L77 77 M50 50 L50 88 M50 50 L23 77 M50 50 L12 50 M50 50 L23 23 s=P w=6|c 50 10 6 Y|c 79 21 6 B|c 90 50 6 L|c 79 79 6 O|c 50 90 6 Y|c 21 79 6 B|c 10 50 6 L|c 21 21 6 O|c 50 50 9 R'],
     ['flower', 'flower', 'park', 'l 50 56 50 94 s=G w=6|e 62 80 10 5 G -30|c 50 24 12 P|c 67 37 12 P|c 60 57 12 P|c 40 57 12 P|c 33 37 12 P|c 50 42 10 Y'],
     ['leaf', 'leaf', 'park green', 'p G M14 88 Q12 18 88 12 Q88 86 14 88 Z|p - M14 88 L70 30 w=3|p - M36 66 L36 44 M50 52 L50 34 M36 66 L58 66 M50 52 L66 52 w=2'],
-    ['fire', 'fire', 'hot', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
+    ['fire', 'fire', 'hot scienceday', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
   ];
 
   /* ---------- grammar: article and plural for every picture name ----------
