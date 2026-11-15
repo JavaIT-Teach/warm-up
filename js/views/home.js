@@ -211,7 +211,7 @@
     }
     function tile(g, i) {
       var dim = first && !g.first, off = !WU.gameOk(g.id), nw = isNew(g);
-      var sticker = nw ? 'NEW' + (g.unit ? ' · ' + g.unit : '') : (first && g.first) || g.sticker ? (g.sticker || 'ICEBREAKER') : '';
+      var un = Array.isArray(g.unit) ? g.unit[WU.state.level] : g.unit, sticker = nw ? 'NEW' + (un ? ' · ' + un : '') : (first && g.first) || g.sticker ? (g.sticker || 'ICEBREAKER') : '';
       return '<div class="tile' + (dim ? ' dim' : '') + (off ? ' off' : '') + '" tabindex="0" data-game="' + g.id + '" style="background:' + colorOf(g.color, i) + ';transform:rotate(' + (rots()[i] != null ? rots()[i] : 0.8) + 'deg)">' +
         (off ? '<div class="lvlock">' + WU.esc(WU.gameLevelText(g.id)) + '</div>' : '') +
         (sticker ? '<div class="fit' + (nw ? ' newb' : '') + '">' + WU.esc(sticker) + '</div>' : '') +

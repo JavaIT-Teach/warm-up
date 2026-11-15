@@ -5,7 +5,7 @@
    levels: [from, to] = level numbers the game is made for (0 = Beginner ... 6 = IELTS 3). Outside them the card is grey and does not open.
    skills: which skill menus the game appears in (ids from WU.SKILLS below). Every game needs at least one.
    added: 'YYYY-MM-DD' = when the game was added. Games added in the last WU.NEW_DAYS days get a NEW badge and go first.
-   unit: 'Unit 9 · Feeling Good' = the coursebook material the game reviews (shown on the card).
+   unit: 'Unit 9 · Feeling Good' = the coursebook material the game reviews (shown on the card); or a list, one per level (0-6).
    preview: ['word', 'word', ...] = words for the card's animated preview (games without a drawn preview). */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 /* The home screen is a skill menu: pick what to train today, then pick a game. */
@@ -31,6 +31,11 @@ WU.content.games = [
   { id: 'opinion', skills: ['speaking'], name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', trains: 'Agreeing & disagreeing · justifying', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] },
   { id: 'findwho', skills: ['speaking', 'grammar'], name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', trains: 'Questions & short answers', color: '#c6ff00', first: true, sticker: 'GET UP!' },
   { id: 'chat', skills: ['speaking'], name: 'Speed Chat', hook: 'One question. New partner. Again and again.', trains: 'Questions · short answers · reporting', color: '#ff4fc3', first: true, sticker: 'GET UP!' },
+  /* ---------- Weekly games built from the taught lessons ---------- */
+  { id: 'hunt', skills: ['reading', 'vocab'], name: 'Word Hunt', hook: 'Read the clue. Find the word in the grid!', trains: 'Reading clues · finding words', color: '#ffe600', added: '2026-11-15',
+    unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['FIND', 'TENNIS', 'B4'] },
+  { id: 'vanish', skills: ['writing', 'grammar'], name: 'Vanishing Sentence', hook: 'Read it. Words vanish. Write it from memory!', trains: 'Writing from memory · spelling', color: '#00e5c7', added: '2026-11-15',
+    unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['I', '____', 'it', 'WRITE!'] },
   /* ---------- Grammar games: one grammar point each (in the Grammar menu) ---------- */
   { id: 'articles', skills: ['grammar'], grammar: true, name: 'Article Showdown', hook: '3, 2, 1... fingers up: a, an, the or nothing?', trains: 'Articles: a / an / the / no article', color: '#c6ff00' },
   { id: 'flash', skills: ['grammar'], grammar: true, name: 'Flash Room', hook: "Look fast. It's gone. What was there?", trains: 'There is / There are · was / were', color: '#00e5c7', levels: [0, 3] },

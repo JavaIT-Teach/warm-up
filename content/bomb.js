@@ -132,7 +132,12 @@ WU.content.bomb = [
       { id: "a2-things-smaller-than-your-hand", name: "Things smaller than your hand" },
       { id: "a2-holiday-things", name: "Holiday things" },
       { id: "a2-things-in-a-park", name: "Things in a park" },
-      { id: "a2-famous-people", name: "Famous people" }
+      { id: "a2-famous-people", name: "Famous people" },
+      { id: "a2-things-you-take-on-holiday-u7", name: "Things you take on holiday" },
+      { id: "a2-ways-to-travel-u7", name: "Ways to travel" },
+      { id: "a2-furniture-in-your-bedroom-u8", name: "Furniture in your bedroom" },
+      { id: "a2-clothes-u9", name: "Clothes" },
+      { id: "a2-irregular-past-verbs-u7", name: "Irregular verbs in the past" }
     ],
     first: [
       { id: "a2-first-things-you-like", name: "Things you like" },
@@ -199,7 +204,12 @@ WU.content.bomb = [
       { id: "a2p-things-in-a-bathroom", name: "Things in a bathroom" },
       { id: "a2p-things-that-go-up-and-down", name: "Things that go up and down" },
       { id: "a2p-things-you-do-before-school", name: "Things you do before school" },
-      { id: "a2p-things-that-were-popular-10-years", name: "Things that were popular 10 years ago" }
+      { id: "a2p-things-that-were-popular-10-years", name: "Things that were popular 10 years ago" },
+      { id: "a2p-food-adjectives-u10", name: "Words to describe food" },
+      { id: "a2p-parts-of-the-body-u11", name: "Parts of the body" },
+      { id: "a2p-things-you-have-bought-u9", name: "Things you have bought this month" },
+      { id: "a2p-things-in-a-supermarket-u9", name: "Things you see in a supermarket" },
+      { id: "a2p-illnesses-u11", name: "Illnesses and injuries" }
     ],
     first: [
       { id: "a2p-first-places-you-have-visited", name: "Places you have visited" },
@@ -265,7 +275,12 @@ WU.content.bomb = [
       { id: "b1-problems-in-big-cities", name: "Problems in big cities" },
       { id: "b1-things-to-take-to-a-desert", name: "Things to take to a desert island" },
       { id: "b1-things-that-used-to-be-popular", name: "Things that used to be popular" },
-      { id: "b1-good-things-about-the-countryside", name: "Good things about the countryside" }
+      { id: "b1-good-things-about-the-countryside", name: "Good things about the countryside" },
+      { id: "b1-endangered-animals-u10", name: "Endangered animals" },
+      { id: "b1-things-that-need-a-battery-u9", name: "Things that need a battery" },
+      { id: "b1-what-you-will-be-doing-u9", name: "What you'll be doing this time tomorrow" },
+      { id: "b1-school-subjects-u11", name: "School subjects" },
+      { id: "b1-if-bees-disappeared-u10", name: "What would happen if bees disappeared" }
     ],
     first: [
       { id: "b1-first-things-you-used-to-love-as", name: "Things you used to love as a child" },

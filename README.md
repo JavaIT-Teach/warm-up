@@ -113,6 +113,11 @@ Keys: 1–4 this team answers · Space right / next word · X wrong / nobody · 
 **G10. Phrasal Roulette** (Pre-Intermediate and up) · *phrasal verbs.* Two reels spin: VERB + PARTICLE (give + up). The student says what it means; **Space** shows the meaning and an example; **Space** again gives another student a personal question to answer with it ("What would you like to give up?"). **T** turns it round: the meaning shows and the student finds the phrasal verb.
 Keys: Space reveal / question / spin · T direction · P other student.
 
+### Weekly games (built from what your groups learned)
+**Word Hunt** (Reading · Beginner to Intermediate). A letter grid hides 8 words from your last units. Beginner sees the words with pictures; higher levels read a clue ("You need it to travel to another country.") and the number of letters. **Space** shows the grid and starts the timer. A student who finds a word says it and where it is ("B4, across!") or shows it on the board. **↑ / ↓** choose the clue, **Enter** (or tap the clue) marks it found and it lights up. **H** flashes the first letter, **A** shows every word, **N** next puzzle, **R** same words in a new grid.
+
+**Vanishing Sentence** (Writing · Beginner to Intermediate). A sentence from your last lessons. The class reads it together. **Space**: one or two words vanish; the class reads it again, missing words too. Again and again until nothing is left, then WRITE IT!: everyone writes the whole sentence on paper. **Space**: the words come back and students check their spelling; a picked student reads theirs. **B** brings one word back, **N** other sentence, **P** other student.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)

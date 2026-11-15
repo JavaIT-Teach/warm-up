@@ -75,7 +75,14 @@ WU.content.hotseat = [
       { id: "a1-h-clock", pic: "clock" },
       { id: "a1-h-key", pic: "key" },
       { id: "a1-h-robot", pic: "robot" },
-      { id: "a1-h-snowman", pic: "snowman" }
+      { id: "a1-h-snowman", pic: "snowman" },
+      { id: "a1-h-basketball", pic: "basketball" },
+      { id: "a1-h-tennis", pic: "tennis" },
+      { id: "a1-h-football-u9", pic: "football" },
+      { id: "a1-h-water-u9", pic: "water" },
+      { id: "a1-h-chocolate-u9", pic: "chocolate" },
+      { id: "a1-h-school-u8", pic: "school" },
+      { id: "a1-h-biscuit-u9", text: "biscuit", pic: "cookie" }
     ] },
   /* ---------- 1. Elementary (A2) ---------- */
   { words: [
@@ -140,7 +147,17 @@ WU.content.hotseat = [
       { id: "a2-h-dentist", text: "dentist" },
       { id: "a2-h-police-officer", text: "police officer", pic: "police officer" },
       { id: "a2-h-hairdresser", text: "hairdresser" },
-      { id: "a2-h-toothbrush", text: "toothbrush", pic: "toothbrush" }
+      { id: "a2-h-toothbrush", text: "toothbrush", pic: "toothbrush" },
+      { id: "a2-h-suitcase-u7", text: "suitcase" },
+      { id: "a2-h-passport-u7", text: "passport" },
+      { id: "a2-h-ferry-u7", text: "ferry" },
+      { id: "a2-h-tourist-u7", text: "tourist" },
+      { id: "a2-h-armchair-u8", text: "armchair" },
+      { id: "a2-h-mirror-u8", text: "mirror" },
+      { id: "a2-h-curtains-u8", text: "curtains" },
+      { id: "a2-h-trainers-u9", text: "trainers" },
+      { id: "a2-h-sunglasses-u9", text: "sunglasses" },
+      { id: "a2-h-tie-u9", text: "tie" }
     ] },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
   { words: [
@@ -203,7 +220,17 @@ WU.content.hotseat = [
       { id: "a2p-h-playground", text: "playground" },
       { id: "a2p-h-petrol-station", text: "petrol station" },
       { id: "a2p-h-laundry", text: "laundry" },
-      { id: "a2p-h-homework", text: "homework" }
+      { id: "a2p-h-homework", text: "homework" },
+      { id: "a2p-h-receipt-u9", text: "receipt" },
+      { id: "a2p-h-checkout-u9", text: "checkout" },
+      { id: "a2p-h-pocket-money-u9", text: "pocket money" },
+      { id: "a2p-h-pineapple-u10", text: "pineapple" },
+      { id: "a2p-h-lemon-u10", text: "lemon" },
+      { id: "a2p-h-elbow-u11", text: "elbow" },
+      { id: "a2p-h-knee-u11", text: "knee" },
+      { id: "a2p-h-thumb-u11", text: "thumb" },
+      { id: "a2p-h-toothache-u11", text: "toothache" },
+      { id: "a2p-h-cough-u11", text: "cough" }
     ] },
   /* ---------- 3. Intermediate (B1) ---------- */
   { words: [
@@ -266,7 +293,17 @@ WU.content.hotseat = [
       { id: "b1-h-jellyfish", text: "jellyfish" },
       { id: "b1-h-hurricane", text: "hurricane" },
       { id: "b1-h-traffic-jam", text: "traffic jam" },
-      { id: "b1-h-homesick", text: "homesick" }
+      { id: "b1-h-homesick", text: "homesick" },
+      { id: "b1-h-driverless-car-u9", text: "driverless car" },
+      { id: "b1-h-battery-u9", text: "battery" },
+      { id: "b1-h-satellite-u9", text: "satellite" },
+      { id: "b1-h-petrol-pump-u9", text: "petrol pump" },
+      { id: "b1-h-rainforest-u10", text: "rainforest" },
+      { id: "b1-h-jungle-u10", text: "jungle" },
+      { id: "b1-h-habitat-u10", text: "habitat" },
+      { id: "b1-h-endangered-u10", text: "endangered" },
+      { id: "b1-h-university-u11", text: "university" },
+      { id: "b1-h-boarding-school-u11", text: "boarding school" }
     ] },
   /* ---------- 4. IELTS 1 (B2) ---------- */
   { words: [

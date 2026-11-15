@@ -22,7 +22,12 @@ WU.content.findwho = [
       { id: "a1-w-find-someone-who-can-play-the", task: "Find someone who can play the guitar.", ask: "Can you play the guitar?", yes: "Yes, I can.", no: "No, I can't.", report: "___ can play the guitar. ___ can't play the guitar.", pic: "a-guitar" },
       { id: "a1-w-find-someone-who-can-ski", task: "Find someone who can ski.", ask: "Can you ski?", yes: "Yes, I can.", no: "No, I can't.", report: "___ can ski. ___ can't ski.", pic: "a-ski" },
       { id: "a1-w-find-someone-who-likes-football", task: "Find someone who likes football.", ask: "Do you like football?", yes: "Yes, I do.", no: "No, I don't.", report: "___ likes football. ___ doesn't like football.", pic: "football" },
-      { id: "a1-w-find-someone-who-can-play-chess", task: "Find someone who can play chess.", ask: "Can you play chess?", yes: "Yes, I can.", no: "No, I can't.", report: "___ can play chess. ___ can't play chess.", pic: "a-chess" }
+      { id: "a1-w-find-someone-who-can-play-chess", task: "Find someone who can play chess.", ask: "Can you play chess?", yes: "Yes, I can.", no: "No, I can't.", report: "___ can play chess. ___ can't play chess.", pic: "a-chess" },
+      { id: "a1-w-likes-swimming-u9", task: "Find someone who likes swimming.", ask: "Do you like swimming?", yes: "Yes, I do.", no: "No, I don't.", report: "___ likes swimming. ___ doesn't like swimming.", pic: "a-swim" },
+      { id: "a1-w-good-at-running-u9", task: "Find someone who is good at running.", ask: "Are you good at running?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is good at running. ___ isn't good at running.", pic: "a-run" },
+      { id: "a1-w-breakfast-every-day-u9", task: "Find someone who has breakfast every day.", ask: "Do you have breakfast every day?", yes: "Yes, I do.", no: "No, I don't.", report: "___ has breakfast every day. ___ doesn't have breakfast every day.", pic: "egg" },
+      { id: "a1-w-walks-to-school-u7", task: "Find someone who walks to school.", ask: "Do you walk to school?", yes: "Yes, I do.", no: "No, I don't.", report: "___ walks to school. ___ doesn't walk to school.", pic: "school" },
+      { id: "a1-w-likes-maths-u8", task: "Find someone who likes maths.", ask: "Do you like maths?", yes: "Yes, I do.", no: "No, I don't.", report: "___ likes maths. ___ doesn't like maths.", pic: "book" }
     ]
   },
   /* ---------- 1. Elementary (A2) ---------- */
@@ -41,7 +46,11 @@ WU.content.findwho = [
       { id: "a2-w-find-someone-who-walked-here-today", task: "Find someone who walked here today.", ask: "Did you walk here today?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ walked here. ___ came by ___.", pic: "foot" },
       { id: "a2-w-find-someone-who-plays-computer-games", task: "Find someone who plays computer games.", ask: "Do you play computer games?", yes: "Yes, I do.", no: "No, I don't.", report: "___ plays ___. ___ doesn't play games.", pic: "a-games" },
       { id: "a2-w-find-someone-who-can-drive", task: "Find someone who can drive.", ask: "Can you drive?", yes: "Yes, I can.", no: "No, I can't.", report: "___ can drive. ___ can't drive.", pic: "a-drive" },
-      { id: "a2-w-find-someone-who-read-a-book", task: "Find someone who read a book this month.", ask: "Did you read a book this month?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ read ___. ___ didn't read a book.", pic: "a-read" }
+      { id: "a2-w-find-someone-who-read-a-book", task: "Find someone who read a book this month.", ask: "Did you read a book this month?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ read ___. ___ didn't read a book.", pic: "a-read" },
+      { id: "a2-w-went-camping-u7", task: "Find someone who went camping last summer.", ask: "Did you go camping last summer?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ went camping. ___ didn't go camping.", pic: "tree" },
+      { id: "a2-w-took-photos-u7", task: "Find someone who took photos last weekend.", ask: "Did you take any photos last weekend?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ took photos of ___. ___ didn't take any photos.", pic: "camera" },
+      { id: "a2-w-bookshelf-u8", task: "Find someone who has a bookshelf in their bedroom.", ask: "Have you got a bookshelf in your bedroom?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has got a bookshelf. ___ hasn't got a bookshelf.", pic: "book" },
+      { id: "a2-w-wearing-trainers-u9", task: "Find someone who is wearing trainers today.", ask: "Are you wearing trainers today?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is wearing trainers. ___ isn't wearing trainers.", pic: "shoes" }
     ]
   },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
@@ -58,7 +67,11 @@ WU.content.findwho = [
       { id: "a2p-w-find-someone-who-has-been-to", task: "Find someone who has been to a concert.", ask: "Have you ever been to a concert?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ saw ___. ___ has never been to a concert.", pic: "microphone", follow: "Who did you see?" },
       { id: "a2p-w-find-someone-who-is-learning-another", task: "Find someone who is learning another language.", ask: "Are you learning another language?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is learning ___. ___ isn't.", pic: "book", follow: "Why that language?" },
       { id: "a2p-w-find-someone-who-has-climbed-a", task: "Find someone who has climbed a mountain.", ask: "Have you ever climbed a mountain?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ climbed ___. ___ hasn't.", pic: "a-climb", follow: "Which mountain?" },
-      { id: "a2p-w-find-someone-who-would-like-to", task: "Find someone who would like to live abroad.", ask: "Would you like to live abroad?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would like to live in ___. ___ wouldn't.", pic: "plane", follow: "Where?" }
+      { id: "a2p-w-find-someone-who-would-like-to", task: "Find someone who would like to live abroad.", ask: "Would you like to live abroad?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would like to live in ___. ___ wouldn't.", pic: "plane", follow: "Where?" },
+      { id: "a2p-w-eaten-raw-fish-u10", task: "Find someone who has eaten raw fish.", ask: "Have you ever eaten raw fish?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has eaten raw fish. ___ has never eaten raw fish.", pic: "fish", follow: "Did you like it?" },
+      { id: "a2p-w-taken-something-back-u9", task: "Find someone who has taken something back to a shop.", ask: "Have you ever taken something back to a shop?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has taken ___ back. ___ has never taken anything back.", pic: "shop", follow: "What was wrong with it?" },
+      { id: "a2p-w-cooked-for-friends-u10", task: "Find someone who has cooked a meal for their friends.", ask: "Have you ever cooked a meal for your friends?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has cooked ___ for friends. ___ has never cooked for friends.", pic: "a-cook", follow: "What did you make?" },
+      { id: "a2p-w-known-friend-five-years-u10", task: "Find someone who has known their best friend for more than five years.", ask: "Have you known your best friend for more than five years?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has known their best friend since ___.", pic: "heart", follow: "How did you meet?" }
     ]
   },
   /* ---------- 3. Intermediate (B1) ---------- */
@@ -75,7 +88,11 @@ WU.content.findwho = [
       { id: "b1-w-find-someone-who-has-changed-their", task: "Find someone who has changed their mind about something this year.", ask: "Have you changed your mind about something this year?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ used to think ___, but now ___.", pic: "heart", follow: "What changed your mind?" },
       { id: "b1-w-find-someone-who-is-planning-something", task: "Find someone who is planning something exciting.", ask: "Are you planning something exciting?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is planning to ___.", pic: "rocket", follow: "When?" },
       { id: "b1-w-find-someone-who-remembers-their-first", task: "Find someone who remembers their first English teacher.", ask: "Do you remember your first English teacher?", yes: "Yes, I do.", no: "No, I don't.", report: "___'s first English teacher was ___.", pic: "teacher", follow: "What was special about them?" },
-      { id: "b1-w-find-someone-who-can-live-without", task: "Find someone who can live without their phone for a day.", ask: "Could you live without your phone for a day?", yes: "Yes, I could.", no: "No, I couldn't.", report: "___ could easily ___. ___ couldn't.", pic: "phone", follow: "What would you do instead?" }
+      { id: "b1-w-find-someone-who-can-live-without", task: "Find someone who can live without their phone for a day.", ask: "Could you live without your phone for a day?", yes: "Yes, I could.", no: "No, I couldn't.", report: "___ could easily ___. ___ couldn't.", pic: "phone", follow: "What would you do instead?" },
+      { id: "b1-w-studying-at-8-u9", task: "Find someone who will be studying at 8 pm tonight.", ask: "Will you be studying at 8 pm tonight?", yes: "Yes, I will.", no: "No, I won't.", report: "At 8 pm ___ will be studying ___. ___ won't be studying.", pic: "book", follow: "What will you be studying?" },
+      { id: "b1-w-buy-driverless-car-u9", task: "Find someone who would buy a driverless car.", ask: "Would you buy a driverless car?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would buy one because ___. ___ wouldn't buy one.", pic: "car", follow: "Why?" },
+      { id: "b1-w-seen-endangered-animal-u10", task: "Find someone who has seen an endangered animal.", ask: "Have you ever seen an endangered animal?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has seen ___. ___ has never seen one.", pic: "monkey", follow: "Where did you see it?" },
+      { id: "b1-w-boarding-school-u11", task: "Find someone who would like to go to a boarding school.", ask: "Would you like to go to a boarding school?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would like to go to a boarding school because ___.", pic: "school", follow: "Why?" }
     ]
   },
   /* ---------- 4. IELTS 1 (B2) ---------- */

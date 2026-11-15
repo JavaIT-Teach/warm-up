@@ -32,7 +32,11 @@ WU.content.tug = [
       { id: "a1-t-monkeys-vs-giraffes", left: "monkeys", leftPic: "monkey", right: "giraffes", rightPic: "giraffe" },
       { id: "a1-t-robots-vs-teddy-bears", left: "robots", leftPic: "robot", right: "teddy bears", rightPic: "teddy bear" },
       { id: "a1-t-horses-vs-cows", left: "horses", leftPic: "horse", right: "cows", rightPic: "cow" },
-      { id: "a1-t-dresses-vs-t-shirts", left: "dresses", leftPic: "dress", right: "T-shirts", rightPic: "T-shirt" }
+      { id: "a1-t-dresses-vs-t-shirts", left: "dresses", leftPic: "dress", right: "T-shirts", rightPic: "T-shirt" },
+      { id: "a1-t-swimming-vs-running-u9", left: "swimming", leftPic: "a-swim", right: "running", rightPic: "a-run", frame: "I like ___. It's good for me." },
+      { id: "a1-t-basketball-vs-tennis-u9", left: "basketball", leftPic: "basketball", right: "tennis", rightPic: "tennis", frame: "I like playing ___." },
+      { id: "a1-t-water-vs-juice-u9", left: "water", leftPic: "water", right: "juice", rightPic: "juice", frame: "I like ___. It's good for me." },
+      { id: "a1-t-music-vs-art-u8", left: "music", leftPic: "guitar", right: "art", rightPic: "a-draw", frame: "I like ___ at school." }
     ] },
   /* ---------- 1. Elementary (A2) ---------- */
   { topics: [
@@ -60,7 +64,11 @@ WU.content.tug = [
       { id: "a2-t-buses-vs-walking", left: "buses", leftPic: "bus", right: "walking", rightPic: "shoes" },
       { id: "a2-t-the-city-vs-a-farm", left: "the city", leftPic: "city", right: "a farm", rightPic: "farm" },
       { id: "a2-t-birthdays-vs-holidays", left: "birthdays", leftPic: "cake", right: "holidays", rightPic: "plane" },
-      { id: "a2-t-drawing-vs-singing", left: "drawing", leftPic: "pencil", right: "singing", rightPic: "microphone" }
+      { id: "a2-t-drawing-vs-singing", left: "drawing", leftPic: "pencil", right: "singing", rightPic: "microphone" },
+      { id: "a2-t-camping-vs-a-hotel-u7", left: "camping", leftPic: "tree", right: "a hotel", rightPic: "house" },
+      { id: "a2-t-coach-vs-train-u7", left: "travelling by coach", leftPic: "bus", right: "travelling by train", rightPic: "train" },
+      { id: "a2-t-trainers-vs-boots-u9", left: "trainers", leftPic: "shoes", right: "boots", rightPic: "boots" },
+      { id: "a2-t-drawing-vs-guitar-u8", left: "drawing pictures", leftPic: "a-draw", right: "playing the guitar", rightPic: "a-guitar" }
     ] },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
   { topics: [
@@ -88,7 +96,11 @@ WU.content.tug = [
       { id: "a2p-t-the-radio-vs-podcasts", left: "the radio", leftPic: "microphone", right: "podcasts", rightPic: "phone" },
       { id: "a2p-t-walking-to-school-vs-taking-the", left: "walking to school", leftPic: "shoes", right: "taking the bus", rightPic: "bus" },
       { id: "a2p-t-old-films-vs-new-films", left: "old films", leftPic: "TV", right: "new films", rightPic: "camera" },
-      { id: "a2p-t-team-sports-vs-individual-sports", left: "team sports", leftPic: "football", right: "individual sports", rightPic: "tennis" }
+      { id: "a2p-t-team-sports-vs-individual-sports", left: "team sports", leftPic: "football", right: "individual sports", rightPic: "tennis" },
+      { id: "a2p-t-fresh-vs-frozen-u10", left: "fresh food", leftPic: "apple", right: "frozen food", rightPic: "snow" },
+      { id: "a2p-t-spicy-vs-sweet-u10", left: "spicy food", leftPic: "fire", right: "sweet food", rightPic: "cake" },
+      { id: "a2p-t-saving-vs-spending-u9", left: "saving your pocket money", leftPic: "money", right: "spending your pocket money", rightPic: "shop" },
+      { id: "a2p-t-raw-vs-cooked-fish-u10", left: "raw fish", leftPic: "fish", right: "cooked fish", rightPic: "pan" }
     ] },
   /* ---------- 3. Intermediate (B1) ---------- */
   { topics: [
@@ -116,7 +128,11 @@ WU.content.tug = [
       { id: "b1-t-electric-bikes-vs-normal-bikes", left: "electric bikes", leftPic: "bike", right: "normal bikes", rightPic: "bike" },
       { id: "b1-t-living-near-the-sea-vs-living", left: "living near the sea", leftPic: "boat", right: "living near the mountains", rightPic: "mountain" },
       { id: "b1-t-concerts-vs-festivals", left: "concerts", leftPic: "singer", right: "festivals", rightPic: "balloon" },
-      { id: "b1-t-podcasts-vs-audiobooks", left: "podcasts", leftPic: "microphone", right: "audiobooks", rightPic: "book" }
+      { id: "b1-t-podcasts-vs-audiobooks", left: "podcasts", leftPic: "microphone", right: "audiobooks", rightPic: "book" },
+      { id: "b1-t-driverless-vs-normal-cars-u9", left: "driverless cars", leftPic: "robot", right: "normal cars", rightPic: "car" },
+      { id: "b1-t-boarding-school-vs-home-u11", left: "a boarding school", leftPic: "school", right: "a school near home", rightPic: "house" },
+      { id: "b1-t-outdoor-vs-ordinary-classroom-u11", left: "an outdoor classroom", leftPic: "tree", right: "an ordinary classroom", rightPic: "desk" },
+      { id: "b1-t-zoos-vs-the-wild-u10", left: "animals in zoos", leftPic: "lion", right: "animals in the wild", rightPic: "tree" }
     ] },
   /* ---------- 4. IELTS 1 (B2) ---------- */
   { topics: [
