@@ -1226,3 +1226,36 @@ body.editing #deco { display: none; }
 .vsg .vswrite { font-size: 110px; padding: 6px 50px; }
 .vsg .vsempty { position: absolute; left: 70px; right: 70px; top: 400px; text-align: center; font-family: var(--display); font-size: 56px; }
 .calm .vsg .vsw.back { animation: none; }
+
+/* ---------- Home fit: the day strip took ~80px from the menus, so tighten the chrome and keep every text line whole ---------- */
+.home { padding: 28px 48px 26px; gap: 20px; }
+.home-top { height: 86px; }
+.home .daystrip { margin-top: -6px; height: 46px; }
+.home .cathead { height: 62px; }
+.home .cathead b { font-size: 50px; }
+.grid { gap: 24px 36px; }
+.home .skillgrid { gap: 32px 44px; }
+/* Game cards: name, hook and TRAINS never shrink; only the preview gives way (js scales it to fit). */
+.tile { padding: 12px 24px 14px; }
+.tile .name, .tile .hook, .tile .trains { flex: none; }
+.tile .name { font-size: 42px; margin-top: 2px; }
+.tile .hook { margin-top: 2px; font-size: 21px; line-height: 1.2; }
+.tile .trains { margin-top: 6px; }
+.tile .pv { min-height: 40px; }
+/* Skill cards: name, hook and count keep their full height, the hook wraps instead of clipping. */
+.tile.skill > * { flex: none; }
+.tile.skill .hook { overflow: visible; line-height: 1.15; }
+.tile.skill .sname { padding-right: 60px; }
+/* Grammar game header: tag + unit pill + demo sticker share one row; a smaller sticker keeps all three whole. */
+.gg .demo { font-size: 32px; padding: 6px 18px; }
+/* Domino tiles: "Student 12" fits the 110px tile side. */
+.dmg .dmname { font-size: 19px; max-height: 114px; }
+/* Edit mode: the edit bar takes ~200px, so cards drop the animated preview and keep name, hook and TRAINS whole. */
+body.editing .home .tile .pv { display: none; }
+body.editing .home .tile:not(.skill) { justify-content: center; }
+body.editing .home .tile.skill .sname { font-size: 64px; }
+/* Edit mode: no day strip (not needed while editing), smaller stickers, and carded text sits low so the sticker never covers the name. */
+body.editing .home .daystrip { display: none; }
+body.editing .home .tile:not(.skill) { justify-content: flex-end; padding-bottom: 12px; }
+body.editing .home .tile .fit, body.editing .home .tile .lvlock { font-size: 16px; padding: 2px 10px; top: -14px; }
+body.editing .home .tile .fit { transform: rotate(-1.5deg); }

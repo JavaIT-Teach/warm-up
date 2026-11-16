@@ -148,7 +148,7 @@
   // The skill picker tiles: the five skills, then "New this week".
   function skillTiles() {
     return (WU.SKILLS || []).map(function (k) { return { id: k.id, name: k.name, hook: k.hook, color: k.color }; })
-      .concat([{ id: 'new', name: 'New this week', hook: 'Every game added in the last ' + (WU.NEW_DAYS || 14) + ' days', color: '#ff5a1f' }]);
+      .concat([{ id: 'new', name: 'New this week', hook: 'Added in the last ' + (WU.NEW_DAYS || 14) + ' days', color: '#ff5a1f' }]);
   }
 
   function topBar(cls, s) {
@@ -230,7 +230,7 @@
       home.insertAdjacentHTML('beforeend', '<div class="grid2">' + games.slice(9).map(function (g, j) { return tile(g, j + 9); }).join('') + '</div>');
       g2 = root.querySelector('.grid2');
       var t1 = root.querySelector('.grid .tile'); if (t1) g2.querySelectorAll('.tile').forEach(function (x) { x.style.height = t1.offsetHeight + 'px'; });
-      wireTiles(g2); return g2;
+      fitPreviews(g2); wireTiles(g2); return g2;
     };
     // Jump buttons in the side margins (outside .home, so they stay put while the menu slides).
     if (games.length > 9) {
@@ -249,6 +249,7 @@
         b.onclick = function () { var j = b.getAttribute('data-j'); slideTo(j === 'top' ? 0 : j === 'end' ? 1e5 : slid + (j === 'up' ? -1 : 1) * rowStep()); };
       });
     }
+    fitPreviews(root);
     wireSlide();
     WU.wireCommon(root);
     root.querySelectorAll('[data-level]').forEach(function (b) { b.onclick = function () { setLevel(+b.getAttribute('data-level')); }; });
@@ -274,6 +275,14 @@
     return '<div style="display:flex;flex-wrap:wrap;gap:12px;align-items:center;padding-right:30px">' + ws.map(function (w, i) {
       return '<div style="padding:6px 16px;background:' + (i % 2 ? '#fff' : K) + ';color:' + (i % 2 ? K : g.color) + ';border:4px solid ' + K + ';font-family:var(--display);font-size:38px;line-height:1.05;animation:wu-pulse 2.4s ease-in-out ' + (i * 0.3) + 's infinite">' + WU.esc(w) + '</div>';
     }).join('') + '</div>';
+  }
+  // Scale each card preview to the room its card leaves (designed at 150px tall, shown at up to 70%).
+  function fitPreviews(el) {
+    el.querySelectorAll('.tile .pv').forEach(function (pv) {
+      var inn = pv.firstChild, h = pv.clientHeight; if (!inn || !h) return;
+      var k = Math.max(0.3, Math.min(0.7, h / 135));
+      inn.style.transform = 'translateY(-50%) scale(' + k + ')'; inn.style.width = (100 / k) + '%';
+    });
   }
   function wireTiles(el) {
     el.querySelectorAll('[data-game]').forEach(function (t) {
