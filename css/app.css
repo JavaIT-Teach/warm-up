@@ -1254,3 +1254,8 @@ body.editing #deco { display: none; }
 body.editing .home .tile .pv { display: none; }
 body.editing .home .tile:not(.skill) { justify-content: center; }
 body.editing .home .tile.skill .sname { font-size: 64px; }
+/* Edit mode: no day strip (not needed while editing), smaller stickers, and carded text sits low so the sticker never covers the name. */
+body.editing .home .daystrip { display: none; }
+body.editing .home .tile:not(.skill) { justify-content: flex-end; padding-bottom: 12px; }
+body.editing .home .tile .fit, body.editing .home .tile .lvlock { font-size: 16px; padding: 2px 10px; top: -14px; }
+body.editing .home .tile .fit { transform: rotate(-1.5deg); }
