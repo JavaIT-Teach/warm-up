@@ -5,6 +5,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Warm Up</title>
 <link rel="stylesheet" href="css/app.css">
+<script>
+  // A phone opens the phone version (one student, touch, portrait). ?board keeps the board on any screen.
+  (function () {
+    try {
+      var q = location.search;
+      if (/[?&](board|teacher)\b/.test(q)) return;
+      var small = Math.min(screen.width, screen.height) < 600, touch = window.matchMedia && matchMedia('(pointer: coarse)').matches;
+      if (small && touch) location.replace('phone.html');
+    } catch (e) {}
+  })();
+</script>
 </head>
 <body>
 <div id="wrap"><div id="stage"><div id="screen"></div></div></div>

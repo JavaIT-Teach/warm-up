@@ -62,3 +62,12 @@ Every entry in `content/games.js` has `trains`: a short note on its home card sa
 Grammar games share `js/grammarkit.js` (`WU.gram`): `shell` (screen, header, hints, scoreboard), `who` (picked student line),
 `answer` (the model answer strip), `gaps` (___ gaps, filled on reveal) and `bar` (a thin time bar). Model answers built from editable
 content are `data-auto`.
+
+## Phone version (`phone.html`, `js/phone/`, `css/phone.css`)
+One student on a phone. `index.html` sends small touch screens to `phone.html` (`?board` stays on the board). `phone.html` loads the
+same scripts as `index.html` (so lists, edits and sync are the same), keeps the board stage hidden, and draws its own portrait screens.
+Only games that work alone are there (`WU.phone.ORDER`); each is `WU.phone.games[id] = { mount(body, ctx), unmount() }` and must
+check or reveal the answer, because no teacher judges. Read content only through `WU.list` and the game's screen record
+(`ctx.S`). Where a board game's logic is needed, the board file exposes it on `WU.engines.<id>` (Time Machine, Hide & Seek Cat).
+A new board game script goes in **both** `index.html` and `phone.html`; add a phone screen only if one student can play it alone.
+
