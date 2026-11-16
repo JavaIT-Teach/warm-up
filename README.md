@@ -4,6 +4,17 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 
 **Open it:** https://javait-teach.github.io/warm-up/
 **Offline:** click Code → Download ZIP, unzip, and double-click `index.html`.
+**Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
+
+## On a student's phone (practise alone)
+- Students open the same link. Phones get a portrait version with big buttons: **11 games that work for one student**
+  (Word Hunt, Vanishing Sentence, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
+  Hide & Seek Cat, Story Dice, Slot Machine). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
+- The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
+- Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
+- Same content as the board: your edits and the weekly games appear on phones too. Nothing to install or update.
+  Students only need to **pull down to refresh** if the page was left open since an earlier day.
+- Direct link: `phone.html`. On a phone, `index.html?board` opens the board version.
 
 ## Before class
 1. Pick the **level** at the top of the home screen (← → keys).

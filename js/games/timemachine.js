@@ -139,8 +139,8 @@
   }
   function asText(b) { return (b.glue ? b.pre.trim() : b.pre) + b.verb + b.post; }
   function asHTML(b) { return WU.esc(b.glue ? b.pre.trim() : b.pre) + '<em>' + WU.esc(b.verb) + '</em>' + WU.esc(b.post); }
-  function answers() {
-    var r = round(); if (!r) return [];
+  function answers(rr) {
+    var r = round(rr); if (!r) return [];
     var out = [build(r.m.tense, r.sign, r.s, r.v, r.m.text)];
     if (r.m.tense === 'fs' && scr.get().goingTo) out.push(build('going', r.sign, r.s, r.v, r.m.text));
     return out;
@@ -157,14 +157,14 @@
     });
     return out;
   }
-  function family() { var fs = families(); return fs.filter(function (f) { return f.id === st.fam; })[0] || fs[0] || null; }
+  function family(fid) { var fs = families(), want = fid || (st && st.fam); return fs.filter(function (f) { return f.id === want; })[0] || fs[0] || null; }
   function signs() { var S = scr.get(), o = []; if (S.sPlus) o.push('plus'); if (S.sMinus) o.push('minus'); if (S.sQ) o.push('q'); return o.length ? o : ['plus']; }
   // A task (write an email) never gets a length of time; an activity (listen to music) never gets a deadline.
   function fits(v, m) { return m.kind === 'deadline' ? v.kind === 'task' : m.kind === 'duration' ? v.kind !== 'task' : true; }
   function silly() { return !!WU.store.get('tm-silly', false); }
   function L(n) { return WU.list('timemachine', n, 0).filter(function (x) { return x.text || x.base; }); }
-  function pickRound() {
-    var f = family(); if (!f) return null;
+  function pickRound(fid) {
+    var f = family(fid); if (!f) return null;
     var S = scr.get(), on = silly(), ch = Math.max(0, Math.min(100, +S.sillyChance || 0));
     var subs = L('subjects'), verbs = L('verbs'), ss = on ? L('sillySubjects') : [], sv = on ? L('sillyVerbs') : [];
     var mk = WU.list('timemachine', 'markers', 0).filter(function (m) { return m.text && f.tenses.indexOf(m.tense) >= 0; });
@@ -183,18 +183,18 @@
     var sp2 = sign === 'q' && t !== 'ps' && S.noIQ ? sp.filter(function (x) { return x.p !== '1s'; }) : sp;
     return { sid: WU.pick(sp2.length ? sp2 : sp).id, sl: sl, vid: v.id, vl: vl, mid: m.id, sign: sign };
   }
-  function round() {
-    if (!st.r) return null;
-    var s = WU.list('timemachine', st.r.sl || 'subjects', 0).filter(function (x) { return x.id === st.r.sid; })[0];
-    var v = WU.list('timemachine', st.r.vl || 'verbs', 0).filter(function (x) { return x.id === st.r.vid; })[0];
-    var m = WU.list('timemachine', 'markers', 0).filter(function (x) { return x.id === st.r.mid; })[0];
-    return s && v && m ? { s: s, v: v, m: m, sign: st.r.sign } : null;
+  function round(rr) {
+    rr = rr || (st && st.r); if (!rr) return null;
+    var s = WU.list('timemachine', rr.sl || 'subjects', 0).filter(function (x) { return x.id === rr.sid; })[0];
+    var v = WU.list('timemachine', rr.vl || 'verbs', 0).filter(function (x) { return x.id === rr.vid; })[0];
+    var m = WU.list('timemachine', 'markers', 0).filter(function (x) { return x.id === rr.mid; })[0];
+    return s && v && m ? { s: s, v: v, m: m, sign: rr.sign } : null;
   }
 
   // An example in the same tense and type (+ / - / ?) with another subject, verb and time phrase:
   // it shows the pattern without giving the answer away.
-  function makeExample() {
-    var r = round(); if (!r) return null;
+  function makeExample(rr) {
+    var r = round(rr); if (!r) return null;
     var S = scr.get(), t = r.m.tense;
     var subs = L('subjects').filter(function (x) { return x.id !== r.s.id && !(r.sign === 'q' && t !== 'ps' && S.noIQ && x.p === '1s'); });
     var mk = WU.list('timemachine', 'markers', 0).filter(function (m) { return m.text && m.tense === t; });
@@ -212,6 +212,13 @@
     return '<div class="tmpat ex"><b' + scr.ea('lExample') + '>' + WU.esc(S.lExample) + '</b><span data-auto>' + asHTML(build(e.m.tense, e.sign, e.s, e.v, e.m.text)) + '</span></div>';
   }
   function exampleHTML() { return round() ? '<div class="tmhint">' + patternHTML() + exampleLine() + '</div>' : ''; }
+
+  // The same grammar for the phone version (js/phone/): pick a round, read it back, build the answers and an example.
+  WU.engines = WU.engines || {};
+  WU.engines.timemachine = {
+    TNAMES: TNAMES, scr: scr, families: families, pick: pickRound, round: round, answers: answers, example: makeExample,
+    build: build, asText: asText, asHTML: asHTML, silly: silly
+  };
 
   /* ---------- screen ---------- */
   function win(label, la, body, cls) { return '<div class="tmwin ' + (cls || '') + '"><div class="tml"' + scr.ea(la) + '>' + WU.esc(label) + '</div><div class="tmv">' + body + '</div></div>'; }

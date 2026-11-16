@@ -123,6 +123,11 @@
     return WU.esc(t).replace(/\{(\w+)\}/g, function (x, k) { return k === 'prep' ? '<em>' + WU.esc(prep) + '</em>' : k === 'thing' ? WU.esc(m.word) : k === 'ref' ? WU.esc(ref) : x; });
   }
 
+  // The scene and the words for the phone version (js/phone/).
+  WU.engines = WU.engines || {};
+  WU.engines.where = { scr: scr, PLACES: PLACES, NAMES: NAMES, SPOT: SPOT, PATH: PATH, scenery: scenery, style: style, movers: movers,
+    places: places };
+
   function newRound() {
     var m = deck(movers()), ps = places(), p = ps.length ? pdeck(ps) : null;
     st.mid = m ? m.id : null; st.pid = p ? p.id : null;

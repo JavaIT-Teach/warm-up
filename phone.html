@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#f4f1ea">
+<title>Warm Up</title>
+<link rel="stylesheet" href="css/app.css">
+<link rel="stylesheet" href="css/phone.css">
+</head>
+<body>
+<!-- Warm Up on a phone: one student practises alone. The board (index.html) sends phones here by itself.
+     Same scripts as index.html (content, edits, sync), then the phone screens in js/phone/. Add new games to both pages. -->
+<div id="papp"></div>
+<!-- The board code looks for its stage (edit bar, themes, toasts). It stays hidden here. -->
+<div id="wrap" hidden><div id="stage"><div id="screen"></div></div></div>
+
+<!-- Plain scripts (no modules) so the app opens by double-clicking this file. Order matters. -->
+<script src="js/core.js"></script>
+<script src="js/pictures.js"></script>
+<script src="js/components.js"></script>
+<script src="js/edit.js"></script>
+<script src="js/sync.js"></script>
+<script src="js/gamekit.js"></script>
+<script src="js/teacher.js"></script>
+<script src="js/grammarkit.js"></script>
+<script src="js/themes.js"></script>
+<script src="content/app.js"></script>
+<script src="content/games.js"></script>
+<script src="content/themes.js"></script>
+<script src="content/groups.js"></script>
+<script src="content/bomb.js"></script>
+<script src="content/slot.js"></script>
+<script src="content/hotseat.js"></script>
+<script src="content/lie.js"></script>
+<script src="content/tug.js"></script>
+<script src="content/dice.js"></script>
+<script src="content/chain.js"></script>
+<script src="content/names.js"></script>
+<script src="content/standup.js"></script>
+<script src="content/zones.js"></script>
+<script src="content/opinion.js"></script>
+<script src="content/findwho.js"></script>
+<script src="content/chat.js"></script>
+<script src="content/articles.js"></script>
+<script src="content/flash.js"></script>
+<script src="content/nearfar.js"></script>
+<script src="content/where.js"></script>
+<script src="content/volcano.js"></script>
+<script src="content/timemachine.js"></script>
+<script src="content/domino.js"></script>
+<script src="content/pinit.js"></script>
+<script src="content/sticky.js"></script>
+<script src="content/phrasal.js"></script>
+<script src="content/hunt.js"></script>
+<script src="content/vanish.js"></script>
+<script src="content/occasions/newyear.js"></script>
+<script src="content/occasions/scienceday.js"></script>
+<script src="js/views/home.js"></script>
+<script src="js/views/settings.js"></script>
+<script src="js/games/bomb.js"></script>
+<script src="js/games/slot.js"></script>
+<script src="js/games/hotseat.js"></script>
+<script src="js/games/lie.js"></script>
+<script src="js/games/tug.js"></script>
+<script src="js/games/dice.js"></script>
+<script src="js/games/chain.js"></script>
+<script src="js/games/names.js"></script>
+<script src="js/games/standup.js"></script>
+<script src="js/games/zones.js"></script>
+<script src="js/games/opinion.js"></script>
+<script src="js/games/findwho.js"></script>
+<script src="js/games/chat.js"></script>
+<script src="js/games/articles.js"></script>
+<script src="js/games/flash.js"></script>
+<script src="js/games/nearfar.js"></script>
+<script src="js/games/where.js"></script>
+<script src="js/games/volcano.js"></script>
+<script src="js/games/timemachine.js"></script>
+<script src="js/games/domino.js"></script>
+<script src="js/games/pinit.js"></script>
+<script src="js/games/sticky.js"></script>
+<script src="js/games/phrasal.js"></script>
+<script src="js/games/hunt.js"></script>
+<script src="js/games/vanish.js"></script>
+<script src="js/phone/shell.js"></script>
+<script src="js/phone/games-words.js"></script>
+<script src="js/phone/games-grammar.js"></script>
+<script src="js/phone/games-talk.js"></script>
+<script>WU.phone.boot();</script>
+</body>
+</html>
