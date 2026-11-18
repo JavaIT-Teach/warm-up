@@ -454,13 +454,18 @@
     ['piggy bank', 'piggy bank', 'money', 'r 28 76 12 16 Q 2|r 62 76 12 16 Q 2|p - M15 58 Q4 52 10 44 w=3|e 50 58 36 28 Q|g Q 30,38 34,20 46,32|e 86 60 8 11 P|c 84 56 2 K*|c 88 64 2 K*|c 68 48 3.5 K*|r 40 30 22 6 K 3|c 51 16 10 Y|c 51 16 5 - w=2'],
     ['wallet', 'wallet', 'money', 'r 22 14 50 30 G 2|c 47 28 7 #b6f2a0|r 10 30 80 56 M 8|p N M90 44 L62 44 Q54 44 54 54 Q54 64 62 64 L90 64 Z|c 72 54 5 Y'],
     ['bank', 'bank', 'city money', 'g E 50,6 6,32 94,32|c 50 22 6 Y|r 10 32 80 8 E|r 16 42 12 38 W|r 34 42 12 38 W|r 52 42 12 38 W|r 70 42 12 38 W|r 6 82 88 10 E'],
+    ['battery', 'battery', 'tech scienceday', 'r 10 28 74 44 W 6|r 84 40 8 20 K 2|r 18 36 16 28 G* 2|r 38 36 16 28 G* 2|r 58 36 16 28 G* 2'],
+    ['flat battery', 'flat battery', 'tech', 'r 10 28 74 44 W 6|r 84 40 8 20 K 2|r 18 36 12 28 R* 2|p - M70 12 L58 24 M58 12 L70 24 s=R w=5'],
+    ['charging', 'charging', 'tech', 'r 4 34 64 36 W 6|r 68 44 7 16 K 2|r 11 41 14 22 G* 2|r 29 41 14 22 G* 2|g Y 52,18 36,56 50,56 44,86 66,46 52,46 60,18|p - M75 52 Q90 52 90 70 Q90 86 98 88 w=4'],
+    ['graduation cap', 'graduation cap', 'school university', 'p K M28 50 L28 70 Q50 82 72 70 L72 50 Z|g K 50,22 94,40 50,58 6,40|c 50 40 4 Y*|p - M50 40 L82 52 L82 74 s=Y w=3|c 82 78 5 Y'],
+    ['trophy', 'trophy', 'sport prize', 'p Y M28 14 L72 14 L70 46 Q66 62 50 62 Q34 62 30 46 Z|p - M28 22 Q12 22 14 34 Q16 44 30 46 M72 22 Q88 22 86 34 Q84 44 70 46 w=4|r 44 62 12 14 Y|r 30 76 40 12 M 2|g W* ' + star(50, 34, 10, 4) + ''],
     ['fire', 'fire', 'hot scienceday', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
   ];
 
   /* ---------- grammar: article and plural for every picture name ----------
      art: "a" / "an" / "the" / "" (no article: uncountable, plural, colours, sports)
      pl : plural form ("" when it has none). Used by sentence frames and example labels. */
-  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money friends sport rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
+  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money friends sport charging rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
   var THE = { sun: 1, moon: 1 };
   var PLURAL = { mouse: 'mice', sheep: 'sheep', fish: 'fish', knife: 'knives', leaf: 'leaves', foot: 'feet', tooth: 'teeth', tomato: 'tomatoes', potato: 'potatoes', octopus: 'octopuses', scarf: 'scarves', snowman: 'snowmen' };
   function article(o) {
