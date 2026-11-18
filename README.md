@@ -99,6 +99,7 @@ of its length ("___ a decision", "a ___ decision"), so students see the shape of
 **Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
 Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
 On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
+**Pictures:** on the board at Beginner and Elementary (Screen text & timing: "Pictures on the tiles", per level). The phone version always shows them, Intermediate included; tiles whose partner is an adjective a picture can't show ("steady progress") have none.
 **Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days; then they join the mix.
 Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 

@@ -20,6 +20,7 @@
       { k: 'ready', label: 'Before the first word', type: 'text', max: 60 },
       { k: 'rule', label: 'Rule line', type: 'text', max: 110 }, { k: 'ruleShow', label: 'Rule line', type: 'bool' },
       { k: 'letters', label: 'First letters in the gaps from the start (H shows them anyway)', type: 'bool', on: 'On', off: 'Off' },
+      { k: 'pics', label: 'Pictures on the tiles (the phone version always shows them)', type: 'bool', on: 'On', off: 'Off' },
       { k: 'seconds', label: 'Time for the whole word (seconds, 0 = no timer)', type: 'num', min: 0, max: 600 },
       { k: 'strikes', label: 'Strikes before the board wins (0 = no limit)', type: 'num', min: 0, max: 9 },
       { k: 'turn', label: 'Teams on: whose turn ({team})', type: 'text', max: 40 },
@@ -136,7 +137,7 @@
         var got = st.found.indexOf(p.k) >= 0, open = got || ph !== 'play', cls = got ? ' got' : open ? ' missed' : '';
         if (got && st.last === p.k && ph === 'play') cls += ' pop';
         return '<div class="wptile' + cls + '" data-i="' + idx + '"><span class="wpn" data-ctrl>' + (idx + 1) + '</span>' +
-          (p.pic ? '<span class="wppic"' + ek(it, p.k + 'pic') + '>' + WU.pic(p.pic) + '</span>' : '') + '<span class="wpt"' + ek(it, p.k) + '>' + tileHTML(p, open, S.letters || st.letters) + '</span>' +
+          (p.pic && S.pics ? '<span class="wppic"' + ek(it, p.k + 'pic') + '>' + WU.pic(p.pic) + '</span>' : '') + '<span class="wpt"' + ek(it, p.k) + '>' + tileHTML(p, open, S.letters || st.letters) + '</span>' +
           (got && st.who[p.k] != null && teamsOn() ? '<span class="wpby" data-auto style="background:' + teamColor(st.who[p.k]) + '"></span>' : '') + '</div>';
       }).join('') + '</div>';
       // The strip at the bottom.
