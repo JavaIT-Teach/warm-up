@@ -7,8 +7,8 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
 ## On a student's phone (practise alone)
-- Students open the same link. Phones get a portrait version with big buttons: **12 games that work for one student**
-  (Word Hunt, Vanishing Sentence, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
+- Students open the same link. Phones get a portrait version with big buttons: **13 games that work for one student**
+  (Word Hunt, Vanishing Sentence, Word Partners, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
   Hide & Seek Cat, Story Dice, Slot Machine, Lost Word). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
@@ -53,7 +53,7 @@ Keys: P pick / pass · Space start / got it / next student · B hard mode · Ent
 **4. Lie Detector.** **P** picks a student and shows a question. The student secretly shows you TRUTH or LIE (for example thumb up or down under the desk). Press **T** or **L**: nothing on screen changes. The student answers. **Space**: at middle levels a classmate asks one follow-up question; at IELTS two students explain why they think it's a lie. Then the class votes: stand up = lie, stay seated = truth (optional: count the standing students with **Up / Down**). **R** runs the lie detector and shows the truth.
 Keys: P pick · T / L secret · Space next step · Up / Down votes · R reveal · N other question.
 
-**5. Tug of War.** Two sides: two teams, or the left and right side of the room. Played in rounds. Each round both sides get a topic: one word each (pizza vs burgers), or FOR and AGAINST a statement at IELTS. Each side has one turn per round: after a 3-2-1-GO countdown its timer (45 seconds by default) starts by itself as soon as the topics appear or the turn passes to it (**Enter** pauses, or skips the countdown), and the side makes one argument. Good argument: press **←** or **→** to pull the rope. No good argument: **Space**. When both sides have argued, the next round starts with a new topic and the rope stays where it is. The side that starts alternates every round. A game is 10 rounds. A side wins by pulling the flag over its line, or by having the flag on its half when round 10 ends (flag in the middle: a draw). **N** next round now (rope stays) · **R** new game (rope to the middle, round 1). Edit mode: number of rounds, seconds per side, countdown length (0 = off) and its last word, round tag, round-over banner, draw text.
+**5. Tug of War.** Two sides: two teams, or the left and right side of the room. Played in rounds. Each round both sides get a topic: one word each (pizza vs burgers), or FOR and AGAINST a statement at IELTS. Each side has one turn per round: after a 3-2-1-GO countdown its timer (45 seconds by default) starts by itself as soon as the topics appear or the turn passes to it (**Enter** pauses, or skips the countdown), and the side makes one argument. Good argument: press **←** or **→** to pull the rope. No good argument: **Space**. When both sides have argued, the next round starts with a new topic and the rope stays where it is. The side that starts alternates every round. A game is 10 rounds. **Intermediate and up: defend format.** The side gives its idea, the teacher argues against it, the side defends it. Pull (**←** / **→**) only if the defence holds; a good first idea alone earns nothing (**Space**). 2:30 per side at Intermediate, 3:00 at IELTS 1 and 2, 4:00 at IELTS 3, and 4 rounds a game. A side wins by pulling the flag over its line, or by having the flag on its half when the last round ends (flag in the middle: a draw). **N** next round now (rope stays) · **R** new game (rope to the middle, round 1). Edit mode: number of rounds, seconds per side, countdown length (0 = off) and its last word, round tag, round-over banner, draw text.
 Keys: ← / → pull · Space no pull · N new topic · R reset.
 
 **6. Story Dice.** **Space** rolls the picture dice. Pairs make a story using every picture (timer). Then the class builds one story together: **N** picks the next student, who adds one sentence. At Beginner each student says one sentence about the highlighted picture. In Edit mode you choose which pictures can appear on the dice.
@@ -93,6 +93,23 @@ Keys: Space walk / stop / report / next · Enter pause · N other task · P othe
 **13. Speed Chat** (all levels; made for Beginners). Everyone stands. One question on the board with its answer frame ("Do you like football?" / "Yes, I do. / No, I don't."). **Space**: the timer starts. Students find a partner, ask, answer, find a NEW partner, and count their partners on their fingers. At the buzzer a new question appears and the next round starts by itself after 3 seconds. Each round is shorter (Beginner: 60, 50, 40, 30 seconds), so the pace goes up. After the last round: FREEZE. **Space**: "Hands up: 3 people or more!" Press **↑** for 4, 5, 6...: the last hand up wins and reports first. **Space**: the screen picks students to report ("I talked to Sara. Sara likes football."); the report frames of every question played are on screen.
 Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
 Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
+
+### Word Partners (Vocabulary + Speaking · all levels)
+*Collocations: phrases, not single words.* Knowing "decision" is not enough; students need "make a decision", "a tough decision".
+A core word sits in the middle (DECISION) with 6 hidden partner tiles. The core word shows on every tile and each partner word is a gap
+of its length ("___ a decision", "a ___ decision"), so students see the shape of the phrase. Beginner and Elementary work with verbs and picturable partners (PLAY: football, the guitar...; CATCH: a bus, a fish...): every tile has a picture of its partner, plus first letters.
+**One timer for the whole word** (Beginner/Elementary 2:00, middle levels 1:30, IELTS 1:15–1:00): find as many partners as you can. Time up: the rest flip and the class sees what it missed. **Enter** pauses.
+**Space** shows the first word. Students say a whole phrase (one word does not count).
+- On the board: press its number (**1–8**, or tap the tile): it flips, a point.
+- Good but not on the board ("a hard decision"): **B**, a bonus point.
+- Wrong ("do a decision"): **X**.
+- Teams on: the turn passes to the next team after every answer. Teams off: the whole class shouts phrases.
+**Space**: the rest of the tiles flip (missed ones in blue) and the **trap** appears: a common wrong partner, crossed out ("NOT do a decision").
+**Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
+Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
+On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
+**Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days; then they join the mix.
+Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 
 ### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.

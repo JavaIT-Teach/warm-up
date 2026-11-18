@@ -1,6 +1,6 @@
 /* Warm Up: TUG OF WAR.
    Rounds. Each round both sides get a topic (left side's word / right side's word, or FOR / AGAINST a statement).
-   Each side has one turn per round: a 3-2-1 countdown, then a timed think (45 s by default, starts by itself;
+   Each side has one turn per round: a 3-2-1 countdown, then a timed think (45 s by default, longer from Intermediate up for the defend format; starts by itself;
    Enter pauses, or skips the countdown), then one argument.
    The teacher pulls for a good one (Left / Right) or not (Space). When both sides have had their turn, the next round
    starts with a new topic and the rope stays where it is. A side wins by pulling the flag over its line, or by having
@@ -19,7 +19,7 @@
       { k: 'strength', label: 'Pull strength (steps per good reason)', type: 'num', min: 1, max: 5 },
       { k: 'distance', label: 'Distance to win (steps from the middle)', type: 'num', min: 1, max: 15 },
       { type: 'head', label: 'Rounds' },
-      { k: 'secs', label: 'Seconds per side to think and argue', type: 'num', min: 10, max: 180 },
+      { k: 'secs', label: 'Seconds per side to think and argue', type: 'num', min: 10, max: 600 },
       { k: 'countdown', label: 'Countdown before the timer (seconds, 0 = none)', type: 'num', min: 0, max: 5 },
       { k: 'go', label: 'Word at the end of the countdown', type: 'text', max: 10 },
       { k: 'rounds', label: 'Number of rounds', type: 'num', min: 1, max: 30 },
@@ -74,7 +74,7 @@
   function sideColor(i) { return teams() ? (WU.TEAM_COLORS[WU.state.teamColors[i]] || '#fff') : (i ? '#ff4fc3' : '#3d6bff'); }
   function dist() { return Math.max(1, Math.min(15, +scr.get().distance || 5)); }
   function rounds() { return Math.max(1, Math.min(30, +scr.get().rounds || 10)); }
-  function secs() { return Math.max(10, Math.min(180, +scr.get().secs || 45)); }
+  function secs() { return Math.max(10, Math.min(600, +scr.get().secs || 45)); }
   function cdSecs() { return Math.max(0, Math.min(5, +scr.get().countdown || 0)); }
   function stopCd() { clearTimeout(cdT); cdT = null; if (st) st.cd = null; }
   function clearT() { timers.forEach(clearTimeout); timers = []; stopCd(); }

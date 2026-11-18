@@ -1302,3 +1302,54 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .lwg .lwface { width: 300px; height: 300px; flex: none; }
 .lwg .lwstamp { position: absolute; left: 0; right: 0; margin: 0 auto; width: fit-content; top: 420px; transform: rotate(-6deg); padding: 10px 50px; border: 12px solid #c4122a; color: #c4122a; background: var(--paper); font-family: var(--display); font-size: 140px; line-height: 1; white-space: nowrap; animation: wu-slam .5s cubic-bezier(.2, .9, .3, 1.3) both; }
 .calm .lwg .lwbubw.in, .calm .lwg .lwstamp, .calm .lwg .lwmore, .calm .lwg .frame.lwclose { animation: none; }
+/* ---------- Word Partners ---------- */
+.wpg-game .wpcount { display: flex; align-items: baseline; gap: 12px; padding: 4px 18px; background: #fff; border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 30px; }
+.wpg-game .wpcount b { font-weight: 400; font-size: 44px; line-height: 1; }
+.wpg-game .wpstrikes { display: flex; gap: 8px; }
+.wpg-game .wpstrikes i { display: flex; align-items: center; justify-content: center; width: 56px; height: 56px; background: #fff; border: 5px solid var(--ink); color: #ddd; font-style: normal; font-family: var(--display); font-size: 40px; }
+.wpg-game .wpstrikes i.on { background: #ff3b3b; color: #fff; animation: wu-popin .35s cubic-bezier(.2, .9, .3, 1.2) both; }
+.wpg-game .wpturn { margin-left: auto; flex: 0 1 auto !important; min-width: 0; overflow: hidden; text-overflow: ellipsis; padding: 6px 22px; background: var(--yellow); border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 38px; transform: rotate(-1.5deg); }
+.wpg-game .wpready { position: absolute; left: 90px; right: 90px; top: 260px; bottom: 140px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; text-align: center; }
+.wpg-game .wpready .gbig { font-size: 100px; }
+.wpg-game .wpready .rule { font-size: 46px; max-width: 1400px; }
+.wpg-game .wpcore { position: absolute; left: 360px; right: 360px; top: 246px; height: 150px; display: flex; align-items: center; justify-content: center; padding: 0 40px; background: var(--ink); color: #fff; border: 6px solid var(--ink); box-shadow: 12px 12px 0 #00e5c7; }
+.wpg-game .wpword { width: 100%; height: 140px; display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden; white-space: nowrap; font-family: var(--display); font-size: 150px; line-height: 1; letter-spacing: -0.02em; text-transform: uppercase; }
+.wpg-game .wpcore.wpq { left: 70px; right: 70px; height: 160px; flex-direction: column; align-items: stretch; gap: 8px; padding: 10px 30px; background: #fff; color: var(--ink); box-shadow: 12px 12px 0 var(--pink); animation: wu-popin .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.wpg-game .wpqtop { display: flex; align-items: center; gap: 22px; }
+.wpg-game .wpqtop .gwho { font-size: 36px; padding: 2px 18px; box-shadow: 5px 5px 0 var(--ink); }
+.wpg-game .wpuse { padding: 2px 16px; background: var(--pink); border: 4px solid var(--ink); font-family: var(--display); font-size: 36px; }
+.wpg-game .wpqt { flex: 1; min-height: 0; overflow: hidden; display: flex; align-items: center; font-family: var(--display); font-size: 64px; line-height: 1.05; letter-spacing: -0.01em; }
+.wpg-game .wptiles { position: absolute; left: 70px; right: 70px; top: 426px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px 30px; }
+.wpg-game .wptile { position: relative; display: flex; align-items: center; gap: 22px; min-width: 0; padding: 0 22px 0 0; background: #fff; border: 5px solid var(--ink); box-shadow: 7px 7px 0 var(--ink); cursor: pointer; overflow: hidden; }
+.wpg-game .wpn { flex: none; align-self: stretch; display: flex; align-items: center; justify-content: center; width: 74px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 44px; }
+.wpg-game .wpt { flex: 1; min-width: 0; height: 100%; display: flex; flex-wrap: wrap; align-content: center; align-items: center; column-gap: .32em; row-gap: 4px; overflow: hidden; font-family: var(--display); font-size: 60px; line-height: 1.05; }
+.wpg-game .wpw { white-space: nowrap; }
+.wpg-game .wpg { display: inline-flex; align-items: flex-end; justify-content: center; height: .95em; border-bottom: 7px solid var(--ink); color: #9a9a9a; font-size: .8em; line-height: 1; }
+.wpg-game .wptile.got { background: var(--lime); }
+.wpg-game .wptile.got .wpp { background: #fff; padding: 0 10px; border: 4px solid var(--ink); }
+.wpg-game .wptile.pop { animation: wu-popin .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.wpg-game .wptile.missed { background: #efece4; }
+.wpg-game .wptile.missed .wpp { color: var(--blue); }
+.wpg-game .wpby { position: absolute; right: 0; top: 0; bottom: 0; width: 18px; border-left: 4px solid var(--ink); }
+.wpg-game .wpbottom { position: absolute; left: 70px; right: 70px; top: 912px; bottom: 92px; display: flex; align-items: center; justify-content: center; text-align: center; }
+.wpg-game .wpbottom .rule { font-size: 36px; }
+.wpg-game .wpflash { padding: 2px 26px; border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); font-family: var(--display); font-size: 44px; transform: rotate(-1.5deg); animation: wu-slam2 .4s cubic-bezier(.2, .9, .3, 1.2) both; white-space: nowrap; }
+.wpg-game .wpflash.hit { background: var(--lime); }
+.wpg-game .wpflash.bonus { background: #00e5c7; }
+.wpg-game .wpflash.wrong, .wpg-game .wpflash.time { background: #ff3b3b; color: #fff; }
+.wpg-game .wpend { display: flex; align-items: center; gap: 40px; min-width: 0; }
+.wpg-game .wptrap { display: flex; align-items: center; gap: 16px; min-width: 0; font-size: 40px; font-weight: 800; white-space: nowrap; }
+.wpg-game .wptrap b { padding: 2px 14px; background: #ff3b3b; color: #fff; border: 4px solid var(--ink); font-family: var(--display); font-weight: 400; font-size: 32px; }
+.wpg-game .wptrap s { font-family: var(--display); font-weight: 400; font-size: 46px; text-decoration-thickness: 6px; text-decoration-color: #ff3b3b; }
+.wpg-game .wppeek { position: absolute; right: 30px; bottom: 26px; z-index: 5; max-width: 1300px; padding: 2px 12px; background: #e9e5db; color: #777; font-size: 20px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.calm .wpg-game .wptile.pop, .calm .wpg-game .wpflash, .calm .wpg-game .wpstrikes i.on, .calm .wpg-game .wpcore.wpq { animation: none; }
+.wpg-game .wpclock { position: absolute; right: 46px; top: 204px; width: 220px; height: 220px; z-index: 2; }
+.wpg-game .wppic { flex: none; align-self: center; width: 92px; height: 92px; margin-left: -8px; }
+.wpg-game .wppic svg, .wpg-game .wppic img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.wpg-game .wpend { max-width: 100%; }
+.wpg-game .wpend .wpflash { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 38px; }
+.wpg-game .wptrap { flex: 0 1 auto; overflow: hidden; }
+.wpg-game .wptrap s { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.wpg-game .wpclock .wut-l { font-size: 28px !important; }
+.wpg-game .wpcore { flex-direction: column; }
+.wpg-game .wpunit { position: absolute; left: -10px; top: -30px; padding: 2px 14px; background: var(--yellow); color: var(--ink); border: 4px solid var(--ink); font-family: var(--display); font-size: 26px; transform: rotate(-2deg); white-space: nowrap; max-width: 760px; overflow: hidden; text-overflow: ellipsis; }
