@@ -85,6 +85,20 @@ Keys: Space walk / stop / report / next · Enter pause · N other task · P othe
 Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
 Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
 
+### Word Partners (Vocabulary + Speaking · all levels)
+*Collocations: phrases, not single words.* Knowing "decision" is not enough; students need "make a decision", "a tough decision".
+A core word sits in the middle (DECISION) with 6 hidden partner tiles. The core word shows on every tile and each partner word is a gap
+of its length ("___ a decision", "a ___ decision"), so students see the shape of the phrase. Beginner and Elementary also see first letters.
+**Space** shows the first word. Students say a whole phrase (one word does not count).
+- On the board: press its number (**1–8**, or tap the tile): it flips, a point.
+- Good but not on the board ("a hard decision"): **B**, a bonus point.
+- Wrong ("do a decision"): **X**, a strike. Time up = a strike.
+- Teams on: the turn passes to the next team after every answer. Teams off: the class plays against the board; 3 strikes and the board wins.
+**Space**: the rest of the tiles flip (missed ones in blue) and the **trap** appears: a common wrong partner, crossed out ("NOT do a decision").
+**Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
+Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
+Edit mode: core word, up to 8 partner phrases (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time per answer, strikes, first letters on / off, USE IT task and time.
+
 ### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
 
