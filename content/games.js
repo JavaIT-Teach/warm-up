@@ -33,6 +33,8 @@ WU.content.games = [
   { id: 'chat', skills: ['speaking'], name: 'Speed Chat', hook: 'One question. New partner. Again and again.', trains: 'Questions · short answers · reporting', color: '#ff4fc3', first: true, sticker: 'GET UP!' },
   { id: 'partners', skills: ['vocab', 'speaking'], name: 'Word Partners', hook: 'One word. Find its partners. Use them.', trains: 'Collocations · phrases, not single words', color: '#00e5c7', added: '2026-11-18',
     preview: ['MAKE', 'A DECISION', 'TOUGH'] },
+  { id: 'elias', skills: ['vocab', 'speaking'], name: 'Elias', hook: 'Explain it to your team. Fast. No gestures.', trains: 'Paraphrasing · explaining words · team race', color: '#3d6bff', added: '2026-11-18', levels: [2, 6],
+    preview: ['EXPLAIN', 'GUESS', '+1', 'SKIP'] },
   /* ---------- Weekly games built from the taught lessons ---------- */
   { id: 'hunt', skills: ['reading', 'vocab'], name: 'Word Hunt', hook: 'Read the clue. Find the word in the grid!', trains: 'Reading clues · finding words', color: '#ffe600', added: '2026-11-15',
     unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['FIND', 'TENNIS', 'B4'] },

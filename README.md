@@ -102,6 +102,19 @@ On a phone: the student types partners (one word or the whole phrase), takes the
 **Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days; then they join the mix.
 Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 
+### Elias (Vocabulary + Speaking · Pre-Intermediate and up; grey for Beginner and Elementary)
+*Paraphrasing: explain a word without saying it.* The team version of Hot Seat: one student explains, their own team guesses.
+Teams take turns (the teams from Settings; teams off = TEAM A and TEAM B). The guessing team sits with their backs to the board; the explainer faces it.
+**P** picks who explains (again = someone else). **Space** starts the turn (60 seconds; 75 at Pre-Intermediate, 50 at IELTS 3).
+- Guessed: **Space** (+1). Skipped: **X** (−1 from Intermediate up; no penalty at Pre-Intermediate).
+- Time up: **LAST WORD**. Any team can shout it. **1–4** = the team that guessed it (another team steals a point), **0** = nobody.
+- The list of the turn's words appears. Tap a word to change ✓ / ✗ (for example the explainer said the word). **Space** adds the points; the next team's turn.
+First team to the goal wins (15; 20 at IELTS 2 and 3). **R** new match. The score stays per level until you press R.
+Pre-Intermediate and Intermediate show a sentence frame for the explainer ("It's a place / a thing / a person... You use it to ___."). IELTS levels show three banned words per word.
+Teacher screen (**V**): the word, its banned words, the turn's list and the match score.
+Edit mode: the words and banned words per level; Screen text & timing: points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
+Keys: P who explains · Space start / got it / add the points · X skip · Enter pause · 1–4 / 0 last word · R new match.
+
 ### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
 
