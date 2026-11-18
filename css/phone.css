@@ -309,3 +309,4 @@ body.phone button { color: var(--ink); }
 #papp .ew.ok { background: #d8ffb0; }
 #papp .ew.no { background: #ffd2c4; text-decoration: line-through; text-decoration-color: #c4122a; text-decoration-thickness: 3px; }
 .ewin { font-size: 30px; padding: 18px; }
+.eunit { align-self: center; margin: 0 0 -6px; padding: 2px 10px; background: var(--yellow); border: 2px solid var(--ink); font-family: var(--display); font-size: 14px; }

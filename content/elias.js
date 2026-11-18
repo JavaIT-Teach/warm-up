@@ -1,5 +1,7 @@
 /* Warm Up: content for ELIAS (Pre-Intermediate and up). Team word race: one student explains, their own team guesses.
-   words[level]: { id, text, banned }. banned = words the explainer must not say (IELTS levels), separated by commas.
+   words[level]: { id, text, banned, unit, added }. banned = words the explainer must not say (IELTS levels), separated by commas.
+   Weekly words (ids 'ewk<level>-<MMDD>-<word>') come first in a level, with unit = 'Unit N · Name' and added = 'YYYY-MM-DD':
+   for 14 days they play first and show their unit on the board.
    Beginner and Elementary: empty (the game is grey there).
    id is PERMANENT: teacher edits (Edit mode) point at it. Never change or reuse an id. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
@@ -12,7 +14,24 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
     /* ---------- 1. Elementary (A2): not made for this level ---------- */
     { words: [] },
     /* ---------- 2. Pre-Intermediate (A2+): everyday things, places, jobs ---------- */
-    { words: L('el2-', [
+    /* Weekly words: taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). They play first for 14 days. */
+    { words: [
+      { id: 'ewk2-1118-spicy', text: 'spicy', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
+      { id: 'ewk2-1118-sour', text: 'sour', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
+      { id: 'ewk2-1118-bitter', text: 'bitter', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
+      { id: 'ewk2-1118-juicy', text: 'juicy', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
+      { id: 'ewk2-1118-elbow', text: 'elbow', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-ankle', text: 'ankle', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-throat', text: 'throat', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-thumb', text: 'thumb', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-cough', text: 'cough', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-fever', text: 'fever', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18' },
+      { id: 'ewk2-1118-mosquito', text: 'mosquito', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-18' },
+      { id: 'ewk2-1118-eagle', text: 'eagle', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-18' },
+      { id: 'ewk2-1118-wolf', text: 'wolf', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-18' },
+      { id: 'ewk2-1118-shark', text: 'shark', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-18' },
+      { id: 'ewk2-1118-penguin', text: 'penguin', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-18' },
+    ].concat(L('el2-', [
       ['airport', 'airport'], ['passport', 'passport'], ['suitcase', 'suitcase'], ['ticket', 'ticket'], ['hotel', 'hotel'],
       ['map', 'map'], ['bridge', 'bridge'], ['museum', 'museum'], ['pharmacy', 'pharmacy'], ['bakery', 'bakery'],
       ['post-office', 'post office'], ['petrol-station', 'petrol station'], ['library', 'library'], ['stadium', 'stadium'], ['market', 'market'],
@@ -26,9 +45,26 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
       ['soup', 'soup'], ['salad', 'salad'], ['honey', 'honey'], ['pepper', 'pepper'], ['popcorn', 'popcorn'],
       ['thunder', 'thunder'], ['rainbow', 'rainbow'], ['island', 'island'], ['desert', 'desert'], ['forest', 'forest'],
       ['tired', 'tired'], ['hungry', 'hungry'], ['angry', 'angry'], ['bored', 'bored'], ['scared', 'scared']
-    ]) },
+    ])) },
     /* ---------- 3. Intermediate (B1): work, travel, media, life events ---------- */
-    { words: L('el3-', [
+    /* Weekly words: taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). They play first for 14 days. */
+    { words: [
+      { id: 'ewk3-1118-rainforest', text: 'rainforest', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
+      { id: 'ewk3-1118-habitat', text: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
+      { id: 'ewk3-1118-crops', text: 'crops', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
+      { id: 'ewk3-1118-endangered', text: 'endangered', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
+      { id: 'ewk3-1118-hunting', text: 'hunting', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
+      { id: 'ewk3-1118-boarding-school', text: 'boarding school', unit: 'Unit 11 · Off to School', added: '2026-11-18' },
+      { id: 'ewk3-1118-degree', text: 'degree', unit: 'Unit 11 · Off to School', added: '2026-11-18' },
+      { id: 'ewk3-1118-qualifications', text: 'qualifications', unit: 'Unit 11 · Off to School', added: '2026-11-18' },
+      { id: 'ewk3-1118-undergraduate', text: 'undergraduate', unit: 'Unit 11 · Off to School', added: '2026-11-18' },
+      { id: 'ewk3-1118-headteacher', text: 'headteacher', unit: 'Unit 11 · Off to School', added: '2026-11-18' },
+      { id: 'ewk3-1118-cruise-ship', text: 'cruise ship', unit: 'Unit 12 · Getting Around', added: '2026-11-18' },
+      { id: 'ewk3-1118-ferry', text: 'ferry', unit: 'Unit 12 · Getting Around', added: '2026-11-18' },
+      { id: 'ewk3-1118-abroad', text: 'abroad', unit: 'Unit 12 · Getting Around', added: '2026-11-18' },
+      { id: 'ewk3-1118-check-in', text: 'check in', unit: 'Unit 12 · Getting Around', added: '2026-11-18' },
+      { id: 'ewk3-1118-unpack', text: 'unpack', unit: 'Unit 12 · Getting Around', added: '2026-11-18' },
+    ].concat(L('el3-', [
       ['deadline', 'deadline'], ['interview', 'job interview'], ['salary', 'salary'], ['boss', 'boss'], ['colleague', 'colleague'],
       ['volunteer', 'volunteer'], ['promotion', 'promotion'], ['retirement', 'retirement'], ['overtime', 'overtime'], ['commute', 'commute'],
       ['rush-hour', 'rush hour'], ['traffic-jam', 'traffic jam'], ['luggage', 'luggage'], ['souvenir', 'souvenir'], ['jet-lag', 'jet lag'],
@@ -42,7 +78,7 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
       ['discount', 'discount'], ['receipt', 'receipt'], ['refund', 'refund'], ['rent', 'rent'], ['landlord', 'landlord'],
       ['honeymoon', 'honeymoon'], ['anniversary', 'anniversary'], ['twins', 'twins'], ['teenager', 'teenager'], ['childhood', 'childhood'],
       ['embarrassed', 'embarrassed'], ['jealous', 'jealous'], ['proud', 'proud'], ['nervous', 'nervous'], ['generous', 'generous']
-    ]) },
+    ])) },
     /* ---------- 4. IELTS 1 (B2): banned words on ---------- */
     { words: L('el4-', [
       ['procrastination', 'procrastination', 'later, lazy, delay'], ['deadline', 'deadline', 'date, finish, time'], ['commute', 'commute', 'travel, work, bus'],

@@ -16,8 +16,9 @@
     function teamName(i) { var s = S(); return i === 0 ? s.teamA || 'TEAM A' : i === 1 ? s.teamB || 'TEAM B' : 'TEAM ' + 'ABCD'[i]; }
     function chip(i, extra) { return '<span class="eteam" style="background:' + COLS[i] + '">' + esc(teamName(i)) + (extra || '') + '</span>'; }
     function frameHTML(f) { return f ? '<div class="pframe">' + esc(f).replace(/___/g, '<span class="pgap"></span>') + '</div>' : ''; }
-    var deck = WU.kit.deck();
-    function draw() { var w = deck(words()); st.word = w ? { id: w.id, text: w.text, banned: w.banned } : null; }
+    // Weekly words (taught units) first: the board's picker.
+    var deck = WU.engines.elias.picker();
+    function draw() { var w = deck(words()); st.word = w ? { id: w.id, text: w.text, banned: w.banned, unit: w.unit } : null; }
     function points() { var n = 0; st.log.forEach(function (x) { if (x.got) n++; else if (S().skipMinus) n--; }); return n; }
     function signed(n) { return (n > 0 ? '+' : n < 0 ? '−' : '') + Math.abs(n); }
 
@@ -58,6 +59,7 @@
         var w = st.word;
         if (ph === 'last' && s.last) h += '<div class="pbanner ok">' + esc(s.last) + '</div>';
         if (ph === 'play') h += '<div class="pbarwrap"><div class="pbar"><i></i></div></div><div class="ecount" data-auto></div>';
+        if (w && w.unit) h += '<p class="eunit">' + esc(w.unit) + '</p>';
         h += '<div class="eword">' + esc(w ? w.text : '?') + '</div>';
         if (w && w.banned) h += '<div class="ebanned"><span>' + esc(s.banned || "Don't say:") + '</span>' + w.banned.split(',').map(function (b) { return b.trim(); }).filter(Boolean).map(function (b) { return '<s>' + esc(b) + '</s>'; }).join('') + '</div>';
         if (ph === 'play') {
