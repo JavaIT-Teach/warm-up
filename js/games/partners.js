@@ -20,7 +20,7 @@
       { k: 'ready', label: 'Before the first word', type: 'text', max: 60 },
       { k: 'rule', label: 'Rule line', type: 'text', max: 110 }, { k: 'ruleShow', label: 'Rule line', type: 'bool' },
       { k: 'letters', label: 'First letters in the gaps from the start (H shows them anyway)', type: 'bool', on: 'On', off: 'Off' },
-      { k: 'pics', label: 'Pictures on the tiles (the phone version always shows them)', type: 'bool', on: 'On', off: 'Off' },
+      { k: 'pics', label: 'Pictures on the tiles (board and phone)', type: 'bool', on: 'On', off: 'Off' },
       { k: 'seconds', label: 'Time for the whole word (seconds, 0 = no timer)', type: 'num', min: 0, max: 600 },
       { k: 'strikes', label: 'Strikes before the board wins (0 = no limit)', type: 'num', min: 0, max: 9 },
       { k: 'turn', label: 'Teams on: whose turn ({team})', type: 'text', max: 40 },

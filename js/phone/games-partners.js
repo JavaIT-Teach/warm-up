@@ -44,7 +44,7 @@
         var n = t.t.replace(/[^A-Za-z]/g, '').length || 1;
         return '<i style="width:' + (0.5 * n + 0.6).toFixed(1) + 'em">' + (st.letters ? esc(t.t.charAt(0)) : '') + '</i>';
       }).join(' ');
-      return '<div class="wpt' + (got ? ' got' : open ? ' miss' : '') + '"><b>' + (i + 1) + '</b>' + (p.pic ? '<span class="wpic">' + WU.pic(p.pic) + '</span>' : '') + '<span class="wptx">' + h + '</span></div>';
+      return '<div class="wpt' + (got ? ' got' : open ? ' miss' : '') + '"><b>' + (i + 1) + '</b>' + (p.pic && ctx.S.pics ? '<span class="wpic">' + WU.pic(p.pic) + '</span>' : '') + '<span class="wptx">' + h + '</span></div>';
     }
 
     function render(focus) {
