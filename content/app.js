@@ -6,5 +6,6 @@ WU.content.appTexts = [{
   id: 'app-texts',
   timerStart: 'TAP TO START', timerSeconds: 'SECONDS', timerLeft: 'LEFT', timerPaused: 'PAUSED', timerDone: 'TIME!',
   pickerTitle: "WHO'S NEXT?", pickerLanded: "YOU'RE UP!", pickerTap: 'Tap to pick',
-  scoresLabel: 'SCORES'
+  scoresLabel: 'SCORES',
+  qrTitle: 'Practise on your phone!', qrSub: 'Open the camera and scan. Free, no app, no login.'
 }];

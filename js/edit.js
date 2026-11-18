@@ -604,7 +604,7 @@
     gameTitle: 'All games', label: 'App texts', global: true, single: true,
     defaults: function () { return WU.content.appTexts || []; },
     norm: function (r) { var o = {}; Object.keys(r).forEach(function (k) { if (k !== 'id') o[k] = r[k]; }); return o; },
-    title: function () { return 'Timer, student picker, scoreboard'; },
+    title: function () { return 'Timer, student picker, scoreboard, phone QR code'; },
     fields: function () {
       return [
         { type: 'head', label: 'Timer' },
@@ -618,7 +618,10 @@
         { k: 'pickerLanded', label: 'Tag when a name lands', type: 'text', max: 24 },
         { k: 'pickerTap', label: 'Before the first pick', type: 'text', max: 24 },
         { type: 'head', label: 'Scoreboard' },
-        { k: 'scoresLabel', label: 'Side label', type: 'text', max: 12 }
+        { k: 'scoresLabel', label: 'Side label', type: 'text', max: 12 },
+        { type: 'head', label: 'Phone QR code (Q on the home screen)' },
+        { k: 'qrTitle', label: 'Title', type: 'text', max: 40 },
+        { k: 'qrSub', label: 'Line under it', type: 'text', max: 70 }
       ];
     }
   });

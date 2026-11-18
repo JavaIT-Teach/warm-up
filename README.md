@@ -7,6 +7,7 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
 ## On a student's phone (practise alone)
+**Get students there:** press **Q** on the home screen (or the QR button in the top bar). A big QR code fills the board; students scan it with the phone camera and land on the phone version. The title and line under it are in Edit mode → App texts.
 - Students open the same link. Phones get a portrait version with big buttons: **14 games that work for one student**
   (Word Hunt, Vanishing Sentence, Word Partners, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
   Hide & Seek Cat, Story Dice, Slot Machine, Lost Word, Natural Replies). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
