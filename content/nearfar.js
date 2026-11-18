@@ -107,7 +107,8 @@ WU.content.nearfarScreen = {
   levels: [
     { demoShow: true, manyChance: 40, rule: 'Near: this / these. Far: that / those.' },
     { seconds: 8 },
-    { seconds: 8, pairs: true, rule: 'Two things! One sentence: This is ___ and that is ___.' },
+    { seconds: 8, pairs: true, oneFar: "That's ___ over there.", manyFar: 'Those are ___ over there.',
+      rule: 'Two things! Near = this / these. Far = that / those ... over there.' },
     {}, {}, {}, {}
   ]
 };

@@ -204,7 +204,8 @@ WU.content.slot = [
       { id: "a2-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "a2-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "a2-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "a2-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "a2-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "a2-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" }
     ]
   },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
@@ -302,7 +303,9 @@ WU.content.slot = [
       { id: "a2p-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "a2p-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "a2p-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "a2p-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "a2p-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "a2p-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" },
+      { id: "a2p-w-dont-stop-for-a-word", text: "Don't stop for a word", sub: "Forgot a word? Describe it and keep going." }
     ]
   },
   /* ---------- 3. Intermediate (B1) ---------- */
@@ -400,7 +403,10 @@ WU.content.slot = [
       { id: "b1-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "b1-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "b1-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "b1-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "b1-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "b1-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" },
+      { id: "b1-w-dont-stop-for-a-word", text: "Don't stop for a word", sub: "Forgot a word? Describe it and keep going." },
+      { id: "b1-w-add-though", text: "Add \"... though\"", sub: "One contrast at the end: \"It's expensive. I love it though.\"" }
     ]
   },
   /* ---------- 4. IELTS 1 (B2) ---------- */
@@ -498,7 +504,10 @@ WU.content.slot = [
       { id: "i1-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "i1-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "i1-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "i1-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "i1-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "i1-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" },
+      { id: "i1-w-dont-stop-for-a-word", text: "Don't stop for a word", sub: "Forgot a word? Describe it and keep going." },
+      { id: "i1-w-add-though", text: "Add \"... though\"", sub: "One contrast at the end: \"It's expensive. I love it though.\"" }
     ]
   },
   /* ---------- 5. IELTS 2 (band 6.0) ---------- */
@@ -596,7 +605,10 @@ WU.content.slot = [
       { id: "i2-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "i2-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "i2-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "i2-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "i2-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "i2-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" },
+      { id: "i2-w-dont-stop-for-a-word", text: "Don't stop for a word", sub: "Forgot a word? Describe it and keep going." },
+      { id: "i2-w-add-though", text: "Add \"... though\"", sub: "One contrast at the end: \"It's expensive. I love it though.\"" }
     ]
   },
   /* ---------- 6. IELTS 3 (band 7.0+) ---------- */
@@ -694,7 +706,10 @@ WU.content.slot = [
       { id: "i3-w-use-never", text: "Use \"never\"", sub: "Say it at least once." },
       { id: "i3-w-compare-two-things", text: "Compare two things", sub: "\"... is better than ...\"" },
       { id: "i3-w-include-a-feeling", text: "Include a feeling", sub: "\"I felt...\"" },
-      { id: "i3-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." }
+      { id: "i3-w-use-because-twice", text: "Use \"because\" twice", sub: "Give two reasons." },
+      { id: "i3-w-start-in-1-second", text: "Start in 1 second", sub: "No planning. First word NOW!" },
+      { id: "i3-w-dont-stop-for-a-word", text: "Don't stop for a word", sub: "Forgot a word? Describe it and keep going." },
+      { id: "i3-w-add-though", text: "Add \"... though\"", sub: "One contrast at the end: \"It's expensive. I love it though.\"" }
     ]
   }
 ];

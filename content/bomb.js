@@ -137,7 +137,11 @@ WU.content.bomb = [
       { id: "a2-ways-to-travel-u7", name: "Ways to travel" },
       { id: "a2-furniture-in-your-bedroom-u8", name: "Furniture in your bedroom" },
       { id: "a2-clothes-u9", name: "Clothes" },
-      { id: "a2-irregular-past-verbs-u7", name: "Irregular verbs in the past" }
+      { id: "a2-irregular-past-verbs-u7", name: "Irregular verbs in the past" },
+      { id: "a2-sense-things-that-taste-sweet", name: "Things that taste sweet" },
+      { id: "a2-sense-things-that-taste-sour", name: "Things that taste sour" },
+      { id: "a2-sense-things-that-smell-nice", name: "Things that smell nice" },
+      { id: "a2-sense-things-that-smell-bad", name: "Things that smell bad" }
     ],
     first: [
       { id: "a2-first-things-you-like", name: "Things you like" },
@@ -165,7 +169,10 @@ WU.content.bomb = [
       { id: "a2-ch-morning", short: "MORNING", text: "Talk for 10 seconds about your morning", sub: "\"This morning I...\"", timer: 10 },
       { id: "a2-ch-yes-no", short: "YES/NO", text: "Ask a classmate a yes/no question", sub: "\"Do you...? / Can you...?\"" },
       { id: "a2-ch-whisper", short: "WHISPER", text: "Whisper your next answer", sub: "Everybody listen!" },
-      { id: "a2-ch-family", short: "FAMILY", text: "Tell us about one person in your family", sub: "\"My brother is...\"" }
+      { id: "a2-ch-family", short: "FAMILY", text: "Tell us about one person in your family", sub: "\"My brother is...\"" },
+      { id: "a2-ch-senses", short: "SENSES", text: "Touch something near you. Say 2 things about it.", sub: "\"It's... It feels...\"" },
+      { id: "a2-ch-right-now", short: "RIGHT NOW", text: "Say what you are doing right now.", sub: "\"I'm sitting... I'm holding...\"" },
+      { id: "a2-ch-react", short: "REACT!", text: "React! It's raining and you have no umbrella.", sub: "\"Oh no! I'm wet!\"" }
     ]
   },
 
@@ -209,7 +216,11 @@ WU.content.bomb = [
       { id: "a2p-parts-of-the-body-u11", name: "Parts of the body" },
       { id: "a2p-things-you-have-bought-u9", name: "Things you have bought this month" },
       { id: "a2p-things-in-a-supermarket-u9", name: "Things you see in a supermarket" },
-      { id: "a2p-illnesses-u11", name: "Illnesses and injuries" }
+      { id: "a2p-illnesses-u11", name: "Illnesses and injuries" },
+      { id: "a2p-sense-things-that-taste-bitter", name: "Things that taste bitter" },
+      { id: "a2p-sense-things-that-feel-smooth", name: "Things that feel smooth" },
+      { id: "a2p-sense-things-that-feel-sticky", name: "Things that feel sticky" },
+      { id: "a2p-sense-things-that-smell-nice", name: "Things that smell nice" }
     ],
     first: [
       { id: "a2p-first-places-you-have-visited", name: "Places you have visited" },
@@ -237,7 +248,10 @@ WU.content.bomb = [
       { id: "a2p-ch-film", short: "FILM", text: "Describe your favourite film in 2 sentences", sub: "No spoilers!" },
       { id: "a2p-ch-ask-2", short: "ASK 2", text: "Ask 2 classmates one question each", sub: "They must answer in a full sentence." },
       { id: "a2p-ch-recommend", short: "RECOMMEND", text: "Recommend one place in your city", sub: "\"You should go to... because...\"" },
-      { id: "a2p-ch-weather", short: "WEATHER", text: "Describe today's weather in 2 sentences", sub: "\"It's... and...\"" }
+      { id: "a2p-ch-weather", short: "WEATHER", text: "Describe today's weather in 2 sentences", sub: "\"It's... and...\"" },
+      { id: "a2p-ch-senses", short: "SENSES", text: "Describe the thing next to you with 3 senses", sub: "\"It looks... It feels... It smells...\"" },
+      { id: "a2p-ch-right-now", short: "RIGHT NOW", text: "Say what you are doing right now, step by step", sub: "\"I'm sitting... I'm looking at...\"" },
+      { id: "a2p-ch-react", short: "REACT!", text: "React! Your bus just left without you.", sub: "\"Oh no! I should have run!\"" }
     ]
   },
 
@@ -280,7 +294,11 @@ WU.content.bomb = [
       { id: "b1-things-that-need-a-battery-u9", name: "Things that need a battery" },
       { id: "b1-what-you-will-be-doing-u9", name: "What you'll be doing this time tomorrow" },
       { id: "b1-school-subjects-u11", name: "School subjects" },
-      { id: "b1-if-bees-disappeared-u10", name: "What would happen if bees disappeared" }
+      { id: "b1-if-bees-disappeared-u10", name: "What would happen if bees disappeared" },
+      { id: "b1-sense-things-that-taste-spicy", name: "Things that taste spicy" },
+      { id: "b1-sense-things-that-feel-rough", name: "Things that feel rough" },
+      { id: "b1-sense-smells-you-love", name: "Smells you love" },
+      { id: "b1-sense-sounds-that-annoy-you", name: "Sounds that annoy you" }
     ],
     first: [
       { id: "b1-first-things-you-used-to-love-as", name: "Things you used to love as a child" },
@@ -308,7 +326,10 @@ WU.content.bomb = [
       { id: "b1-ch-recommend", short: "RECOMMEND", text: "Recommend a film or a book, and say why", sub: "Two reasons." },
       { id: "b1-ch-nice", short: "NICE", text: "Give someone a specific compliment", sub: "Say why." },
       { id: "b1-ch-change", short: "CHANGE", text: "Name one thing you'd change in your city", sub: "\"I would change... because...\"" },
-      { id: "b1-ch-tomorrow", short: "TOMORROW", text: "Say 2 things that might happen tomorrow", sub: "\"It might...\"" }
+      { id: "b1-ch-tomorrow", short: "TOMORROW", text: "Say 2 things that might happen tomorrow", sub: "\"It might...\"" },
+      { id: "b1-ch-senses", short: "SENSES", text: "Describe the thing next to you with 3 senses", sub: "\"It looks... It feels... It smells...\"" },
+      { id: "b1-ch-right-now", short: "RIGHT NOW", text: "Say what you are doing right now, step by step", sub: "\"I'm sitting... I'm looking at...\"" },
+      { id: "b1-ch-react", short: "REACT!", text: "React! You are stuck in traffic and you are late.", sub: "\"This is so annoying. I should have left earlier.\"" }
     ]
   },
 
@@ -346,7 +367,11 @@ WU.content.bomb = [
       { id: "i1-reasons-people-break-rules", name: "Reasons people break rules" },
       { id: "i1-ways-to-make-friends-as-an", name: "Ways to make friends as an adult" },
       { id: "i1-advantages-of-public-transport", name: "Advantages of public transport" },
-      { id: "i1-things-that-will-disappear-in-20", name: "Things that will disappear in 20 years" }
+      { id: "i1-things-that-will-disappear-in-20", name: "Things that will disappear in 20 years" },
+      { id: "i1-sense-smells-that-bring-back-memories", name: "Smells that bring back memories" },
+      { id: "i1-sense-textures-you-hate", name: "Textures you hate" },
+      { id: "i1-sense-sounds-of-your-city", name: "Sounds of your city" },
+      { id: "i1-sense-tastes-you-loved-as-a-child", name: "Tastes you loved as a child" }
     ],
     first: [
       { id: "i1-first-things-youre-passionate-about", name: "Things you're passionate about" },
@@ -374,7 +399,10 @@ WU.content.bomb = [
       { id: "i1-ch-nice", short: "NICE", text: "Give someone a specific compliment", sub: "Say why." },
       { id: "i1-ch-agree", short: "AGREE?", text: "Agree or disagree: \"Homework should be banned.\"", sub: "Give your main reason." },
       { id: "i1-ch-paraphrase", short: "PARAPHRASE", text: "Paraphrase the teacher's last sentence", sub: "Different words, same meaning." },
-      { id: "i1-ch-predict", short: "PREDICT", text: "Predict one change in your city in 10 years", sub: "\"I expect that...\"" }
+      { id: "i1-ch-predict", short: "PREDICT", text: "Predict one change in your city in 10 years", sub: "\"I expect that...\"" },
+      { id: "i1-ch-senses", short: "SENSES", text: "Describe the thing next to you with 3 senses", sub: "Precise adjectives: not just \"nice\"." },
+      { id: "i1-ch-right-now", short: "RIGHT NOW", text: "Narrate what you are doing right now, like a sports commentator", sub: "Present continuous, fast." },
+      { id: "i1-ch-react", short: "REACT!", text: "React! Your lunch is completely bland.", sub: "\"Ugh. It needs more salt. Still, it's hot, though.\"" }
     ]
   },
 
@@ -412,7 +440,11 @@ WU.content.bomb = [
       { id: "i2-effects-of-globalisation", name: "Effects of globalisation" },
       { id: "i2-things-schools-should-teach-but-dont", name: "Things schools should teach but don't" },
       { id: "i2-ways-to-reduce-inequality", name: "Ways to reduce inequality" },
-      { id: "i2-reasons-celebrities-influence-people", name: "Reasons celebrities influence people" }
+      { id: "i2-reasons-celebrities-influence-people", name: "Reasons celebrities influence people" },
+      { id: "i2-sense-smells-that-bring-back-memories", name: "Smells that bring back memories" },
+      { id: "i2-sense-textures-you-hate", name: "Textures you hate" },
+      { id: "i2-sense-sounds-of-your-city", name: "Sounds of your city" },
+      { id: "i2-sense-tastes-that-are-hard-to-describe", name: "Tastes that are hard to describe" }
     ],
     first: [
       { id: "i2-first-memorable-trips", name: "Memorable trips" },
@@ -440,7 +472,10 @@ WU.content.bomb = [
       { id: "i2-ch-predict", short: "PREDICT", text: "Predict how schools will change by 2040", sub: "\"By 2040, schools will probably...\"" },
       { id: "i2-ch-although", short: "ALTHOUGH", text: "Make one \"Although..., I believe...\" sentence", sub: "About social media." },
       { id: "i2-ch-nice", short: "NICE", text: "Give someone a specific compliment", sub: "Say why." },
-      { id: "i2-ch-explain", short: "EXPLAIN", text: "Explain a word without saying it", sub: "The class guesses the word." }
+      { id: "i2-ch-explain", short: "EXPLAIN", text: "Explain a word without saying it", sub: "The class guesses the word." },
+      { id: "i2-ch-senses", short: "SENSES", text: "Describe the thing next to you with 3 senses", sub: "Precise adjectives: not just \"nice\"." },
+      { id: "i2-ch-right-now", short: "RIGHT NOW", text: "Narrate what you are doing right now, like a sports commentator", sub: "Present continuous, fast." },
+      { id: "i2-ch-react", short: "REACT!", text: "React! Your lunch is completely bland.", sub: "\"Ugh. It needs more salt. Still, it's hot, though.\"" }
     ]
   },
 
@@ -478,7 +513,11 @@ WU.content.bomb = [
       { id: "i3-effects-of-mass-tourism-on-heritage", name: "Effects of mass tourism on heritage" },
       { id: "i3-limits-of-free-speech", name: "Limits of free speech" },
       { id: "i3-reasons-people-resist-change", name: "Reasons people resist change" },
-      { id: "i3-long-term-effects-of-the-pandemic", name: "Long-term effects of the pandemic on work" }
+      { id: "i3-long-term-effects-of-the-pandemic", name: "Long-term effects of the pandemic on work" },
+      { id: "i3-sense-smells-that-bring-back-memories", name: "Smells that bring back memories" },
+      { id: "i3-sense-textures-you-hate", name: "Textures you hate" },
+      { id: "i3-sense-sounds-of-your-city", name: "Sounds of your city" },
+      { id: "i3-sense-tastes-that-are-hard-to-describe", name: "Tastes that are hard to describe" }
     ],
     first: [
       { id: "i3-first-values-you-live-by", name: "Values you live by" },
@@ -506,7 +545,10 @@ WU.content.bomb = [
       { id: "i3-ch-define", short: "DEFINE", text: "Define \"success\" in one sentence", sub: "No clichés." },
       { id: "i3-ch-concede", short: "CONCEDE", text: "Concede one point in any debate", sub: "\"Admittedly...\"" },
       { id: "i3-ch-challenge", short: "CHALLENGE", text: "Politely challenge the teacher on homework", sub: "\"With respect, I'd argue...\"" },
-      { id: "i3-ch-nice", short: "NICE", text: "Give someone a precise, specific compliment", sub: "Say why." }
+      { id: "i3-ch-nice", short: "NICE", text: "Give someone a precise, specific compliment", sub: "Say why." },
+      { id: "i3-ch-senses", short: "SENSES", text: "Describe the thing next to you with 3 senses", sub: "Precise adjectives: not just \"nice\"." },
+      { id: "i3-ch-right-now", short: "RIGHT NOW", text: "Narrate what you are doing right now, like a sports commentator", sub: "Present continuous, fast." },
+      { id: "i3-ch-react", short: "REACT!", text: "React! Your lunch is completely bland.", sub: "\"Ugh. It needs more salt. Still, it's hot, though.\"" }
     ]
   }
 ];

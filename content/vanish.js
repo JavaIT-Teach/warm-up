@@ -2,7 +2,8 @@
    Words vanish a few at a time and the class reads it again, missing words too, until nothing is left.
    Then everyone writes the whole sentence on paper, and the words come back so students check their spelling.
    Built from the taught lessons in the Lesson Plan Builder (weekly job, 2026-11-15).
-   items[level]: { id, text, focus, pic }. focus = the grammar or vocabulary it practises (shown as a tag).
+   items[level]: { id, text, focus, pic, stress }. stress = the stressed words, separated by commas (empty = automatic:
+     the content words, not a / the / is / to...). Shown big in the first reading so the class reads with rhythm. focus = the grammar or vocabulary it practises (shown as a tag).
    id is PERMANENT: teacher edits (Edit mode) point at it. Never change or reuse an id. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.vanish = [
@@ -99,7 +100,8 @@ WU.content.vanishScreen = {
     read: 'Read it together!', again: 'Read it again. Say the missing words too!', write: 'WRITE IT!',
     writeRule: 'Write the whole sentence on paper. No looking!', writeSec: 45,
     check: 'Check your spelling!', say: '{name}, read your sentence!', perStep: 2, letters: false,
-    demo: 'TEACHER DEMO: watch me first!', demoShow: false
+    demo: 'TEACHER DEMO: watch me first!', demoShow: false,
+    stressShow: true, stressRule: 'Say the BIG words louder and longer.'
   },
   levels: [
     { perStep: 1, letters: true, writeSec: 60, demoShow: true },

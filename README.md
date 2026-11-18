@@ -38,11 +38,13 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 At Beginner every game starts with a **teacher demo** (you go first) and shows a sentence frame. One word, pointing or a gesture counts.
 
 **1. The Bomb.** A category appears. Students pass an object around the room; whoever holds it says one word (a sentence at higher levels) and passes it on. **Space** lights the fuse; nobody knows when it explodes. Whoever holds it spins the challenge wheel and answers a short speaking challenge from their seat.
+*Senses and reactions:* sense categories from Elementary ("Things that taste bitter", "Smells that bring back memories"). Three wheel challenges: **SENSES** (describe the thing next to you with 3 senses), **RIGHT NOW** (say what you're doing, step by step) and **REACT!** ("Your bus just left!" → "Oh no! I should have run!").
 **Choose the category:** press **C** (or tap "C categories"). Arrows + **Enter**: that category comes next (at once if the round hasn't started). **Space** ticks categories for a set; **P** plays the ticked ones in the order you ticked them, again and again. **R** goes back to random. Your own categories (added in Edit mode) are in the list too. The choice lasts until you change it or reload the app.
 To choose without the class seeing the list, use the Teacher screen (**V**): the same list is there, and only you see "Next category".
 Keys: Space start / spin / next · N new category · C choose categories · P who starts · X explode now · T challenge timer · R reset.
 
 **2. Slot Machine of Chaos.** **Space** spins: WHO (a student), TOPIC, HOW (a speaking style) and, from Intermediate, a TWIST. The student talks until the timer ends (it starts by itself). Then the screen names two classmates who each ask the speaker one question.
+*New twists:* "Start in 1 second" (from Elementary), "Don't stop for a word: describe it and keep going" (from Pre-Intermediate) and "Add ... though" (from Intermediate).
 Keys: Space spin · Enter pause · Q questions now · H styles on / off · W twist on / off.
 
 **3. Hot Seat.** One student sits with their back to the board. **P** picks a student (P again = someone else, for a shy student). **Space** starts the round. The class describes each word; the student guesses. **Space** = got it (a point), **P** = pass. The high score stays for the next student to beat.
@@ -133,6 +135,7 @@ Keys: Space countdown / reveal / next · N other sentence · P other student.
 Keys: Space show the room / show one thing / question / answer · A show everything · P other student.
 
 **G3. Near & Far** (Beginner to Pre-Intermediate) · *this / that / these / those.* A picture road: things appear near the hand (this / these) or far away (that / those), one or more. The student says the sentence; **Space** reveals it. Pre-Intermediate: two things at once ("These are cats and that is a dog."), with a time bar.
+Pre-Intermediate adds *over there* to the far thing: "This is a carrot and those are bottles over there."
 Keys: Space reveal / next · N other things · P other student.
 
 **G4. Hide & Seek Cat** (Beginner to Intermediate) · *prepositions of place, then movement.* The cat (or a dog, a ball...) hides: in the box, on / under / next to the table, behind / in front of the box, between two boxes, above the table. From Pre-Intermediate it moves (animated): into / out of / over the box; Intermediate adds around the tree, past / towards / away from the house, across the road, through the tunnel, up / down the hill ("The cat went through the tunnel.").
@@ -160,12 +163,15 @@ Keys: Space countdown / reveal / next · T time / place / both · N other senten
 Keys: 1–4 this team answers · Space right / next word · X wrong / nobody · A peek · Shift + 1–4 take a point back · R new match.
 
 **G10. Phrasal Roulette** (Pre-Intermediate and up) · *phrasal verbs.* Two reels spin: VERB + PARTICLE (give + up). The student says what it means; **Space** shows the meaning and an example; **Space** again gives another student a personal question to answer with it ("What would you like to give up?"). **T** turns it round: the meaning shows and the student finds the phrasal verb.
-Keys: Space reveal / question / spin · T direction · P other student.
+**T** has three modes: verb → meaning, meaning → verb, and **WHERE DOES "IT" GO?** Two answers show: "1 take it down" / "2 take down it". Fingers up, **Space** reveals the right one. Separable verbs must split around *it* (take it down); inseparable ones never do (get over it). Verbs without an object are skipped.
+**L = family:** the verb stays fixed (*come*, *make*, *get*...) and only the particle changes. **L** again moves to the next family, then back to every verb. Verbs with *come* and *make* added for Pre-Intermediate to IELTS 1 (come over, come along, come down with, come through, come across as, make up for, make out = hear or see...), plus speak up, take down, shut down, pull over, talk down to.
+Keys: Space reveal / question / spin · T mode · L family · P other student.
 
 ### Weekly games (built from what your groups learned)
 **Word Hunt** (Reading · Beginner to Intermediate). A letter grid hides 8 words from your last units. Beginner sees the words with pictures; higher levels read a clue ("You need it to travel to another country.") and the number of letters. **Space** shows the grid and starts the timer. A student who finds a word says it and where it is ("B4, across!") or shows it on the board. **↑ / ↓** choose the clue, **Enter** (or tap the clue) marks it found and it lights up. **H** flashes the first letter, **A** shows every word, **N** next puzzle, **R** same words in a new grid.
 
 **Vanishing Sentence** (Writing · Beginner to Intermediate). A sentence from your last lessons. The class reads it together. **Space**: one or two words vanish; the class reads it again, missing words too. Again and again until nothing is left, then WRITE IT!: everyone writes the whole sentence on paper. **Space**: the words come back and students check their spelling; a picked student reads theirs. **B** brings one word back, **N** other sentence, **P** other student.
+*Stress:* in the first reading the stressed words are big and underlined ("She did WELL in her EXAMS."), so the class reads with rhythm. Automatic: content words and negatives (*don't*, *can't*). A sentence can list its own stressed words in Edit mode.
 
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 

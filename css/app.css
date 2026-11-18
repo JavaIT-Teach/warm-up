@@ -953,6 +953,7 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .nfg .nffloor::after { content: ''; position: absolute; left: 0; right: 0; top: 0; bottom: 0; background: repeating-linear-gradient(0deg, #f2c26b 0 46px, #e5b257 46px 92px); clip-path: polygon(46% 0, 54% 0, 92% 100%, 8% 100%); border: 0; }
 .nfg .nfhz { position: absolute; left: 0; right: 0; top: 22%; height: 5px; background: var(--ink); }
 .nfg .nftag { position: absolute; padding: 2px 14px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 30px; }
+.nfg .gans-t { max-height: 118px; overflow: hidden; }
 .nfg .nftag.far { left: 50%; top: 3%; transform: translateX(-50%); }
 .nfg .nftag.near { right: 4%; bottom: 5%; }
 .nfg .nfitems { position: absolute; display: flex; align-items: flex-end; justify-content: center; }
@@ -1386,3 +1387,14 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .xrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 40px; width: 100%; }
 .tug .brow .xstrip { flex: 1 1 0; min-width: 0; flex-wrap: nowrap; overflow: hidden; }
 .tug .brow .xstrip .xl, .tug .brow .xstrip .xe { font-size: 26px; }
+
+/* Phrasal Roulette: split or stick */
+.prg .prsplit { display: flex; gap: 40px; flex-wrap: wrap; }
+.prg .prs { display: flex; align-items: center; gap: 18px; padding: 10px 28px 10px 12px; background: #fff; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); font-family: var(--display); font-size: 64px; line-height: 1.05; }
+.prg .prs b { flex: none; width: 70px; height: 70px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: #fff; font-weight: 400; font-size: 48px; }
+.prg .prs.ok { background: var(--lime); animation: wu-popin .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.prg .prs.no { opacity: .35; text-decoration: line-through; text-decoration-thickness: 6px; box-shadow: none; }
+.calm .prg .prs.ok { animation: none; }
+
+/* Vanishing Sentence: stressed words in the first reading */
+.vsw.st { display: inline-block; font-size: 1.18em; color: #c4127f; border-bottom: .09em solid currentColor; line-height: 1; }
