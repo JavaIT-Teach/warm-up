@@ -59,18 +59,18 @@ WU.content.partners = [
   /* 3. Intermediate (B1) */
   { words: [
     /* Weekly words: taught units (Unit 9 The Future Is Now, Unit 10 Animals in Danger, Unit 11 Off to School). */
-    { id: 'wk3-1118-battery', word: 'battery', unit: 'Unit 9 · The Future Is Now', added: '2026-11-18', p: ['charge the battery', 'a flat battery', 'battery life', 'the battery died', 'a new battery', 'a spare battery'], question: 'What do you do when your phone battery is flat?', trap: 'fill the battery' },
-    { id: 'wk3-1118-habitat', word: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18', p: ['lose their habitat', 'a natural habitat', 'protect a habitat', 'destroy a habitat', 'habitat loss', 'a safe habitat'], question: 'Why are many creatures losing their habitat?', trap: 'kill a habitat' },
-    { id: 'wk3-1118-school', word: 'school', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: ['attend a school', 'a boarding school', 'primary school', 'secondary school', 'leave school', 'school breaks up'], question: 'Would you like to go to a boarding school? Why?', trap: 'finish the school' },
-    { id: 'wk3-1118-university', word: 'university', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: ['go to university', 'apply to university', 'a university degree', 'at university', 'leave university', 'study at university'], question: 'What would you like to study at university?', trap: 'enter to university' },
-    { id: 'wp3-effort', word: 'effort', p: ['make an effort', 'a lot of effort', 'put effort into', 'a real effort', 'worth the effort', 'a team effort'], question: 'What do you make a real effort to do every week?', trap: 'do an effort' },
-    { id: 'wp3-risk', word: 'risk', p: ['take a risk', 'a big risk', 'reduce the risk', 'at risk', 'a health risk', 'worth the risk'], question: 'What is the biggest risk you have ever taken?', trap: 'make a risk' },
-    { id: 'wp3-opportunity', word: 'opportunity', p: ['miss an opportunity', 'a great opportunity', 'take the opportunity', 'a job opportunity', 'a golden opportunity', 'equal opportunities'], question: 'Tell us about an opportunity you took or missed.', trap: 'lose an opportunity' },
-    { id: 'wp3-experience', word: 'experience', p: ['gain experience', 'work experience', 'a great experience', 'from experience', 'life experience', 'share my experience'], question: 'What experience changed you?', trap: 'take experience' },
-    { id: 'wp3-relationship', word: 'relationship', p: ['a close relationship', 'build a relationship', 'a long-distance relationship', 'a good relationship', 'end a relationship', 'a working relationship'], question: 'Who do you have a close relationship with?', trap: 'make a relationship' },
-    { id: 'wp3-progress', word: 'progress', p: ['make progress', 'slow progress', 'real progress', 'check my progress', 'steady progress', 'a progress report'], question: 'Where are you making progress in English?', trap: 'do a progress' },
-    { id: 'wp3-goal', word: 'goal', p: ['set a goal', 'reach a goal', 'a long-term goal', 'my main goal', 'achieve a goal', 'work towards a goal'], question: 'What goal did you set this year?', trap: 'make a goal' },
-    { id: 'wp3-noise', word: 'noise', p: ['make a noise', 'a loud noise', 'background noise', 'a strange noise', 'traffic noise', 'hear a noise'], question: 'What noise annoys you the most?', trap: 'do noise' }
+    { id: 'wk3-1118-battery', word: 'battery', unit: 'Unit 9 · The Future Is Now', added: '2026-11-18', p: [['charge the battery', 'charging'], ['a flat battery', 'flat battery'], ['battery life', 'clock'], ['the battery died', 'phone'], ['a new battery', 'battery'], ['a spare battery', 'bag']], question: 'What do you do when your phone battery is flat?', trap: 'fill the battery' },
+    { id: 'wk3-1118-habitat', word: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18', p: [['lose their habitat', 'city'], ['a natural habitat', 'tree'], ['protect a habitat', 'heart'], ['destroy a habitat', 'fire'], 'habitat loss', ['a safe habitat', 'house']], question: 'Why are many creatures losing their habitat?', trap: 'kill a habitat' },
+    { id: 'wk3-1118-school', word: 'school', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: [['attend a school', 'school'], ['a boarding school', 'bed'], ['primary school', 'brother'], ['secondary school', 'book'], ['leave school', 'bag'], ['school breaks up', 'sun']], question: 'Would you like to go to a boarding school? Why?', trap: 'finish the school' },
+    { id: 'wk3-1118-university', word: 'university', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: [['go to university', 'bus'], ['apply to university', 'computer'], ['a university degree', 'graduation cap'], ['at university', 'teacher'], ['leave university', 'bag'], ['study at university', 'book']], question: 'What would you like to study at university?', trap: 'enter to university' },
+    { id: 'wp3-effort', word: 'effort', p: [['make an effort', 'a-run'], ['a lot of effort', 'a-climb'], ['put effort into', 'a-write'], 'a real effort', ['worth the effort', 'trophy'], ['a team effort', 'friends']], question: 'What do you make a real effort to do every week?', trap: 'do an effort' },
+    { id: 'wp3-risk', word: 'risk', p: [['take a risk', 'a-ski'], ['a big risk', 'fire'], ['reduce the risk', 'umbrella'], ['at risk', 'elephant'], ['a health risk', 'doctor'], ['worth the risk', 'money']], question: 'What is the biggest risk you have ever taken?', trap: 'make a risk' },
+    { id: 'wp3-opportunity', word: 'opportunity', p: [['miss an opportunity', 'alarm clock'], ['a great opportunity', 'star'], ['take the opportunity', 'hand'], ['a job opportunity', 'builder'], ['a golden opportunity', 'trophy'], ['equal opportunities', 'friends']], question: 'Tell us about an opportunity you took or missed.', trap: 'lose an opportunity' },
+    { id: 'wp3-experience', word: 'experience', p: [['gain experience', 'book'], ['work experience', 'builder'], ['a great experience', 'star'], ['from experience', 'grandfather'], ['life experience', 'family'], ['share my experience', 'microphone']], question: 'What experience changed you?', trap: 'take experience' },
+    { id: 'wp3-relationship', word: 'relationship', p: [['a close relationship', 'heart'], ['build a relationship', 'builder'], ['a long-distance relationship', 'plane'], ['a good relationship', 'friends'], 'end a relationship', ['a working relationship', 'computer']], question: 'Who do you have a close relationship with?', trap: 'make a relationship' },
+    { id: 'wp3-progress', word: 'progress', p: [['make progress', 'a-climb'], ['slow progress', 'turtle'], 'real progress', ['check my progress', 'test'], 'steady progress', ['a progress report', 'book']], question: 'Where are you making progress in English?', trap: 'do a progress' },
+    { id: 'wp3-goal', word: 'goal', p: [['set a goal', 'pencil'], ['reach a goal', 'mountain'], ['a long-term goal', 'clock'], ['my main goal', 'star'], ['achieve a goal', 'trophy'], ['work towards a goal', 'a-run']], question: 'What goal did you set this year?', trap: 'make a goal' },
+    { id: 'wp3-noise', word: 'noise', p: [['make a noise', 'drum'], ['a loud noise', 'microphone'], ['background noise', 'city'], ['a strange noise', 'owl'], ['traffic noise', 'car'], ['hear a noise', 'ear']], question: 'What noise annoys you the most?', trap: 'do noise' }
   ] },
   /* 4. IELTS 1 (B2) */
   { words: [
@@ -112,15 +112,15 @@ WU.content.partnersScreen = {
     id: 'partners-screen',
     tag: 'WORD PARTNERS', ready: 'One word. Find its partners!',
     rule: 'Say a PHRASE with the word, not one word. "a decision" is not enough. "make a decision" is!', ruleShow: true,
-    seconds: 90, strikes: 0, letters: false,
+    seconds: 90, strikes: 0, letters: false, pics: false,
     turn: '{team}: your turn!', classTurn: 'Everyone: say a phrase!', found: 'FOUND',
     hit: 'YES! A partner!', bonus: 'GOOD ONE! Not on the board, but it works.', wrong: 'Not a partner!',
     allFound: 'ALL FOUND!', boardWins: 'Learn the blue ones!', trapLabel: 'NOT', trapNote: 'Wrong partner!',
     useLabel: 'USE IT!', useWho: '{name}, answer!', useRule: 'Answer with 2 phrases from the board.', useSeconds: 40
   },
   levels: [
-    { letters: true, seconds: 120, rule: 'Look at the picture. Say the word AND its partner: "play football", not "football".', useRule: 'Answer with 1 phrase from the board.', useSeconds: 30 },
-    { letters: true, seconds: 120, rule: 'Look at the picture. Say the whole phrase: "catch a bus", not "bus".', useRule: 'Answer with 1 or 2 phrases from the board.', useSeconds: 30 },
+    { letters: true, pics: true, seconds: 120, rule: 'Look at the picture. Say the word AND its partner: "play football", not "football".', useRule: 'Answer with 1 phrase from the board.', useSeconds: 30 },
+    { letters: true, pics: true, seconds: 120, rule: 'Look at the picture. Say the whole phrase: "catch a bus", not "bus".', useRule: 'Answer with 1 or 2 phrases from the board.', useSeconds: 30 },
     { seconds: 90 },
     { seconds: 90 },
     { seconds: 75, useRule: 'Answer with 3 phrases from the board.', useSeconds: 45 },
