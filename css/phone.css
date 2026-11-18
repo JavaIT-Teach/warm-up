@@ -284,3 +284,28 @@ body.phone button { color: var(--ink); }
 .wpt .wpic { flex: none; align-self: center; width: 46px; height: 46px; margin-left: 8px; }
 .wpt .wpic svg, .wpt .wpic img { width: 100%; height: 100%; display: block; object-fit: contain; }
 .wpunitp { align-self: flex-start; margin-bottom: -10px; padding: 2px 8px; background: var(--yellow); border: 2px solid var(--ink); font-family: var(--display); font-size: 13px; transform: rotate(-1.5deg); }
+
+/* ---------- Elias (pass the phone) ---------- */
+.erules { margin: 0; padding: 12px 14px 12px 34px; background: #fff; border: 3px solid var(--ink); font-size: 16px; font-weight: 600; line-height: 1.4; }
+.erules li + li { margin-top: 4px; }
+.eteams { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.eteams .plv { align-items: center; }
+.eteam { display: inline-block; padding: 2px 10px; border: 3px solid var(--ink); font-family: var(--display); font-size: 0.9em; line-height: 1.2; }
+.pbig .eteam { font-size: 26px; padding: 6px 16px; box-shadow: 4px 4px 0 var(--ink); }
+.escores { display: flex; flex-direction: column; gap: 8px; margin-top: 8px; }
+.erow { position: relative; display: flex; align-items: center; justify-content: space-between; height: 48px; padding: 0 12px; background: #fff; border: 3px solid var(--ink); overflow: hidden; }
+.erow.on { box-shadow: 4px 4px 0 var(--ink); }
+.erow i { position: absolute; left: 0; top: 0; bottom: 0; transition: width .4s; }
+.erow span, .erow b { position: relative; font-family: var(--display); font-weight: 400; font-size: 18px; }
+.erow b { font-size: 26px; }
+.ecount { font-family: var(--display); font-size: 40px; line-height: 1; text-align: center; }
+.eword { display: flex; align-items: center; justify-content: center; min-height: 150px; padding: 16px 12px; background: var(--ink); color: var(--lime); border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--c); font-family: var(--display); font-size: clamp(34px, 11vw, 60px); line-height: 1.05; letter-spacing: -0.02em; text-align: center; overflow-wrap: anywhere; }
+.ebanned { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 8px; font-weight: 800; font-size: 16px; }
+.ebanned s { padding: 2px 10px; background: #ffd2c4; border: 2px solid var(--ink); font-family: var(--display); font-size: 18px; text-decoration-thickness: 3px; text-decoration-color: #c4122a; }
+.esteal { display: flex; flex-direction: column; gap: 10px; }
+#papp .esteal .pbtn { color: var(--ink); min-height: 52px; }
+.elist { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+#papp .ew { padding: 6px 12px; border: 3px solid var(--ink); font-family: var(--display); font-size: 18px; }
+#papp .ew.ok { background: #d8ffb0; }
+#papp .ew.no { background: #ffd2c4; text-decoration: line-through; text-decoration-color: #c4122a; text-decoration-thickness: 3px; }
+.ewin { font-size: 30px; padding: 18px; }

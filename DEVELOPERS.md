@@ -69,7 +69,7 @@ same scripts as `index.html` (so lists, edits and sync are the same), keeps the 
 Only games that work alone are there (`WU.phone.ORDER`); each is `WU.phone.games[id] = { mount(body, ctx), unmount() }` and must
 check or reveal the answer, because no teacher judges. Read content only through `WU.list` and the game's screen record
 (`ctx.S`). Where a board game's logic is needed, the board file exposes it on `WU.engines.<id>` (Time Machine, Hide & Seek Cat).
-A new board game script goes in **both** `index.html` and `phone.html`; add a phone screen only if one student can play it alone.
+A new board game script goes in **both** `index.html` and `phone.html`; add a phone screen only if one student can play it alone. The one exception is Elias (`js/phone/games-elias.js`): a pass-the-phone game for 2–4 teams, where the players judge "got it".
 
 
 ## Shared expression bank (`js/expr.js`)

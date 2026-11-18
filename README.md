@@ -121,7 +121,7 @@ of its length ("___ a decision", "a ___ decision"), so students see the shape of
 **Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
 Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
 On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
-**Pictures:** on the board at Beginner and Elementary (Screen text & timing: "Pictures on the tiles", per level). The phone version always shows them, Pre-Intermediate and Intermediate included; tiles whose partner is an adjective a picture can't show ("steady progress") have none.
+**Pictures:** Beginner and Elementary only, on the board and the phone (Screen text & timing: "Pictures on the tiles", per level).
 **Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days; then they join the mix.
 Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 
@@ -139,6 +139,7 @@ Pre-Intermediate and Intermediate show a sentence frame for the explainer ("It's
 Teacher screen (**V**): the word, its banned words, the turn's list and the match score.
 Edit mode: the words and banned words per level; Screen text & timing: where the word shows (laptop only / board), points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
 Keys: P who explains · Space start / got it / add the points · X skip · Enter pause · 1–4 / 0 last word · R new match.
+**On a phone (pass the phone):** the one group game in the phone version. 2–4 teams, one phone. The explainer holds the phone (their team must not see it), taps Got it / Skip, then the last word, the check list and the points, and passes the phone to the next team. Same words, rules and timing as the board. Good for pairs or small groups in class, or with friends at home.
 
 ### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
