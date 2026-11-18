@@ -104,7 +104,9 @@ Edit mode: core word, up to 8 partner phrases, each with an optional picture (pu
 
 ### Elias (Vocabulary + Speaking · Pre-Intermediate and up; grey for Beginner and Elementary)
 *Paraphrasing: explain a word without saying it.* The team version of Hot Seat: one student explains, their own team guesses.
-Teams take turns (the teams from Settings; teams off = TEAM A and TEAM B). The guessing team sits with their backs to the board; the explainer faces it.
+Teams take turns (the teams from Settings; teams off = TEAM A and TEAM B).
+**Set-up (laptop only, the default):** the word is never on the board. The explainer stands at your laptop and reads it on the Teacher screen (**V**); their team stays in their seats and faces them. The board shows the timer, the count and the scores. You press Space / X on the laptop. If the Teacher screen is not open, the first **Space** opens it; press Space again to start.
+No laptop near you? Edit mode → Screen text & timing → "Where the word shows: Board". Then the explainer faces the board and their team faces the explainer.
 **P** picks who explains (again = someone else). **Space** starts the turn (60 seconds; 75 at Pre-Intermediate, 50 at IELTS 3).
 - Guessed: **Space** (+1). Skipped: **X** (−1 from Intermediate up; no penalty at Pre-Intermediate).
 - Time up: **LAST WORD**. Any team can shout it. **1–4** = the team that guessed it (another team steals a point), **0** = nobody.
@@ -112,7 +114,7 @@ Teams take turns (the teams from Settings; teams off = TEAM A and TEAM B). The g
 First team to the goal wins (15; 20 at IELTS 2 and 3). **R** new match. The score stays per level until you press R.
 Pre-Intermediate and Intermediate show a sentence frame for the explainer ("It's a place / a thing / a person... You use it to ___."). IELTS levels show three banned words per word.
 Teacher screen (**V**): the word, its banned words, the turn's list and the match score.
-Edit mode: the words and banned words per level; Screen text & timing: points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
+Edit mode: the words and banned words per level; Screen text & timing: where the word shows (laptop only / board), points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
 Keys: P who explains · Space start / got it / add the points · X skip · Enter pause · 1–4 / 0 last word · R new match.
 
 ### Grammar games (G1–G10): one grammar point per game

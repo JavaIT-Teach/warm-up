@@ -77,6 +77,8 @@
   }
   WU.teacher = {
     isTeacher: isTeacher,
+    // True once a teacher window is open and talking to this board.
+    connected: function () { return !!(peer && !peer.closed) || heard; },
     // Opens (or brings back) the teacher window. Must come from a click or key press on the board.
     open: function () {
       var url = location.href.split('#')[0].split('?')[0] + '?teacher';

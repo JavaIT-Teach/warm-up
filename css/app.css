@@ -1337,3 +1337,8 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .elias .el-tn, .elias .el-row b { position: relative; font-family: var(--display); font-size: 36px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .elias .el-row b { font-size: 52px; }
 .calm .elias .el-last { animation: none; }
+.elias .el-tip { font-size: 36px; font-weight: 800; padding: 6px 18px; background: var(--yellow); border: 4px solid var(--ink); }
+.elias .el-hid { flex-direction: column; gap: 22px; }
+.elias .el-lap { width: 200px; height: 170px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--lime); border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--blue); }
+.elias .el-lap svg { width: 140px; height: 124px; }
+.elias .el-hidt { font-family: var(--display); font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; }

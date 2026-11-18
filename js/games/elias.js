@@ -18,6 +18,8 @@
       { k: 'secs', label: 'Turn length (seconds)', type: 'num', min: 15, max: 300 },
       { k: 'skipMinus', label: 'A skipped word costs a point', type: 'bool', on: 'Yes', off: 'No' },
       { k: 'lastShow', label: 'Last word: any team can steal it', type: 'bool', on: 'On', off: 'Off' },
+      { k: 'wordOnBoard', label: 'Where the word shows', type: 'bool', on: 'Board', off: 'Laptop only',
+        hint: 'Laptop only: the explainer reads the word on the teacher screen (V); the board shows the timer and scores. Board: the guessing team must not see the board.' },
       { k: 'teamA', label: 'Team 1 name when teams are off in Settings', type: 'text', max: 16 },
       { k: 'teamB', label: 'Team 2 name when teams are off in Settings', type: 'text', max: 16 },
       { type: 'head', label: 'Before the turn' },
@@ -31,7 +33,9 @@
       { k: 'demo', label: 'Teacher demo banner (first turn only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo turn', type: 'bool', on: 'On', off: 'Off', hint: 'The teacher explains first (no points).' },
       { k: 'demoWho', label: 'Name in the demo turn', type: 'text', max: 16 },
+      { k: 'laptopTip', label: 'Laptop only: where the explainer stands', type: 'text', max: 70 },
       { type: 'head', label: 'During the turn' },
+      { k: 'hidden', label: 'Laptop only: shown on the board instead of the word', type: 'text', max: 50 },
       { k: 'frame', label: 'Sentence frame for the explainer (empty = none)', type: 'text', max: 70, hint: 'Use ___ for the gap.' },
       { k: 'banned', label: 'Label before the banned words', type: 'text', max: 20 },
       { k: 'got', label: 'Guessed label', type: 'text', max: 16 },
@@ -88,6 +92,7 @@
     st.log.forEach(function (x) { if (x.got) n++; else if (S.skipMinus) n--; });
     return n;
   }
+  function onBoard() { return !!scr.get().wordOnBoard; }
   function wordAttr(id, f) { return ' data-edit="elias:words:' + id + ':' + f + '"'; }
 
   /* ---------- drawing ---------- */
@@ -105,12 +110,17 @@
       else h += (S.who ? '<div class="hq"' + scr.ea('who') + '>' + WU.esc(S.who) + '</div>' : '') + '<div class="pname"' + scr.ea('qMark') + '>' + WU.esc(S.qMark) + '</div>';
       if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>';
       if (S.rule2Show && S.rule2) h += '<div class="rule hot2"' + scr.ea('rule2') + '>' + WU.esc(S.rule2) + '</div>';
+      if (!S.wordOnBoard && S.laptopTip) h += '<div class="el-tip"' + scr.ea('laptopTip') + '>' + WU.esc(S.laptopTip) + '</div>';
       h += '<div class="acts" data-ctrl><div class="btn" data-b="start"><span class="key">SPACE</span><span>Start</span></div>' +
         '<div class="btn sm" data-b="pick"><span class="key">P</span><span>' + (playerName() && !st.demo ? 'Someone else' : 'Who explains?') + '</span></div></div>';
     } else if (ph === 'play' || ph === 'last') {
       var w = cur();
       if (ph === 'last' && S.last) h += '<div class="el-last"' + scr.ea('last') + '>' + WU.esc(S.last) + '</div>';
-      if (w) {
+      if (w && !S.wordOnBoard) {
+        h += '<div class="wrow el-hid' + (st.flash ? ' in' : '') + '"><div class="el-lap" data-ctrl>' + WU.icons.teacher + '</div>' +
+          '<div class="el-hidt"' + scr.ea('hidden') + '>' + WU.esc(S.hidden) + '</div></div>';
+        if (S.frame && ph === 'play') h += kit.frame(S.frame, scr.ea('frame'));
+      } else if (w) {
         h += '<div class="wrow' + (st.flash ? ' in' : '') + '"><div class="word"' + wordAttr(w.id, 'text') + '>' + WU.esc(w.text) + '</div></div>';
         if (S.frame && ph === 'play') h += kit.frame(S.frame, scr.ea('frame'));
         if (w.banned) {
@@ -201,6 +211,10 @@
   function start() {
     if (st.phase !== 'ready') return;
     WU.sound.unlock();
+    // Laptop only: the word is on the teacher screen. Open it first (this key press or tap allows the window).
+    if (!onBoard() && WU.teacher && !WU.teacher.isTeacher && !WU.teacher.connected()) {
+      WU.teacher.open(); WU.toast('The word shows on the teacher screen. Press Space again to start.'); return;
+    }
     var S = scr.get(), w = deck(words());
     st.turns = (st.turns || 0) + 1;
     st.wid = w ? w.id : null; st.log = []; st.steal = null; st.phase = 'play'; st.flash = true;
@@ -276,7 +290,7 @@
       if (!st) return null;
       var sec = [], info = [], w = cur();
       if ((st.phase === 'play' || st.phase === 'last') && w) {
-        sec.push({ label: 'The word', text: w.text, big: true, hot: true });
+        sec.push({ label: onBoard() ? 'The word' : 'Explainer: explain this word', text: w.text, big: true, hot: true });
         if (w.banned) sec.push({ label: 'Banned words', text: w.banned });
       }
       info.push({ label: 'Turn', text: teamName(st.team) + (playerName() ? ' · ' + playerName() + ' explains' : '') });

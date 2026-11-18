@@ -111,6 +111,8 @@ WU.content.eliasScreen = {
     review: 'Check the words. Tap a word to change it.', roundPts: '{team}: {n}',
     win: '{team} WINS!',
     teamA: 'TEAM A', teamB: 'TEAM B',
+    wordOnBoard: false, laptopTip: 'Explainer: stand at the laptop and read the word there.',
+    hidden: 'The word is on the laptop. Explain it!',
     demo: 'TEACHER DEMO: I explain first!', demoShow: false, demoWho: 'TEACHER'
   },
   levels: [
