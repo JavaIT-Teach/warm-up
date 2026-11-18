@@ -8,12 +8,14 @@
   var WU = window.WU;
   var P = WU.phone = { games: {} };
   // The solo games, in menu order. Board games that need a room (The Bomb, Tug of War...) are not here.
-  P.ORDER = ['hunt', 'vanish', 'partners', 'chain', 'volcano', 'timemachine', 'phrasal', 'flash', 'nearfar', 'where', 'dice', 'slot'];
+  // Elias is the one group game: pass the phone (2+ players).
+  P.ORDER = ['hunt', 'vanish', 'partners', 'elias', 'chain', 'volcano', 'timemachine', 'phrasal', 'flash', 'nearfar', 'where', 'dice', 'slot'];
   // What the student does on the phone (the board text says what the class does).
   P.HOW = {
     hunt: 'Find the hidden words. Tap the first letter, then the last.',
     vanish: 'Read it. Words vanish. Write it from memory.',
     partners: 'One word. Type as many partners as you can before time runs out.',
+    elias: 'With friends: pass the phone. One explains, the team guesses.',
     chain: 'You and the phone take turns. Use the last letter.',
     volcano: 'Type the past forms before the volcano erupts.',
     timemachine: 'Build the sentence in the right tense.',
