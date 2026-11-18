@@ -105,6 +105,15 @@
   var HORSE = 'M22 94 L28 50 Q30 22 54 16 L58 6 L64 18 Q82 26 90 52 Q94 66 82 70 Q70 72 64 60 L54 64 L54 94 Z';
   var GUITAR = 'M50 30 Q66 30 66 45 Q66 53 62 57 Q77 63 75 79 Q73 96 50 96 Q27 96 25 79 Q23 63 38 57 Q34 53 34 45 Q34 30 50 30 Z';
 
+  /* A body seen from the front with a red "it hurts" burst at one point (Word Partners: hurt my knee...). */
+  function hurtBody(x, y) {
+    var lim = function (pts) { return 'p - M' + pts + ' s=K w=13|p - M' + pts + ' s=S w=7'; };
+    return function () {
+      return draw(lim('39 30 L31 46 L29 62') + '|' + lim('61 30 L69 46 L71 62') + '|' + lim('45 60 L43 78 L43 94') + '|' + lim('55 60 L57 78 L57 94') +
+        '|r 37 24 26 38 B 6|c 50 14 10 S|c 46 13 1.6 K*|c 54 13 1.6 K*|p - M46 19 Q50 16 54 19 w=2|g R ' + star(x, y, 13, 6, 8) + ' w=2.5|c ' + x + ' ' + y + ' 3.5 Y*');
+    };
+  }
+  function priceTag(extra) { return 'p Y M8 42 L38 12 L74 12 L74 48 L44 78 Z|c 62 24 5 W' + (extra ? '|' + extra : ''); }
   var PICS = [
     /* animals */
     ['cat', 'cat', 'animal pet small', 'g O 22,44 28,12 48,30|g O 78,44 72,12 52,30|g P* 29,36 30,21 40,31|g P* 71,36 70,21 60,31|c 50 56 30 O|c 39 50 4.5 K*|c 61 50 4.5 K*|g P 45,60 55,60 50,66|p - M42 71 Q50 77 58 71 w=3|l 14 60 34 63 w=3|l 14 70 34 69 w=3|l 86 60 66 63 w=3|l 86 70 66 69 w=3'],
@@ -454,18 +463,39 @@
     ['piggy bank', 'piggy bank', 'money', 'r 28 76 12 16 Q 2|r 62 76 12 16 Q 2|p - M15 58 Q4 52 10 44 w=3|e 50 58 36 28 Q|g Q 30,38 34,20 46,32|e 86 60 8 11 P|c 84 56 2 K*|c 88 64 2 K*|c 68 48 3.5 K*|r 40 30 22 6 K 3|c 51 16 10 Y|c 51 16 5 - w=2'],
     ['wallet', 'wallet', 'money', 'r 22 14 50 30 G 2|c 47 28 7 #b6f2a0|r 10 30 80 56 M 8|p N M90 44 L62 44 Q54 44 54 54 Q54 64 62 64 L90 64 Z|c 72 54 5 Y'],
     ['bank', 'bank', 'city money', 'g E 50,6 6,32 94,32|c 50 22 6 Y|r 10 32 80 8 E|r 16 42 12 38 W|r 34 42 12 38 W|r 52 42 12 38 W|r 70 42 12 38 W|r 6 82 88 10 E'],
+    ['battery', 'battery', 'tech scienceday', 'r 10 28 74 44 W 6|r 84 40 8 20 K 2|r 18 36 16 28 G* 2|r 38 36 16 28 G* 2|r 58 36 16 28 G* 2'],
+    ['flat battery', 'flat battery', 'tech', 'r 10 28 74 44 W 6|r 84 40 8 20 K 2|r 18 36 12 28 R* 2|p - M70 12 L58 24 M58 12 L70 24 s=R w=5'],
+    ['charging', 'charging', 'tech', 'r 4 34 64 36 W 6|r 68 44 7 16 K 2|r 11 41 14 22 G* 2|r 29 41 14 22 G* 2|g Y 52,18 36,56 50,56 44,86 66,46 52,46 60,18|p - M75 52 Q90 52 90 70 Q90 86 98 88 w=4'],
+    ['graduation cap', 'graduation cap', 'school university', 'p K M28 50 L28 70 Q50 82 72 70 L72 50 Z|g K 50,22 94,40 50,58 6,40|c 50 40 4 Y*|p - M50 40 L82 52 L82 74 s=Y w=3|c 82 78 5 Y'],
+    ['trophy', 'trophy', 'sport prize', 'p Y M28 14 L72 14 L70 46 Q66 62 50 62 Q34 62 30 46 Z|p - M28 22 Q12 22 14 34 Q16 44 30 46 M72 22 Q88 22 86 34 Q84 44 70 46 w=4|r 44 62 12 14 Y|r 30 76 40 12 M 2|g W* ' + star(50, 34, 10, 4) + ''],
+    ['knee', 'knee', 'body health', hurtBody(57, 78)],
+    ['ankle', 'ankle', 'body health', hurtBody(58, 92)],
+    ['shoulder', 'shoulder', 'body health', hurtBody(62, 29)],
+    ['elbow', 'elbow', 'body health', hurtBody(69, 46)],
+    ['thumb', 'thumb', 'body health', function () { return draw('r 26 16 11 38 S 5|r 39 8 11 44 S 5|r 52 10 11 42 S 5|r 65 18 11 36 S 5|e 20 62 16 7 S -35|r 26 42 50 50 S 16|g R ' + star(11, 70, 13, 6, 8) + ' w=2.5|c 11 70 3.5 Y*'); }],
+    ['cough', 'cough', 'body health', 'c 42 50 32 S|p - M26 42 L36 44 M48 44 L58 42 w=3|e 46 66 7 6 K*|c 82 58 8 E|c 92 46 6 E|c 92 70 6 E|p - M76 66 L70 68 w=3'],
+    ['thermometer', 'thermometer', 'health', 'r 40 6 20 72 W 10|c 50 80 15 R|r 46 34 8 46 R*|l 60 22 66 22 w=3|l 60 34 66 34 w=3|l 60 46 66 46 w=3|l 60 58 66 58 w=3'],
+    ['sore throat', 'sore throat', 'body health', 'p B M16 100 Q16 78 50 76 Q84 78 84 100 Z|r 41 56 18 22 S|c 50 36 24 S|c 42 34 2.5 K*|c 58 34 2.5 K*|p - M43 46 Q50 42 57 46 w=3|g R ' + star(50, 66, 13, 6, 8) + ' w=2.5|c 50 66 3.5 Y*'],
+    ['toothache', 'toothache', 'body health', 'p W M24 22 Q36 12 50 20 Q64 12 76 22 Q88 38 78 60 L72 88 Q68 94 62 88 L56 66 Q50 60 44 66 L38 88 Q32 94 28 88 L22 60 Q12 38 24 22 Z|p - M86 18 L94 26 L86 34 L94 42 s=R w=4|p - M14 18 L6 26 L14 34 L6 42 s=R w=4|p - M40 34 Q44 30 48 34 M52 34 Q56 30 60 34 w=3'],
+    ['chilli', 'chilli', 'food hot', 'p R M22 30 Q28 78 82 90 Q94 90 88 80 Q52 72 40 28 Z|p G M16 34 Q18 18 38 22 Q40 32 30 36 Z|p - M26 22 Q24 10 32 6 s=D w=4|e 36 46 3 8 W* -20'],
+    ['high price', 'high price', 'money shop', priceTag('g R 82,52 96,72 88,72 88,94 76,94 76,72 68,72')],
+    ['low price', 'low price', 'money shop', priceTag('g G 82,94 96,74 88,74 88,52 76,52 76,74 68,74')],
+    ['half price', 'half price', 'money shop', function () { return draw(priceTag('')) + '<text x="27" y="58" font-family="Arial, sans-serif" font-weight="900" font-size="34" fill="#ff3b3b" stroke="#0d0d0d" stroke-width="1.5">&#189;</text>'; }],
+    ['signpost', 'signpost', 'road choice', 'r 46 30 8 66 N|g Y 12,22 24,10 52,10 52,34 24,34|g B 88,50 76,38 48,38 48,62 76,62'],
+    ['puzzle', 'puzzle', 'toy', 'p B M10 32 L36 32 Q30 16 44 16 Q58 16 52 32 L78 32 L78 56 Q94 50 94 64 Q94 78 78 72 L78 94 L10 94 Z'],
+    ['traffic lights', 'traffic lights', 'road city', 'r 46 84 8 14 Z|r 32 4 36 82 K 6|c 50 20 9 R|c 50 44 9 Y|c 50 68 9 G'],
     ['fire', 'fire', 'hot scienceday', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
   ];
 
   /* ---------- grammar: article and plural for every picture name ----------
      art: "a" / "an" / "the" / "" (no article: uncountable, plural, colours, sports)
      pl : plural form ("" when it has none). Used by sentence frames and example labels. */
-  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money friends sport rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
+  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money friends sport charging flu rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
   var THE = { sun: 1, moon: 1 };
   var PLURAL = { mouse: 'mice', sheep: 'sheep', fish: 'fish', knife: 'knives', leaf: 'leaves', foot: 'feet', tooth: 'teeth', tomato: 'tomatoes', potato: 'potatoes', octopus: 'octopuses', scarf: 'scarves', snowman: 'snowmen' };
   function article(o) {
     if (o.colour || o.tags.indexOf('action') >= 0) return '';
-    if (NO_ART.split(' ').indexOf(o.name) >= 0) return '';
+    if (NO_ART.split(' ').indexOf(o.name) >= 0 || o.name === 'half price') return '';
     if (THE[o.name]) return 'the';
     return /^[aeiou]/i.test(o.name) ? 'an' : 'a';
   }
