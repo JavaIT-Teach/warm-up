@@ -368,9 +368,9 @@ WU.content.tugScreen = {
   levels: [
     { distance: 4, frame: 'I like ___.', rule: 'Say "I like ___!" = PULL!', demoShow: true },
     {}, {},
-    { distance: 4, secs: 150, rounds: 4, rule: 'I argue back. Defend it!' },
-    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' },
-    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' },
-    { distance: 4, secs: 240, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' }
+    { distance: 4, secs: 150, rounds: 4, rule: 'Pull only if your defence holds!' },
+    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'I argue back. Pull only if your defence holds!' },
+    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'I argue back. Pull only if your defence holds!' },
+    { distance: 4, secs: 240, rounds: 4, frame: '', rule: 'I argue back. Pull only if your defence holds!' }
   ]
 };
