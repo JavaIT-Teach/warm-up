@@ -132,7 +132,7 @@
         (ok && newGame(g) ? '<span class="pnew">NEW' + (u ? ' · ' + esc(u) : '') + '</span>' : '') +
         (ok ? '' : '<span class="poff">' + esc(WU.gameLevelText(id)) + '</span>') + '</button>';
     });
-    h += '</div><p class="pfoot">New games come every week. <b>Pull down to refresh</b> before you start.<br>' +
+    h += '</div><p class="pfoot">New games come every week. A green bar tells you when to refresh.<br>' +
       '<a href="index.html?board">Open the board version</a></p></div>';
     app.innerHTML = h;
     app.scrollTop = 0;
