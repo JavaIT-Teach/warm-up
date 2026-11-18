@@ -196,6 +196,59 @@
   function goHome() { if (curId) { try { history.back(); return; } catch (e) {} } home(); }
 
   /* ---------- boot ---------- */
+  /* ---------- new version? ----------
+     Every push to main republishes the site, so phone.html gets a new stamp (ETag / Last-Modified, or its text as a fallback).
+     The phone notes the stamp at start, checks again every 5 minutes and when the student comes back to the tab,
+     and shows a bar when it changed. It never reloads by itself (no lost game). The button first fetches fresh copies of every
+     script and stylesheet (browsers keep them up to 10 minutes), then reloads. Nothing happens when opened from a file. */
+  P.updates = (function () {
+    var base = null, last = 0, shown = false, EVERY = 5 * 60 * 1000, MIN_GAP = 60 * 1000;
+    function url() { return location.href.split('#')[0].split('?')[0]; }
+    function hash(t) { var h = 0; for (var i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) | 0; return t.length + ':' + h; }
+    function stamp() {
+      return fetch(url(), { method: 'HEAD', cache: 'no-store' }).then(function (r) {
+        if (!r.ok) throw 0;
+        var s = r.headers.get('etag') || r.headers.get('last-modified');
+        if (s) return s;
+        return fetch(url(), { cache: 'no-store' }).then(function (g) { if (!g.ok) throw 0; return g.text(); }).then(hash);
+      });
+    }
+    function check() {
+      if (shown || !/^https?:/.test(location.protocol) || document.hidden || Date.now() - last < MIN_GAP) return;
+      last = Date.now();
+      stamp().then(function (s) {
+        if (base == null) base = s;
+        else if (s !== base) show();
+      }).catch(function () {});
+    }
+    function show() {
+      if (shown) return; shown = true;
+      var b = document.createElement('div'); b.id = 'pupdate'; b.setAttribute('role', 'status');
+      b.innerHTML = '<span><b>New version!</b> New games or words are ready.</span><button data-u="go">Refresh</button><button data-u="later" aria-label="Later">×</button>';
+      document.body.appendChild(b);
+      b.querySelector('[data-u="go"]').onclick = refresh;
+      b.querySelector('[data-u="later"]').onclick = function () { b.remove(); shown = false; base = null; last = 0; check(); /* ask again later with the new stamp */ };
+      WU.sound.beep(880);
+    }
+    function refresh() {
+      var bt = document.querySelector('#pupdate [data-u="go"]'); if (bt) { bt.disabled = true; bt.textContent = 'Loading...'; }
+      var files = [].slice.call(document.querySelectorAll('script[src], link[rel="stylesheet"][href]')).map(function (e) { return e.src || e.href; })
+        .filter(function (u) { return u.indexOf(location.origin) === 0; });
+      var go = function () { location.reload(); };
+      Promise.all(files.map(function (u) { return fetch(u, { cache: 'reload' }).catch(function () {}); })).then(go, go);
+      setTimeout(go, 8000);
+    }
+    return {
+      start: function () {
+        check();
+        setInterval(check, EVERY);
+        document.addEventListener('visibilitychange', function () { if (!document.hidden) check(); });
+        window.addEventListener('focus', check);
+      },
+      check: check, show: show
+    };
+  })();
+
   P.boot = function () {
     WU.loadState();
     WU.applyCalm();
@@ -209,6 +262,7 @@
     (WU.images ? WU.images.load() : Promise.resolve()).then(function () {
       if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
       home();
+      P.updates.start();
       WU.emit('booted');
     });
   };
