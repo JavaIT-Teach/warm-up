@@ -290,8 +290,8 @@
       if (!st) return null;
       var sec = [], info = [], w = cur();
       if ((st.phase === 'play' || st.phase === 'last') && w) {
-        sec.push({ label: onBoard() ? 'The word' : 'Explainer: explain this word', text: w.text, big: true, hot: true });
-        if (w.banned) sec.push({ label: 'Banned words', text: w.banned });
+        sec.push({ label: onBoard() ? 'The word' : 'Explainer: explain this word', text: w.text, big: true, huge: !onBoard(), hot: true });
+        if (w.banned) sec.push({ label: 'Banned words', text: w.banned, big: !onBoard() });
       }
       info.push({ label: 'Turn', text: teamName(st.team) + (playerName() ? ' · ' + playerName() + ' explains' : '') });
       if (st.log.length) info.push({ label: 'This turn', text: st.log.map(function (x) { return (x.got ? '✓ ' : '✗ ') + x.text; }).join(', ') });

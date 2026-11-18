@@ -612,6 +612,7 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tw-item .tw-l { font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
 .tw-item .tw-t { font-size: 24px; font-weight: 700; line-height: 1.25; }
 .tw-item.big .tw-t { font-family: var(--display); font-size: 52px; line-height: 1.05; }
+.tw-item.huge .tw-t { line-height: 1.05; overflow: hidden; overflow-wrap: normal; word-break: normal; padding: 6px 0 10px; }
 .tw-item.hot .tw-t { color: var(--lime); }
 .tw-info .tw-item.hot .tw-t { color: #c4127f; }
 .tw-pic { width: 260px; height: 260px; background: #fff; padding: 8px; }
