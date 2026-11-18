@@ -4,15 +4,20 @@
    p        = its partners, most useful first (up to 8). A partner is a phrase, or [phrase, picture id] to show a picture on its tile. On the board the core word stays visible and every other word is a gap
               (a / an / the stay visible). To choose the gaps yourself, put them in [brackets]: "[make] a decision".
    question = the USE IT question after the board: the student answers with phrases from the board.
+   unit     = optional label on the board (weekly words: the taught unit). added = 'YYYY-MM-DD': words added in the last 14 days play first.
    trap     = a common wrong partner (shown after the board), e.g. "do a decision". Empty = none.
-   id is PERMANENT: never change or reuse an id. */
+   id is PERMANENT: never change or reuse an id. Retired ids (do not reuse): wp0-have. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.partners = [
   /* 0. Beginner (A1): verb + picture partners. [phrase, picture id] = the tile shows that picture. */
   { words: [
+    /* Weekly words: taught units (Unit 7 My Day, Unit 8 At School, Unit 9 Feeling Good). */
+    { id: 'wk0-1118-have', word: 'have', unit: 'Unit 7 · My Day', added: '2026-11-18', p: [['have breakfast', 'egg'], ['have lunch', 'sandwich'], ['have dinner', 'soup'], ['have a shower', 'shower'], ['have art', 'a-draw'], ['have maths', 'ruler']], question: 'What do you have for breakfast?', trap: 'drink breakfast' },
+    { id: 'wk0-1118-good', word: 'good', unit: 'Unit 9 · Feeling Good', added: '2026-11-18', p: [['good for you', 'apple'], ['good at running', 'a-run'], ['good at swimming', 'a-swim'], ['good at English', 'book'], ['good at art', 'a-draw'], ['good at tennis', 'tennis']], question: 'What are you good at?', trap: 'good in running' },
+    { id: 'wk0-1118-school', word: 'school', unit: 'Unit 8 · At School', added: '2026-11-18', p: [['go to school', 'bus'], ['walk to school', 'school'], ['at school', 'teacher'], ['after school', 'clock'], ['a school bag', 'bag'], ['school lunch', 'sandwich']], question: 'How do you go to school or work?', trap: 'go to the school' },
+    { id: 'wk0-1118-wash', word: 'wash', unit: 'Unit 7 · My Day', added: '2026-11-18', p: [['wash your face', 'face'], ['wash your hands', 'hand'], ['wash the dishes', 'plate'], ['wash your hair', 'shower'], ['wash the car', 'car'], ['wash your clothes', 'T-shirt']], question: 'When do you wash your hands?', trap: 'wash your teeth' },
     { id: 'wp0-play', word: 'play', p: [['play football', 'football'], ['play the guitar', 'guitar'], ['play chess', 'a-chess'], ['play video games', 'a-games'], ['play tennis', 'tennis'], ['play the piano', 'piano']], question: 'What do you play? When?', trap: 'play the football' },
     { id: 'wp0-go', word: 'go', p: [['go to school', 'school'], ['go to the park', 'park'], ['go shopping', 'shop'], ['go swimming', 'a-swim'], ['go to bed', 'bed'], ['go to the beach', 'beach']], question: 'Where do you go on Sunday?', trap: 'go to home' },
-    { id: 'wp0-have', word: 'have', p: [['have a shower', 'shower'], ['have lunch', 'sandwich'], ['have a cup of tea', 'tea'], ['have a sister', 'sister'], ['have a dog', 'dog'], ['have a car', 'car']], question: 'What do you have for lunch?', trap: 'have a lunch' },
     { id: 'wp0-take', word: 'take', p: [['take a photo', 'camera'], ['take the bus', 'bus'], ['take a taxi', 'taxi'], ['take an umbrella', 'umbrella'], ['take the train', 'train'], ['take a bag', 'bag']], question: 'How do you go to school or work?', trap: 'make a photo' },
     { id: 'wp0-do', word: 'do', p: [['do homework', 'book'], ['do the dishes', 'plate'], ['do sport', 'sport'], ['do exercise', 'a-run'], ['do the shopping', 'shop'], ['do a test', 'test']], question: 'What do you do after school or work?', trap: 'make homework' },
     { id: 'wp0-make', word: 'make', p: [['make a cake', 'cake'], ['make a sandwich', 'sandwich'], ['make tea', 'kettle'], ['make a snowman', 'snowman'], ['make a phone call', 'phone'], ['make the bed', 'bed']], question: 'What can you make?', trap: 'make a photo' },
@@ -21,6 +26,11 @@ WU.content.partners = [
   ] },
   /* 1. Elementary (A2): picture partners too. */
   { words: [
+    /* Weekly words: taught units (Unit 7 An Exciting Trip, Unit 8 Favourite Places, Unit 9 Clothes). */
+    { id: 'wk1-1118-wear', word: 'wear', unit: 'Unit 9 · Clothes', added: '2026-11-18', p: [['wear a cap', 'cap'], ['wear sunglasses', 'glasses'], ['wear boots', 'boots'], ['wear gloves', 'gloves'], ['wear a scarf', 'scarf'], ['wear trainers', 'shoes']], question: 'What do you wear when it is cold?', trap: 'dress a scarf' },
+    { id: 'wk1-1118-go', word: 'go', unit: 'Unit 7 · An Exciting Trip', added: '2026-11-18', p: [['go camping', 'fire'], ['go on holiday', 'plane'], ['go to the beach', 'beach'], ['go shopping', 'shop'], ['go by ferry', 'boat'], ['go to the airport', 'taxi']], question: 'Where did you go last summer?', trap: 'go to camping' },
+    { id: 'wk1-1118-took', word: 'took', unit: 'Unit 7 · An Exciting Trip', added: '2026-11-18', p: [['took photos', 'camera'], ['took a taxi', 'taxi'], ['took the train', 'train'], ['took the ferry', 'boat'], ['took the bus', 'bus'], ['took my umbrella', 'umbrella']], question: 'Tell us about a trip. What did you take?', trap: 'maked photos' },
+    { id: 'wk1-1118-close', word: 'close', unit: 'Unit 8 · Favourite Places', added: '2026-11-18', p: [['close the curtains', 'window'], ['close the door', 'door'], ['close the shop', 'shop'], ['close your eyes', 'eye'], ['close the book', 'book'], ['close the fridge', 'fridge']], question: 'What do you do in your bedroom at night?', trap: 'close the light' },
     { id: 'wp1-weather', word: 'weather', p: [['sunny weather', 'sun'], ['rainy weather', 'rain'], ['cold weather', 'snow'], ['windy weather', 'wind'], ['stormy weather', 'storm'], ['the weather forecast', 'forecast']], question: 'What is your favourite weather? Why?', trap: 'a good weather' },
     { id: 'wp1-get', word: 'get', p: [['get up', 'alarm clock'], ['get dressed', 'T-shirt'], ['get a present', 'present'], ['get wet', 'rain'], ['get a taxi', 'taxi'], ['get home', 'house']], question: 'What time do you get up and get home?', trap: 'get up from bed' },
     { id: 'wp1-catch', word: 'catch', p: [['catch a bus', 'bus'], ['catch a ball', 'ball'], ['catch a fish', 'fish'], ['catch a train', 'train'], ['catch a plane', 'plane'], ['catch a cold', 'cold']], question: 'Did you catch a cold this year? What did you do?', trap: 'take a cold' },
@@ -32,6 +42,11 @@ WU.content.partners = [
   ] },
   /* 2. Pre-Intermediate (A2+) */
   { words: [
+    /* Weekly words: taught units (Unit 9 Shop Till You Drop, Unit 10 Taste This!, Unit 11 A Healthy Future). */
+    { id: 'wk2-1118-got', word: 'got', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18', p: ['got a cold', 'got a cough', 'got a fever', 'got flu', 'got a sore throat', 'got toothache'], question: 'What do you do when you have got a cold?', trap: 'got a flu' },
+    { id: 'wk2-1118-hurt', word: 'hurt', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18', p: ['hurt my knee', 'hurt my ankle', 'hurt my shoulder', 'hurt my elbow', 'hurt my thumb', 'hurt my back'], question: 'Have you ever hurt yourself? What happened?', trap: 'hurted my knee' },
+    { id: 'wk2-1118-food', word: 'food', unit: 'Unit 10 · Taste This!', added: '2026-11-18', p: ['spicy food', 'fresh food', 'frozen food', 'delicious food', 'raw food', 'junk food'], question: 'What food do you never eat? Why?', trap: 'a sharp food (spicy)' },
+    { id: 'wk2-1118-price', word: 'price', unit: 'Unit 9 · Shop Till You Drop', added: '2026-11-18', p: ['a high price', 'a low price', 'half price', 'full price', 'the price of', 'a good price'], question: 'What did you buy at a good price?', trap: 'a cheap price' },
     { id: 'wp2-decision', word: 'decision', p: ['make a decision', 'a difficult decision', 'a quick decision', 'the right decision', 'a big decision', 'change my decision'], question: 'What is a difficult decision you made?', trap: 'do a decision' },
     { id: 'wp2-problem', word: 'problem', p: ['solve a problem', 'have a problem', 'cause a problem', 'a serious problem', 'a big problem', 'no problem'], question: 'What problem in your city would you solve first?', trap: 'decide a problem' },
     { id: 'wp2-exam', word: 'exam', p: ['take an exam', 'pass an exam', 'fail an exam', 'study for an exam', 'an exam result', 'a difficult exam'], question: 'Tell us about an exam you remember.', trap: 'give an exam' },
@@ -43,6 +58,11 @@ WU.content.partners = [
   ] },
   /* 3. Intermediate (B1) */
   { words: [
+    /* Weekly words: taught units (Unit 9 The Future Is Now, Unit 10 Animals in Danger, Unit 11 Off to School). */
+    { id: 'wk3-1118-battery', word: 'battery', unit: 'Unit 9 · The Future Is Now', added: '2026-11-18', p: ['charge the battery', 'a flat battery', 'battery life', 'the battery died', 'a new battery', 'a spare battery'], question: 'What do you do when your phone battery is flat?', trap: 'fill the battery' },
+    { id: 'wk3-1118-habitat', word: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18', p: ['lose their habitat', 'a natural habitat', 'protect a habitat', 'destroy a habitat', 'habitat loss', 'a safe habitat'], question: 'Why are many creatures losing their habitat?', trap: 'kill a habitat' },
+    { id: 'wk3-1118-school', word: 'school', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: ['attend a school', 'a boarding school', 'primary school', 'secondary school', 'leave school', 'school breaks up'], question: 'Would you like to go to a boarding school? Why?', trap: 'finish the school' },
+    { id: 'wk3-1118-university', word: 'university', unit: 'Unit 11 · Off to School', added: '2026-11-18', p: ['go to university', 'apply to university', 'a university degree', 'at university', 'leave university', 'study at university'], question: 'What would you like to study at university?', trap: 'enter to university' },
     { id: 'wp3-effort', word: 'effort', p: ['make an effort', 'a lot of effort', 'put effort into', 'a real effort', 'worth the effort', 'a team effort'], question: 'What do you make a real effort to do every week?', trap: 'do an effort' },
     { id: 'wp3-risk', word: 'risk', p: ['take a risk', 'a big risk', 'reduce the risk', 'at risk', 'a health risk', 'worth the risk'], question: 'What is the biggest risk you have ever taken?', trap: 'make a risk' },
     { id: 'wp3-opportunity', word: 'opportunity', p: ['miss an opportunity', 'a great opportunity', 'take the opportunity', 'a job opportunity', 'a golden opportunity', 'equal opportunities'], question: 'Tell us about an opportunity you took or missed.', trap: 'lose an opportunity' },

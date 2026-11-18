@@ -48,7 +48,7 @@
     gameTitle: 'Word Partners', label: 'Words and partners',
     defaults: function (l) { return WU.content.partners[l].words; },
     norm: function (r) {
-      var o = { word: r.word || '', question: r.question || '', trap: r.trap || '' };
+      var o = { word: r.word || '', question: r.question || '', trap: r.trap || '', unit: r.unit || '', added: r.added || '' };
       // A partner is "phrase" or ["phrase", "picture id"].
       for (var i = 1; i <= MAXP; i++) {
         var x = (r.p || [])[i - 1], arr = Array.isArray(x);
@@ -59,7 +59,7 @@
     },
     title: function (it) { return it.word || '(empty)'; },
     fields: function () {
-      return [{ k: 'word', label: 'Core word', type: 'text', max: 24 }].concat(pf,
+      return [{ k: 'word', label: 'Core word', type: 'text', max: 24 }, { k: 'unit', label: 'Unit label on the board (empty = none)', type: 'text', max: 40 }].concat(pf,
         [{ k: 'question', label: 'USE IT question', type: 'text', max: 100 }, { k: 'trap', label: 'Trap: a wrong partner (empty = none)', type: 'text', max: 40 }]);
     },
     blank: function () { return { word: 'idea', p1: 'a good idea', p2: 'have an idea', p3: 'a brilliant idea', p4: 'no idea', p5: 'come up with an idea', p6: 'share an idea', p7: '', p8: '', question: 'What is the best idea you have had this year?', trap: 'make an idea' }; }
@@ -129,7 +129,7 @@
       if (ph === 'use') {
         h += '<div class="wpcore wpq"><div class="wpqtop"><span class="wpuse"' + scr.ea('useLabel') + '>' + WU.esc(S.useLabel) + '</span>' +
           gram.who(S.useWho, scr.ea('useWho'), st.student) + '</div><div class="wpqt"' + ek(it, 'question') + '>' + WU.esc(it.question) + '</div></div>';
-      } else h += '<div class="wpcore"><div class="wpword"' + ek(it, 'word') + '>' + WU.esc(it.word) + '</div></div>' + (clock ? '<div class="wpclock"></div>' : '');
+      } else h += '<div class="wpcore">' + (it.unit ? '<div class="wpunit"' + ek(it, 'unit') + '>' + WU.esc(it.unit) + '</div>' : '') + '<div class="wpword"' + ek(it, 'word') + '>' + WU.esc(it.word) + '</div></div>' + (clock ? '<div class="wpclock"></div>' : '');
       // The tiles.
       var rows = Math.ceil(list.length / 2), th = Math.min(120, Math.floor((470 - (rows - 1) * 14) / rows));
       h += '<div class="wptiles" style="grid-template-rows:repeat(' + rows + ',' + th + 'px)">' + list.map(function (p, idx) {
@@ -186,10 +186,18 @@
     clock = WU.Timer({ seconds: sec, size: 220, onDone: function () { if (st && st.phase === 'play') finish(); } });
   }
   function startTurn() {}
+  // Weekly words (from the units the groups have just been taught, "added" in the last WU.NEW_DAYS days) play first.
+  function isFresh(w) { var t = Date.parse(w.added || ''); return !isNaN(t) && Date.now() - t < (WU.NEW_DAYS || 14) * 864e5; }
+  // This week's words first, then every other word once (random order), then round again.
+  function pickWord(all, played, lastId) {
+    var left = function (f) { return all.filter(function (w) { return played.indexOf(w.id) < 0 && (!f || f(w)); }); };
+    var c = left(isFresh); if (!c.length) c = left();
+    if (!c.length) { played.length = 0; c = all.filter(function (w) { return w.id !== lastId; }); if (!c.length) c = all; }
+    return WU.pick(c);
+  }
   function newWord() {
     var all = words(); if (!all.length) return;
-    var w = deck(all), tries = 0;
-    while (all.length > 1 && w.id === st.id && tries++ < 5) w = deck(all);
+    var w = pickWord(all, st.played, st.id); st.played.push(w.id);
     st.id = w.id; st.phase = 'play'; st.found = []; st.who = {}; st.strikes = 0; st.flash = null; st.last = null; st.letters = false; st.history = [];
     startClock(); WU.sound.pop(); render(); if (clock) clock.start();
   }
@@ -257,7 +265,7 @@
 
   // For the phone version (js/phone/games-partners.js).
   WU.engines = WU.engines || {};
-  WU.engines.partners = { tokens: tokens, phrases: phrases, plain: plain };
+  WU.engines.partners = { tokens: tokens, phrases: phrases, plain: plain, isFresh: isFresh, pickWord: pickWord };
 
   WU.views.partners = {
     title: 'Word Partners',
@@ -282,7 +290,7 @@
     },
     mount: function (el) {
       sh = gram.shell(el, 'wpg-game', 'Word Partners', 'partners-sb'); box = sh.box;
-      st = { phase: 'ready', id: null, found: [], who: {}, strikes: 0, turn: 0, flash: null, last: null, letters: false, history: [], student: null, peek: false };
+      st = { phase: 'ready', id: null, found: [], who: {}, strikes: 0, turn: 0, flash: null, last: null, letters: false, history: [], student: null, peek: false, played: [] };
       render();
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st) render(); });
       offContent = WU.on('content', refresh);
