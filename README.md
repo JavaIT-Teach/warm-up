@@ -6,11 +6,14 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Offline:** click Code → Download ZIP, unzip, and double-click `index.html`.
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
-## On a student's phone (practise alone)
+## On a student's phone
 **Get students there:** press **Q** on the home screen (or the QR button in the top bar). A big QR code fills the board; students scan it with the phone camera and land on the phone version. The title and line under it are in Edit mode → App texts.
-- Students open the same link. Phones get a portrait version with big buttons: **14 games that work for one student**
-  (Word Hunt, Vanishing Sentence, Word Partners, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
-  Hide & Seek Cat, Story Dice, Slot Machine, Lost Word, Natural Replies). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
+- Students open the same link. Phones get a portrait version with big buttons and **every game from the board**, in the same order.
+  Most are solo. Group games are **pass-the-phone** with friends: Elias, Hot Seat (phone on your forehead), Lie Detector.
+  The moving games become solo versions: Four Zones (pick, give a reason, then argue for another zone), Opinion Line (where you stand + the other side),
+  Stand Up If... (true? say more; not true? ask a question), Find Someone Who (type the question, then report), Speed Chat (answer fast, shorter rounds),
+  Name Wall (your introduction and a classmate's). The Bomb: type words before it explodes. Tug of War: argue both sides.
+  Sentence frames turn into gap boxes to fill.
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
 - Same content as the board: your edits and the weekly games appear on phones too. Nothing to install or update.
