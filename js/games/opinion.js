@@ -31,8 +31,10 @@
       { k: 'report', label: '5. Who moved', type: 'text', max: 60 },
       { k: 'back', label: 'At the end', type: 'text', max: 40 },
       { k: 'demo', label: 'Teacher demo banner (first statement only)', type: 'text', max: 40 },
-      { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
-    ]
+      { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' },
+      { k: 'though', label: '5. Who moved: contrast frame (... though)', type: 'text', max: 60 },
+      { k: 'thoughShow', label: 'Contrast frame', type: 'bool', on: 'On', off: 'Off' }
+    ].concat(WU.expr.fields('expr', 'Agree / disagree expressions (steps 2 and 3)'))
   });
   WU.registerList('opinion', 'statements', {
     gameTitle: 'Opinion Line', label: 'Statements',
@@ -71,7 +73,8 @@
       h += '<div class="obig' + (timer ? '' : ' wide') + '"' + scr.ea(LINE[ph]) + '>' + WU.esc(S[LINE[ph]]) + '</div>';
     }
     h += '</div>' + kit.roomMap(S.board, scr.ea('board'), lineHTML(S), 'omap');
-    h += '<div class="obottom">' + (ph === 'pairs' || ph === 'convince' ? '<div class="brow">' + kit.frame(S.frame, scr.ea('frame')) + '</div>' : '') + '</div>';
+    h += '<div class="obottom">' + (ph === 'pairs' || ph === 'convince' ? '<div class="brow">' + kit.frame(S.frame, scr.ea('frame')) + '</div>' + WU.expr.strip(S, scr.ea, 'op:' + st.id) : '') +
+      (ph === 'report' && S.thoughShow && S.though ? '<div class="brow">' + kit.frame(S.though, scr.ea('though')) + '</div>' : '') + '</div>';
     box.querySelector('.layer').innerHTML = h;
     kit.fit(box.querySelector('.ost'), 88, 48);
     var ob = box.querySelector('.obig'); if (ob) kit.fit(ob, 64, 40);

@@ -35,7 +35,7 @@
       { k: 'reportFrame', label: 'Report frame', type: 'text', max: 60 },
       { k: 'demo', label: 'Teacher demo banner (first round only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
-    ]
+    ].concat(WU.expr.fields('expr', 'Opening expressions (greet your partner)').concat(WU.expr.fields('expr2', 'Answer expressions (while talking)')))
   });
   WU.registerList('chat', 'questions', {
     gameTitle: 'Speed Chat', label: 'Questions',
@@ -104,6 +104,8 @@
         (it && it.answer ? kit.frame(it.answer, ek(it, 'answer'), 'cframe') : '') + '</div>' +
         (timer ? '<div class="ctimer"></div>' : '') + '</div>';
       h += '<div class="cbottom">';
+      var xs = WU.expr.strip(S, scr.ea, 'ch:' + st.round) + (ph === 'talk' ? WU.expr.strip(S, scr.ea, 'ch:' + st.id, 'expr2') : '');
+      if (xs) h += '<div class="xcol">' + xs + '</div>';
       if (ph === 'show') { if (S.ruleShow && S.rule) h += '<div class="rule big"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>'; }
       else if (ph === 'talk') h += '<div class="cgo"' + scr.ea('go') + '>' + WU.esc(S.go) + '</div>';
       else if (ph === 'next') h += '<div class="cgo hot"' + scr.ea('next') + '>' + WU.esc(S.next) + '</div>' + (st.nextLeft ? '<div class="cnum" data-auto>' + st.nextLeft + '</div>' : '');

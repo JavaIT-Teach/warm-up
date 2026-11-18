@@ -26,7 +26,7 @@
       { k: 'nobody', label: 'Help when nobody said YES', type: 'text', max: 80 },
       { k: 'demo', label: 'Teacher demo banner (first task only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
-    ]
+    ].concat(WU.expr.fields('expr', 'Answer expressions').concat(WU.expr.fields('expr2', 'Closing expressions')))
   });
   WU.registerList('findwho', 'tasks', {
     gameTitle: 'Find Someone Who', label: 'Tasks',
@@ -76,7 +76,8 @@
     }
     h += '<div class="fbottom">';
     if (ph === 'show') { if (S.ruleShow && S.rule) h += '<div class="rule big"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>'; }
-    else if (ph === 'walk') h += '<div class="fgo"' + scr.ea('go') + '>' + WU.esc(S.go) + '</div>' + (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>' : '');
+    else if (ph === 'walk') h += '<div class="fgo"' + scr.ea('go') + '>' + WU.esc(S.go) + '</div>' + (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>' : '') +
+      '<div class="xrow">' + WU.expr.strip(S, scr.ea, 'fw:' + st.id) + WU.expr.strip(S, scr.ea, 'fw:' + st.id, 'expr2') + '</div>';
     else if (ph === 'stop') h += '<div class="fgo stop"' + scr.ea('stop') + '>' + WU.esc(S.stop) + '</div>';
     h += '</div>';
     box.querySelector('.layer').innerHTML = h;

@@ -257,6 +257,9 @@ body.phone button { color: var(--ink); }
 }
 #wrap[hidden] { display: none !important; }
 
+/* Lost Word */
+.plwq mark { background: #ffd2c2; color: #c4122a; padding: 0 4px; border-bottom: 3px solid #c4122a; }
+.plwr { color: #c4122a; }
 /* ---------- Word Partners ---------- */
 .wpcorep { padding: 10px 16px; background: var(--ink); color: #fff; border: 3px solid var(--ink); box-shadow: 5px 5px 0 #00e5c7; font-family: var(--display); font-size: 32px; line-height: 1; letter-spacing: -0.02em; text-align: center; text-transform: uppercase; overflow-wrap: anywhere; }
 .pcount b { font-family: var(--display); font-weight: 400; font-size: 20px; }

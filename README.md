@@ -7,9 +7,9 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
 ## On a student's phone (practise alone)
-- Students open the same link. Phones get a portrait version with big buttons: **12 games that work for one student**
+- Students open the same link. Phones get a portrait version with big buttons: **14 games that work for one student**
   (Word Hunt, Vanishing Sentence, Word Partners, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
-  Hide & Seek Cat, Story Dice, Slot Machine). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
+  Hide & Seek Cat, Story Dice, Slot Machine, Lost Word, Natural Replies). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
 - Same content as the board: your edits and the weekly games appear on phones too. Nothing to install or update.
@@ -38,20 +38,26 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 At Beginner every game starts with a **teacher demo** (you go first) and shows a sentence frame. One word, pointing or a gesture counts.
 
 **1. The Bomb.** A category appears. Students pass an object around the room; whoever holds it says one word (a sentence at higher levels) and passes it on. **Space** lights the fuse; nobody knows when it explodes. Whoever holds it spins the challenge wheel and answers a short speaking challenge from their seat.
+*Senses and reactions:* sense categories from Elementary ("Things that taste bitter", "Smells that bring back memories"). Three wheel challenges: **SENSES** (describe the thing next to you with 3 senses), **RIGHT NOW** (say what you're doing, step by step) and **REACT!** ("Your bus just left!" → "Oh no! I should have run!").
 **Choose the category:** press **C** (or tap "C categories"). Arrows + **Enter**: that category comes next (at once if the round hasn't started). **Space** ticks categories for a set; **P** plays the ticked ones in the order you ticked them, again and again. **R** goes back to random. Your own categories (added in Edit mode) are in the list too. The choice lasts until you change it or reload the app.
 To choose without the class seeing the list, use the Teacher screen (**V**): the same list is there, and only you see "Next category".
 Keys: Space start / spin / next · N new category · C choose categories · P who starts · X explode now · T challenge timer · R reset.
 
 **2. Slot Machine of Chaos.** **Space** spins: WHO (a student), TOPIC, HOW (a speaking style) and, from Intermediate, a TWIST. The student talks until the timer ends (it starts by itself). Then the screen names two classmates who each ask the speaker one question.
+*New twists:* "Start in 1 second" (from Elementary), "Don't stop for a word: describe it and keep going" (from Pre-Intermediate) and "Add ... though" (from Intermediate).
 Keys: Space spin · Enter pause · Q questions now · H styles on / off · W twist on / off.
 
-**3. Hot Seat.** One student sits with their back to the board. **P** picks a student (P again = someone else, for a shy student). **Space** starts the round. The class describes each word; the student guesses. **Space** = got it (a point), **P** = pass. At IELTS the class must not say the banned words. The high score stays for the next student to beat.
-Keys: P pick / pass · Space start / got it / next student · Enter pause · R reset high score · 1-4 give the points to a team.
+**3. Hot Seat.** One student sits with their back to the board. **P** picks a student (P again = someone else, for a shy student). **Space** starts the round. The class describes each word; the student guesses. **Space** = got it (a point), **P** = pass. The high score stays for the next student to beat.
+From Elementary, **helper frames** sit under the word (*It's something you use to... / It's someone who... / It's a place where...*; at IELTS *It's when... / It's the feeling you get when...*).
+From Pre-Intermediate the class must not say the **banned words** (Pre-Intermediate 1, Intermediate 2, IELTS 3). **B = HARD MODE**: every banned word of the card shows (3 below IELTS, 5 at IELTS). It stays on for that level until you press B again.
+Keys: P pick / pass · Space start / got it / next student · B hard mode · Enter pause · R reset high score · 1-4 give the points to a team.
 
 **4. Lie Detector.** **P** picks a student and shows a question. The student secretly shows you TRUTH or LIE (for example thumb up or down under the desk). Press **T** or **L**: nothing on screen changes. The student answers. **Space**: at middle levels a classmate asks one follow-up question; at IELTS two students explain why they think it's a lie. Then the class votes: stand up = lie, stay seated = truth (optional: count the standing students with **Up / Down**). **R** runs the lie detector and shows the truth.
+*Natural expressions:* in the vote step a strip suggests a first reaction ("React first: Really? · No way! · You're serious?"), from Elementary.
 Keys: P pick · T / L secret · Space next step · Up / Down votes · R reveal · N other question.
 
 **5. Tug of War.** Two sides: two teams, or the left and right side of the room. Played in rounds. Each round both sides get a topic: one word each (pizza vs burgers), or FOR and AGAINST a statement at IELTS. Each side has one turn per round: after a 3-2-1-GO countdown its timer (45 seconds by default) starts by itself as soon as the topics appear or the turn passes to it (**Enter** pauses, or skips the countdown), and the side makes one argument. Good argument: press **←** or **→** to pull the rope. No good argument: **Space**. When both sides have argued, the next round starts with a new topic and the rope stays where it is. The side that starts alternates every round. A game is 10 rounds. **Intermediate and up: defend format.** The side gives its idea, the teacher argues against it, the side defends it. Pull (**←** / **→**) only if the defence holds; a good first idea alone earns nothing (**Space**). 2:30 per side at Intermediate, 3:00 at IELTS 1 and 2, 4:00 at IELTS 3, and 4 rounds a game. A side wins by pulling the flag over its line, or by having the flag on its half when the last round ends (flag in the middle: a draw). **N** next round now (rope stays) · **R** new game (rope to the middle, round 1). Edit mode: number of rounds, seconds per side, countdown length (0 = off) and its last word, round tag, round-over banner, draw text.
+*Natural expressions:* from Pre-Intermediate, the second side of each round sees "Answer first: I'm not so sure about that. · I don't really see it that way." They answer the other side before giving their own argument.
 Keys: ← / → pull · Space no pull · N new topic · R reset.
 
 **6. Story Dice.** **Space** rolls the picture dice. Pairs make a story using every picture (timer). Then the class builds one story together: **N** picks the next student, who adds one sentence. At Beginner each student says one sentence about the highlighted picture. In Edit mode you choose which pictures can appear on the dice.
@@ -66,6 +72,18 @@ Keys: Space correct · X out · P pass · T topic · R start again.
 Keys: Enter add / next field · Space next student / flip · R remember round · X wrong · N another card · A back to adding people · Delete clear wall.
 **Privacy:** the names and facts you type stay on this device only. They are never saved to GitHub and are not in the backup file. **Delete** (when you are not typing in a box) → Enter clears the wall. The Teacher screen lists every name and fact.
 
+**Lost Word** (Speaking · Elementary and up; grey for Beginner). What to do when the word is gone. Three modes, **T** switches:
+- **Describe it.** A situation ("Hotel. There's no towel in your bathroom.") and the word, crossed out. The picked student asks for it without saying it, using a frame (*It's something you use to... / someone who... / a place where...*). **Space**: the face on screen guesses **wrong** ("A blanket?"); the student adds a detail. **Space**: it gets it ("Oh, a towel!"); the student closes: "Yes, that's it! Thanks!". **Space**: the model answer. **X** = a banned word was said (buzzer). **B** = hard mode: the related words are banned too.
+- **Say it simple.** A hard sentence with the hard part marked ("I'd like a **refund**."). The face doesn't understand; the student says it in plain words. **Space**: the model ("Can I get my money back?").
+- **Too direct.** A blunt request ("Give me a coffee.") with its size: SMALL, MEDIUM or BIG request. The face is offended; the student softens it with the frames for that size (*Could I get... / Would it be possible to... / I was wondering if...*). **Space**: the model.
+On phones: pick the forgotten word, the simple meaning, or the best request.
+Keys: Space next step · N other card · P other student · T mode · B hard mode · X banned word · 1-4 team point.
+
+**Natural Replies** (Speaking · all levels). Someone "says" a line ("Thanks so much for helping me!", "I didn't get the job.", "Did you call your mum?"). The picked student must START replying before a short bar runs out (Beginner 5 seconds, IELTS 3 one second), using a reply from the wall. The wall shows the kind of reply that fits: thanks, "you're welcome", sympathy, good news, agree, disagree, short answers (*I did.*), not yes / not no (*Kind of. / Pretty much.*), surprise (*You're serious?*). **Space** = started in time: the streak grows. Bar runs out or **X** = too slow: the streak resets. Then press the **number** of the reply they used (or tap it): it greys out for the rest of the round, so the class has to use different replies. Short answers never grey out, because they must match the question. After 10 lines (8 at Beginner and Elementary) a new round starts and every reply is back.
+**The expressions are shared.** Natural Replies > Expressions in Edit mode is one bank. Opinion Line, Tug of War, Four Zones, Speed Chat, Find Someone Who and Lie Detector take their expression strips from it. Edit an expression once and it changes in every game. Each of those games has the strip in its *Screen text & timing* (on / off, label, which kinds, how many).
+On phones: pick the best reply before the bar runs out.
+Keys: Space show the line / started in time / next student · 1-9 reply used · X froze · P other student · N other line · R new round.
+
 ### Moving games (9–13): students stand up and walk
 The map on screen is your room seen from above: the board at the top, desks in a U, the open middle in between. "Front" = near the board.
 
@@ -73,15 +91,19 @@ The map on screen is your room seen from above: the board at the top, desks in a
 Keys: Space next step · Up / Down count · N other sentence.
 
 **10. Four Zones** (all levels). A question with four answers. Each answer is a zone in the middle of the room: red front left, blue front right, green back left, yellow back right (the map shows it; nothing to stick on the walls). **Space**: students walk to their zone (timer, then talking starts by itself). They tell their zone why (timer + frame). **Space**: one person per zone reports, zone by zone. **Space**: back to the seats, next question.
+*Natural expressions:* while the zones talk, a strip shows agree / disagree expressions ("React: You can say that again. · I don't really see it that way."), from Elementary.
 Keys: Space next step · Enter pause · N other question. Edit mode: the zone names, "Pictures on the map", walk and talk times.
 
 **11. Opinion Line** (Pre-Intermediate and up; grey for Beginner and Elementary). A statement. One line through the middle of the room: AGREE near the board, NOT SURE in the middle, DISAGREE at the back. Steps, each with **Space**: stand on the line (timer) → explain to the person next to you (timer + frame) → the two ends convince the middle (timer) → changed your mind? move (timer) → who moved says why → back to the seats.
+*Natural expressions:* steps 2 and 3 show agree / disagree expressions, so students say more than "I agree". From Intermediate the "who moved" step adds a contrast frame: "Good point. ___ though."
 Keys: Space next step · Enter pause · N other statement.
 
 **12. Find Someone Who** (all levels). A task ("Find someone who can swim."), the question to ask and both answers. **Space**: everyone stands up and walks (timer). Rule: find **1 YES and 1 NO**, then sit down — so "everybody said no" still finishes half the task. Higher levels: ask one follow-up question after a YES. When the time is up, the screen picks students to report with a frame ("Ali can swim. Sara can't swim."). **P** = another student.
+*Natural expressions:* from Pre-Intermediate, natural answers next to the textbook ones ("Answer like this: I do. · Kind of. · Not really."). From Intermediate, a way to finish ("Finish with: Thanks a lot! · Happy to help.").
 Keys: Space walk / stop / report / next · Enter pause · N other task · P other student.
 
 **13. Speed Chat** (all levels; made for Beginners). Everyone stands. One question on the board with its answer frame ("Do you like football?" / "Yes, I do. / No, I don't."). **Space**: the timer starts. Students find a partner, ask, answer, find a NEW partner, and count their partners on their fingers. At the buzzer a new question appears and the next round starts by itself after 3 seconds. Each round is shorter (Beginner: 60, 50, 40, 30 seconds), so the pace goes up. After the last round: FREEZE. **Space**: "Hands up: 3 people or more!" Press **↑** for 4, 5, 6...: the last hand up wins and reports first. **Space**: the screen picks students to report ("I talked to Sara. Sara likes football."); the report frames of every question played are on screen.
+*Natural expressions:* every round suggests a different greeting for each new partner ("Start with: How's it going? · What have you been up to?"). From Pre-Intermediate, natural answers too ("I did. · Kind of. · Pretty much.").
 Demo (20 seconds, no explanation): ask one student the question, they answer, hold up one finger, walk to the next student, say "Go!".
 Keys: Space go / end round now / hands up / next · Enter pause · N other question · ↑ / ↓ hands-up number · P other student · R start again. Edit mode: the questions (question, picture, answer frame, report frame), number of rounds, first round length, how much shorter each round is, the shortest round.
 
@@ -129,6 +151,7 @@ Keys: Space countdown / reveal / next · N other sentence · P other student.
 Keys: Space show the room / show one thing / question / answer · A show everything · P other student.
 
 **G3. Near & Far** (Beginner to Pre-Intermediate) · *this / that / these / those.* A picture road: things appear near the hand (this / these) or far away (that / those), one or more. The student says the sentence; **Space** reveals it. Pre-Intermediate: two things at once ("These are cats and that is a dog."), with a time bar.
+Pre-Intermediate adds *over there* to the far thing: "This is a carrot and those are bottles over there."
 Keys: Space reveal / next · N other things · P other student.
 
 **G4. Hide & Seek Cat** (Beginner to Intermediate) · *prepositions of place, then movement.* The cat (or a dog, a ball...) hides: in the box, on / under / next to the table, behind / in front of the box, between two boxes, above the table. From Pre-Intermediate it moves (animated): into / out of / over the box; Intermediate adds around the tree, past / towards / away from the house, across the road, through the tunnel, up / down the hill ("The cat went through the tunnel.").
@@ -156,12 +179,15 @@ Keys: Space countdown / reveal / next · T time / place / both · N other senten
 Keys: 1–4 this team answers · Space right / next word · X wrong / nobody · A peek · Shift + 1–4 take a point back · R new match.
 
 **G10. Phrasal Roulette** (Pre-Intermediate and up) · *phrasal verbs.* Two reels spin: VERB + PARTICLE (give + up). The student says what it means; **Space** shows the meaning and an example; **Space** again gives another student a personal question to answer with it ("What would you like to give up?"). **T** turns it round: the meaning shows and the student finds the phrasal verb.
-Keys: Space reveal / question / spin · T direction · P other student.
+**T** has three modes: verb → meaning, meaning → verb, and **WHERE DOES "IT" GO?** Two answers show: "1 take it down" / "2 take down it". Fingers up, **Space** reveals the right one. Separable verbs must split around *it* (take it down); inseparable ones never do (get over it). Verbs without an object are skipped.
+**L = family:** the verb stays fixed (*come*, *make*, *get*...) and only the particle changes. **L** again moves to the next family, then back to every verb. Verbs with *come* and *make* added for Pre-Intermediate to IELTS 1 (come over, come along, come down with, come through, come across as, make up for, make out = hear or see...), plus speak up, take down, shut down, pull over, talk down to.
+Keys: Space reveal / question / spin · T mode · L family · P other student.
 
 ### Weekly games (built from what your groups learned)
 **Word Hunt** (Reading · Beginner to Intermediate). A letter grid hides 8 words from your last units. Beginner sees the words with pictures; higher levels read a clue ("You need it to travel to another country.") and the number of letters. **Space** shows the grid and starts the timer. A student who finds a word says it and where it is ("B4, across!") or shows it on the board. **↑ / ↓** choose the clue, **Enter** (or tap the clue) marks it found and it lights up. **H** flashes the first letter, **A** shows every word, **N** next puzzle, **R** same words in a new grid.
 
 **Vanishing Sentence** (Writing · Beginner to Intermediate). A sentence from your last lessons. The class reads it together. **Space**: one or two words vanish; the class reads it again, missing words too. Again and again until nothing is left, then WRITE IT!: everyone writes the whole sentence on paper. **Space**: the words come back and students check their spelling; a picked student reads theirs. **B** brings one word back, **N** other sentence, **P** other student.
+*Stress:* in the first reading the stressed words are big and underlined ("She did WELL in her EXAMS."), so the class reads with rhythm. Automatic: content words and negatives (*don't*, *can't*). A sentence can list its own stressed words in Edit mode.
 
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 

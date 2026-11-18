@@ -19,6 +19,8 @@
       { type: 'head', label: 'Reading' },
       { k: 'read', label: 'First reading', type: 'text', max: 60 },
       { k: 'again', label: 'Reading with gaps', type: 'text', max: 80 },
+      { k: 'stressShow', label: 'Stressed words big in the first reading', type: 'bool', on: 'On', off: 'Off', hint: 'Automatic (content words) unless a sentence lists its own.' },
+      { k: 'stressRule', label: 'Stress line', type: 'text', max: 80 },
       { type: 'head', label: 'Writing' },
       { k: 'write', label: 'Big signal', type: 'text', max: 20 },
       { k: 'writeRule', label: 'Writing line', type: 'text', max: 90 },
@@ -33,12 +35,13 @@
   WU.registerList('vanish', 'items', {
     gameTitle: 'Vanishing Sentence', label: 'Sentences',
     defaults: function (l) { return WU.content.vanish[l].items; },
-    norm: function (r) { return { text: r.text || '', focus: r.focus || '', pic: r.pic || '' }; },
+    norm: function (r) { return { text: r.text || '', focus: r.focus || '', pic: r.pic || '', stress: r.stress || '' }; },
     fields: function () {
       return [
         { k: 'text', label: 'Sentence', type: 'text', max: 90 },
         { k: 'focus', label: 'What it practises (tag)', type: 'text', max: 50 },
-        { k: 'pic', label: 'Picture', type: 'pic' }
+        { k: 'pic', label: 'Picture', type: 'pic' },
+        { k: 'stress', label: 'Stressed words, separated by commas (empty = automatic)', type: 'text', max: 90, hint: 'Automatic = nouns, verbs, adjectives, question words and negatives (don\'t, can\'t).' }
       ];
     },
     blank: function () { return { text: 'I like playing football.', focus: 'like + -ing', pic: '' }; }
@@ -64,17 +67,26 @@
     var p = pool(), it = deck(p); st.id = it ? it.id : null; st.sig = it ? it.text : '';
     st.order = WU.shuffle(wordIdx()); st.gone = 0; st.phase = 'read'; st.who = null;
   }
+  // Sentence stress: content words are stressed; small grammar words (a, the, is, to, he...) are not. Negatives (don't) are.
+  var WEAK = ('a an the to of in on at for with from by as and or but so than that this these those there here is am are was were be been being ' +
+    'do does did has have had will would shall can could should must may might i me my you your he him his she her it its we us our they them their ' +
+    'not up some any very just i\'m you\'re he\'s she\'s it\'s we\'re they\'re i\'ve you\'ve we\'ve they\'ve i\'ll you\'ll i\'d you\'d who which').split(' ');
+  function stressed(it, core) {
+    var w = core.toLowerCase().replace(/[’]/g, "'");
+    if (it.stress) return String(it.stress).toLowerCase().split(',').map(function (x) { return x.trim(); }).indexOf(w) >= 0;
+    return WEAK.indexOf(w) < 0;
+  }
   function goneSet() { var o = {}; st.order.slice(0, st.gone).forEach(function (i) { o[i] = true; }); return o; }
 
   function sentenceHtml(it) {
-    var g = st.phase === 'check' ? {} : goneSet(), slots = !!S().letters, back = st.phase === 'check';
+    var g = st.phase === 'check' ? {} : goneSet(), slots = !!S().letters, back = st.phase === 'check', mark = st.phase === 'read' && !!S().stressShow;
     return tokens(it.text).map(function (t, i) {
       var inner;
       if (g[i]) {
         var n = t.core.length, s = '';
         if (slots) for (var k = 0; k < n; k++) s += '<i></i>';
         inner = '<span class="vsgap' + (slots ? ' slots' : '') + '" style="--n:' + n + '">' + s + '</span>';
-      } else inner = '<span class="vsw' + (back ? ' back' : '') + '"' + (back ? ' style="animation-delay:' + (i * 0.07).toFixed(2) + 's"' : '') + '>' + WU.esc(t.core) + '</span>';
+      } else inner = '<span class="vsw' + (back ? ' back' : '') + (mark && stressed(it, t.core) ? ' st' : '') + '"' + (back ? ' style="animation-delay:' + (i * 0.07).toFixed(2) + 's"' : '') + '>' + WU.esc(t.core) + '</span>';
       return '<span class="vstok">' + WU.esc(t.pre) + inner + WU.esc(t.post) + '</span>';
     }).join(' ');
   }
@@ -90,7 +102,7 @@
       (it.pic ? '<div class="vspic"' + WU.editAttr('vanish', 'items', it.id, 'pic') + '>' + WU.pic(it.pic) + '</div>' : '') +
       '<div class="vstext"' + WU.editAttr('vanish', 'items', it.id, 'text') + '>' + sentenceHtml(it) + '</div></div>';
     h += '<div class="vsbottom">';
-    if (ph === 'read') h += '<div class="vsbig"' + scr.ea('read') + '>' + WU.esc(s.read) + '</div>';
+    if (ph === 'read') h += '<div class="vsbig"' + scr.ea('read') + '>' + WU.esc(s.read) + '</div>' + (s.stressShow && s.stressRule ? '<div class="rule"' + scr.ea('stressRule') + '>' + WU.esc(s.stressRule) + '</div>' : '');
     else if (ph === 'gone') h += '<div class="vsbig"' + scr.ea('again') + '>' + WU.esc(s.again) + '</div><div class="vsdots" data-auto>' + dots(total) + '</div>';
     else if (ph === 'write') h += '<div class="gshow vswrite"' + scr.ea('write') + '>' + WU.esc(s.write) + '</div><div class="rule"' + scr.ea('writeRule') + '>' + WU.esc(s.writeRule) + '</div>';
     else h += '<div class="vsbig"' + scr.ea('check') + '>' + WU.esc(s.check) + '</div>' + gram.who(s.say, scr.ea('say'), st.who);

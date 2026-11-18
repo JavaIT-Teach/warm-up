@@ -71,3 +71,11 @@ check or reveal the answer, because no teacher judges. Read content only through
 (`ctx.S`). Where a board game's logic is needed, the board file exposes it on `WU.engines.<id>` (Time Machine, Hide & Seek Cat).
 A new board game script goes in **both** `index.html` and `phone.html`; add a phone screen only if one student can play it alone. The one exception is Elias (`js/phone/games-elias.js`): a pass-the-phone game for 2–4 teams, where the players judge "got it".
 
+
+## Shared expression bank (`js/expr.js`)
+Natural expressions by function (hello, reply, agree, disagree, thanks, welcome, sympathy, happy, short, vague, surprise) live in
+`content/replies.js` (`bank[level]`), registered once as the list `replies:bank`. A game shows a strip of them with
+`WU.expr.strip(S, scr.ea, key, prefix)`. Add the fields with `.concat(WU.expr.fields(prefix, title))` on the screen record, with
+defaults for `<prefix>Show`, `<prefix>Label`, `<prefix>Cats` (comma list of kinds) and `<prefix>N` at every level. `key` keeps the same pick
+while the same item is on screen. Each expression in the strip is editable (it points at `replies:bank:<id>:text`).
+`js/expr.js` loads after the content files and before the views and games.

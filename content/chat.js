@@ -122,11 +122,13 @@ WU.content.chatScreen = {
     rounds: 4, seconds: 60, step: 10, minSeconds: 30,
     freeze: 'FREEZE!', count: 'Hands up: {k} people or more!', countFrom: 3,
     winner: 'Last hand up wins!', report: '{name}: tell us about one person!', reportFrame: 'I talked to ___.', reporters: 3,
-    demo: 'TEACHER DEMO: I ask first!', demoShow: false
+    demo: 'TEACHER DEMO: I ask first!', demoShow: false,
+    exprShow: true, exprLabel: 'Start with:', exprCats: 'hello', exprN: 2,
+    expr2Show: true, expr2Label: 'Answer like this:', expr2Cats: 'short, vague', expr2N: 3
   },
   levels: [
-    { demoShow: true, reporters: 2 },
-    { reporters: 2 },
+    { demoShow: true, reporters: 2, exprN: 2, expr2Show: false },
+    { reporters: 2, expr2Show: false },
     { reportFrame: 'I talked to ___. He / She said ___.' },
     { reportFrame: 'I talked to ___. He / She said ___.', seconds: 70, minSeconds: 40 },
     { reportFrame: '___ told me that ___.', seconds: 80, step: 10, minSeconds: 50, rounds: 3, rule: 'Find a partner. Ask. Answer with a reason. New partner!' },

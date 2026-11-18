@@ -31,8 +31,12 @@ WU.content.games = [
   { id: 'opinion', skills: ['speaking'], name: 'Opinion Line', hook: 'Agree or disagree? Stand on the line.', trains: 'Agreeing & disagreeing · justifying', color: '#ff5a1f', sticker: 'GET UP!', levels: [2, 6] },
   { id: 'findwho', skills: ['speaking', 'grammar'], name: 'Find Someone Who', hook: 'Walk, ask, find one YES and one NO.', trains: 'Questions & short answers', color: '#c6ff00', first: true, sticker: 'GET UP!' },
   { id: 'chat', skills: ['speaking'], name: 'Speed Chat', hook: 'One question. New partner. Again and again.', trains: 'Questions · short answers · reporting', color: '#ff4fc3', first: true, sticker: 'GET UP!' },
+  { id: 'lostword', skills: ['speaking', 'vocab'], name: 'Lost Word', hook: 'Forgot the word? Find another way.', trains: 'Describing · simplifying · polite requests', color: '#00e5c7', added: '2026-11-18',
+    levels: [1, 6], preview: ['SOMETHING', 'YOU USE', 'TO...'] },
   { id: 'partners', skills: ['vocab', 'speaking'], name: 'Word Partners', hook: 'One word. Find its partners. Use them.', trains: 'Collocations · phrases, not single words', color: '#00e5c7', added: '2026-11-18',
     preview: ['MAKE', 'A DECISION', 'TOUGH'] },
+  { id: 'replies', skills: ['speaking'], name: 'Natural Replies', hook: 'Someone says it. Reply fast and naturally.', trains: 'Thanks · agreeing · short answers · reacting', color: '#ff4fc3', added: '2026-11-18',
+    preview: ['I OWE', 'YOU', 'ONE!'] },
   { id: 'elias', skills: ['vocab', 'speaking'], name: 'Elias', hook: 'Explain it to your team. Fast. No gestures.', trains: 'Paraphrasing · explaining words · team race', color: '#3d6bff', added: '2026-11-18', levels: [2, 6],
     preview: ['EXPLAIN', 'GUESS', '+1', 'SKIP'] },
   /* ---------- Weekly games built from the taught lessons ---------- */

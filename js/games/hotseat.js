@@ -1,7 +1,9 @@
 /* Warm Up: HOT SEAT.
    One student sits with their back to the board. Words appear one at a time; the class describes, the student guesses
    before the timer ends. Score and a high score for the next student to beat.
-   Keys: P pick a student (again = skip), Space start / got it / next student, P pass (during a round), 1-4 give the score to a team.
+   Helper frames (It's something you use to... / someone who... / a place where...) show under the word from Elementary.
+   Banned words from Pre-Intermediate: the first banN show; HARD MODE (B) shows them all.
+   Keys: P pick a student (again = skip), Space start / got it / next student, P pass (during a round), B hard mode, 1-4 give the score to a team.
    Content: content/hotseat.js through the edit layer (Edit mode, E). */
 (function () {
   'use strict';
@@ -23,7 +25,11 @@
       { type: 'head', label: 'During the round' },
       { k: 'secs', label: 'Round length (seconds)', type: 'num', min: 15, max: 300 },
       { k: 'frame', label: 'Sentence frame for the class (empty = none)', type: 'text', max: 60, hint: 'Use ___ for the gap.' },
+      { k: 'tools', label: 'Helper frames for the class, separated by / (empty = none)', type: 'text', max: 220, hint: 'Use ___ for the gap.' },
+      { k: 'toolsShow', label: 'Helper frames', type: 'bool' },
       { k: 'banned', label: 'Label before the banned words', type: 'text', max: 20 },
+      { k: 'banN', label: 'Banned words shown in a normal round (0 = none)', type: 'num', min: 0, max: 8, hint: 'HARD MODE (key B) shows every banned word of the card.' },
+      { k: 'hardTag', label: 'HARD MODE label', type: 'text', max: 24 },
       { k: 'score', label: 'Score label', type: 'text', max: 16 },
       { k: 'high', label: 'High score ({n})', type: 'text', max: 30 },
       { k: 'beat', label: 'Score to beat ({n})', type: 'text', max: 30 },
@@ -43,7 +49,7 @@
       return [
         { k: 'text', label: 'Word', type: 'text', max: 40 },
         { k: 'pic', label: 'Picture (empty = none)', type: 'pic' },
-        { k: 'banned', label: 'Banned words, separated by commas (empty = none)', type: 'text', max: 80, hint: l >= 4 ? 'IELTS: three words the class must not say.' : 'Usually empty below IELTS.' }
+        { k: 'banned', label: 'Banned words, separated by commas (empty = none)', type: 'text', max: 80, hint: l >= 2 ? 'Easiest first. A normal round shows the first few (Screen text & timing); HARD MODE (B) shows them all.' : 'Usually empty below Pre-Intermediate.' }
       ];
     },
     blank: function () { return { text: 'new word', pic: '', banned: '' }; }
@@ -57,11 +63,22 @@
   function high() { return +WU.store.get(highKey(), 0) || 0; }
   function playerName() { var S = scr.get(); return st.demo ? S.demoWho : st.player || ''; }
   function nameAttr() { return st.demo ? scr.ea('demoWho') : ' data-auto'; }
+  function hard() { return WU.store.get('hot-hard-' + WU.state.level, false) === true; }
+  // The banned words this round shows: the first banN, or all of them in HARD MODE.
+  function bannedNow(w) {
+    var all = String(w.banned || '').split(',').map(function (b) { return b.trim(); }).filter(Boolean);
+    return hard() ? all : all.slice(0, Math.max(0, +scr.get().banN || 0));
+  }
+  function tools(S) {
+    if (!S.toolsShow || !S.tools) return '';
+    return '<div class="tools">' + String(S.tools).split('/').map(function (t) { return t.trim(); }).filter(Boolean)
+      .map(function (t) { return kit.frame(t, scr.ea('tools'), 'small'); }).join('') + '</div>';
+  }
 
   /* ---------- drawing ---------- */
   function render() {
     var S = scr.get(), h = '', ph = st.phase;
-    h += '<div class="hcard">';
+    h += '<div class="hcard' + (ph === 'play' && S.toolsShow && S.tools ? ' tl' : '') + '">';
     if (ph === 'ready') {
       h += kit.chip(S.tag, scr.ea('tag'), '#ff4fc3');
       if (st.demo && S.demo) h += '<div class="demo"' + scr.ea('demo') + '>' + WU.esc(S.demo) + '</div>';
@@ -78,10 +95,12 @@
         h += '<div class="wrow' + (st.flash ? ' in' : '') + '">' + (w.pic ? '<div class="wpic"' + ek('pic') + '>' + WU.pic(w.pic) + '</div>' : '') +
           '<div class="word"' + ek('text') + '>' + WU.esc(w.text) + '</div></div>';
         if (S.frame) h += kit.frame(S.frame, scr.ea('frame'));
-        if (w.banned) {
+        var bn = bannedNow(w);
+        if (bn.length) {
           h += '<div class="banned">' + (S.banned ? '<span class="bl"' + scr.ea('banned') + '>' + WU.esc(S.banned) + '</span>' : '') +
-            w.banned.split(',').map(function (b) { return b.trim(); }).filter(Boolean).map(function (b) { return '<span class="bw"' + ek('banned') + '>' + WU.esc(b) + '</span>'; }).join('') + '</div>';
+            bn.map(function (b) { return '<span class="bw"' + ek('banned') + '>' + WU.esc(b) + '</span>'; }).join('') + '</div>';
         }
+        h += tools(S);
       } else h += '<div class="word"' + scr.ea('qMark') + '>' + WU.esc(S.qMark) + '</div>';
       h += '<div class="acts" data-ctrl><div class="btn" data-b="got"><span class="key">SPACE</span><span>Got it!</span></div>' +
         '<div class="btn sm" data-b="pass"><span class="key">P</span><span>Pass</span></div></div>';
@@ -106,12 +125,13 @@
       h += '<div class="who"><span' + nameAttr() + '>' + WU.esc(playerName()) + '</span></div>';
       h += '<div class="scorebox"><div class="sl"' + scr.ea('score') + '>' + WU.esc(S.score) + '</div><div class="sn" data-auto>' + st.score + '</div></div>';
     }
+    if (hard() && S.hardTag) h += '<div class="hardtag"' + scr.ea('hardTag') + '>' + WU.esc(S.hardTag) + '</div>';
     var hs = high();
     if (hs > 0 && S.high) h += '<div class="hs"' + scr.ea(ph === 'ready' ? 'beat' : 'high') + '>' + WU.esc(kit.fill(ph === 'ready' ? S.beat : S.high, { n: hs })) + '</div>';
     h += '</div>';
     box.querySelector('.layer').innerHTML = h;
     if (clock) box.querySelector('.tslot').appendChild(clock.el);
-    var wd = box.querySelector('.word'); if (wd) kit.fit(wd, 170, 72);
+    var wd = box.querySelector('.word'); if (wd) kit.fit(wd, S.toolsShow && S.tools ? 140 : 170, 64);
     wire(); renderHints();
   }
   function wire() {
@@ -123,8 +143,9 @@
   }
   function renderHints() {
     var sc = WU.state.teams ? [['S', 'scores']] : [], ph = st.phase;
-    var hs = ph === 'ready' ? [['SPACE', 'start'], ['P', 'pick / someone else'], ['R', 'reset high score'], ['Esc', 'home']].concat(sc)
-      : ph === 'play' ? [['SPACE', 'got it'], ['P', 'pass'], ['ENTER', 'pause / go'], ['Esc', 'home']].concat(sc)
+    var hk = ['B', hard() ? 'normal mode' : 'hard mode'];
+    var hs = ph === 'ready' ? [['SPACE', 'start'], ['P', 'pick / someone else'], hk, ['R', 'reset high score'], ['Esc', 'home']].concat(sc)
+      : ph === 'play' ? [['SPACE', 'got it'], ['P', 'pass'], hk, ['ENTER', 'pause / go'], ['Esc', 'home']].concat(sc)
       : ph === 'award' ? [['1-' + WU.state.teams, 'give the points'], ['SPACE', 'next student'], ['Esc', 'home']].concat(sc)
       : [['SPACE', 'next student'], ['Esc', 'home']].concat(sc);
     kit.hints(root, hs, function (k) { keyAction(k); });
@@ -190,6 +211,7 @@
     else if (k === 'P') { if (ph === 'ready') pick(); else if (ph === 'play') pass(); }
     else if (k === 'ENTER') { if (ph === 'play' && clock) clock.toggle(); }
     else if (k === 'R') { if (ph === 'ready' && high()) { WU.store.set(highKey(), 0); WU.toast('High score reset.'); render(); } }
+    else if (k === 'B') { WU.store.set('hot-hard-' + WU.state.level, !hard()); WU.sound.clack(); WU.toast(hard() ? 'Hard mode: every banned word shows.' : 'Normal mode.'); render(); }
     else if (k === 'S') toggleScores();
     else if (k === 'Esc') WU.go('home');
   }
@@ -202,7 +224,7 @@
       if (st.phase === 'play' && w) {
         if (w.pic) sec.push({ label: '', html: WU.pic(w.pic) });
         sec.push({ label: 'The word', text: w.text, big: true, hot: true });
-        if (w.banned) sec.push({ label: 'Banned words', text: w.banned });
+        if (w.banned) sec.push({ label: 'Banned words' + (hard() ? ' (hard mode: all)' : ''), text: bannedNow(w).join(', ') || '(none at this level)' });
       }
       info.push({ label: 'In the hot seat', text: playerName() || '(nobody yet: press P)' });
       if (st.phase !== 'ready') info.push({ label: 'Score', text: String(st.score) });
@@ -211,7 +233,7 @@
     },
     help: function () {
       return [['P', 'pick a student (again = someone else)'], ['Space', 'start / got it / next student'], ['P (in a round)', 'pass'], ['Enter', 'pause / go'],
-        ['R', 'reset the high score'], ['1 - 4', 'after a round: give the score to a team'], ['S', 'show / hide scores']];
+        ['B', 'hard mode on / off (every banned word shows)'], ['R', 'reset the high score'], ['1 - 4', 'after a round: give the score to a team'], ['S', 'show / hide scores']];
     },
     mount: function (el) {
       root = el;
@@ -235,7 +257,7 @@
       if (sb && sb.onKey(e)) return true;
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
       if (e.key === 'Enter') { e.preventDefault(); keyAction('ENTER'); return true; }
-      var map = { p: 'P', r: 'R', s: 'S' }, k = map[e.key.toLowerCase()];
+      var map = { p: 'P', r: 'R', s: 'S', b: 'B' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
   };

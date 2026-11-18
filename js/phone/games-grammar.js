@@ -86,15 +86,18 @@
   /* ======================= PHRASAL ROULETTE ======================= */
   P.games.phrasal = (function () {
     var body, ctx, st, deck = WU.kit.deck(), spinT = null;
-    function verbs() { return WU.list('phrasal', 'verbs', ctx.level).filter(function (v) { return v.verb && v.particle && v.meaning; }); }
+    function split() { return !!WU.store.get('phone-pv-split', false); }
+    function verbs() { var sp = split(); return WU.list('phrasal', 'verbs', ctx.level).filter(function (v) { return v.verb && v.particle && v.meaning && (!sp || v.sep); }); }
     function pv(v) { return v.verb + ' ' + v.particle; }
     function toVerb() { return !!WU.store.get('phone-pv-dir', false); }
     function next() {
       var all = verbs(), v = deck(all); if (!v) { ctx.empty(); return; }
       if (all.length < 3) { ctx.empty('This level needs at least 3 phrasal verbs.'); return; }
-      var dir = toVerb(), key = dir ? pv : function (x) { return x.meaning; };
-      var opts = WU.shuffle([{ text: key(v), ok: true }].concat(others(all, v, 2, key).map(function (x) { return { text: key(x), ok: false }; })));
-      st = { v: v, phase: 'spin', opts: opts, dir: dir }; render();
+      var dir = toVerb(), sp = split(), key = dir ? pv : function (x) { return x.meaning; };
+      var opts = sp ? [{ text: v.verb + ' it ' + v.particle, ok: v.sep === 'yes' }, { text: v.verb + ' ' + v.particle + ' it', ok: v.sep === 'no' }]
+        : WU.shuffle([{ text: key(v), ok: true }].concat(others(all, v, 2, key).map(function (x) { return { text: key(x), ok: false }; })));
+      if (sp) dir = false;
+      st = { v: v, phase: 'spin', opts: opts, dir: dir, sp: sp }; render();
       if (dir || WU.isCalm()) { st.phase = 'ask'; render(); return; }
       // The reels spin, then stop on the verb.
       var n = 0, vs = all.map(function (x) { return x.verb; }), ps = all.map(function (x) { return x.particle; });
@@ -109,12 +112,14 @@
     }
     function render() {
       var S = ctx.S, v = st.v, h = '';
-      h += '<div class="prow"><button class="ptog' + (st.dir ? ' on' : '') + '" data-act="dir">' + esc(st.dir ? S.mToVerb : S.mToMeaning) + '</button></div>';
+      h += '<div class="prow">' + (st.sp ? '' : '<button class="ptog' + (st.dir ? ' on' : '') + '" data-act="dir">' + esc(st.dir ? S.mToVerb : S.mToMeaning) + '</button>') +
+        '<button class="ptog' + (st.sp ? ' on' : '') + '" data-act="split">' + esc(S.mSplit || 'SPLIT?') + '</button></div>';
       if (st.dir) h += '<div class="pcard2"><div class="plabel">' + esc(S.lMeaning) + '</div><div class="pqtext">' + esc(v.meaning) + '</div></div>';
       else h += '<div class="reels"><div class="reel rv1"><span>' + esc(S.lVerb) + '</span><b>' + esc(v.verb) + '</b></div><div class="reel rv2"><span>' + esc(S.lPart) + '</span><b>' + esc(st.phase === 'spin' ? '?' : v.particle) + '</b></div></div>';
-      h += '<div class="pq">' + esc(st.dir ? 'Which phrasal verb?' : 'What does it mean?') + '</div><div class="popts"></div><div class="pafter"></div>';
+      h += '<div class="pq">' + esc(st.sp ? 'Where does "it" go?' : st.dir ? 'Which phrasal verb?' : 'What does it mean?') + '</div><div class="popts"></div><div class="pafter"></div>';
       body.innerHTML = h;
-      body.querySelector('[data-act="dir"]').onclick = function () { WU.store.set('phone-pv-dir', !toVerb()); next(); };
+      var db = body.querySelector('[data-act="dir"]'); if (db) db.onclick = function () { WU.store.set('phone-pv-dir', !toVerb()); next(); };
+      body.querySelector('[data-act="split"]').onclick = function () { WU.store.set('phone-pv-split', !split()); next(); };
       if (st.phase === 'spin') { ctx.actions([]); return; }
       choices(body.querySelector('.popts'), st.opts, function (o) {
         ctx.score(o.ok); P.stamp(o.ok);
