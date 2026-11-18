@@ -7,8 +7,8 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
 ## On a student's phone (practise alone)
-- Students open the same link. Phones get a portrait version with big buttons: **11 games that work for one student**
-  (Word Hunt, Vanishing Sentence, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
+- Students open the same link. Phones get a portrait version with big buttons: **12 games that work for one student**
+  (Word Hunt, Vanishing Sentence, Word Partners, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
   Hide & Seek Cat, Story Dice, Slot Machine). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
@@ -97,6 +97,7 @@ of its length ("___ a decision", "a ___ decision"), so students see the shape of
 **Space**: the rest of the tiles flip (missed ones in blue) and the **trap** appears: a common wrong partner, crossed out ("NOT do a decision").
 **Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
 Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
+On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
 Edit mode: core word, up to 8 partner phrases (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time per answer, strikes, first letters on / off, USE IT task and time.
 
 ### Grammar games (G1–G10): one grammar point per game

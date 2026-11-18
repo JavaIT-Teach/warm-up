@@ -246,6 +246,10 @@
     else if (k === 'Esc') WU.go('home');
   }
 
+  // For the phone version (js/phone/games-partners.js).
+  WU.engines = WU.engines || {};
+  WU.engines.partners = { tokens: tokens, phrases: phrases, plain: plain };
+
   WU.views.partners = {
     title: 'Word Partners',
     teacher: function () {
