@@ -52,19 +52,34 @@
   WU.registerList('elias', 'words', {
     gameTitle: 'Elias', label: 'Words',
     defaults: function (l) { return WU.content.elias[l].words; },
-    norm: function (r) { return { text: r.text || '', banned: r.banned || '' }; },
-    title: function (it) { return it.text + (it.banned ? '  (not: ' + it.banned + ')' : ''); },
+    norm: function (r) { return { text: r.text || '', banned: r.banned || '', unit: r.unit || '', added: r.added || '' }; },
+    title: function (it) { return it.text + (it.banned ? '  (not: ' + it.banned + ')' : '') + (it.unit ? '  · ' + it.unit : ''); },
     fields: function (l) {
       return [
         { k: 'text', label: 'Word', type: 'text', max: 40 },
+        { k: 'unit', label: 'Unit label (weekly words; empty = none)', type: 'text', max: 40 },
         { k: 'banned', label: 'Banned words, separated by commas (empty = none)', type: 'text', max: 80, hint: l >= 4 ? 'IELTS: three words the explainer must not say.' : 'Usually empty below IELTS.' }
       ];
     },
-    blank: function () { return { text: 'new word', banned: '' }; }
+    blank: function () { return { text: 'new word', banned: '', unit: '', added: '' }; }
   });
 
   var root, box, st, clock = null, offContent = null;
-  var deck = kit.deck();
+  /* Weekly words (from the units the groups have just been taught, "added" in the last WU.NEW_DAYS days) play first:
+     each once, in random order, then everything mixes. Shared with the phone (WU.engines.elias). */
+  function isFresh(w) { var t = Date.parse(w.added || ''); return !isNaN(t) && Date.now() - t < (WU.NEW_DAYS || 14) * 864e5; }
+  function picker() {
+    var d = kit.deck(), seen = {};
+    return function (list) {
+      var fresh = list.filter(function (w) { return isFresh(w) && !seen[w.id]; });
+      var w = fresh.length ? WU.pick(fresh) : d(list);
+      if (w) seen[w.id] = 1;
+      return w;
+    };
+  }
+  WU.engines = WU.engines || {};
+  WU.engines.elias = { isFresh: isFresh, picker: picker };
+  var deck = picker();
 
   /* ---------- teams: Settings teams, or two teams of its own ---------- */
   function nTeams() { return WU.state.teams || 2; }
@@ -116,6 +131,7 @@
     } else if (ph === 'play' || ph === 'last') {
       var w = cur();
       if (ph === 'last' && S.last) h += '<div class="el-last"' + scr.ea('last') + '>' + WU.esc(S.last) + '</div>';
+      if (w && w.unit) h += '<div class="el-unit"' + wordAttr(w.id, 'unit') + '>' + WU.esc(w.unit) + '</div>';
       if (w && !S.wordOnBoard) {
         h += '<div class="wrow el-hid' + (st.flash ? ' in' : '') + '"><div class="el-lap" data-ctrl>' + WU.icons.teacher + '</div>' +
           '<div class="el-hidt"' + scr.ea('hidden') + '>' + WU.esc(S.hidden) + '</div></div>';
@@ -292,6 +308,7 @@
       if ((st.phase === 'play' || st.phase === 'last') && w) {
         sec.push({ label: onBoard() ? 'The word' : 'Explainer: explain this word', text: w.text, big: true, huge: !onBoard(), hot: true });
         if (w.banned) sec.push({ label: 'Banned words', text: w.banned, big: !onBoard() });
+        if (w.unit) sec.push({ label: 'Weekly word', text: w.unit });
       }
       info.push({ label: 'Turn', text: teamName(st.team) + (playerName() ? ' · ' + playerName() + ' explains' : '') });
       if (st.log.length) info.push({ label: 'This turn', text: st.log.map(function (x) { return (x.got ? '✓ ' : '✗ ') + x.text; }).join(', ') });

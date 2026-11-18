@@ -1430,3 +1430,4 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .elias .el-lap { width: 200px; height: 170px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--lime); border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--blue); }
 .elias .el-lap svg { width: 140px; height: 124px; }
 .elias .el-hidt { font-family: var(--display); font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; }
+.elias .el-unit { padding: 2px 16px; background: var(--yellow); border: 4px solid var(--ink); font-family: var(--display); font-size: 30px; transform: rotate(-1.5deg); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

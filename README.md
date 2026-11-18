@@ -139,6 +139,7 @@ Pre-Intermediate and Intermediate show a sentence frame for the explainer ("It's
 Teacher screen (**V**): the word, its banned words, the turn's list and the match score.
 Edit mode: the words and banned words per level; Screen text & timing: where the word shows (laptop only / board), points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
 Keys: P who explains · Space start / got it / add the points · X skip · Enter pause · 1–4 / 0 last word · R new match.
+**Weekly words:** every Saturday the weekly job adds about 15 words per level (Pre-Intermediate and Intermediate, the levels with groups) from the units the groups have already been taught. For 14 days they play first and show their unit on the board and the phone ("Unit 12 · Getting Around"); then they join the mix. In Edit mode each word has a Unit label field (empty = a normal word).
 **On a phone (pass the phone):** the one group game in the phone version. 2–4 teams, one phone. The explainer holds the phone (their team must not see it), taps Got it / Skip, then the last word, the check list and the points, and passes the phone to the next team. Same words, rules and timing as the board. Good for pairs or small groups in class, or with friends at home.
 
 ### Grammar games (G1–G10): one grammar point per game
