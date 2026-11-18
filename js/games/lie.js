@@ -34,7 +34,7 @@
       { k: 'lie', label: 'Lie stamp', type: 'text', max: 12 },
       { k: 'right', label: 'Class was right (shown when votes were counted)', type: 'text', max: 40 },
       { k: 'wrong', label: 'Class was wrong', type: 'text', max: 40 }
-    ]
+    ].concat(WU.expr.fields('expr', 'Reaction expressions (vote step)'))
   });
   function qFields() {
     return [
@@ -93,6 +93,7 @@
         if (S.signalShow && S.signal) h += '<div class="rule hot"' + scr.ea('signal') + '>' + WU.esc(S.signal) + '</div>';
       } else {
         var who = name();
+        h += WU.expr.strip(S, scr.ea, 'lie:' + (st.q ? st.q.id : ''));
         if (st.followers.length && S.follow) h += '<div class="brow">' + kit.chip(S.followTag, scr.ea('followTag'), '#00e5c7') +
           '<div class="rule big"' + scr.ea('follow') + '>' + WU.esc(kit.fill(S.follow, { a: st.followers.join(' + '), name: who })) + '</div></div>';
         if (st.explainers.length && S.explain) h += '<div class="rule big"' + scr.ea('explain') + '>' + WU.esc(kit.fill(S.explain, { a: st.explainers[0], b: st.explainers[1] || '', name: who })) + '</div>';

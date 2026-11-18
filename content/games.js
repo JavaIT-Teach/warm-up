@@ -35,6 +35,8 @@ WU.content.games = [
     levels: [1, 6], preview: ['SOMETHING', 'YOU USE', 'TO...'] },
   { id: 'partners', skills: ['vocab', 'speaking'], name: 'Word Partners', hook: 'One word. Find its partners. Use them.', trains: 'Collocations · phrases, not single words', color: '#00e5c7', added: '2026-11-18',
     preview: ['MAKE', 'A DECISION', 'TOUGH'] },
+  { id: 'replies', skills: ['speaking'], name: 'Natural Replies', hook: 'Someone says it. Reply fast and naturally.', trains: 'Thanks · agreeing · short answers · reacting', color: '#ff4fc3', added: '2026-11-18',
+    preview: ['I OWE', 'YOU', 'ONE!'] },
   /* ---------- Weekly games built from the taught lessons ---------- */
   { id: 'hunt', skills: ['reading', 'vocab'], name: 'Word Hunt', hook: 'Read the clue. Find the word in the grid!', trains: 'Reading clues · finding words', color: '#ffe600', added: '2026-11-15',
     unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['FIND', 'TENNIS', 'B4'] },

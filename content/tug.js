@@ -363,11 +363,12 @@ WU.content.tugScreen = {
     secs: 45, countdown: 3, go: 'GO!', rounds: 10, round: 'ROUND {n} OF {total}', next: 'Round over! New topics coming...',
     rule: 'ONE argument. {n} seconds!', ruleShow: true,
     turn: '{side}: your turn!', win: '{side} WINS!', draw: 'DRAW!',
-    demo: 'TEACHER DEMO: I pull first!', demoShow: false
+    demo: 'TEACHER DEMO: I pull first!', demoShow: false,
+    exprShow: true, exprLabel: 'Answer first:', exprCats: 'disagree', exprN: 2
   },
   levels: [
-    { distance: 4, frame: 'I like ___.', rule: 'Say "I like ___!" = PULL!', demoShow: true },
-    {}, {},
+    { distance: 4, frame: 'I like ___.', rule: 'Say "I like ___!" = PULL!', demoShow: true, exprShow: false },
+    { exprShow: false }, {},
     { distance: 4, secs: 150, rounds: 4, rule: 'Pull only if your defence holds!' },
     { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'I argue back. Pull only if your defence holds!' },
     { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'I argue back. Pull only if your defence holds!' },

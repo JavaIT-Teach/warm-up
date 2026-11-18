@@ -132,11 +132,12 @@ WU.content.zonesScreen = {
     talk: 'Tell your zone why you chose it.', frame: 'I chose ___ because ___.', talkSeconds: 60,
     report: '{zone}: one person tells the class why.', back: 'Back to your seats!',
     rule: 'Choose one answer. Walk to its zone.', ruleShow: true,
-    demo: 'TEACHER DEMO: watch me first!', demoShow: false
+    demo: 'TEACHER DEMO: watch me first!', demoShow: false,
+    exprShow: true, exprLabel: 'React:', exprCats: 'agree, disagree', exprN: 3
   },
   levels: [
-    { talk: 'Tell your zone: "I like ___!"', frame: 'I like ___.', talkSeconds: 40, moveSeconds: 12, report: '{zone}: one person says "We like {answer}!"', rule: 'Walk to your picture! One word is OK!', demoShow: true, mapPics: true },
-    { frame: 'I like ___ because ___.', talkSeconds: 45, mapPics: true },
+    { talk: 'Tell your zone: "I like ___!"', frame: 'I like ___.', talkSeconds: 40, moveSeconds: 12, report: '{zone}: one person says "We like {answer}!"', rule: 'Walk to your picture! One word is OK!', demoShow: true, mapPics: true, exprShow: false },
+    { frame: 'I like ___ because ___.', talkSeconds: 45, mapPics: true, exprN: 2 },
     { mapPics: true }, {},
     { frame: 'I chose ___ because ___. Also, ___.', talkSeconds: 75 },
     { frame: '', talkSeconds: 90, talk: 'Agree on your zone\'s two best reasons.' },

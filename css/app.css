@@ -1353,3 +1353,36 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .wpg-game .wpclock .wut-l { font-size: 28px !important; }
 .wpg-game .wpcore { flex-direction: column; }
 .wpg-game .wpunit { position: absolute; left: -10px; top: -30px; padding: 2px 14px; background: var(--yellow); color: var(--ink); border: 4px solid var(--ink); font-family: var(--display); font-size: 26px; transform: rotate(-2deg); white-space: nowrap; max-width: 760px; overflow: hidden; text-overflow: ellipsis; }
+
+/* ---------- Natural Replies ---------- */
+.nrg .nrleft { position: absolute; left: 70px; top: 250px; width: 1100px; height: 740px; display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.nrg .gwho.nrready { font-size: 84px; padding: 14px 34px; }
+.nrg .nrnew { padding: 6px 22px; background: var(--lime); border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); font-family: var(--display); font-size: 48px; animation: wu-pulse .8s ease-in-out infinite; }
+.nrg .nrwho { font-family: var(--display); font-size: 64px; line-height: 1; color: var(--blue); }
+.nrg .nrsays { font-weight: 800; font-size: 34px; letter-spacing: .04em; }
+.nrg .nrline { position: relative; width: 100%; height: 360px; box-sizing: border-box; padding: 30px 44px; background: #fff; border: 6px solid var(--ink); border-radius: 40px; box-shadow: 12px 12px 0 var(--pink); display: flex; align-items: center; font-family: var(--display); font-size: 110px; line-height: 1.08; letter-spacing: -0.02em; overflow: hidden; animation: wu-popin .35s cubic-bezier(.2, .9, .3, 1.2) both; }
+.nrg .nrstamp { margin-top: auto; padding: 8px 40px; border: 10px solid currentColor; background: var(--paper); font-family: var(--display); font-size: 96px; line-height: 1; transform: rotate(-4deg); animation: wu-slam .5s cubic-bezier(.2, .9, .3, 1.3) both; }
+.nrg .nrstamp.ok { color: #1e8e3e; }
+.nrg .nrstamp.no { color: #c4122a; }
+.nrg .nrright { position: absolute; left: 1230px; top: 250px; width: 620px; height: 740px; display: flex; flex-direction: column; gap: 22px; }
+.nrg .nrstreak { display: flex; align-items: baseline; gap: 18px; }
+.nrg .nrstreak span { font-weight: 800; font-size: 36px; }
+.nrg .nrstreak b { font-family: var(--display); font-weight: 400; font-size: 110px; line-height: .9; }
+.nrg .nrstreak i { font-style: normal; font-weight: 800; font-size: 30px; padding: 2px 12px; background: var(--yellow); border: 4px solid var(--ink); }
+.nrg .nrwall { display: flex; flex-direction: column; gap: 12px; }
+.nrg .nrcat { align-self: flex-start; padding: 4px 18px; background: var(--ink); color: var(--lime); font-family: var(--display); font-size: 38px; }
+.nrg .nre { display: flex; align-items: center; gap: 16px; padding: 8px 16px; background: #fff; border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 40px; line-height: 1.1; cursor: pointer; transition: opacity .2s; }
+.nrg .nre b { flex: none; width: 46px; height: 46px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: #fff; font-weight: 400; font-size: 30px; }
+.nrg .nre.used { opacity: .35; text-decoration: line-through; text-decoration-thickness: 5px; box-shadow: none; }
+.nrg .nre.hit { opacity: 1; background: var(--lime); text-decoration: none; box-shadow: 6px 6px 0 var(--ink); }
+.nrg .nrhint { font-weight: 800; font-size: 28px; opacity: .7; }
+.calm .nrg .nrline, .calm .nrg .nrstamp, .calm .nrg .nrnew { animation: none; }
+
+/* ---------- Expression strip (shared bank, js/expr.js) ---------- */
+.xstrip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; }
+.xstrip .xl { font-weight: 800; font-size: 30px; }
+.xstrip .xe { padding: 1px 14px; background: var(--lime); border: 4px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); font-family: var(--display); font-size: 30px; line-height: 1.15; white-space: nowrap; }
+.xcol { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; flex: 1 1 auto; min-width: 0; }
+.xrow { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 40px; width: 100%; }
+.tug .brow .xstrip { flex: 1 1 0; min-width: 0; flex-wrap: nowrap; overflow: hidden; }
+.tug .brow .xstrip .xl, .tug .brow .xstrip .xe { font-size: 26px; }

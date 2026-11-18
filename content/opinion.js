@@ -111,14 +111,16 @@ WU.content.opinionScreen = {
     change: 'Changed your mind? Move now!', changeSeconds: 10,
     report: 'Who moved? Tell us why.', back: 'Back to your seats!',
     rule: 'Strongly agree = near the board. Strongly disagree = at the back.', ruleShow: true,
-    demo: 'TEACHER DEMO: watch me first!', demoShow: false
+    demo: 'TEACHER DEMO: watch me first!', demoShow: false,
+    exprShow: true, exprLabel: 'Try:', exprCats: 'agree, disagree', exprN: 3,
+    though: 'Good point. ___ though.', thoughShow: false
   },
   levels: [
     { demoShow: true }, { demoShow: true },
-    { frame: "I'm here because ___.", pairSeconds: 45, convinceSeconds: 45 },
-    {},
-    { frame: '', pairSeconds: 75, convince: 'The two ends: give your strongest argument. The middle: ask a hard question.' },
-    { frame: '', pairSeconds: 75, convince: 'The two ends: give your strongest argument. The middle: ask a hard question.' },
-    { frame: '', pairSeconds: 90, convince: 'The two ends: answer the other side\'s best point first.' }
+    { frame: "I'm here because ___.", pairSeconds: 45, convinceSeconds: 45, exprN: 2 },
+    { thoughShow: true },
+    { frame: '', pairSeconds: 75, convince: 'The two ends: give your strongest argument. The middle: ask a hard question.', thoughShow: true },
+    { frame: '', pairSeconds: 75, convince: 'The two ends: give your strongest argument. The middle: ask a hard question.', thoughShow: true },
+    { frame: '', pairSeconds: 90, convince: 'The two ends: answer the other side\'s best point first.', thoughShow: true }
   ]
 };

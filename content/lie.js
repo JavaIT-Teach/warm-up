@@ -391,11 +391,12 @@ WU.content.lieScreen = {
     explainers: 0, explain: '{a} and {b}: why do you think it is a lie?',
     vote: 'Vote! Stand up = LIE. Stay seated = TRUTH.', votes: 'Lie votes: {n}',
     scanning: 'ANALYSING...', truth: 'TRUTH', lie: 'LIE!', right: 'The class was right!', wrong: 'The class was fooled!',
-    demo: 'TEACHER DEMO: I answer first!', demoShow: false, demoWho: 'TEACHER'
+    demo: 'TEACHER DEMO: I answer first!', demoShow: false, demoWho: 'TEACHER',
+    exprShow: true, exprLabel: 'React first:', exprCats: 'surprise', exprN: 3
   },
   levels: [
-    { frame: "Yes, I do. / No, I don't.", rule: 'Answer: yes or no.', vote: 'Class, say: "True!" or "Lie!"', followers: 0, demoShow: true },
-    { frame: "Yes, I did. / No, I didn't." },
+    { frame: "Yes, I do. / No, I don't.", rule: 'Answer: yes or no.', vote: 'Class, say: "True!" or "Lie!"', followers: 0, demoShow: true, exprShow: false },
+    { frame: "Yes, I did. / No, I didn't.", exprN: 2 },
     { frame: "Yes, I have. / No, I haven't." },
     {},
     { followers: 0, explainers: 2, rule: 'Answer and give details. Make it believable!' },

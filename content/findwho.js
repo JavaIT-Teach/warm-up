@@ -149,12 +149,14 @@ WU.content.findwhoScreen = {
     rule: 'Find 1 YES and 1 NO. Then sit down.', ruleShow: true, go: 'Stand up and walk!', seconds: 90,
     stop: 'Stop! Sit down.', report: '{name}: tell us!', reporters: 3,
     nobody: 'Only NO answers? Say: "I asked ___ people. Nobody ___."',
-    demo: 'TEACHER DEMO: I ask first!', demoShow: false
+    demo: 'TEACHER DEMO: I ask first!', demoShow: false,
+    exprShow: true, exprLabel: 'Answer like this:', exprCats: 'short, vague', exprN: 3,
+    expr2Show: true, expr2Label: 'Finish with:', expr2Cats: 'thanks, welcome', expr2N: 2
   },
   levels: [
-    { rule: 'Find 1 YES and 1 NO. Then sit down.', seconds: 75, nobody: 'Only NO? Say: "Nobody can." / "Nobody has."', demoShow: true, reporters: 2 },
-    { seconds: 80 },
-    {}, {},
+    { rule: 'Find 1 YES and 1 NO. Then sit down.', seconds: 75, nobody: 'Only NO? Say: "Nobody can." / "Nobody has."', demoShow: true, reporters: 2, exprShow: false, expr2Show: false },
+    { seconds: 80, exprShow: false, expr2Show: false },
+    { expr2Show: false }, {},
     { seconds: 100, rule: 'Find 1 YES and 1 NO. Ask both of them why.' },
     { seconds: 100, rule: 'Find 1 YES and 1 NO. Ask both of them why.' },
     { seconds: 110, rule: 'Find 1 YES and 1 NO. Ask both of them why.' }

@@ -30,7 +30,7 @@
       { k: 'back', label: 'At the end', type: 'text', max: 40 },
       { k: 'demo', label: 'Teacher demo banner (first question only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
-    ]
+    ].concat(WU.expr.fields('expr', 'Expressions while the zones talk'))
   });
   WU.registerList('zones', 'questions', {
     gameTitle: 'Four Zones', label: 'Questions',
@@ -97,7 +97,7 @@
     h += '<div class="zbottom">';
     var fr = it && it.frame ? kit.frame(it.frame, ek(it, 'frame')) : kit.frame(S.frame, scr.ea('frame'));
     if (ph === 'ask') { if (S.ruleShow && S.rule) h += '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(S.rule) + '</div>'; }
-    else if (ph === 'talk' || ph === 'report') { if (fr) h += '<div class="brow">' + fr + '</div>'; }
+    else if (ph === 'talk' || ph === 'report') { if (fr) h += '<div class="brow">' + fr + '</div>'; if (ph === 'talk') h += WU.expr.strip(S, scr.ea, 'zn:' + st.id); }
     h += '</div>';
     box.querySelector('.layer').innerHTML = h;
     kit.fit(box.querySelector('.zq'), 84, 48);

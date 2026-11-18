@@ -39,7 +39,7 @@
       { k: 'draw', label: 'Draw (flag in the middle after the last round)', type: 'text', max: 30 },
       { k: 'demo', label: 'Teacher demo banner (first topic only)', type: 'text', max: 40 },
       { k: 'demoShow', label: 'Teacher demo round', type: 'bool', on: 'On', off: 'Off' }
-    ]
+    ].concat(WU.expr.fields('expr', 'Expressions for the second side (answer the first side)'))
   });
   WU.registerList('tug', 'topics', {
     gameTitle: 'Tug of War', label: 'Topics',
@@ -148,7 +148,9 @@
     } else {
       if (S.turn) h += '<div class="tturn"' + scr.ea('turn') + ' style="background:' + sideColor(st.turn) + '">' + (st.turn ? '' : '&larr; ') + WU.esc(kit.fill(S.turn, { side: sideName(st.turn) })) + (st.turn ? ' &rarr;' : '') + '</div>';
       var fr = it && it.frame ? kit.frame(it.frame, ' data-edit="tug:topics:' + it.id + ':frame"') : kit.frame(S.frame, scr.ea('frame'));
-      h += '<div class="brow">' + fr + (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(kit.fill(S.rule, { n: secs() })) + '</div>' : '') + '</div>';
+      // The second side of the round answers the first side first: its expressions take the rule's place.
+      var xs = st.turn !== st.first ? WU.expr.strip(S, scr.ea, 'tug:' + st.id + ':' + st.round) : '';
+      h += '<div class="brow">' + fr + (xs || (S.ruleShow && S.rule ? '<div class="rule"' + scr.ea('rule') + '>' + WU.esc(kit.fill(S.rule, { n: secs() })) + '</div>' : '')) + '</div>';
     }
     h += '</div><div class="tslot"></div><div class="tcd" style="display:none"><span></span></div>';
     box.querySelector('.layer').innerHTML = h;
