@@ -13,7 +13,7 @@
   P.HOW = {
     hunt: 'Find the hidden words. Tap the first letter, then the last.',
     vanish: 'Read it. Words vanish. Write it from memory.',
-    partners: 'One word. Type its partners. Then use them.',
+    partners: 'One word. Type as many partners as you can before time runs out.',
     chain: 'You and the phone take turns. Use the last letter.',
     volcano: 'Type the past forms before the volcano erupts.',
     timemachine: 'Build the sentence in the right tense.',

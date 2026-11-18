@@ -10,7 +10,7 @@
   function esc(s) { return WU.esc(s); }
 
   P.games.partners = (function () {
-    var body, ctx, st, E, deck = WU.kit.deck();
+    var body, ctx, st, E, deck = WU.kit.deck(), bar = null, barEl = null;
     function words() { return WU.list('partners', 'words', ctx.level).filter(function (w) { return w.word && E.phrases(w).length; }); }
     function gapText(w, p) { return E.tokens(p.text, w.word).filter(function (t) { return t.gap; }).map(function (t) { return t.t; }).join(' '); }
     // How many phrases the USE IT task asks for: the first number in its text (1-3), else 2.
@@ -21,6 +21,9 @@
       var w = deck(all);
       st = { w: w, list: E.phrases(w), found: [], phase: 'board', letters: !!ctx.S.letters, typed: '', msg: null, misses: 0, answer: '', used: null };
       render(true);
+      // One timer for the whole word (Screen text & timing: seconds). Time up = see what you missed.
+      var sec = Math.max(0, Math.min(600, +ctx.S.seconds || 0));
+      if (bar && sec) bar.start(sec, function () { if (st && st.phase === 'board') { P.toast('Time!'); finish(); } });
     }
     function stem(x) { return x.length >= 5 ? x.slice(0, x.length - 2) : x; }
     function hasWord(words, x) { var s = stem(x); return words.some(function (t) { return t.indexOf(s) === 0; }); }
@@ -40,7 +43,7 @@
         var n = t.t.replace(/[^A-Za-z]/g, '').length || 1;
         return '<i style="width:' + (0.5 * n + 0.6).toFixed(1) + 'em">' + (st.letters ? esc(t.t.charAt(0)) : '') + '</i>';
       }).join(' ');
-      return '<div class="wpt' + (got ? ' got' : open ? ' miss' : '') + '"><b>' + (i + 1) + '</b><span class="wptx">' + h + '</span></div>';
+      return '<div class="wpt' + (got ? ' got' : open ? ' miss' : '') + '"><b>' + (i + 1) + '</b>' + (p.pic ? '<span class="wpic">' + WU.pic(p.pic) + '</span>' : '') + '<span class="wptx">' + h + '</span></div>';
     }
 
     function render(focus) {
@@ -60,7 +63,7 @@
           : [{ label: 'Skip', alt: true, small: true, on: next }, { label: 'Check my answer', on: checkUse }]);
         return;
       }
-      h += '<div class="wpcorep">' + esc(w.word) + '</div>';
+      h += (st.phase === 'board' && +ctx.S.seconds > 0 ? '<div class="pbarwrap"></div>' : '') + '<div class="wpcorep">' + esc(w.word) + '</div>';
       var tiles = '<div class="prow"><span class="pcount" style="margin-left:0">' + esc(S.found) + ' <b>' + st.found.length + ' / ' + st.list.length + '</b></span></div>' +
         '<div class="wptiles">' + st.list.map(tile).join('') + '</div>';
       if (st.phase === 'board') {
@@ -69,6 +72,7 @@
           '<button class="pbtn" type="submit">Check</button></form>' +
           (st.msg ? '<div class="pbanner ' + st.msg.cls + '">' + esc(st.msg.text) + '</div>' : '<p class="pnote">' + esc(S.rule) + '</p>') + tiles;
         body.innerHTML = h;
+        var bw = body.querySelector('.pbarwrap'); if (bw && barEl) bw.appendChild(barEl);
         var f = body.querySelector('form'), inp = f.querySelector('input');
         inp.oninput = function () { st.typed = inp.value; };
         f.onsubmit = function (e) { e.preventDefault(); check(); };
@@ -127,7 +131,7 @@
     }
     function reveal() { finish(); }
     function finish() {
-      var w = st.w;
+      var w = st.w; if (bar) bar.stop();
       st.list.forEach(function (p) { ctx.score(st.found.indexOf(p.k) >= 0); });
       st.phase = 'done'; st.msg = null;
       if (w.trap) st.trapOpts = WU.shuffle([{ text: w.trap, ok: false }, { text: E.plain(st.list[0].text), ok: true }]);
@@ -135,8 +139,11 @@
       render();
     }
     return {
-      mount: function (b, c) { body = b; ctx = c; E = WU.engines && WU.engines.partners; if (!E) { ctx.empty(); return; } next(); },
-      unmount: function () { body = ctx = st = null; }
+      mount: function (b, c) {
+        body = b; ctx = c; E = WU.engines && WU.engines.partners; if (!E) { ctx.empty(); return; }
+        barEl = document.createElement('div'); bar = P.bar(barEl); next();
+      },
+      unmount: function () { if (bar) bar.stop(); bar = barEl = null; body = ctx = st = null; }
     };
   })();
 })();

@@ -1,34 +1,34 @@
 /* Warm Up: content for WORD PARTNERS (all levels). Trains: collocations, phrases instead of single words.
    words[level]: { id, word, p: [phrases], question, trap }.
    word     = the core word in the middle of the board.
-   p        = its partners, most useful first (up to 8). On the board the core word stays visible and every other word is a gap
+   p        = its partners, most useful first (up to 8). A partner is a phrase, or [phrase, picture id] to show a picture on its tile. On the board the core word stays visible and every other word is a gap
               (a / an / the stay visible). To choose the gaps yourself, put them in [brackets]: "[make] a decision".
    question = the USE IT question after the board: the student answers with phrases from the board.
    trap     = a common wrong partner (shown after the board), e.g. "do a decision". Empty = none.
    id is PERMANENT: never change or reuse an id. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.partners = [
-  /* 0. Beginner (A1) */
+  /* 0. Beginner (A1): verb + picture partners. [phrase, picture id] = the tile shows that picture. */
   { words: [
-    { id: 'wp0-breakfast', word: 'breakfast', p: ['have breakfast', 'eat breakfast', 'a big breakfast', 'make breakfast', 'before breakfast', 'breakfast time'], question: 'What do you have for breakfast?', trap: 'take breakfast' },
-    { id: 'wp0-homework', word: 'homework', p: ['do homework', 'do my homework', 'a lot of homework', 'finish my homework', 'English homework', 'forget my homework'], question: 'When do you do your homework?', trap: 'make homework' },
-    { id: 'wp0-bus', word: 'bus', p: ['take the bus', 'get on the bus', 'get off the bus', 'wait for the bus', 'miss the bus', 'by bus'], question: 'How do you go to school or work?', trap: 'go with bus' },
-    { id: 'wp0-tv', word: 'TV', p: ['watch TV', 'turn on the TV', 'turn off the TV', 'on TV', 'a big TV', 'a TV show'], question: 'What do you watch on TV?', trap: 'look TV' },
-    { id: 'wp0-music', word: 'music', p: ['listen to music', 'loud music', 'play music', 'pop music', 'a music lesson', 'favourite music'], question: 'What music do you like?', trap: 'listen music' },
-    { id: 'wp0-shopping', word: 'shopping', p: ['go shopping', 'do the shopping', 'a shopping bag', 'a shopping list', 'a shopping centre', 'love shopping'], question: 'Where do you go shopping?', trap: 'make shopping' },
-    { id: 'wp0-photo', word: 'photo', p: ['take a photo', 'a nice photo', 'a family photo', 'look at a photo', 'in the photo', 'an old photo'], question: 'Do you take a lot of photos? Of what?', trap: 'make a photo' },
-    { id: 'wp0-birthday', word: 'birthday', p: ['happy birthday', 'my birthday', 'a birthday party', 'a birthday cake', 'a birthday present', 'on my birthday'], question: 'What do you do on your birthday?', trap: 'in my birthday' }
+    { id: 'wp0-play', word: 'play', p: [['play football', 'football'], ['play the guitar', 'guitar'], ['play chess', 'a-chess'], ['play video games', 'a-games'], ['play tennis', 'tennis'], ['play the piano', 'piano']], question: 'What do you play? When?', trap: 'play the football' },
+    { id: 'wp0-go', word: 'go', p: [['go to school', 'school'], ['go to the park', 'park'], ['go shopping', 'shop'], ['go swimming', 'a-swim'], ['go to bed', 'bed'], ['go to the beach', 'beach']], question: 'Where do you go on Sunday?', trap: 'go to home' },
+    { id: 'wp0-have', word: 'have', p: [['have a shower', 'bath'], ['have lunch', 'sandwich'], ['have a cup of tea', 'tea'], ['have a sister', 'sister'], ['have a dog', 'dog'], ['have a car', 'car']], question: 'What do you have for lunch?', trap: 'have a lunch' },
+    { id: 'wp0-take', word: 'take', p: [['take a photo', 'camera'], ['take the bus', 'bus'], ['take a taxi', 'taxi'], ['take an umbrella', 'umbrella'], ['take the train', 'train'], ['take a bag', 'bag']], question: 'How do you go to school or work?', trap: 'make a photo' },
+    { id: 'wp0-do', word: 'do', p: [['do homework', 'book'], ['do the dishes', 'plate'], ['do sport', 'football'], ['do exercise', 'a-run'], ['do the shopping', 'shop'], ['do a test', 'pen']], question: 'What do you do after school or work?', trap: 'make homework' },
+    { id: 'wp0-make', word: 'make', p: [['make a cake', 'cake'], ['make a sandwich', 'sandwich'], ['make tea', 'kettle'], ['make a snowman', 'snowman'], ['make a phone call', 'phone'], ['make the bed', 'bed']], question: 'What can you make?', trap: 'make a photo' },
+    { id: 'wp0-wear', word: 'wear', p: [['wear a hat', 'hat'], ['wear glasses', 'glasses'], ['wear a scarf', 'scarf'], ['wear a jacket', 'jacket'], ['wear gloves', 'gloves'], ['wear boots', 'boots']], question: 'What do you wear in winter?', trap: 'wear an umbrella' },
+    { id: 'wp0-ride', word: 'ride', p: [['ride a bike', 'a-bike'], ['ride a horse', 'horse'], ['ride a motorbike', 'motorbike'], ['ride a skateboard', 'a-skate'], ['ride an elephant', 'elephant']], question: 'Can you ride a bike or a horse?', trap: 'ride a car' }
   ] },
-  /* 1. Elementary (A2) */
+  /* 1. Elementary (A2): picture partners too. */
   { words: [
-    { id: 'wp1-time', word: 'time', p: ['spend time', 'have a good time', 'free time', 'on time', 'waste time', 'a long time'], question: 'What do you do in your free time?', trap: 'spend a good time' },
-    { id: 'wp1-friend', word: 'friend', p: ['make friends', 'a best friend', 'an old friend', 'a close friend', 'visit a friend', 'meet a friend'], question: 'How did you meet your best friend?', trap: 'do friends' },
-    { id: 'wp1-money', word: 'money', p: ['spend money', 'save money', 'earn money', 'make money', 'pocket money', 'a lot of money'], question: 'What do you spend your money on?', trap: 'earn money in a lottery (win)' },
-    { id: 'wp1-bed', word: 'bed', p: ['go to bed', 'make the bed', 'stay in bed', 'get out of bed', 'a double bed', 'in bed'], question: 'What time do you go to bed?', trap: 'go to the bed' },
-    { id: 'wp1-weather', word: 'weather', p: ['nice weather', 'bad weather', 'the weather forecast', 'in this weather', 'check the weather', 'hot weather'], question: 'What is your favourite weather? Why?', trap: 'a good weather' },
-    { id: 'wp1-holiday', word: 'holiday', p: ['go on holiday', 'a summer holiday', 'be on holiday', 'book a holiday', 'a beach holiday', 'a holiday home'], question: 'Where did you go on your last holiday?', trap: 'go to holiday' },
-    { id: 'wp1-mistake', word: 'mistake', p: ['make a mistake', 'a big mistake', 'correct a mistake', 'by mistake', 'a spelling mistake', 'learn from mistakes'], question: 'What mistakes do you often make in English?', trap: 'do a mistake' },
-    { id: 'wp1-party', word: 'party', p: ['have a party', 'go to a party', 'a birthday party', 'throw a party', 'a big party', 'a party dress'], question: 'Tell us about a great party.', trap: 'make a party' }
+    { id: 'wp1-weather', word: 'weather', p: [['sunny weather', 'sun'], ['rainy weather', 'rain'], ['cold weather', 'snow'], ['windy weather', 'wind'], ['stormy weather', 'storm'], ['the weather forecast', 'TV']], question: 'What is your favourite weather? Why?', trap: 'a good weather' },
+    { id: 'wp1-get', word: 'get', p: [['get up', 'clock'], ['get dressed', 'T-shirt'], ['get a present', 'present'], ['get wet', 'rain'], ['get a taxi', 'taxi'], ['get home', 'house']], question: 'What time do you get up and get home?', trap: 'get up from bed' },
+    { id: 'wp1-catch', word: 'catch', p: [['catch a bus', 'bus'], ['catch a ball', 'ball'], ['catch a fish', 'fish'], ['catch a train', 'train'], ['catch a plane', 'plane'], ['catch a cold', 'nose']], question: 'Did you catch a cold this year? What did you do?', trap: 'catch a taxi on the phone' },
+    { id: 'wp1-miss', word: 'miss', p: [['miss the bus', 'bus'], ['miss a train', 'train'], ['miss my family', 'family'], ['miss a lesson', 'school'], ['miss a flight', 'plane'], ['miss my friends', 'heart']], question: 'Who do you miss? Why?', trap: 'miss to my family' },
+    { id: 'wp1-party', word: 'party', p: [['have a party', 'balloon'], ['a birthday party', 'cake'], ['a party dress', 'dress'], ['a New Year party', 'ny-tree'], ['a party hat', 'hat'], ['go to a party', 'car']], question: 'Tell us about a great party.', trap: 'make a party' },
+    { id: 'wp1-holiday', word: 'holiday', p: [['go on holiday', 'plane'], ['a beach holiday', 'beach'], ['a skiing holiday', 'a-ski'], ['a summer holiday', 'sun'], ['a holiday home', 'house'], ['holiday photos', 'camera']], question: 'Where did you go on your last holiday?', trap: 'go to holiday' },
+    { id: 'wp1-friend', word: 'friend', p: [['a best friend', 'heart'], ['visit a friend', 'house'], ['meet a friend', 'park'], ['play with friends', 'ball'], ['call a friend', 'phone'], ['make friends', 'family']], question: 'How did you meet your best friend?', trap: 'do friends' },
+    { id: 'wp1-money', word: 'money', p: [['spend money', 'shop'], ['save money', 'money'], ['earn money', 'builder'], ['pocket money', 'sweets'], ['a lot of money', 'money'], ['money in the bank', 'key']], question: 'What do you spend your money on?', trap: 'earn money in a lottery (win)' }
   ] },
   /* 2. Pre-Intermediate (A2+) */
   { words: [
@@ -92,19 +92,19 @@ WU.content.partnersScreen = {
     id: 'partners-screen',
     tag: 'WORD PARTNERS', ready: 'One word. Find its partners!',
     rule: 'Say a PHRASE with the word, not one word. "a decision" is not enough. "make a decision" is!', ruleShow: true,
-    seconds: 15, strikes: 3, letters: false,
+    seconds: 90, strikes: 0, letters: false,
     turn: '{team}: your turn!', classTurn: 'Everyone: say a phrase!', found: 'FOUND',
-    hit: 'YES! A partner!', bonus: 'GOOD ONE! Not on the board, but it works.', wrong: 'Not a partner!', time: 'Time!',
-    allFound: 'ALL FOUND!', boardWins: 'The board wins! Here are the rest.', trapLabel: 'NOT', trapNote: 'Wrong partner!',
+    hit: 'YES! A partner!', bonus: 'GOOD ONE! Not on the board, but it works.', wrong: 'Not a partner!',
+    allFound: 'ALL FOUND!', boardWins: 'Time! Here are the ones you missed. Learn them!', trapLabel: 'NOT', trapNote: 'Wrong partner!',
     useLabel: 'USE IT!', useWho: '{name}, answer!', useRule: 'Answer with 2 phrases from the board.', useSeconds: 40
   },
   levels: [
-    { letters: true, seconds: 20, rule: 'Say the word AND a partner: "have breakfast", not "breakfast".', useRule: 'Answer with 1 phrase from the board.', useSeconds: 30 },
-    { letters: true, seconds: 20, useRule: 'Answer with 1 or 2 phrases from the board.', useSeconds: 30 },
-    { seconds: 15 },
-    { seconds: 15 },
-    { seconds: 12, useRule: 'Answer with 3 phrases from the board.', useSeconds: 45 },
-    { seconds: 12, useRule: 'Answer with 3 phrases from the board.', useSeconds: 45 },
-    { seconds: 10, useRule: 'Answer with 3 phrases. Add a reason and an example.', useSeconds: 60 }
+    { letters: true, seconds: 120, rule: 'Look at the picture. Say the word AND its partner: "play football", not "football".', useRule: 'Answer with 1 phrase from the board.', useSeconds: 30 },
+    { letters: true, seconds: 120, rule: 'Look at the picture. Say the whole phrase: "catch a bus", not "bus".', useRule: 'Answer with 1 or 2 phrases from the board.', useSeconds: 30 },
+    { seconds: 90 },
+    { seconds: 90 },
+    { seconds: 75, useRule: 'Answer with 3 phrases from the board.', useSeconds: 45 },
+    { seconds: 75, useRule: 'Answer with 3 phrases from the board.', useSeconds: 45 },
+    { seconds: 60, useRule: 'Answer with 3 phrases. Add a reason and an example.', useSeconds: 60 }
   ]
 };

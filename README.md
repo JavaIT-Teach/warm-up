@@ -88,17 +88,18 @@ Keys: Space go / end round now / hands up / next · Enter pause · N other quest
 ### Word Partners (Vocabulary + Speaking · all levels)
 *Collocations: phrases, not single words.* Knowing "decision" is not enough; students need "make a decision", "a tough decision".
 A core word sits in the middle (DECISION) with 6 hidden partner tiles. The core word shows on every tile and each partner word is a gap
-of its length ("___ a decision", "a ___ decision"), so students see the shape of the phrase. Beginner and Elementary also see first letters.
+of its length ("___ a decision", "a ___ decision"), so students see the shape of the phrase. Beginner and Elementary work with verbs and picturable partners (PLAY: football, the guitar...; CATCH: a bus, a fish...): every tile has a picture of its partner, plus first letters.
+**One timer for the whole word** (Beginner/Elementary 2:00, middle levels 1:30, IELTS 1:15–1:00): find as many partners as you can. Time up: the rest flip and the class sees what it missed. **Enter** pauses.
 **Space** shows the first word. Students say a whole phrase (one word does not count).
 - On the board: press its number (**1–8**, or tap the tile): it flips, a point.
 - Good but not on the board ("a hard decision"): **B**, a bonus point.
-- Wrong ("do a decision"): **X**, a strike. Time up = a strike.
-- Teams on: the turn passes to the next team after every answer. Teams off: the class plays against the board; 3 strikes and the board wins.
+- Wrong ("do a decision"): **X**.
+- Teams on: the turn passes to the next team after every answer. Teams off: the whole class shouts phrases.
 **Space**: the rest of the tiles flip (missed ones in blue) and the **trap** appears: a common wrong partner, crossed out ("NOT do a decision").
 **Space**: **USE IT!** A picked student answers a question with 1–3 phrases from the board (timer). **Space**: next word.
 Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
 On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
-Edit mode: core word, up to 8 partner phrases (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time per answer, strikes, first letters on / off, USE IT task and time.
+Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 
 ### Grammar games (G1–G10): one grammar point per game
 Each one drills a single grammar point at the right level. Same rhythm in all of them: a prompt, a student (or the whole class) answers, **Space** reveals the model answer. **P** picks another student. With teams, **1–4** gives points.
