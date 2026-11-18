@@ -161,6 +161,7 @@
       }).join('') + '</div>' +
       '<div style="display:flex;gap:12px"><div class="ibtn" data-act="teacher" title="Teacher screen for your laptop (V)">' + WU.icons.teacher + '</div>' +
       '<div class="ibtn" data-act="edit" title="Edit mode (E)">' + WU.icons.pencil + '</div>' +
+      '<div class="ibtn qrbtn" data-h="qr" title="Phone version: QR code for students (Q)"><span>QR</span></div>' +
       '<div class="ibtn" data-h="settings" title="Settings (S)">' + WU.icons.settings + '</div>' +
       '<div class="ibtn" data-act="mute" title="Mute (M)">' + WU.icons.sound() + '</div>' +
       '<div class="ibtn" data-act="full" title="Fullscreen (F)">' + WU.icons.full + '</div>' +
@@ -255,6 +256,7 @@
     root.querySelectorAll('[data-level]').forEach(function (b) { b.onclick = function () { setLevel(+b.getAttribute('data-level')); }; });
     root.querySelectorAll('[data-lesson]').forEach(function (b) { b.onclick = function () { WU.setState({ lesson: b.getAttribute('data-lesson') }); render(); }; });
     root.querySelector('[data-h="settings"]').onclick = function () { WU.openSettings(); };
+    root.querySelector('[data-h="qr"]').onclick = showQR;
     root.querySelector('[data-h="class"]').onclick = cycleClass;
     var thb = root.querySelector('[data-h="theme"]'); if (thb) thb.onclick = function () { if (WU.theme.status().preview) WU.theme.preview(); else WU.theme.toggle(); render(); };
     var bk = root.querySelector('[data-h="back"]'); if (bk) bk.onclick = function () { openCat(null); };
@@ -338,6 +340,21 @@
     WU.setState({ classId: ids[(k + 1) % ids.length] }); render();
     var c = WU.activeClass(); WU.toast('Class: ' + (c ? c.name : 'no class (' + WU.state.students + ' students)'));
   }
+  // Big QR code to the phone version: students scan it from their seats.
+  function showQR() {
+    var T = function (k) { return WU.text ? WU.text('app', 'texts', k, 0) : ''; }, EA = function (k) { return ' data-edit="app:texts:app-texts:' + k + '"'; };
+    WU.openOverlay({
+      cls: 'qrov',
+      render: function (el) {
+        el.innerHTML = '<div class="panel qr-panel"><div class="qr-box" data-ctrl>' + WU.phoneQR(600) + '</div><div class="qr-side">' +
+          '<div class="qr-title"' + EA('qrTitle') + '>' + WU.esc(T('qrTitle')) + '</div>' +
+          (T('qrSub') ? '<div class="qr-sub"' + EA('qrSub') + '>' + WU.esc(T('qrSub')) + '</div>' : '') +
+          '<div class="qr-url" data-ctrl>' + WU.esc(WU.PHONE_URL.replace(/^https:\/\//, '')) + '</div>' +
+          '<div class="btn" data-close data-ctrl><span class="key inv">Esc</span>Close</div></div></div>';
+        el.querySelector('[data-close]').onclick = WU.closeOverlay;
+      }
+    });
+  }
   function open(id) {
     var g = WU.content.games.filter(function (x) { return x.id === id; })[0];
     if (!g) return;
@@ -349,8 +366,8 @@
   WU.views.home = {
     title: 'Home',
     help: function () {
-      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['T', 'occasion theme on / off for today'], ['Shift + T', 'preview the occasions, one by one'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
-      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Esc / Backspace', 'back to all skills'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
+      if (!cat) return [['1 - 6', 'open a skill menu (6 = new this week)'], ['G', 'open the Grammar menu'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['T', 'occasion theme on / off for today'], ['Shift + T', 'preview the occasions, one by one'], ['S', 'settings (Export / Import)'], ['Q', 'QR code: phone version for students'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile']];
+      return [['1 - 9, 0', 'open a game (0 = game 10, below the nine)'], ['Shift + 1 - 9', 'open game 11, 12...'], ['Esc / Backspace', 'back to all skills'], ['Left / Right', 'change level'], ['L', 'first / regular lesson'], ['C', 'change class'], ['S', 'settings (Export / Import)'], ['Q', 'QR code: phone version for students'], ['V', 'teacher screen (laptop)'], ['Tab + Enter', 'choose a tile'], ['Down / Up', 'show the games below / back'], ['Home / End', 'jump to the top / bottom of the menu']];
     },
     mount: function (el) {
       root = el; if (WU.theme) { WU.theme.autoLevel(); WU.theme.apply(); } render();
@@ -382,6 +399,7 @@
       if (k === 'T' && e.shiftKey && WU.theme) { WU.theme.preview(); render(); return true; }
       if ((k === 't' || k === 'T') && WU.theme && WU.theme.status()) { if (WU.theme.status().preview) WU.theme.preview(); else WU.theme.toggle(); render(); return true; }
       if (k === 's' || k === 'S') { WU.openSettings(); return true; }
+      if (k === 'q' || k === 'Q') { showQR(); return true; }
       if ((k === 'Enter' || k === ' ') && document.activeElement && document.activeElement.getAttribute('data-game')) {
         e.preventDefault(); open(document.activeElement.getAttribute('data-game')); return true;
       }

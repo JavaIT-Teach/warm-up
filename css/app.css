@@ -1431,3 +1431,13 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .elias .el-lap svg { width: 140px; height: 124px; }
 .elias .el-hidt { font-family: var(--display); font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; }
 .elias .el-unit { padding: 2px 16px; background: var(--yellow); border: 4px solid var(--ink); font-family: var(--display); font-size: 30px; transform: rotate(-1.5deg); max-width: 100%; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+/* Phone QR code (Q on the home screen) */
+.home-top .qrbtn span { font-family: var(--display); font-size: 24px; line-height: 1; }
+.qr-panel { flex-direction: row; align-items: center; gap: 56px; padding: 48px 56px; }
+.qr-box { flex: none; padding: 0; border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--lime); background: #fff; line-height: 0; }
+.qr-side { display: flex; flex-direction: column; align-items: flex-start; gap: 28px; width: 640px; }
+.qr-title { font-family: var(--display); font-size: 84px; line-height: 1; letter-spacing: -0.03em; }
+.qr-sub { font-size: 40px; font-weight: 800; line-height: 1.2; }
+.qr-url { font-size: 27px; font-weight: 700; padding: 6px 14px; background: var(--yellow); border: 4px solid var(--ink); white-space: nowrap; }
+.qr-panel .btn { font-size: 36px; padding: 12px 24px; background: #fff; }
+.qr-panel .btn .key { font-size: 26px; padding: 4px 14px; }
