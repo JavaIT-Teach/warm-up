@@ -29,7 +29,7 @@ Every field listed in a screen record needs a default at every level; the automa
 ## Teacher screen (`js/teacher.js`)
 Opened with V on the board: `index.html?teacher` in a second window. The board runs the game; the teacher window only draws
 what the board sends and sends key presses back (postMessage between the two windows, BroadcastChannel as a backup).
-Each game adds `teacher()` to its view and returns `{ secret: [...], info: [...] }`, items `{ label, text, html, big, hot }`.
+Each game adds `teacher()` to its view and returns `{ secret: [...], info: [...] }`, items `{ label, text, html, big, huge, hot }` (`huge`: as big as the panel allows, for a word a student reads from the laptop).
 Put in `secret` everything the teacher needs but the board must hide. Timer, scores and key buttons are added automatically
 from the board's timer, scoreboard and key hints.
 
