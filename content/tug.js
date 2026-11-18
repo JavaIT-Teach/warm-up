@@ -36,7 +36,22 @@ WU.content.tug = [
       { id: "a1-t-swimming-vs-running-u9", left: "swimming", leftPic: "a-swim", right: "running", rightPic: "a-run", frame: "I like ___. It's good for me." },
       { id: "a1-t-basketball-vs-tennis-u9", left: "basketball", leftPic: "basketball", right: "tennis", rightPic: "tennis", frame: "I like playing ___." },
       { id: "a1-t-water-vs-juice-u9", left: "water", leftPic: "water", right: "juice", rightPic: "juice", frame: "I like ___. It's good for me." },
-      { id: "a1-t-music-vs-art-u8", left: "music", leftPic: "guitar", right: "art", rightPic: "a-draw", frame: "I like ___ at school." }
+      { id: "a1-t-music-vs-art-u8", left: "music", leftPic: "guitar", right: "art", rightPic: "a-draw", frame: "I like ___ at school." },
+      { id: "a1-t-rice-vs-bread-x1", left: "rice", leftPic: "rice", right: "bread", rightPic: "bread" },
+      { id: "a1-t-oranges-vs-lemons-x1", left: "oranges", leftPic: "orange", right: "lemons", rightPic: "lemon" },
+      { id: "a1-t-cars-vs-boats-x1", left: "cars", leftPic: "car", right: "boats", rightPic: "boat" },
+      { id: "a1-t-the-moon-vs-the-sun-x1", left: "the moon", leftPic: "moon", right: "the sun", rightPic: "sun" },
+      { id: "a1-t-soup-vs-salad-x1", left: "soup", leftPic: "soup", right: "salad", rightPic: "broccoli" },
+      { id: "a1-t-hats-vs-caps-x1", left: "hats", leftPic: "hat", right: "caps", rightPic: "cap" },
+      { id: "a1-t-rabbits-vs-mice-x1", left: "rabbits", leftPic: "rabbit", right: "mice", rightPic: "mouse" },
+      { id: "a1-t-cola-vs-water-x1", left: "cola", leftPic: "cola", right: "water", rightPic: "water" },
+      { id: "a1-t-pens-vs-pencils-x1", left: "pens", leftPic: "pen", right: "pencils", rightPic: "pencil" },
+      { id: "a1-t-the-park-vs-the-beach-x1", left: "the park", leftPic: "park", right: "the beach", rightPic: "beach" },
+      { id: "a1-t-ducks-vs-chickens-x1", left: "ducks", leftPic: "duck", right: "chickens", rightPic: "chicken" },
+      { id: "a1-t-drums-vs-guitars-x1", left: "drums", leftPic: "drum", right: "guitars", rightPic: "guitar" },
+      { id: "a1-t-watermelon-vs-pineapple-x1", left: "watermelon", leftPic: "watermelon", right: "pineapple", rightPic: "pineapple" },
+      { id: "a1-t-bears-vs-frogs-x1", left: "bears", leftPic: "bear", right: "frogs", rightPic: "frog" },
+      { id: "a1-t-shoes-vs-boots-x1", left: "shoes", leftPic: "shoes", right: "boots", rightPic: "boots" }
     ] },
   /* ---------- 1. Elementary (A2) ---------- */
   { topics: [
@@ -68,7 +83,22 @@ WU.content.tug = [
       { id: "a2-t-camping-vs-a-hotel-u7", left: "camping", leftPic: "tree", right: "a hotel", rightPic: "house" },
       { id: "a2-t-coach-vs-train-u7", left: "travelling by coach", leftPic: "bus", right: "travelling by train", rightPic: "train" },
       { id: "a2-t-trainers-vs-boots-u9", left: "trainers", leftPic: "shoes", right: "boots", rightPic: "boots" },
-      { id: "a2-t-drawing-vs-guitar-u8", left: "drawing pictures", leftPic: "a-draw", right: "playing the guitar", rightPic: "a-guitar" }
+      { id: "a2-t-drawing-vs-guitar-u8", left: "drawing pictures", leftPic: "a-draw", right: "playing the guitar", rightPic: "a-guitar" },
+      { id: "a2-t-ice-cream-vs-cake-x1", left: "ice cream", leftPic: "ice cream", right: "cake", rightPic: "cake" },
+      { id: "a2-t-dancing-vs-singing-x1", left: "dancing", leftPic: "a-dance", right: "singing", rightPic: "a-sing" },
+      { id: "a2-t-the-morning-vs-the-evening-x1", left: "the morning", leftPic: "sun", right: "the evening", rightPic: "moon" },
+      { id: "a2-t-skiing-vs-swimming-x1", left: "skiing", leftPic: "a-ski", right: "swimming", rightPic: "a-swim" },
+      { id: "a2-t-chess-vs-video-games-x1", left: "chess", leftPic: "a-chess", right: "video games", rightPic: "a-games" },
+      { id: "a2-t-a-big-house-vs-a-small-flat-x1", left: "a big house", leftPic: "house", right: "a small flat", rightPic: "city" },
+      { id: "a2-t-helicopters-vs-planes-x1", left: "helicopters", leftPic: "helicopter", right: "planes", rightPic: "plane" },
+      { id: "a2-t-reading-vs-watching-tv-x1", left: "reading", leftPic: "a-read", right: "watching TV", rightPic: "TV" },
+      { id: "a2-t-hot-days-vs-cold-days-x1", left: "hot days", leftPic: "sun", right: "cold days", rightPic: "snow" },
+      { id: "a2-t-a-party-at-home-vs-a-party-in-a-park-x1", left: "a party at home", leftPic: "balloon", right: "a party in a park", rightPic: "park" },
+      { id: "a2-t-taking-photos-vs-drawing-pictures-x1", left: "taking photos", leftPic: "camera", right: "drawing pictures", rightPic: "a-draw" },
+      { id: "a2-t-long-holidays-vs-short-holidays-x1", left: "long holidays", leftPic: "beach", right: "short holidays", rightPic: "bag" },
+      { id: "a2-t-violin-vs-piano-x1", left: "violin", leftPic: "violin", right: "piano", rightPic: "piano" },
+      { id: "a2-t-climbing-vs-skating-x1", left: "climbing", leftPic: "a-climb", right: "skating", rightPic: "a-skate" },
+      { id: "a2-t-sweets-vs-fruit-x1", left: "sweets", leftPic: "sweets", right: "fruit", rightPic: "apple" }
     ] },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
   { topics: [
@@ -100,7 +130,22 @@ WU.content.tug = [
       { id: "a2p-t-fresh-vs-frozen-u10", left: "fresh food", leftPic: "apple", right: "frozen food", rightPic: "snow" },
       { id: "a2p-t-spicy-vs-sweet-u10", left: "spicy food", leftPic: "fire", right: "sweet food", rightPic: "cake" },
       { id: "a2p-t-saving-vs-spending-u9", left: "saving your pocket money", leftPic: "money", right: "spending your pocket money", rightPic: "shop" },
-      { id: "a2p-t-raw-vs-cooked-fish-u10", left: "raw fish", leftPic: "fish", right: "cooked fish", rightPic: "pan" }
+      { id: "a2p-t-raw-vs-cooked-fish-u10", left: "raw fish", leftPic: "fish", right: "cooked fish", rightPic: "pan" },
+      { id: "a2p-t-living-in-a-flat-vs-living-in-a-house-x1", left: "living in a flat", leftPic: "city", right: "living in a house", rightPic: "house" },
+      { id: "a2p-t-doctors-vs-teachers-x1", left: "doctors", leftPic: "doctor", right: "teachers", rightPic: "teacher" },
+      { id: "a2p-t-a-big-family-vs-a-small-family-x1", left: "a big family", leftPic: "family", right: "a small family", rightPic: "baby" },
+      { id: "a2p-t-an-island-holiday-vs-a-mountain-holiday-x1", left: "an island holiday", leftPic: "island", right: "a mountain holiday", rightPic: "mountain" },
+      { id: "a2p-t-watching-films-at-home-vs-watching-films-at-the-cinema-x1", left: "watching films at home", leftPic: "sofa", right: "watching films at the cinema", rightPic: "TV" },
+      { id: "a2p-t-cooking-vs-cleaning-x1", left: "cooking", leftPic: "a-cook", right: "cleaning", rightPic: "house" },
+      { id: "a2p-t-a-phone-vs-a-watch-x1", left: "a phone", leftPic: "phone", right: "a watch", rightPic: "watch" },
+      { id: "a2p-t-cycling-to-work-vs-driving-to-work-x1", left: "cycling to work", leftPic: "a-bike", right: "driving to work", rightPic: "a-drive" },
+      { id: "a2p-t-going-to-bed-early-vs-staying-up-late-x1", left: "going to bed early", leftPic: "bed", right: "staying up late", rightPic: "moon" },
+      { id: "a2p-t-a-birthday-present-vs-a-birthday-party-x1", left: "a birthday present", leftPic: "present", right: "a birthday party", rightPic: "balloon" },
+      { id: "a2p-t-pets-at-home-vs-plants-at-home-x1", left: "pets at home", leftPic: "dog", right: "plants at home", rightPic: "flower" },
+      { id: "a2p-t-saturday-mornings-vs-friday-evenings-x1", left: "Saturday mornings", leftPic: "sun", right: "Friday evenings", rightPic: "star" },
+      { id: "a2p-t-learning-online-vs-learning-from-books-x1", left: "learning online", leftPic: "computer", right: "learning from books", rightPic: "book" },
+      { id: "a2p-t-tidy-rooms-vs-messy-rooms-x1", left: "tidy rooms", leftPic: "bed", right: "messy rooms", rightPic: "box" },
+      { id: "a2p-t-buying-clothes-vs-making-clothes-x1", left: "buying clothes", leftPic: "shop", right: "making clothes", rightPic: "scissors" }
     ] },
   /* ---------- 3. Intermediate (B1) ---------- */
   { topics: [
@@ -132,7 +177,31 @@ WU.content.tug = [
       { id: "b1-t-driverless-vs-normal-cars-u9", left: "driverless cars", leftPic: "robot", right: "normal cars", rightPic: "car" },
       { id: "b1-t-boarding-school-vs-home-u11", left: "a boarding school", leftPic: "school", right: "a school near home", rightPic: "house" },
       { id: "b1-t-outdoor-vs-ordinary-classroom-u11", left: "an outdoor classroom", leftPic: "tree", right: "an ordinary classroom", rightPic: "desk" },
-      { id: "b1-t-zoos-vs-the-wild-u10", left: "animals in zoos", leftPic: "lion", right: "animals in the wild", rightPic: "tree" }
+      { id: "b1-t-zoos-vs-the-wild-u10", left: "animals in zoos", leftPic: "lion", right: "animals in the wild", rightPic: "tree" },
+      { id: "b1-t-renting-a-home-vs-buying-a-home-x1", left: "renting a home", leftPic: "key", right: "buying a home", rightPic: "house" },
+      { id: "b1-t-a-big-wedding-vs-a-small-wedding-x1", left: "a big wedding", leftPic: "heart", right: "a small wedding", rightPic: "family" },
+      { id: "b1-t-learning-from-mistakes-vs-learning-from-books-x1", left: "learning from mistakes", leftPic: "pencil", right: "learning from books", rightPic: "book" },
+      { id: "b1-t-working-for-a-big-company-vs-running-your-own-business-x1", left: "working for a big company", leftPic: "city", right: "running your own business", rightPic: "money" },
+      { id: "b1-t-cash-vs-paying-by-card-x1", left: "cash", leftPic: "money", right: "paying by card", rightPic: "phone" },
+      { id: "b1-t-living-abroad-vs-living-in-your-home-country-x1", left: "living abroad", leftPic: "plane", right: "living in your home country", rightPic: "house" },
+      { id: "b1-t-a-gap-year-vs-going-straight-to-university-x1", left: "a gap year", leftPic: "bag", right: "going straight to university", rightPic: "school" },
+      { id: "b1-t-being-famous-vs-being-rich-x1", left: "being famous", leftPic: "star", right: "being rich", rightPic: "money" },
+      { id: "b1-t-a-high-salary-vs-a-short-commute-x1", left: "a high salary", leftPic: "money", right: "a short commute", rightPic: "clock" },
+      { id: "b1-t-homeschooling-vs-going-to-school-x1", left: "homeschooling", leftPic: "house", right: "going to school", rightPic: "school" },
+      { id: "b1-t-smartwatches-vs-normal-watches-x1", left: "smartwatches", leftPic: "watch", right: "normal watches", rightPic: "clock" },
+      { id: "b1-t-eating-meat-vs-being-vegetarian-x1", left: "eating meat", leftPic: "burger", right: "being vegetarian", rightPic: "broccoli" },
+      { id: "b1-t-a-robot-helper-at-home-vs-doing-the-housework-yourself-x1", left: "a robot helper at home", leftPic: "robot", right: "doing the housework yourself", rightPic: "house" },
+      { id: "b1-t-one-best-friend-vs-lots-of-friends-x1", left: "one best friend", leftPic: "heart", right: "lots of friends", rightPic: "family" },
+      { id: "b1-t-old-buildings-vs-modern-buildings-x1", left: "old buildings", leftPic: "house", right: "modern buildings", rightPic: "city" },
+      { id: "b1-t-having-a-pet-vs-not-having-a-pet-x1", left: "having a pet", leftPic: "dog", right: "not having a pet", rightPic: "house" },
+      { id: "b1-t-camping-in-the-wild-vs-staying-in-a-campsite-x1", left: "camping in the wild", leftPic: "tree", right: "staying in a campsite", rightPic: "fire" },
+      { id: "b1-t-doing-sport-alone-vs-doing-sport-with-a-coach-x1", left: "doing sport alone", leftPic: "a-run", right: "doing sport with a coach", rightPic: "teacher" },
+      { id: "b1-t-keeping-a-diary-vs-posting-on-social-media-x1", left: "keeping a diary", leftPic: "a-write", right: "posting on social media", rightPic: "phone" },
+      { id: "b1-t-being-a-leader-vs-being-a-team-player-x1", left: "being a leader", leftPic: "king", right: "being a team player", rightPic: "family" },
+      { id: "b1-t-hot-weather-vs-cold-weather-x1", left: "hot weather", leftPic: "sun", right: "cold weather", rightPic: "snow" },
+      { id: "b1-t-learning-grammar-vs-learning-by-speaking-x1", left: "learning grammar", leftPic: "book", right: "learning by speaking", rightPic: "microphone" },
+      { id: "b1-t-a-phone-free-weekend-vs-a-normal-weekend-x1", left: "a phone-free weekend", leftPic: "phone", right: "a normal weekend", rightPic: "sofa" },
+      { id: "b1-t-making-plans-vs-going-with-the-flow-x1", left: "making plans", leftPic: "clock", right: "going with the flow", rightPic: "balloon" }
     ] },
   /* ---------- 4. IELTS 1 (B2) ---------- */
   { topics: [
@@ -161,7 +230,27 @@ WU.content.tug = [
       { id: "i1-t-robots-will-make-our-lives-better", motion: "Robots will make our lives better." },
       { id: "i1-t-reality-tv-should-be-taken-off", motion: "Reality TV should be taken off the air." },
       { id: "i1-t-space-exploration-is-a-waste-of", motion: "Space exploration is a waste of time." },
-      { id: "i1-t-its-better-to-live-in-a", motion: "It's better to live in a city than in the countryside." }
+      { id: "i1-t-its-better-to-live-in-a", motion: "It's better to live in a city than in the countryside." },
+      { id: "i1-t-students-should-be-paid-for-good-grades-x1", motion: "Students should be paid for good grades." },
+      { id: "i1-t-teenagers-should-have-parttime-jobs-x1", motion: "Teenagers should have part-time jobs." },
+      { id: "i1-t-fast-food-should-be-taxed-more-x1", motion: "Fast food should be taxed more." },
+      { id: "i1-t-children-spend-too-much-time-on-screens-x1", motion: "Children spend too much time on screens." },
+      { id: "i1-t-every-student-should-learn-to-code-x1", motion: "Every student should learn to code." },
+      { id: "i1-t-public-transport-should-be-free-for-students-x1", motion: "Public transport should be free for students." },
+      { id: "i1-t-celebrities-have-too-much-influence-on-young-x1", motion: "Celebrities have too much influence on young people." },
+      { id: "i1-t-its-better-to-rent-a-home-than-x1", motion: "It's better to rent a home than to buy one." },
+      { id: "i1-t-students-should-be-allowed-to-use-phones-x1", motion: "Students should be allowed to use phones in exams for research." },
+      { id: "i1-t-homework-helps-students-more-than-it-hurts-x1", motion: "Homework helps students more than it hurts them." },
+      { id: "i1-t-schools-should-start-later-in-the-morning-x1", motion: "Schools should start later in the morning." },
+      { id: "i1-t-shopping-online-is-better-than-shopping-in-x1", motion: "Shopping online is better than shopping in shops." },
+      { id: "i1-t-people-should-have-a-pet-before-they-x1", motion: "People should have a pet before they have children." },
+      { id: "i1-t-learning-a-skill-is-more-useful-than-x1", motion: "Learning a skill is more useful than getting a degree." },
+      { id: "i1-t-sugary-drinks-should-be-banned-in-schools-x1", motion: "Sugary drinks should be banned in schools." },
+      { id: "i1-t-everyone-should-do-sport-every-day-x1", motion: "Everyone should do sport every day." },
+      { id: "i1-t-selfdriving-cars-will-make-roads-safer-x1", motion: "Self-driving cars will make roads safer." },
+      { id: "i1-t-tourists-should-learn-some-of-the-local-x1", motion: "Tourists should learn some of the local language before they travel." },
+      { id: "i1-t-advertising-makes-our-lives-worse-x1", motion: "Advertising makes our lives worse." },
+      { id: "i1-t-teachers-will-be-replaced-by-ai-x1", motion: "Teachers will be replaced by AI." }
     ] },
   /* ---------- 5. IELTS 2 (band 6.0) ---------- */
   { topics: [
@@ -190,7 +279,27 @@ WU.content.tug = [
       { id: "i2-t-public-libraries-are-still-essential", motion: "Public libraries are still essential." },
       { id: "i2-t-smart-homes-make-people-lazy", motion: "Smart homes make people lazy." },
       { id: "i2-t-extreme-sports-should-require-a-licence", motion: "Extreme sports should require a licence." },
-      { id: "i2-t-its-better-to-be-a-generalist", motion: "It's better to be a generalist than a specialist." }
+      { id: "i2-t-its-better-to-be-a-generalist", motion: "It's better to be a generalist than a specialist." },
+      { id: "i2-t-success-depends-more-on-luck-than-on-x1", motion: "Success depends more on luck than on hard work." },
+      { id: "i2-t-countries-should-invest-more-in-public-parks-x1", motion: "Countries should invest more in public parks than in shopping centres." },
+      { id: "i2-t-group-work-is-more-effective-than-studying-x1", motion: "Group work is more effective than studying alone." },
+      { id: "i2-t-social-media-influencers-should-be-regulated-like-x1", motion: "Social media influencers should be regulated like advertisers." },
+      { id: "i2-t-online-friendships-are-as-real-as-offline-x1", motion: "Online friendships are as real as offline ones." },
+      { id: "i2-t-cash-will-disappear-within-twenty-years-x1", motion: "Cash will disappear within twenty years." },
+      { id: "i2-t-every-young-person-should-spend-a-year-x1", motion: "Every young person should spend a year working before university." },
+      { id: "i2-t-exams-should-be-replaced-by-projects-x1", motion: "Exams should be replaced by projects." },
+      { id: "i2-t-paying-for-music-and-films-is-a-x1", motion: "Paying for music and films is a moral duty." },
+      { id: "i2-t-it-is-better-to-have-a-few-x1", motion: "It is better to have a few close friends than many acquaintances." },
+      { id: "i2-t-big-tech-companies-know-too-much-about-x1", motion: "Big tech companies know too much about us." },
+      { id: "i2-t-learning-a-language-with-an-app-is-x1", motion: "Learning a language with an app is as effective as with a teacher." },
+      { id: "i2-t-working-four-days-a-week-x1", motion: "A four-day working week would make people more productive." },
+      { id: "i2-t-hosting-the-olympics-is-a-waste-of-x1", motion: "Hosting the Olympics is a waste of money." },
+      { id: "i2-t-people-should-be-free-to-work-any-x1", motion: "People should be free to work any hours they choose." },
+      { id: "i2-t-children-learn-more-from-their-friends-than-x1", motion: "Children learn more from their friends than from their parents." },
+      { id: "i2-t-selfemployment-is-better-than-working-for-a-x1", motion: "Self-employment is better than working for a company." },
+      { id: "i2-t-electric-cars-are-not-the-answer-to-x1", motion: "Electric cars are not the answer to pollution." },
+      { id: "i2-t-ambition-is-more-important-than-intelligence-x1", motion: "Ambition is more important than intelligence." },
+      { id: "i2-t-everyone-should-learn-first-aid-at-school-x1", motion: "Everyone should learn first aid at school." }
     ] },
   /* ---------- 6. IELTS 3 (band 7.0+) ---------- */
   { topics: [
@@ -219,7 +328,27 @@ WU.content.tug = [
       { id: "i3-t-sport-should-be-kept-separate-from", motion: "Sport should be kept separate from commercial interests." },
       { id: "i3-t-algorithms-know-us-better-than-our", motion: "Algorithms know us better than our friends do." },
       { id: "i3-t-a-good-translator-is-an-artist", motion: "A good translator is an artist." },
-      { id: "i3-t-cities-will-be-better-places-to", motion: "Cities will be better places to live in 2050." }
+      { id: "i3-t-cities-will-be-better-places-to", motion: "Cities will be better places to live in 2050." },
+      { id: "i3-t-privacy-is-a-price-worth-paying-for-x1", motion: "Privacy is a price worth paying for convenience." },
+      { id: "i3-t-ambition-does-more-harm-than-good-x1", motion: "Ambition does more harm than good." },
+      { id: "i3-t-expertise-is-becoming-less-valuable-x1", motion: "Expertise is becoming less valuable in the age of AI." },
+      { id: "i3-t-the-best-leaders-are-reluctant-ones-x1", motion: "The best leaders are reluctant ones." },
+      { id: "i3-t-social-media-has-made-us-more-lonely-x1", motion: "Social media has made us more lonely." },
+      { id: "i3-t-history-is-written-by-the-winners-so-x1", motion: "History is written by the winners, so it cannot be trusted." },
+      { id: "i3-t-universities-should-focus-on-teaching-how-to-x1", motion: "Universities should focus on teaching how to think, not what to think." },
+      { id: "i3-t-fame-is-a-burden-not-a-reward-x1", motion: "Fame is a burden, not a reward." },
+      { id: "i3-t-aigenerated-art-is-real-art-x1", motion: "AI-generated art is real art." },
+      { id: "i3-t-choice-makes-people-less-happy-x1", motion: "Choice makes people less happy." },
+      { id: "i3-t-cities-are-more-important-than-countries-x1", motion: "Cities are more important than countries." },
+      { id: "i3-t-wealth-should-be-measured-in-time-not-x1", motion: "Wealth should be measured in time, not money." },
+      { id: "i3-t-success-is-impossible-without-failure-x1", motion: "Success is impossible without failure." },
+      { id: "i3-t-silence-is-a-more-powerful-tool-than-x1", motion: "Silence is a more powerful tool than speech." },
+      { id: "i3-t-every-generation-is-worse-at-something-the-x1", motion: "Every generation is worse at something the previous one was good at." },
+      { id: "i3-t-a-society-is-judged-by-how-it-x1", motion: "A society is judged by how it treats its elderly." },
+      { id: "i3-t-comfort-makes-people-weaker-x1", motion: "Comfort makes people weaker." },
+      { id: "i3-t-rules-exist-to-be-questioned-x1", motion: "Rules exist to be questioned." },
+      { id: "i3-t-a-perfect-memory-would-be-a-curse-x1", motion: "A perfect memory would be a curse, not a gift." },
+      { id: "i3-t-predicting-the-future-is-more-useful-than-x1", motion: "Predicting the future is more useful than studying the past." }
     ] }
 ];
 
@@ -238,9 +367,10 @@ WU.content.tugScreen = {
   },
   levels: [
     { distance: 4, frame: 'I like ___.', rule: 'Say "I like ___!" = PULL!', demoShow: true },
-    {}, {}, { distance: 6 },
-    { distance: 6, frame: '', rule: "Answer the other team's last point, then add yours." },
-    { distance: 6, frame: '', rule: "Answer the other team's last point, then add yours." },
-    { distance: 7, frame: '', rule: "Answer the other team's last point, then add yours." }
+    {}, {},
+    { distance: 4, secs: 150, rounds: 4, rule: 'I argue back. Defend it!' },
+    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' },
+    { distance: 4, secs: 180, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' },
+    { distance: 4, secs: 240, rounds: 4, frame: '', rule: 'Give your idea. I argue back. Defend it!' }
   ]
 };
