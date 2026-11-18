@@ -183,7 +183,7 @@
   function startClock() {
     stopClock();
     var sec = Math.max(0, Math.min(600, +scr.get().seconds || 0)); if (!sec) return;
-    clock = WU.Timer({ seconds: sec, size: 200, onDone: function () { if (st && st.phase === 'play') finish(); } });
+    clock = WU.Timer({ seconds: sec, size: 220, onDone: function () { if (st && st.phase === 'play') finish(); } });
   }
   function startTurn() {}
   function newWord() {

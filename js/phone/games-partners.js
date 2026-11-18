@@ -84,7 +84,7 @@
       // done: the rest is open, then the trap question.
       var all = st.found.length === st.list.length;
       h += tiles;
-      h += '<div class="pbanner ' + (all ? 'ok' : 'no') + '">' + esc(all ? S.allFound : 'Here are the rest. Learn the blue ones!') + '</div>';
+      h += '<div class="pbanner ' + (all ? 'ok' : 'no') + '">' + esc(all ? S.allFound : S.boardWins) + '</div>';
       if (w.trap && st.trapOpts) h += '<div class="pq">Which one is right?</div><div class="wptrapq"></div>';
       body.innerHTML = h;
       var goUse = function () { if (w.question) { st.phase = 'use'; render(); } else next(); };

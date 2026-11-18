@@ -1301,6 +1301,11 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .wpg-game .wptrap s { font-family: var(--display); font-weight: 400; font-size: 46px; text-decoration-thickness: 6px; text-decoration-color: #ff3b3b; }
 .wpg-game .wppeek { position: absolute; right: 30px; bottom: 26px; z-index: 5; max-width: 1300px; padding: 2px 12px; background: #e9e5db; color: #777; font-size: 20px; font-weight: 800; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .calm .wpg-game .wptile.pop, .calm .wpg-game .wpflash, .calm .wpg-game .wpstrikes i.on, .calm .wpg-game .wpcore.wpq { animation: none; }
-.wpg-game .wpclock { position: absolute; right: 56px; top: 222px; width: 200px; height: 200px; z-index: 2; }
+.wpg-game .wpclock { position: absolute; right: 46px; top: 204px; width: 220px; height: 220px; z-index: 2; }
 .wpg-game .wppic { flex: none; align-self: center; width: 92px; height: 92px; margin-left: -8px; }
 .wpg-game .wppic svg, .wpg-game .wppic img { width: 100%; height: 100%; display: block; object-fit: contain; }
+.wpg-game .wpend { max-width: 100%; }
+.wpg-game .wpend .wpflash { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; font-size: 38px; }
+.wpg-game .wptrap { flex: 0 1 auto; overflow: hidden; }
+.wpg-game .wptrap s { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.wpg-game .wpclock .wut-l { font-size: 28px !important; }

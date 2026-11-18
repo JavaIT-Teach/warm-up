@@ -435,13 +435,32 @@
     ['fireworks', 'fireworks', 'newyear sky night', 'p - M50 50 L50 12 M50 50 L77 23 M50 50 L88 50 M50 50 L77 77 M50 50 L50 88 M50 50 L23 77 M50 50 L12 50 M50 50 L23 23 s=P w=6|c 50 10 6 Y|c 79 21 6 B|c 90 50 6 L|c 79 79 6 O|c 50 90 6 Y|c 21 79 6 B|c 10 50 6 L|c 21 21 6 O|c 50 50 9 R'],
     ['flower', 'flower', 'park', 'l 50 56 50 94 s=G w=6|e 62 80 10 5 G -30|c 50 24 12 P|c 67 37 12 P|c 60 57 12 P|c 40 57 12 P|c 33 37 12 P|c 50 42 10 Y'],
     ['leaf', 'leaf', 'park green', 'p G M14 88 Q12 18 88 12 Q88 86 14 88 Z|p - M14 88 L70 30 w=3|p - M36 66 L36 44 M50 52 L50 34 M36 66 L58 66 M50 52 L66 52 w=2'],
+    /* Word Partners: pictures for collocations */
+    ['shower', 'shower', 'home bathroom', 'r 38 88 52 6 E 2|p - M20 96 L20 14 Q20 8 28 8 L58 8 Q66 8 66 16 L66 22 w=7|p A M50 22 L82 22 L76 34 L56 34 Z|l 58 42 54 54 s=U w=5|l 66 42 64 56 s=U w=5|l 74 42 74 56 s=U w=5|l 60 64 56 78 s=U w=5|l 70 64 68 80 s=U w=5|l 78 62 80 76 s=U w=5'],
+    ['sport', 'sport', 'sport ball', function () {
+      return draw('l 76 92 62 64 s=K w=12|l 76 92 62 64 s=M w=6|e 52 38 18 24 W -25|l 42 22 62 54 w=2|l 36 32 56 62 w=2|l 50 16 68 46 w=2|l 36 44 62 30 w=2|l 40 54 66 40 w=2|c 84 18 8 L|c 28 70 20 W|g K ' + poly(28, 70, 7, 5));
+    }],
+    ['test', 'test', 'school', 'r 18 6 64 88 W 3|p - M28 26 L34 32 L44 20 s=G w=5|l 52 26 72 26 w=3|p - M28 48 L34 54 L44 42 s=G w=5|l 52 48 72 48 w=3|p - M28 66 L42 80 M42 66 L28 80 s=R w=5|l 52 72 72 72 w=3'],
+    ['forecast', 'weather forecast', 'weather', 'l 36 76 28 92 w=5|l 64 76 72 92 w=5|r 8 14 84 62 K 6|r 15 21 70 48 U 2|c 38 40 10 Y|p W M42 62 Q32 62 34 54 Q36 46 46 50 Q50 40 62 44 Q74 44 74 54 Q76 62 66 62 Z'],
+    ['alarm clock', 'alarm clock', 'home time', 'p - M8 12 L16 18 M92 12 L84 18 M50 2 L50 10 w=4|c 26 24 12 Y|c 74 24 12 Y|l 28 84 20 95 w=7|l 72 84 80 95 w=7|c 50 56 34 R|c 50 56 25 W|l 50 56 50 38 w=5|l 50 56 64 62 w=5|c 50 56 3 K*'],
+    ['cold', 'cold', 'body health', 'c 44 44 32 S|c 28 54 5 Q*|c 60 54 5 Q*|p - M27 35 L37 40 L27 45 M61 35 L51 40 L61 45 w=3|c 44 50 7 R|p U M47 58 Q52 66 47 70 Q42 66 47 58 Z w=2|e 44 66 7 4 K*|p - M80 30 L94 24 M82 44 L97 44 M80 58 L93 66 w=4|p R M12 74 Q44 90 76 74 L78 86 Q44 102 10 86 Z|r 56 82 12 16 R 2|l 58 98 58 92 w=3|l 66 98 66 92 w=3'],
+    ['friends', 'friends', 'person family', function () {
+      return '<g transform="translate(-8 26) scale(.72)">' + draw(personDSL({ style: 'spiky', hair: 'M', body: 'O' })) + '</g>' +
+        '<g transform="translate(36 26) scale(.72)">' + draw(personDSL({ style: 'pig', hair: 'N', body: 'T' })) + '</g>' +
+        draw('p R M50 26 Q38 18 38 10 Q38 3 44 3 Q48 3 50 8 Q52 3 56 3 Q62 3 62 10 Q62 18 50 26 Z w=3');
+    }],
+    ['party hat', 'party hat', 'party clothes', 'g P 50,8 22,88 78,88|p Y* M35.6 48 L64.4 48 L68.4 60 L31.6 60 Z|p B* M27.5 72 L72.5 72 L76 82 L24 82 Z|g - 50,8 22,88 78,88|e 50 88 30 6 L|c 50 8 9 Y'],
+    ['invitation', 'invitation', 'party', 'r 14 6 6 12 Y 1|r 78 4 6 12 P 1|r 46 2 6 12 T 1|r 8 26 84 60 W 3|p - M8 30 L50 62 L92 30 w=4|c 50 62 10 R|g W* ' + star(50, 62, 6, 2.5)],
+    ['piggy bank', 'piggy bank', 'money', 'r 28 76 12 16 Q 2|r 62 76 12 16 Q 2|p - M15 58 Q4 52 10 44 w=3|e 50 58 36 28 Q|g Q 30,38 34,20 46,32|e 86 60 8 11 P|c 84 56 2 K*|c 88 64 2 K*|c 68 48 3.5 K*|r 40 30 22 6 K 3|c 51 16 10 Y|c 51 16 5 - w=2'],
+    ['wallet', 'wallet', 'money', 'r 22 14 50 30 G 2|c 47 28 7 #b6f2a0|r 10 30 80 56 M 8|p N M90 44 L62 44 Q54 44 54 54 Q54 64 62 64 L90 64 Z|c 72 54 5 Y'],
+    ['bank', 'bank', 'city money', 'g E 50,6 6,32 94,32|c 50 22 6 Y|r 10 32 80 8 E|r 16 42 12 38 W|r 34 42 12 38 W|r 52 42 12 38 W|r 70 42 12 38 W|r 6 82 88 10 E'],
     ['fire', 'fire', 'hot scienceday', 'l 24 92 76 80 s=M w=8|l 24 80 76 92 s=M w=8|p O M50 4 Q72 28 72 46 Q80 38 80 28 Q96 54 84 76 Q72 92 50 92 Q28 92 16 76 Q6 54 22 36 Q24 48 32 52 Q28 28 50 4 Z|p Y* M50 48 Q64 64 62 78 Q58 88 50 88 Q40 88 38 78 Q36 64 50 48 Z']
   ];
 
   /* ---------- grammar: article and plural for every picture name ----------
      art: "a" / "an" / "the" / "" (no article: uncountable, plural, colours, sports)
      pl : plural form ("" when it has none). Used by sentence frames and example labels. */
-  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
+  var NO_ART = 'grapes bread cheese rice soup chocolate noodles jam yogurt sweets water milk juice tea coffee cola trousers shoes socks gloves glasses boots money friends sport rain snow wind fire football basketball tennis volleyball boxing swimming golf corn broccoli scissors fireworks';
   var THE = { sun: 1, moon: 1 };
   var PLURAL = { mouse: 'mice', sheep: 'sheep', fish: 'fish', knife: 'knives', leaf: 'leaves', foot: 'feet', tooth: 'teeth', tomato: 'tomatoes', potato: 'potatoes', octopus: 'octopuses', scarf: 'scarves', snowman: 'snowmen' };
   function article(o) {

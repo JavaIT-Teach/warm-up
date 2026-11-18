@@ -12,23 +12,23 @@ WU.content.partners = [
   { words: [
     { id: 'wp0-play', word: 'play', p: [['play football', 'football'], ['play the guitar', 'guitar'], ['play chess', 'a-chess'], ['play video games', 'a-games'], ['play tennis', 'tennis'], ['play the piano', 'piano']], question: 'What do you play? When?', trap: 'play the football' },
     { id: 'wp0-go', word: 'go', p: [['go to school', 'school'], ['go to the park', 'park'], ['go shopping', 'shop'], ['go swimming', 'a-swim'], ['go to bed', 'bed'], ['go to the beach', 'beach']], question: 'Where do you go on Sunday?', trap: 'go to home' },
-    { id: 'wp0-have', word: 'have', p: [['have a shower', 'bath'], ['have lunch', 'sandwich'], ['have a cup of tea', 'tea'], ['have a sister', 'sister'], ['have a dog', 'dog'], ['have a car', 'car']], question: 'What do you have for lunch?', trap: 'have a lunch' },
+    { id: 'wp0-have', word: 'have', p: [['have a shower', 'shower'], ['have lunch', 'sandwich'], ['have a cup of tea', 'tea'], ['have a sister', 'sister'], ['have a dog', 'dog'], ['have a car', 'car']], question: 'What do you have for lunch?', trap: 'have a lunch' },
     { id: 'wp0-take', word: 'take', p: [['take a photo', 'camera'], ['take the bus', 'bus'], ['take a taxi', 'taxi'], ['take an umbrella', 'umbrella'], ['take the train', 'train'], ['take a bag', 'bag']], question: 'How do you go to school or work?', trap: 'make a photo' },
-    { id: 'wp0-do', word: 'do', p: [['do homework', 'book'], ['do the dishes', 'plate'], ['do sport', 'football'], ['do exercise', 'a-run'], ['do the shopping', 'shop'], ['do a test', 'pen']], question: 'What do you do after school or work?', trap: 'make homework' },
+    { id: 'wp0-do', word: 'do', p: [['do homework', 'book'], ['do the dishes', 'plate'], ['do sport', 'sport'], ['do exercise', 'a-run'], ['do the shopping', 'shop'], ['do a test', 'test']], question: 'What do you do after school or work?', trap: 'make homework' },
     { id: 'wp0-make', word: 'make', p: [['make a cake', 'cake'], ['make a sandwich', 'sandwich'], ['make tea', 'kettle'], ['make a snowman', 'snowman'], ['make a phone call', 'phone'], ['make the bed', 'bed']], question: 'What can you make?', trap: 'make a photo' },
     { id: 'wp0-wear', word: 'wear', p: [['wear a hat', 'hat'], ['wear glasses', 'glasses'], ['wear a scarf', 'scarf'], ['wear a jacket', 'jacket'], ['wear gloves', 'gloves'], ['wear boots', 'boots']], question: 'What do you wear in winter?', trap: 'wear an umbrella' },
     { id: 'wp0-ride', word: 'ride', p: [['ride a bike', 'a-bike'], ['ride a horse', 'horse'], ['ride a motorbike', 'motorbike'], ['ride a skateboard', 'a-skate'], ['ride an elephant', 'elephant']], question: 'Can you ride a bike or a horse?', trap: 'ride a car' }
   ] },
   /* 1. Elementary (A2): picture partners too. */
   { words: [
-    { id: 'wp1-weather', word: 'weather', p: [['sunny weather', 'sun'], ['rainy weather', 'rain'], ['cold weather', 'snow'], ['windy weather', 'wind'], ['stormy weather', 'storm'], ['the weather forecast', 'TV']], question: 'What is your favourite weather? Why?', trap: 'a good weather' },
-    { id: 'wp1-get', word: 'get', p: [['get up', 'clock'], ['get dressed', 'T-shirt'], ['get a present', 'present'], ['get wet', 'rain'], ['get a taxi', 'taxi'], ['get home', 'house']], question: 'What time do you get up and get home?', trap: 'get up from bed' },
-    { id: 'wp1-catch', word: 'catch', p: [['catch a bus', 'bus'], ['catch a ball', 'ball'], ['catch a fish', 'fish'], ['catch a train', 'train'], ['catch a plane', 'plane'], ['catch a cold', 'nose']], question: 'Did you catch a cold this year? What did you do?', trap: 'catch a taxi on the phone' },
-    { id: 'wp1-miss', word: 'miss', p: [['miss the bus', 'bus'], ['miss a train', 'train'], ['miss my family', 'family'], ['miss a lesson', 'school'], ['miss a flight', 'plane'], ['miss my friends', 'heart']], question: 'Who do you miss? Why?', trap: 'miss to my family' },
-    { id: 'wp1-party', word: 'party', p: [['have a party', 'balloon'], ['a birthday party', 'cake'], ['a party dress', 'dress'], ['a New Year party', 'ny-tree'], ['a party hat', 'hat'], ['go to a party', 'car']], question: 'Tell us about a great party.', trap: 'make a party' },
+    { id: 'wp1-weather', word: 'weather', p: [['sunny weather', 'sun'], ['rainy weather', 'rain'], ['cold weather', 'snow'], ['windy weather', 'wind'], ['stormy weather', 'storm'], ['the weather forecast', 'forecast']], question: 'What is your favourite weather? Why?', trap: 'a good weather' },
+    { id: 'wp1-get', word: 'get', p: [['get up', 'alarm clock'], ['get dressed', 'T-shirt'], ['get a present', 'present'], ['get wet', 'rain'], ['get a taxi', 'taxi'], ['get home', 'house']], question: 'What time do you get up and get home?', trap: 'get up from bed' },
+    { id: 'wp1-catch', word: 'catch', p: [['catch a bus', 'bus'], ['catch a ball', 'ball'], ['catch a fish', 'fish'], ['catch a train', 'train'], ['catch a plane', 'plane'], ['catch a cold', 'cold']], question: 'Did you catch a cold this year? What did you do?', trap: 'take a cold' },
+    { id: 'wp1-miss', word: 'miss', p: [['miss the bus', 'bus'], ['miss a train', 'train'], ['miss my family', 'family'], ['miss a lesson', 'school'], ['miss a flight', 'plane'], ['miss my friends', 'friends']], question: 'Who do you miss? Why?', trap: 'miss to my family' },
+    { id: 'wp1-party', word: 'party', p: [['have a party', 'balloon'], ['a birthday party', 'cake'], ['a party dress', 'dress'], ['a New Year party', 'ny-tree'], ['a party hat', 'party hat'], ['go to a party', 'invitation']], question: 'Tell us about a great party.', trap: 'make a party' },
     { id: 'wp1-holiday', word: 'holiday', p: [['go on holiday', 'plane'], ['a beach holiday', 'beach'], ['a skiing holiday', 'a-ski'], ['a summer holiday', 'sun'], ['a holiday home', 'house'], ['holiday photos', 'camera']], question: 'Where did you go on your last holiday?', trap: 'go to holiday' },
-    { id: 'wp1-friend', word: 'friend', p: [['a best friend', 'heart'], ['visit a friend', 'house'], ['meet a friend', 'park'], ['play with friends', 'ball'], ['call a friend', 'phone'], ['make friends', 'family']], question: 'How did you meet your best friend?', trap: 'do friends' },
-    { id: 'wp1-money', word: 'money', p: [['spend money', 'shop'], ['save money', 'money'], ['earn money', 'builder'], ['pocket money', 'sweets'], ['a lot of money', 'money'], ['money in the bank', 'key']], question: 'What do you spend your money on?', trap: 'earn money in a lottery (win)' }
+    { id: 'wp1-friend', word: 'friend', p: [['a best friend', 'heart'], ['visit a friend', 'house'], ['meet a friend', 'park'], ['play with friends', 'ball'], ['call a friend', 'phone'], ['make friends', 'friends']], question: 'How did you meet your best friend?', trap: 'do friends' },
+    { id: 'wp1-money', word: 'money', p: [['spend money', 'shop'], ['save money', 'piggy bank'], ['earn money', 'wallet'], ['pocket money', 'sweets'], ['a lot of money', 'money'], ['money in the bank', 'bank']], question: 'What do you spend your money on?', trap: 'earn the lottery' }
   ] },
   /* 2. Pre-Intermediate (A2+) */
   { words: [
@@ -95,7 +95,7 @@ WU.content.partnersScreen = {
     seconds: 90, strikes: 0, letters: false,
     turn: '{team}: your turn!', classTurn: 'Everyone: say a phrase!', found: 'FOUND',
     hit: 'YES! A partner!', bonus: 'GOOD ONE! Not on the board, but it works.', wrong: 'Not a partner!',
-    allFound: 'ALL FOUND!', boardWins: 'Time! Here are the ones you missed. Learn them!', trapLabel: 'NOT', trapNote: 'Wrong partner!',
+    allFound: 'ALL FOUND!', boardWins: 'Learn the blue ones!', trapLabel: 'NOT', trapNote: 'Wrong partner!',
     useLabel: 'USE IT!', useWho: '{name}, answer!', useRule: 'Answer with 2 phrases from the board.', useSeconds: 40
   },
   levels: [
