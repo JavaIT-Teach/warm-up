@@ -1,17 +1,31 @@
 /* Warm Up on a phone: one student, on their own time (phone.html).
    The same content and teacher edits as the board (WU.list, synced from GitHub), but a portrait screen with big touch
-   buttons and a check / reveal step, because nobody is there to judge. Only the games that work alone are here.
+   buttons and a check / reveal step, because nobody is there to judge. Every board game is here (group games as pass-the-phone).
    Each game is WU.phone.games[id] = { mount(body, ctx), unmount() } (js/phone/games-*.js).
    ctx: { S (screen texts of the game at this level), level, actions([...]), score(ok), bar, toast, again() }. */
 (function () {
   'use strict';
   var WU = window.WU;
   var P = WU.phone = { games: {} };
-  // The solo games, in menu order. Board games that need a room (The Bomb, Tug of War...) are not here.
   // Elias is the one group game: pass the phone (2+ players).
-  P.ORDER = ['hunt', 'vanish', 'partners', 'elias', 'chain', 'volcano', 'timemachine', 'phrasal', 'flash', 'nearfar', 'where', 'dice', 'slot', 'lostword', 'replies'];
+  // Every board game has a phone screen: the menu follows the board's order (content/games.js).
+  P.order = function () { return (WU.content.games || []).map(function (g) { return g.id; }).filter(function (id) { return P.games[id]; }); };
   // What the student does on the phone (the board text says what the class does).
   P.HOW = {
+    articles: 'a, an, the or nothing? Tap the right one.',
+    pinit: 'At, on, in (and more)? Tap the right one.',
+    sticky: 'Which preposition sticks? Beat the clock.',
+    domino: 'Finish the If-sentence. Your result starts the next one.',
+    bomb: 'Type words for the category before the bomb explodes.',
+    tug: 'Argue for one side, then the other. Good reasons pull.',
+    hotseat: 'With friends: phone on your forehead. They describe, you guess.',
+    lie: 'With friends: pass the phone. Truth or lie? Run the detector.',
+    names: 'Write your introduction, then a classmate\'s.',
+    standup: 'True for you? Say more. Not true? Ask a question.',
+    zones: 'Pick an answer, give a reason, then argue for another.',
+    opinion: 'Agree or disagree? Say why, then argue the other side.',
+    findwho: 'Ask the right question, then report the answer.',
+    chat: 'Answer fast. Every round is shorter.',
     hunt: 'Find the hidden words. Tap the first letter, then the last.',
     vanish: 'Read it. Words vanish. Write it from memory.',
     partners: 'One word. Type as many partners as you can before time runs out.',
@@ -98,12 +112,12 @@
     stopGame(); curId = null;
     if (!levelChosen()) { pickLevel(); return; }
     var L = WU.LEVELS[WU.state.level];
-    var ids = P.ORDER.filter(function (id) { return gameDef(id) && P.games[id]; });
+    var order = P.order(), ids = order.slice();
     // New games first, then the rest; games for other levels last.
     ids.sort(function (a, b) {
       var ga = gameDef(a), gb = gameDef(b), oa = WU.gameOk(a) ? 0 : 2, ob = WU.gameOk(b) ? 0 : 2;
       if (newGame(ga) && oa === 0) oa = -1; if (newGame(gb) && ob === 0) ob = -1;
-      return oa - ob || P.ORDER.indexOf(a) - P.ORDER.indexOf(b);
+      return oa - ob || order.indexOf(a) - order.indexOf(b);
     });
     var h = '<div class="phome"><header class="phead"><div class="plogo"><span>WARM UP!</span></div>' +
       '<button class="pib" data-act="mute" aria-label="Sound">' + WU.icons.sound() + '</button></header>' +
