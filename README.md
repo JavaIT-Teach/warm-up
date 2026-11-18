@@ -7,9 +7,9 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 **Students on their phones:** send the same link. A phone opens the phone version by itself (see below).
 
 ## On a student's phone (practise alone)
-- Students open the same link. Phones get a portrait version with big buttons: **11 games that work for one student**
+- Students open the same link. Phones get a portrait version with big buttons: **12 games that work for one student**
   (Word Hunt, Vanishing Sentence, Word Chain, Verb Volcano, Time Machine, Phrasal Roulette, Flash Room, Near & Far,
-  Hide & Seek Cat, Story Dice, Slot Machine). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
+  Hide & Seek Cat, Story Dice, Slot Machine, Lost Word). The games that need a room (The Bomb, Tug of War, Find Someone Who...) are not there.
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
 - Same content as the board: your edits and the weekly games appear on phones too. Nothing to install or update.
@@ -45,8 +45,10 @@ Keys: Space start / spin / next · N new category · C choose categories · P wh
 **2. Slot Machine of Chaos.** **Space** spins: WHO (a student), TOPIC, HOW (a speaking style) and, from Intermediate, a TWIST. The student talks until the timer ends (it starts by itself). Then the screen names two classmates who each ask the speaker one question.
 Keys: Space spin · Enter pause · Q questions now · H styles on / off · W twist on / off.
 
-**3. Hot Seat.** One student sits with their back to the board. **P** picks a student (P again = someone else, for a shy student). **Space** starts the round. The class describes each word; the student guesses. **Space** = got it (a point), **P** = pass. At IELTS the class must not say the banned words. The high score stays for the next student to beat.
-Keys: P pick / pass · Space start / got it / next student · Enter pause · R reset high score · 1-4 give the points to a team.
+**3. Hot Seat.** One student sits with their back to the board. **P** picks a student (P again = someone else, for a shy student). **Space** starts the round. The class describes each word; the student guesses. **Space** = got it (a point), **P** = pass. The high score stays for the next student to beat.
+From Elementary, **helper frames** sit under the word (*It's something you use to... / It's someone who... / It's a place where...*; at IELTS *It's when... / It's the feeling you get when...*).
+From Pre-Intermediate the class must not say the **banned words** (Pre-Intermediate 1, Intermediate 2, IELTS 3). **B = HARD MODE**: every banned word of the card shows (3 below IELTS, 5 at IELTS). It stays on for that level until you press B again.
+Keys: P pick / pass · Space start / got it / next student · B hard mode · Enter pause · R reset high score · 1-4 give the points to a team.
 
 **4. Lie Detector.** **P** picks a student and shows a question. The student secretly shows you TRUTH or LIE (for example thumb up or down under the desk). Press **T** or **L**: nothing on screen changes. The student answers. **Space**: at middle levels a classmate asks one follow-up question; at IELTS two students explain why they think it's a lie. Then the class votes: stand up = lie, stay seated = truth (optional: count the standing students with **Up / Down**). **R** runs the lie detector and shows the truth.
 Keys: P pick · T / L secret · Space next step · Up / Down votes · R reveal · N other question.
@@ -65,6 +67,13 @@ Keys: Space correct · X out · P pass · T topic · R start again.
 **Round 2: Remember** (**R**, needs 2+ cards). Names are hidden, facts stay visible. The screen picks a student and a card (never their own). The student says the frame ("That's ___! He / She likes ___." / reported speech at IELTS). **Space** flips the card. **X** = wrong: the class helps, then Space flips. It ends when every card is flipped.
 Keys: Enter add / next field · Space next student / flip · R remember round · X wrong · N another card · A back to adding people · Delete clear wall.
 **Privacy:** the names and facts you type stay on this device only. They are never saved to GitHub and are not in the backup file. **Delete** (when you are not typing in a box) → Enter clears the wall. The Teacher screen lists every name and fact.
+
+**Lost Word** (Speaking · Elementary and up; grey for Beginner). What to do when the word is gone. Three modes, **T** switches:
+- **Describe it.** A situation ("Hotel. There's no towel in your bathroom.") and the word, crossed out. The picked student asks for it without saying it, using a frame (*It's something you use to... / someone who... / a place where...*). **Space**: the face on screen guesses **wrong** ("A blanket?"); the student adds a detail. **Space**: it gets it ("Oh, a towel!"); the student closes: "Yes, that's it! Thanks!". **Space**: the model answer. **X** = a banned word was said (buzzer). **B** = hard mode: the related words are banned too.
+- **Say it simple.** A hard sentence with the hard part marked ("I'd like a **refund**."). The face doesn't understand; the student says it in plain words. **Space**: the model ("Can I get my money back?").
+- **Too direct.** A blunt request ("Give me a coffee.") with its size: SMALL, MEDIUM or BIG request. The face is offended; the student softens it with the frames for that size (*Could I get... / Would it be possible to... / I was wondering if...*). **Space**: the model.
+On phones: pick the forgotten word, the simple meaning, or the best request.
+Keys: Space next step · N other card · P other student · T mode · B hard mode · X banned word · 1-4 team point.
 
 ### Moving games (9–13): students stand up and walk
 The map on screen is your room seen from above: the board at the top, desks in a U, the open middle in between. "Front" = near the board.

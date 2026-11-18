@@ -256,3 +256,7 @@ body.phone button { color: var(--ink); }
   .vtext { font-size: 30px; }
 }
 #wrap[hidden] { display: none !important; }
+
+/* Lost Word */
+.plwq mark { background: #ffd2c2; color: #c4122a; padding: 0 4px; border-bottom: 3px solid #c4122a; }
+.plwr { color: #c4122a; }

@@ -8,7 +8,7 @@
   var WU = window.WU;
   var P = WU.phone = { games: {} };
   // The solo games, in menu order. Board games that need a room (The Bomb, Tug of War...) are not here.
-  P.ORDER = ['hunt', 'vanish', 'chain', 'volcano', 'timemachine', 'phrasal', 'flash', 'nearfar', 'where', 'dice', 'slot'];
+  P.ORDER = ['hunt', 'vanish', 'chain', 'volcano', 'timemachine', 'phrasal', 'flash', 'nearfar', 'where', 'dice', 'slot', 'lostword'];
   // What the student does on the phone (the board text says what the class does).
   P.HOW = {
     hunt: 'Find the hidden words. Tap the first letter, then the last.',
@@ -21,7 +21,8 @@
     nearfar: 'This, that, these or those? Pick the right one.',
     where: 'Where is it? Pick the right preposition.',
     dice: 'Roll the pictures. Write a story with all of them.',
-    slot: 'Spin a topic. Talk about it until the time is up.'
+    slot: 'Spin a topic. Talk about it until the time is up.',
+    lostword: 'Someone forgot a word. Which one? Then say it your way.'
   };
 
   var app, cur = null, curId = null, onPop = null;
