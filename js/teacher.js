@@ -77,6 +77,8 @@
   }
   WU.teacher = {
     isTeacher: isTeacher,
+    // True once a teacher window is open and talking to this board.
+    connected: function () { return !!(peer && !peer.closed) || heard; },
     // Opens (or brings back) the teacher window. Must come from a click or key press on the board.
     open: function () {
       var url = location.href.split('#')[0].split('?')[0] + '?teacher';
@@ -114,9 +116,17 @@
   }
   function esc(s) { return WU.esc(s == null ? '' : String(s)); }
   function row(x) {
-    return '<div class="tw-item' + (x.big ? ' big' : '') + (x.hot ? ' hot' : '') + '">' + (x.label ? '<div class="tw-l">' + esc(x.label) + '</div>' : '') +
+    return '<div class="tw-item' + (x.big ? ' big' : '') + (x.huge ? ' huge' : '') + (x.hot ? ' hot' : '') + '">' + (x.label ? '<div class="tw-l">' + esc(x.label) + '</div>' : '') +
       (x.html ? '<div class="tw-pic">' + x.html + '</div>' : '') + (x.text != null && x.text !== '' ? '<div class="tw-t">' + esc(x.text) + '</div>' : '') + '</div>';
   }
+  // huge items (a word a student reads from a step away): as big as the panel allows, at most two lines.
+  function fitHuge() {
+    document.querySelectorAll('#tw .tw-item.huge .tw-t').forEach(function (el) {
+      var fs = 200; el.style.fontSize = fs + 'px';
+      while (fs > 40 && (el.scrollWidth > el.clientWidth + 1 || el.scrollHeight > fs * 2.3)) { fs -= 6; el.style.fontSize = fs + 'px'; }
+    });
+  }
+  window.addEventListener('resize', function () { if (isTeacher) fitHuge(); });
   function renderTeacher(s) {
     var root = document.getElementById('tw');
     if (!s) {
@@ -161,7 +171,7 @@
     // Redraw only what changed, so a click on a button is never lost to a timer tick.
     if (!root.querySelector('#tw-a')) root.innerHTML = '<div id="tw-a"></div><div id="tw-b"></div>';
     var a = root.querySelector('#tw-a'), bEl = root.querySelector('#tw-b');
-    if (a._h !== h) { a.innerHTML = h; a._h = h; }
+    if (a._h !== h) { a.innerHTML = h; a._h = h; fitHuge(); }
     if (bEl._h !== k) {
       bEl.innerHTML = k; bEl._h = k;
       bEl.querySelectorAll('[data-k]').forEach(function (b) {

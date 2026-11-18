@@ -619,6 +619,7 @@ body.tw-body-page { overflow: auto; background: var(--paper); height: auto; min-
 .tw-item .tw-l { font-size: 15px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; opacity: .7; }
 .tw-item .tw-t { font-size: 24px; font-weight: 700; line-height: 1.25; }
 .tw-item.big .tw-t { font-family: var(--display); font-size: 52px; line-height: 1.05; }
+.tw-item.huge .tw-t { line-height: 1.05; overflow: hidden; overflow-wrap: normal; word-break: normal; padding: 6px 0 10px; }
 .tw-item.hot .tw-t { color: var(--lime); }
 .tw-info .tw-item.hot .tw-t { color: #c4127f; }
 .tw-pic { width: 260px; height: 260px; background: #fff; padding: 8px; }
@@ -1398,3 +1399,34 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 
 /* Vanishing Sentence: stressed words in the first reading */
 .vsw.st { display: inline-block; font-size: 1.18em; color: #c4127f; border-bottom: .09em solid currentColor; line-height: 1; }
+/* Elias (reuses the Hot Seat layout: .hseat.elias) */
+.elias .hcard { box-shadow: 14px 14px 0 var(--blue); }
+.elias .el-top { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.elias .el-turn, .elias .el-team { font-family: var(--display); font-size: 48px; line-height: 1.05; padding: 6px 20px; border: 5px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); }
+.elias .el-team { font-size: 40px; box-shadow: 4px 4px 0 var(--ink); }
+.elias .el-last { font-family: var(--display); font-size: 56px; line-height: 1.05; padding: 8px 22px; background: var(--yellow); border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); animation: wu-pulse .8s ease-in-out infinite; }
+.elias .wrow { height: 360px; }
+.elias .el-list { display: flex; flex-wrap: wrap; gap: 14px 16px; max-height: 470px; overflow: hidden; align-content: flex-start; }
+.elias .el-w { display: flex; align-items: center; gap: 12px; font-family: var(--display); font-size: 44px; line-height: 1.1; padding: 6px 18px; border: 4px solid var(--ink); cursor: pointer; }
+.elias .el-w.ok { background: #d8ffb0; }
+.elias .el-w.no { background: #ffd2c2; text-decoration: line-through; text-decoration-thickness: 5px; text-decoration-color: #c4122a; }
+.elias .el-w .m { text-decoration: none; display: inline-block; }
+.elias .el-steal { display: flex; align-items: center; gap: 18px; font-family: var(--display); font-size: 44px; }
+.elias .el-win { padding: 14px 30px; border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); }
+.elias .el-tally { display: flex; gap: 16px; }
+.elias .el-tally > div { display: flex; flex-direction: column; align-items: center; padding: 6px 18px; border: 4px solid var(--ink); font-weight: 800; font-size: 28px; }
+.elias .el-tally .ok { background: #d8ffb0; } .elias .el-tally .no { background: #ffd2c2; }
+.elias .el-tally b { font-family: var(--display); font-size: 72px; line-height: 1; }
+.elias .el-score { width: 100%; display: flex; flex-direction: column; gap: 12px; }
+.elias .el-goal { font-weight: 800; font-size: 34px; text-align: center; }
+.elias .el-row { position: relative; display: flex; align-items: center; justify-content: space-between; height: 76px; padding: 0 18px; background: #fff; border: 4px solid var(--ink); overflow: hidden; }
+.elias .el-row.on { box-shadow: 8px 8px 0 var(--ink); transform: translate(-4px, -4px); }
+.elias .el-bar { position: absolute; left: 0; top: 0; bottom: 0; transition: width .5s; }
+.elias .el-tn, .elias .el-row b { position: relative; font-family: var(--display); font-size: 36px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.elias .el-row b { font-size: 52px; }
+.calm .elias .el-last { animation: none; }
+.elias .el-tip { font-size: 36px; font-weight: 800; padding: 6px 18px; background: var(--yellow); border: 4px solid var(--ink); }
+.elias .el-hid { flex-direction: column; gap: 22px; }
+.elias .el-lap { width: 200px; height: 170px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--lime); border: 6px solid var(--ink); box-shadow: 10px 10px 0 var(--blue); }
+.elias .el-lap svg { width: 140px; height: 124px; }
+.elias .el-hidt { font-family: var(--display); font-size: 72px; line-height: 1.05; letter-spacing: -0.03em; text-align: center; }
