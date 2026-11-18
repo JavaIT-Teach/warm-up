@@ -10,7 +10,7 @@
   function esc(s) { return WU.esc(s); }
 
   P.games.partners = (function () {
-    var body, ctx, st, E, deck = WU.kit.deck(), bar = null, barEl = null;
+    var body, ctx, st, E, deck = WU.kit.deck(), played = [], bar = null, barEl = null;
     function words() { return WU.list('partners', 'words', ctx.level).filter(function (w) { return w.word && E.phrases(w).length; }); }
     function gapText(w, p) { return E.tokens(p.text, w.word).filter(function (t) { return t.gap; }).map(function (t) { return t.t; }).join(' '); }
     // How many phrases the USE IT task asks for: the first number in its text (1-3), else 2.
@@ -18,7 +18,8 @@
 
     function next() {
       var all = words(); if (!all.length) { ctx.empty(); return; }
-      var w = deck(all);
+      // This week's words (from the units just taught) come first.
+      var w = E.pickWord(all, played, st && st.w ? st.w.id : null); played.push(w.id);
       st = { w: w, list: E.phrases(w), found: [], phase: 'board', letters: !!ctx.S.letters, typed: '', msg: null, misses: 0, answer: '', used: null };
       render(true);
       // One timer for the whole word (Screen text & timing: seconds). Time up = see what you missed.
@@ -63,7 +64,7 @@
           : [{ label: 'Skip', alt: true, small: true, on: next }, { label: 'Check my answer', on: checkUse }]);
         return;
       }
-      h += (st.phase === 'board' && +ctx.S.seconds > 0 ? '<div class="pbarwrap"></div>' : '') + '<div class="wpcorep">' + esc(w.word) + '</div>';
+      h += (st.phase === 'board' && +ctx.S.seconds > 0 ? '<div class="pbarwrap"></div>' : '') + (w.unit ? '<div class="wpunitp">' + esc(w.unit) + '</div>' : '') + '<div class="wpcorep">' + esc(w.word) + '</div>';
       var tiles = '<div class="prow"><span class="pcount" style="margin-left:0">' + esc(S.found) + ' <b>' + st.found.length + ' / ' + st.list.length + '</b></span></div>' +
         '<div class="wptiles">' + st.list.map(tile).join('') + '</div>';
       if (st.phase === 'board') {

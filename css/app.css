@@ -1309,3 +1309,5 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .wpg-game .wptrap { flex: 0 1 auto; overflow: hidden; }
 .wpg-game .wptrap s { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .wpg-game .wpclock .wut-l { font-size: 28px !important; }
+.wpg-game .wpcore { flex-direction: column; }
+.wpg-game .wpunit { position: absolute; left: -10px; top: -30px; padding: 2px 14px; background: var(--yellow); color: var(--ink); border: 4px solid var(--ink); font-family: var(--display); font-size: 26px; transform: rotate(-2deg); white-space: nowrap; max-width: 760px; overflow: hidden; text-overflow: ellipsis; }
