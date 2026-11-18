@@ -20,7 +20,7 @@
       { k: 'ready', label: 'Before the first word', type: 'text', max: 60 },
       { k: 'rule', label: 'Rule line', type: 'text', max: 110 }, { k: 'ruleShow', label: 'Rule line', type: 'bool' },
       { k: 'letters', label: 'First letters in the gaps from the start (H shows them anyway)', type: 'bool', on: 'On', off: 'Off' },
-      { k: 'seconds', label: 'Time bar for each answer (seconds, 0 = none)', type: 'num', min: 0, max: 90 },
+      { k: 'seconds', label: 'Time for the whole word (seconds, 0 = no timer)', type: 'num', min: 0, max: 600 },
       { k: 'strikes', label: 'Strikes before the board wins (0 = no limit)', type: 'num', min: 0, max: 9 },
       { k: 'turn', label: 'Teams on: whose turn ({team})', type: 'text', max: 40 },
       { k: 'classTurn', label: 'Teams off: the class answers', type: 'text', max: 40 },
@@ -29,10 +29,9 @@
       { k: 'hit', label: 'A tile flips', type: 'text', max: 40 },
       { k: 'bonus', label: 'B: good, but not on the board', type: 'text', max: 60 },
       { k: 'wrong', label: 'X: wrong', type: 'text', max: 40 },
-      { k: 'time', label: 'Time is up', type: 'text', max: 24 },
       { type: 'head', label: 'End of the board' },
       { k: 'allFound', label: 'Every tile found', type: 'text', max: 30 },
-      { k: 'boardWins', label: 'Out of strikes / Space', type: 'text', max: 60 },
+      { k: 'boardWins', label: 'Time up / out of strikes / Space', type: 'text', max: 70 },
       { k: 'trapLabel', label: 'Label in front of the trap', type: 'text', max: 10 },
       { k: 'trapNote', label: 'Line next to the trap', type: 'text', max: 30 },
       { type: 'head', label: 'USE IT!' },
@@ -43,13 +42,19 @@
     ]
   });
   var pf = [];
-  for (var i = 1; i <= MAXP; i++) pf.push({ k: 'p' + i, label: 'Partner phrase ' + i + (i === 1 ? ' (gaps: [brackets], optional)' : ''), type: 'text', max: 40 });
+  for (var i = 1; i <= MAXP; i++) pf.push({ k: 'p' + i, label: 'Partner phrase ' + i + (i === 1 ? ' (gaps: [brackets], optional)' : ''), type: 'text', max: 40 },
+    { k: 'p' + i + 'pic', label: 'Picture for phrase ' + i + ' (optional)', type: 'pic' });
   WU.registerList('partners', 'words', {
     gameTitle: 'Word Partners', label: 'Words and partners',
     defaults: function (l) { return WU.content.partners[l].words; },
     norm: function (r) {
       var o = { word: r.word || '', question: r.question || '', trap: r.trap || '' };
-      for (var i = 1; i <= MAXP; i++) o['p' + i] = r['p' + i] != null ? r['p' + i] : ((r.p || [])[i - 1] || '');
+      // A partner is "phrase" or ["phrase", "picture id"].
+      for (var i = 1; i <= MAXP; i++) {
+        var x = (r.p || [])[i - 1], arr = Array.isArray(x);
+        o['p' + i] = r['p' + i] != null ? r['p' + i] : ((arr ? x[0] : x) || '');
+        o['p' + i + 'pic'] = r['p' + i + 'pic'] != null ? r['p' + i + 'pic'] : ((arr ? x[1] : '') || '');
+      }
       return o;
     },
     title: function (it) { return it.word || '(empty)'; },
@@ -60,10 +65,10 @@
     blank: function () { return { word: 'idea', p1: 'a good idea', p2: 'have an idea', p3: 'a brilliant idea', p4: 'no idea', p5: 'come up with an idea', p6: 'share an idea', p7: '', p8: '', question: 'What is the best idea you have had this year?', trap: 'make an idea' }; }
   });
 
-  var sh, box, st, offContent = null, bar = gram.bar(), deck = kit.deck();
+  var sh, box, st, clock = null, offContent = null, bar = gram.bar(), deck = kit.deck();
 
   function words() { return WU.list('partners', 'words', WU.state.level).filter(function (w) { return w.word && phrases(w).length; }); }
-  function phrases(w) { var a = []; for (var i = 1; i <= MAXP; i++) if (w['p' + i] && String(w['p' + i]).trim()) a.push({ k: 'p' + i, text: String(w['p' + i]).trim() }); return a; }
+  function phrases(w) { var a = []; for (var i = 1; i <= MAXP; i++) if (w['p' + i] && String(w['p' + i]).trim()) a.push({ k: 'p' + i, text: String(w['p' + i]).trim(), pic: w['p' + i + 'pic'] || '' }); return a; }
   function word() { return words().filter(function (x) { return x.id === st.id; })[0] || null; }
   function ek(it, f) { return WU.editAttr('partners', 'words', it.id, f); }
   function teamsOn() { return WU.state.teams > 0; }
@@ -114,7 +119,6 @@
         : '<div class="wpturn"' + scr.ea('classTurn') + '>' + WU.esc(S.classTurn) + '</div>';
     }
     h += '</div>';
-    if (ph === 'play' && +S.seconds > 0) h += bar.html();
     if (ph === 'use' && +S.useSeconds > 0) h += bar.html();
 
     if (ph === 'ready' || !it) {
@@ -125,14 +129,14 @@
       if (ph === 'use') {
         h += '<div class="wpcore wpq"><div class="wpqtop"><span class="wpuse"' + scr.ea('useLabel') + '>' + WU.esc(S.useLabel) + '</span>' +
           gram.who(S.useWho, scr.ea('useWho'), st.student) + '</div><div class="wpqt"' + ek(it, 'question') + '>' + WU.esc(it.question) + '</div></div>';
-      } else h += '<div class="wpcore"><div class="wpword"' + ek(it, 'word') + '>' + WU.esc(it.word) + '</div></div>';
+      } else h += '<div class="wpcore"><div class="wpword"' + ek(it, 'word') + '>' + WU.esc(it.word) + '</div></div>' + (clock ? '<div class="wpclock"></div>' : '');
       // The tiles.
       var rows = Math.ceil(list.length / 2), th = Math.min(120, Math.floor((470 - (rows - 1) * 14) / rows));
       h += '<div class="wptiles" style="grid-template-rows:repeat(' + rows + ',' + th + 'px)">' + list.map(function (p, idx) {
         var got = st.found.indexOf(p.k) >= 0, open = got || ph !== 'play', cls = got ? ' got' : open ? ' missed' : '';
         if (got && st.last === p.k && ph === 'play') cls += ' pop';
         return '<div class="wptile' + cls + '" data-i="' + idx + '"><span class="wpn" data-ctrl>' + (idx + 1) + '</span>' +
-          '<span class="wpt"' + ek(it, p.k) + '>' + tileHTML(p, open, S.letters || st.letters) + '</span>' +
+          (p.pic ? '<span class="wppic"' + ek(it, p.k + 'pic') + '>' + WU.pic(p.pic) + '</span>' : '') + '<span class="wpt"' + ek(it, p.k) + '>' + tileHTML(p, open, S.letters || st.letters) + '</span>' +
           (got && st.who[p.k] != null && teamsOn() ? '<span class="wpby" data-auto style="background:' + teamColor(st.who[p.k]) + '"></span>' : '') + '</div>';
       }).join('') + '</div>';
       // The strip at the bottom.
@@ -158,6 +162,7 @@
     box.querySelectorAll('.wpt').forEach(function (el) { kit.fit(el, Math.min(60, th0()), 26); });
     // Touch: tap a hidden tile to flip it.
     box.querySelectorAll('.wptile').forEach(function (el) { el.onclick = function (e) { if (!WU.editing) { e.stopPropagation(); flip(+el.getAttribute('data-i')); } }; });
+    var ck = box.querySelector('.wpclock'); if (ck && clock) ck.appendChild(clock.el);
     bar.redraw(box);
     renderHints();
   }
@@ -165,7 +170,7 @@
 
   function renderHints() {
     var ph = st.phase;
-    var hs = ph === 'play' ? [['1-8', 'flip'], ['B', 'bonus'], ['X', 'wrong'], ['H', 'letters'], ['U', 'undo'], ['SPACE', 'show all'], ['Esc', 'home']]
+    var hs = ph === 'play' ? [['1-8', 'flip'], ['B', 'bonus'], ['X', 'wrong'], ['H', 'letters'], ['U', 'undo'], ['ENTER', 'pause'], ['SPACE', 'show all'], ['Esc', 'home']]
       : ph === 'done' ? [['SPACE', 'use it'], ['N', 'other word'], ['Esc', 'home']]
       : ph === 'use' ? [['SPACE', 'next word'], ['P', 'other student'], ['Esc', 'home']]
       : [['SPACE', 'first word'], ['Esc', 'home']];
@@ -173,17 +178,20 @@
   }
 
   /* ---------- flow ---------- */
-  function startTurn() {
-    var S = scr.get(); bar.stop();
-    if (st.phase !== 'play') return;
-    bar.start(box, Math.max(0, Math.min(90, +S.seconds || 0)), function () { if (st && st.phase === 'play') { strike('time'); } });
+  // One timer for the whole word: find as many partners as you can, then see what you missed.
+  function stopClock() { if (clock) { clock.destroy(); clock = null; } }
+  function startClock() {
+    stopClock();
+    var sec = Math.max(0, Math.min(600, +scr.get().seconds || 0)); if (!sec) return;
+    clock = WU.Timer({ seconds: sec, size: 200, onDone: function () { if (st && st.phase === 'play') finish(); } });
   }
+  function startTurn() {}
   function newWord() {
     var all = words(); if (!all.length) return;
     var w = deck(all), tries = 0;
     while (all.length > 1 && w.id === st.id && tries++ < 5) w = deck(all);
     st.id = w.id; st.phase = 'play'; st.found = []; st.who = {}; st.strikes = 0; st.flash = null; st.last = null; st.letters = false; st.history = [];
-    WU.sound.pop(); render(); startTurn();
+    startClock(); WU.sound.pop(); render(); if (clock) clock.start();
   }
   function passTurn() { if (teamsOn()) st.turn = (st.turn + 1) % WU.state.teams; }
   function flip(idx) {
@@ -215,7 +223,7 @@
     render(); startTurn();
   }
   function finish() {
-    bar.stop(); st.phase = 'done'; st.flash = null; st.peek = false;
+    bar.stop(); if (clock && clock.isRunning()) clock.toggle(); st.phase = 'done'; st.flash = null; st.peek = false;
     var it = word(); if (it && st.found.length === phrases(it).length) WU.sound.boom(); else WU.sound.clack();
     render();
   }
@@ -241,10 +249,15 @@
     else if (k === 'H') { if (ph === 'play') { st.letters = !st.letters; WU.sound.clack(); render(); } }
     else if (k === 'U') undo();
     else if (k === 'N') { bar.stop(); newWord(); }
+    else if (k === 'ENTER') { if (ph === 'play' && clock) clock.toggle(); }
     else if (k === 'P') otherStudent();
     else if (k === 'A') peek();
     else if (k === 'Esc') WU.go('home');
   }
+
+  // For the phone version (js/phone/games-partners.js).
+  WU.engines = WU.engines || {};
+  WU.engines.partners = { tokens: tokens, phrases: phrases, plain: plain };
 
   WU.views.partners = {
     title: 'Word Partners',
@@ -265,7 +278,7 @@
     help: function () {
       return [['1 - 8', 'they said this phrase: flip its tile (a point)'], ['B', 'a good phrase that is not on the board (a point)'], ['X', 'wrong (a strike)'],
         ['H', 'first letters in the gaps'], ['U', 'undo the last tile'], ['A', 'peek at the answers (small, 2 seconds)'],
-        ['Space', 'show the rest / USE IT / next word'], ['N', 'other word'], ['P', 'other student (USE IT)']];
+        ['Enter', 'pause / restart the timer'], ['Space', 'show the rest / USE IT / next word'], ['N', 'other word'], ['P', 'other student (USE IT)']];
     },
     mount: function (el) {
       sh = gram.shell(el, 'wpg-game', 'Word Partners', 'partners-sb'); box = sh.box;
@@ -274,11 +287,12 @@
       if (document.fonts && document.fonts.ready) document.fonts.ready.then(function () { if (st) render(); });
       offContent = WU.on('content', refresh);
     },
-    unmount: function () { bar.stop(); clearTimeout(peekT); if (offContent) offContent(); if (sh) sh.destroy(); sh = box = st = null; },
+    unmount: function () { bar.stop(); stopClock(); clearTimeout(peekT); if (offContent) offContent(); if (sh) sh.destroy(); sh = box = st = null; },
     onKey: function (e) {
       var m = /^(Digit|Numpad)([1-8])$/.exec(e.code || '');
       if (m && !e.shiftKey) { flip(+m[2] - 1); return true; }
       if (e.code === 'Space') { e.preventDefault(); keyAction('SPACE'); return true; }
+      if (e.key === 'Enter') { keyAction('ENTER'); return true; }
       var map = { b: 'B', x: 'X', h: 'H', u: 'U', n: 'N', p: 'P', a: 'A' }, k = map[e.key.toLowerCase()];
       if (k) { keyAction(k); return true; }
     }
