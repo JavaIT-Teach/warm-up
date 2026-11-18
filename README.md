@@ -17,7 +17,8 @@ Speaking games for the first 5–10 minutes of an English lesson. One screen at 
 - The first time, the student picks their **level** (they can change it on the home screen). Games for other levels are grey.
 - Nobody is there to judge, so every game checks the answer (typed forms, multiple choice, the whole sentence) or reveals it, and keeps a score.
 - Same content as the board: your edits and the weekly games appear on phones too. Nothing to install or update.
-  Students only need to **pull down to refresh** if the page was left open since an earlier day.
+  **New version bar:** when the site changes (new games, weekly words, your edits), an open phone shows "New version! Refresh" within about 5 minutes
+  (also as soon as the student comes back to the tab). It never reloads by itself, so nobody loses a game; × hides it until the next change.
 - Direct link: `phone.html`. On a phone, `index.html?board` opens the board version.
 
 ## Before class
