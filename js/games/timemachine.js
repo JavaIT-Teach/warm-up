@@ -162,6 +162,8 @@
   // A task (write an email) never gets a length of time; an activity (listen to music) never gets a deadline.
   function fits(v, m) { return m.kind === 'deadline' ? v.kind === 'task' : m.kind === 'duration' ? v.kind !== 'task' : true; }
   function silly() { return !!WU.store.get('tm-silly', false); }
+  // Subjects, verbs and time phrases rotate per group (kit.deck); the tense and + / - / ? stay random.
+  var dm = kit.deck(), dv = kit.deck(), ds = kit.deck();
   function L(n) { return WU.list('timemachine', n, 0).filter(function (x) { return x.text || x.base; }); }
   function pickRound(fid) {
     var f = family(fid); if (!f) return null;
@@ -177,11 +179,11 @@
     var ts = f.tenses.filter(function (x) { return mk.some(function (m) { return m.tense === x && ok(m); }); });
     if (!ts.length) return null;
     // Pick the tense first (so a tense with many time phrases does not come up more often).
-    var t = WU.pick(ts), m = WU.pick(mk.filter(function (x) { return x.tense === t && ok(x); }));
-    var v = WU.pick(vp.filter(function (x) { return fits(x, m); })), sign = WU.pick(signs());
+    var t = WU.pick(ts), m = dm(mk.filter(function (x) { return x.tense === t && ok(x); }));
+    var v = dv(vp.filter(function (x) { return fits(x, m); })), sign = WU.pick(signs());
     // "Am I...? Have I...?" sound odd: questions with I only in the present simple (unless switched off).
     var sp2 = sign === 'q' && t !== 'ps' && S.noIQ ? sp.filter(function (x) { return x.p !== '1s'; }) : sp;
-    return { sid: WU.pick(sp2.length ? sp2 : sp).id, sl: sl, vid: v.id, vl: vl, mid: m.id, sign: sign };
+    return { sid: ds(sp2.length ? sp2 : sp).id, sl: sl, vid: v.id, vl: vl, mid: m.id, sign: sign };
   }
   function round(rr) {
     rr = rr || (st && st.r); if (!rr) return null;

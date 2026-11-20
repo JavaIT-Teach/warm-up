@@ -46,6 +46,7 @@
 
   var root, box, st, sb = null, clock = null, offContent = null, timers = [];
 
+  var deck = kit.deck();
   function pool() { return WU.list('dice', 'pictures', WU.state.level).filter(function (x) { return x.pic || x.text; }); }
   function nDice() { return Math.max(1, Math.min(6, +scr.get().dice || 4)); }
   function face(id) { return pool().filter(function (x) { return x.id === id; })[0] || null; }
@@ -105,8 +106,8 @@
     if (st.phase === 'rolling') return;
     clearT(); if (clock) { clock.destroy(); clock = null; }
     WU.sound.unlock();
-    var P = WU.shuffle(pool()), n = nDice(), S = scr.get();
-    st.final = []; for (var i = 0; i < n; i++) st.final.push(P.length ? P[i % P.length].id : null);
+    var P = WU.shuffle(pool()), n = nDice(), S = scr.get(), D = kit.drawN(deck, P, n);
+    st.final = []; for (var i = 0; i < n; i++) st.final.push(D.length ? D[i % D.length].id : null);
     st.rolling = st.final.map(function () { return true; });
     st.faces = st.final.slice(); st.phase = 'rolling'; st.n = 0; st.focus = -1; st.tick = 0;
     st.ruleAlt = !!(S.ruleAlt && Math.random() < 0.5);
