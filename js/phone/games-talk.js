@@ -9,6 +9,7 @@
   /* ======================= STORY DICE ======================= */
   P.games.dice = (function () {
     var body, ctx, st, bar, barEl, timer = null;
+    var deck = WU.kit.deck();
     function pics() { return WU.list('dice', 'pictures', ctx.level).filter(function (p) { return p.pic; }); }
     function n() { return Math.max(1, Math.min(6, +ctx.S.dice || 4)); }
     // A picture counts when its word (or the start of it: "swim" in "swam" does not, "dog" in "dogs" does) is in the story.
@@ -19,7 +20,7 @@
     }
     function roll() {
       var all = pics(); if (all.length < n()) { ctx.empty(); return; }
-      st = { dice: WU.shuffle(all).slice(0, n()), rolling: !WU.isCalm(), typed: '', checked: false, alt: !!(ctx.S.ruleAlt && Math.random() < 0.5), open: {} };
+      st = { dice: WU.kit.drawN(deck, all, n()), rolling: !WU.isCalm(), typed: '', checked: false, alt: !!(ctx.S.ruleAlt && Math.random() < 0.5), open: {} };
       render();
       if (st.rolling) {
         var k = 0; clearInterval(timer);
@@ -73,10 +74,11 @@
       return r;
     }
     function secs() { return Math.max(10, Math.min(300, +ctx.S.talkSecs || 60)); }
+    var decks = {};
     function spin() {
       var rs = reels(); if (!rs[0].list.length) { ctx.empty(); return; }
       bar.stop();
-      st = { phase: 'spin', picks: rs.map(function (r) { return WU.pick(r.list); }), rs: rs }; render();
+      st = { phase: 'spin', picks: rs.map(function (r) { return (decks[r.k] = decks[r.k] || WU.kit.deck())(r.list); }), rs: rs }; render();
       if (WU.isCalm()) { st.phase = 'ready'; render(); return; }
       var k = 0; clearInterval(spinT);
       spinT = setInterval(function () {

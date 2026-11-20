@@ -56,6 +56,7 @@
 
   var sh, box, st, offContent = null, bar = gram.bar();
 
+  var deck = kit.deck();
   function things() { return WU.list('flash', 'things', WU.state.level).filter(function (x) { return x.pic || x.word; }); }
   function word(it) { return it.word || WU.picName(it.pic); }
   function ex(it) { return { w: word(it), art: it.art, pl: it.pl }; }
@@ -66,9 +67,10 @@
   function ek(it, f) { return ' data-edit="flash:things:' + it.id + ':' + f + '"'; }
 
   function newRoom() {
-    var S = scr.get(), all = WU.shuffle(things()), k = Math.max(2, Math.min(8, +S.items || 5, all.length)), most = Math.max(1, Math.min(5, +S.most || 4));
-    st.cells = all.slice(0, k).map(function (it) { return { it: it, n: 1 + WU.rand(most), shown: false }; });
-    st.spare = all.slice(k);
+    var S = scr.get(), all = things(), k = Math.max(2, Math.min(8, +S.items || 5, all.length)), most = Math.max(1, Math.min(5, +S.most || 4));
+    var room = kit.drawN(deck, all, k);
+    st.cells = room.map(function (it) { return { it: it, n: 1 + WU.rand(most), shown: false }; });
+    st.spare = WU.shuffle(all.filter(function (x) { return room.indexOf(x) < 0; }));
     st.quiz = []; st.qi = -1; st.qAns = false;
   }
   function makeQuiz() {

@@ -10,6 +10,7 @@
   /* ======================= WORD HUNT ======================= */
   P.games.hunt = (function () {
     var body, ctx, st;
+    var huntDeck = WU.kit.deck(), setDeck = WU.kit.deck();
     function sets() { return WU.list('hunt', 'sets', ctx.level).filter(function (s) { return wordsOf(s.id).length; }); }
     function wordsOf(sid) { return WU.list('hunt', 'words', ctx.level).filter(function (w) { return w.set === sid && letters(w.word).length >= 2; }); }
     // Phone width: never more than 12 letters a row.
@@ -19,8 +20,8 @@
       if (ctx.S.diag) dirs.push([1, 1]);
       for (i = 0; i < n * n; i++) grid.push('');
       var max = Math.max(3, Math.min(10, Math.round(+ctx.S.max || 8)));
-      var pool = WU.shuffle(wordsOf(st.set).filter(function (w) { return letters(w.word).length <= n; }));
-      pool.slice(0, max).sort(function (a, b) { return letters(b.word).length - letters(a.word).length; }).forEach(function (w) {
+      var pool = wordsOf(st.set).filter(function (w) { return letters(w.word).length <= n; });
+      WU.kit.drawN(huntDeck, pool, max).sort(function (a, b) { return letters(b.word).length - letters(a.word).length; }).forEach(function (w) {
         var L = letters(w.word);
         for (var t = 0; t < 400; t++) {
           var d = dirs[WU.rand(dirs.length)], r0 = WU.rand(n - d[0] * (L.length - 1)), c0 = WU.rand(n - d[1] * (L.length - 1)), ok = true, cells = [];
@@ -43,7 +44,7 @@
     function next(nextSet) {
       var ss = sets(); if (!ss.length) { ctx.empty(); return false; }
       var i = ss.map(function (s) { return s.id; }).indexOf(st.set);
-      if (nextSet || i < 0) st.set = ss[(i + 1) % ss.length].id;
+      if (nextSet || i < 0) { var others = ss.filter(function (s) { return s.id !== st.set; }); st.set = setDeck(others.length ? others : ss).id; }
       build(); render(); return true;
     }
     function foundN() { return st.placed.filter(function (p) { return st.found[p.w.id]; }).length; }
@@ -218,8 +219,9 @@
     }
     function picFor(letter) {
       var c = pics().filter(function (p) { var w = p.text.toLowerCase().trim(); return (!letter || w.charAt(0) === letter) && st.used.indexOf(w) < 0; });
-      return c.length ? WU.pick(c) : null;
+      return c.length ? picDeck(c) : null;
     }
+    var picDeck = WU.kit.deck();
     function start() {
       st = { used: [], chain: [], mine: 0, over: false, msg: '' };
       if (mode() === 'pictures') { var p = picFor(null); if (!p) { ctx.empty(); return; } st.pic = p; st.letter = p.text.toLowerCase().charAt(0); }

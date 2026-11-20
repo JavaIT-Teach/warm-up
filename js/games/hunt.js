@@ -66,6 +66,7 @@
 
   function letters(w) { return String(w || '').toUpperCase().replace(/[^A-Z]/g, ''); }
   function sets() { return WU.list('hunt', 'sets', WU.state.level).filter(function (s) { return wordsOf(s.id).length; }); }
+  var deck = kit.deck(), setDeck = kit.deck();
   function wordsOf(sid) { return WU.list('hunt', 'words', WU.state.level).filter(function (w) { return w.set === sid && letters(w.word).length >= 2; }); }
   function curSet() { return WU.list('hunt', 'sets', WU.state.level).filter(function (s) { return s.id === st.set; })[0] || null; }
   function wordById(id) { return WU.list('hunt', 'words', WU.state.level).filter(function (w) { return w.id === id; })[0] || null; }
@@ -79,8 +80,8 @@
     var n = size(), dirs = [[0, 1], [1, 0]], grid = [], i, placed = [];
     if (S().diag) dirs.push([1, 1]);
     for (i = 0; i < n * n; i++) grid.push('');
-    var pool = WU.shuffle(wordsOf(st.set).filter(function (w) { return letters(w.word).length <= n; }));
-    var chosen = pool.slice(0, maxWords()).sort(function (a, b) { return letters(b.word).length - letters(a.word).length; });
+    var pool = wordsOf(st.set).filter(function (w) { return letters(w.word).length <= n; });
+    var chosen = kit.drawN(deck, pool, maxWords()).sort(function (a, b) { return letters(b.word).length - letters(a.word).length; });
     chosen.forEach(function (w) {
       var L = letters(w.word);
       for (var t = 0; t < 400; t++) {
@@ -108,7 +109,7 @@
     var ss = sets();
     if (!ss.length) { st.set = null; st.placed = []; st.grid = []; st.n = size(); return; }
     var i = ss.map(function (s) { return s.id; }).indexOf(st.set);
-    if (nextSet || i < 0) st.set = ss[(i + 1) % ss.length].id;
+    if (nextSet || i < 0) { var others = ss.filter(function (s) { return s.id !== st.set; }); st.set = setDeck(others.length ? others : ss).id; }
     build();
   }
   function placedWords() { return st.placed.map(function (p) { return { p: p, w: wordById(p.id) }; }).filter(function (x) { return x.w; }); }

@@ -137,6 +137,7 @@
   /* ======================= FLASH ROOM ======================= */
   P.games.flash = (function () {
     var body, ctx, st, bar, barEl;
+    var flashDeck = WU.kit.deck();
     function things() { return WU.list('flash', 'things', ctx.level).filter(function (x) { return x.pic; }); }
     function ex(it) { return { w: it.word || WU.picName(it.pic), art: it.art, pl: it.pl }; }
     function numWord(n) { var w = String(ctx.S.nums || '').split(',').map(function (x) { return x.trim(); }); return w[n - 2] || String(n); }
@@ -144,10 +145,11 @@
     function sentence(it, n) { var S = ctx.S; return String(n === 1 ? S.one : S.many).replace('___', phrase(it, n)); }
     function canMany(it) { return !!it.art && it.art !== 'the'; }
     function newRoom() {
-      var S = ctx.S, all = WU.shuffle(things());
+      var S = ctx.S, all = things();
       if (all.length < 3) { ctx.empty(); return; }
       var k = Math.max(2, Math.min(6, +S.items || 4, all.length - 1)), most = Math.max(1, Math.min(5, +S.most || 4));
-      var cells = all.slice(0, k).map(function (it) { return { it: it, n: canMany(it) ? 1 + WU.rand(most) : 1 }; }), spare = all.slice(k);
+      var room = WU.kit.drawN(flashDeck, all, k);
+      var cells = room.map(function (it) { return { it: it, n: canMany(it) ? 1 + WU.rand(most) : 1 }; }), spare = WU.shuffle(all.filter(function (x) { return room.indexOf(x) < 0; }));
       // Questions: things that were there and things that were not, one at a time.
       var nq = Math.max(3, Math.min(6, +S.quiz || 3)), have = WU.shuffle(cells.slice()), not = WU.shuffle(spare), q = [];
       for (var i = 0; i < nq; i++) {

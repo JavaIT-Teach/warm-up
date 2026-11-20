@@ -62,6 +62,7 @@
   function mode() { return st.topic ? 'topic' : S().mode || 'any'; }
   function secs() { return Math.max(3, Math.min(60, +S().secs || 10)); }
   function minLen() { return mode() === 'long' ? Math.max(0, +S().minLen || 0) : 0; }
+  var picDeck = kit.deck(), topicDeck = kit.deck();
   function pics() { return WU.list('chain', 'pictures', WU.state.level).filter(function (x) { return x.text; }); }
   function picById(id) { return pics().filter(function (x) { return x.id === id; })[0] || null; }
   function topicItem() { return st.topic ? WU.list('chain', 'topics', WU.state.level).filter(function (x) { return x.id === st.topic; })[0] || null : null; }
@@ -78,7 +79,7 @@
     // A picture that starts with the letter and was not used yet; otherwise any unused one (the letter changes).
     var all = pics(), fresh = all.filter(function (x) { return !st.used[norm(x.text)]; });
     var fit = fresh.filter(function (x) { return !st.letter || norm(x.text).charAt(0) === st.letter; });
-    var it = fit.length ? WU.pick(fit) : fresh.length ? WU.pick(fresh) : WU.pick(all);
+    var it = fit.length ? picDeck(fit) : fresh.length ? picDeck(fresh) : all.length ? picDeck(all) : null;
     st.pic = it ? it.id : null;
     if (it && st.letter && norm(it.text).charAt(0) !== st.letter) st.letter = norm(it.text).charAt(0);
   }
@@ -204,7 +205,7 @@
     if (st.phase !== 'ready' || mode() === 'pictures' && !st.topic) return;
     var list = WU.list('chain', 'topics', WU.state.level); if (!list.length) return;
     var others = list.filter(function (x) { return x.id !== st.topic; });
-    st.topic = WU.pick(others.length ? others : list).id; WU.sound.clack(); render();
+    st.topic = topicDeck(others.length ? others : list).id; WU.sound.clack(); render();
   }
   function refresh() { if (!st) return; if (st.phase === 'ready' && !st.chain.length) st.demo = !!S().demoShow; render(); }
   function toggleScores() {

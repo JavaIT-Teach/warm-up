@@ -207,6 +207,15 @@
     };
   };
 
+  // n different items from a deck (dice faces, the things in a room, the words in a puzzle). Fewer if the list is shorter.
+  kit.drawN = function (deck, list, n) {
+    var out = [], ids = {}, tries = 0;
+    n = Math.min(n, list.length);
+    while (out.length < n && tries++ < n * 6) { var it = deck(list); if (it && !ids[it.id]) { ids[it.id] = 1; out.push(it); } }
+    if (out.length < n) WU.shuffle(list.filter(function (x) { return !ids[x.id]; })).slice(0, n - out.length).forEach(function (x) { out.push(x); });
+    return out;
+  };
+
   // The classroom seen from above (moving games): the board at the top, desks in a U, the open middle in between.
   // board = editable "BOARD" label (text + data-edit attribute), inner = what stands in the middle (zones, a line...).
   kit.roomMap = function (board, boardAttr, inner, cls) {
