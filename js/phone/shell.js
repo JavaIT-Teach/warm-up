@@ -108,43 +108,106 @@
     if (typeof g.unit === 'string') return g.unit;
     return g.unit[WU.state.level] || '';
   }
-  function home() {
-    stopGame(); curId = null;
-    if (!levelChosen()) { pickLevel(); return; }
-    var L = WU.LEVELS[WU.state.level];
-    var order = P.order(), ids = order.slice();
-    // New games first, then the rest; games for other levels last.
+  /* Search, sort and skill filter on the home list. The sort and skill stay on this phone (WU.store); the search text
+     stays while the student is in a game, so Back returns to the same list. Games for other levels always go last. */
+  var SORTS = [{ id: 'best', name: 'Suggested' }, { id: 'az', name: 'A to Z' }, { id: 'new', name: 'Newest' }];
+  var query = '';
+  function sortId() { var v = WU.store.get('phone-sort', 'best'); return SORTS.some(function (o) { return o.id === v; }) ? v : 'best'; }
+  function skillId() { var v = WU.store.get('phone-skill', ''); return (WU.SKILLS || []).some(function (k) { return k.id === v; }) ? v : ''; }
+  function haystack(g) {
+    var skills = (g.skills || []).map(function (k) { var d = (WU.SKILLS || []).filter(function (x) { return x.id === k; })[0]; return d ? d.name : k; });
+    var units = !g.unit ? [] : typeof g.unit === 'string' ? [g.unit] : g.unit;
+    return P.norm([g.name, P.HOW[g.id], g.hook, g.trains, g.sticker, g.grammar ? 'grammar' : ''].concat(skills, units).join(' '));
+  }
+  function addedTime(g) { var t = g && g.added ? Date.parse(g.added) : NaN; return isNaN(t) ? -Infinity : t; }
+  function listIds() {
+    var order = P.order(), sort = sortId(), skill = skillId(), terms = P.norm(query).split(' ').filter(Boolean);
+    var ids = order.filter(function (id) {
+      var g = gameDef(id);
+      if (skill && (g.skills || []).indexOf(skill) < 0) return false;
+      if (!terms.length) return true;
+      var h = haystack(g);
+      return terms.every(function (t) { return h.indexOf(t) >= 0; });
+    });
     ids.sort(function (a, b) {
       var ga = gameDef(a), gb = gameDef(b), oa = WU.gameOk(a) ? 0 : 2, ob = WU.gameOk(b) ? 0 : 2;
-      if (newGame(ga) && oa === 0) oa = -1; if (newGame(gb) && ob === 0) ob = -1;
-      return oa - ob || order.indexOf(a) - order.indexOf(b);
+      if (sort === 'best') { if (newGame(ga) && oa === 0) oa = -1; if (newGame(gb) && ob === 0) ob = -1; } // new games first
+      var d = oa - ob; if (d) return d;
+      if (sort === 'az') d = ga.name.replace(/^the\s+/i, '').localeCompare(gb.name.replace(/^the\s+/i, ''), 'en', { sensitivity: 'base' });
+      else if (sort === 'new') { var ta = addedTime(ga), tb = addedTime(gb); d = ta === tb ? 0 : tb > ta ? 1 : -1; }
+      return d || order.indexOf(a) - order.indexOf(b);
     });
-    var h = '<div class="phome"><header class="phead"><div class="plogo"><span>WARM UP!</span></div>' +
-      '<button class="pib" data-act="mute" aria-label="Sound">' + WU.icons.sound() + '</button></header>' +
-      '<p class="psub">Practise on your own. Pick a game.</p>' +
-      '<button class="plvbtn" data-act="level"><span>Your level</span><b>' + esc(L.name) + ' · ' + esc(L.code) + '</b><i>Change</i></button>' +
-      '<div class="pcards">';
-    ids.forEach(function (id) {
+    return ids;
+  }
+  function cardsHtml(ids) {
+    if (!ids.length) {
+      return '<div class="pempty pnone"><b>No games found</b><p>Try another word' + (skillId() ? ' or another skill' : '') + '.</p>' +
+        '<button class="pbtn alt wide" data-act="clear">Show all games</button></div>';
+    }
+    return ids.map(function (id) {
       var g = gameDef(id), ok = WU.gameOk(id), u = unitOf(g);
-      h += '<button class="pcard' + (ok ? '' : ' off') + '" data-g="' + id + '" style="--c:' + g.color + '">' +
+      return '<button class="pcard' + (ok ? '' : ' off') + '" data-g="' + id + '" style="--c:' + g.color + '">' +
         '<span class="pcn">' + esc(g.name) + '</span><span class="pch">' + esc(P.HOW[id] || g.hook) + '</span>' +
         '<span class="pct">' + esc(g.trains || '') + '</span>' +
         (ok && newGame(g) ? '<span class="pnew">NEW' + (u ? ' · ' + esc(u) : '') + '</span>' : '') +
         (ok ? '' : '<span class="poff">' + esc(WU.gameLevelText(id)) + '</span>') + '</button>';
-    });
-    h += '</div><p class="pfoot">New games come every week. A green bar tells you when to refresh.<br>' +
-      '<a href="index.html?board">Open the board version</a></p></div>';
-    app.innerHTML = h;
-    app.scrollTop = 0;
-    app.querySelector('[data-act="level"]').onclick = pickLevel;
-    app.querySelector('[data-act="mute"]').onclick = function () { WU.toggleMute(); WU.refreshMuteIcons(app); };
-    app.querySelectorAll('[data-g]').forEach(function (b) {
+    }).join('');
+  }
+  // Only the list redraws while the student types (the search box keeps focus and the keyboard stays up).
+  function drawCards() {
+    var box = app.querySelector('.pcards'); if (!box) return;
+    var ids = listIds(), all = P.order().length, filtered = !!(P.norm(query) || skillId());
+    box.innerHTML = cardsHtml(ids);
+    var n = app.querySelector('.pfound'); if (n) n.textContent = filtered ? ids.length + ' of ' + all + ' games' : all + ' games';
+    var x = app.querySelector('[data-act="x"]'); if (x) x.hidden = !query;
+    box.querySelectorAll('[data-g]').forEach(function (b) {
       b.onclick = function () {
         var id = b.getAttribute('data-g');
         if (!WU.gameOk(id)) { P.toast(gameDef(id).name + ': ' + WU.gameLevelText(id) + '.'); return; }
         open(id);
       };
     });
+    var cl = box.querySelector('[data-act="clear"]');
+    if (cl) cl.onclick = function () { query = ''; WU.store.set('phone-skill', ''); home(); };
+  }
+  function home() {
+    stopGame(); curId = null;
+    if (!levelChosen()) { pickLevel(); return; }
+    var L = WU.LEVELS[WU.state.level], sort = sortId(), skill = skillId();
+    var h = '<div class="phome"><header class="phead"><div class="plogo"><span>WARM UP!</span></div>' +
+      '<button class="pib" data-act="mute" aria-label="Sound">' + WU.icons.sound() + '</button></header>' +
+      '<p class="psub">Practise on your own. Pick a game.</p>' +
+      '<button class="plvbtn" data-act="level"><span>Your level</span><b>' + esc(L.name) + ' · ' + esc(L.code) + '</b><i>Change</i></button>' +
+      '<div class="pfind">' +
+      '<div class="psearch"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10" cy="10" r="6.5" fill="none" stroke="currentColor" stroke-width="3"/><path d="M15 15l6 6" stroke="currentColor" stroke-width="3.5" stroke-linecap="square"/></svg>' +
+      '<input type="search" class="pinput" placeholder="Search: verbs, speaking..." aria-label="Search games" enterkeyhint="search" autocomplete="off" autocorrect="off" spellcheck="false" value="' + esc(query) + '">' +
+      '<button class="psx" data-act="x" aria-label="Clear search"' + (query ? '' : ' hidden') + '>×</button></div>' +
+      '<div class="psort"><label><span>Sort</span><select class="psel" aria-label="Sort games">' + SORTS.map(function (o) {
+        return '<option value="' + o.id + '"' + (o.id === sort ? ' selected' : '') + '>' + esc(o.name) + '</option>';
+      }).join('') + '</select></label><span class="pfound"></span></div>' +
+      '<div class="pskills" role="group" aria-label="Skill">' + [{ id: '', name: 'All' }].concat(WU.SKILLS || []).map(function (k) {
+        return '<button class="pskill' + (k.id === skill ? ' on' : '') + '" data-sk="' + k.id + '"' + (k.color ? ' style="--c:' + k.color + '"' : '') + ' aria-pressed="' + (k.id === skill) + '">' + esc(k.name) + '</button>';
+      }).join('') + '</div></div>' +
+      '<div class="pcards"></div>' +
+      '<p class="pfoot">New games come every week. A green bar tells you when to refresh.<br>' +
+      '<a href="index.html?board">Open the board version</a></p></div>';
+    app.innerHTML = h;
+    app.scrollTop = 0;
+    app.querySelector('[data-act="level"]').onclick = pickLevel;
+    app.querySelector('[data-act="mute"]').onclick = function () { WU.toggleMute(); WU.refreshMuteIcons(app); };
+    var inp = app.querySelector('.psearch input');
+    inp.oninput = function () { query = inp.value; drawCards(); };
+    inp.onkeydown = function (e) { if (e.key === 'Enter') inp.blur(); /* hide the keyboard, show the results */ };
+    app.querySelector('[data-act="x"]').onclick = function () { query = ''; inp.value = ''; drawCards(); inp.focus(); };
+    app.querySelector('.psort select').onchange = function () { WU.store.set('phone-sort', this.value); drawCards(); };
+    app.querySelectorAll('[data-sk]').forEach(function (b) {
+      b.onclick = function () {
+        var k = b.getAttribute('data-sk'); WU.store.set('phone-skill', k); WU.sound.clack();
+        app.querySelectorAll('[data-sk]').forEach(function (o) { var on = o === b; o.classList.toggle('on', on); o.setAttribute('aria-pressed', on); });
+        drawCards();
+      };
+    });
+    drawCards();
   }
   function pickLevel() {
     stopGame();
@@ -258,7 +321,7 @@
     // The phone back button / swipe goes back to the game list.
     window.addEventListener('popstate', function () { var id = (location.hash || '').replace('#', ''); if (id && P.games[id] && WU.gameOk(id)) open(id, true); else home(); });
     // Teacher edits (synced from GitHub) arrive after the first draw: redraw the list, keep a running game.
-    WU.on('content', function () { if (!curId && levelChosen() && app.querySelector('.pcards')) home(); });
+    WU.on('content', function () { if (!curId && levelChosen() && app.querySelector('.pcards')) drawCards(); });
     (WU.images ? WU.images.load() : Promise.resolve()).then(function () {
       if (location.hash) { try { history.replaceState(null, '', location.pathname + location.search); } catch (e) {} }
       home();
