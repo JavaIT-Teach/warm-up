@@ -52,9 +52,11 @@
   function teamColor(i) { return WU.state.teams ? (WU.TEAM_COLORS[WU.state.teamColors[i]] || WU.TEAM_COLORS[i]) : ['#c6ff00', '#ff4fc3'][i]; }
   function target() { return Math.max(1, Math.min(50, +scr.get().target || 10)); }
 
+  var deck = WU.kit.deck();
   function nextId() {
-    if (!st.queue.length) st.queue = WU.shuffle(words().map(function (w) { return w.id; }));
-    var id = st.queue.shift(); st.isBack = st.backIds.indexOf(id) >= 0;
+    // Missed words wait in the queue and come back; otherwise the next word comes from the rotating deck.
+    var w = st.queue.length ? null : deck(words());
+    var id = w ? w.id : st.queue.shift(); st.isBack = st.backIds.indexOf(id) >= 0;
     st.backIds = st.backIds.filter(function (x) { return x !== id; });
     return id;
   }

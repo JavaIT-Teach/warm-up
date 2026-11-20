@@ -105,10 +105,101 @@
     fitted = fitted.filter(function (el) { return el.isConnected; });
     fitted.forEach(function (el) { kit.fit(el, el._wuFit[0], el._wuFit[1]); });
   });
-  // A shuffled deck: draws every item once before repeating. key(item) identifies items across edits.
+  /* ---------- content rotation (WU.shown) ----------
+     A log, per group, of which item each game showed, in localStorage ('shown'):
+       { groupKey: { name, at, z, lists: { 'game:list:level': { s, h: { id: [ms last shown, times shown] } } } }, _z }
+     s = when the list's current round started (items shown since then are "seen this round"); z / _z = when the group /
+     every group was cleared. Only times, so two devices merge without losing anything (newest wins; js/sync.js syncs it).
+     The group is the one on the timetable now (content/groups.js), else the class chosen in Settings. On a phone: the phone.
+     No group (testing at home): nothing is logged and decks only avoid repeats until the page reloads. */
+  var SHOWN = 'shown';
+  function norm(rec) { // the first version kept a list of ids for the round and minutes
+    if (!rec.c) return rec;
+    var h = {}, s = Infinity;
+    Object.keys(rec.h || {}).forEach(function (id) { h[id] = [rec.h[id][0] * 6e4, rec.h[id][1]]; });
+    rec.c.forEach(function (id) { if (h[id]) s = Math.min(s, h[id][0]); });
+    return { s: s === Infinity ? 0 : s, h: h };
+  }
+  WU.shown = {
+    // { key, name } of the group in the room now, or null.
+    group: function () {
+      if (WU.phone) return { key: 'phone', name: 'This phone' };
+      var g = WU.theme && WU.theme.group ? WU.theme.group() : null;
+      if (g) return { key: 'g:' + g.id, name: g.name };
+      var c = WU.activeClass && WU.activeClass();
+      return c ? { key: 'c:' + c.id, name: c.name } : null;
+    },
+    all: function () { var d = WU.store.get(SHOWN, {}); return d && typeof d === 'object' ? d : {}; },
+    // The groups with something logged: [{ key, name, at, lists: { src: { s, h } } }].
+    groups: function () {
+      var all = WU.shown.all();
+      return Object.keys(all).filter(function (k) { return k.charAt(0) !== '_' && Object.keys(all[k].lists || {}).length; })
+        .map(function (k) {
+          var g = all[k], lists = {};
+          Object.keys(g.lists).forEach(function (src) { lists[src] = norm(g.lists[src]); });
+          return { key: k, name: g.name, at: g.at, lists: lists };
+        });
+    },
+    // Pick from list for the group in the room: items it has not seen this round first; a new round starts when it
+    // has seen them all, and the last few of the old round wait so they do not come straight back.
+    pick: function (list, src) {
+      var g = WU.shown.group(); if (!g || !src || !list.length) return null;
+      var now = Date.now(), all = WU.shown.all(), grp = all[g.key] = all[g.key] || { name: g.name, lists: {} };
+      grp.name = g.name; grp.lists = grp.lists || {};
+      var rec = grp.lists[src] = norm(grp.lists[src] || { s: 0, h: {} });
+      var t = function (x) { return rec.h[x.id] ? rec.h[x.id][0] : 0; };
+      var pool = list.filter(function (x) { return t(x) < rec.s || !t(x); });
+      if (!pool.length) {
+        var hold = list.slice().sort(function (x, y) { return t(y) - t(x); }).slice(0, Math.min(3, Math.floor(list.length / 2)));
+        rec.s = now;
+        pool = list.filter(function (x) { return hold.indexOf(x) < 0; });
+        if (!pool.length) pool = list.slice();
+      }
+      var it = WU.pick(pool), h = rec.h[it.id] || [0, 0];
+      rec.h[it.id] = [Math.max(now, rec.s), h[1] + 1];
+      grp.at = now;
+      WU.store.set(SHOWN, all);
+      WU.emit('shown');
+      return it;
+    },
+    clear: function (key) {
+      var all = WU.shown.all(), now = Date.now();
+      if (key) { if (all[key]) all[key] = { name: all[key].name, z: now, lists: {} }; }
+      else all = { _z: now };
+      WU.store.set(SHOWN, all); WU.emit('shown');
+    },
+    // Two logs into one (used by sync): newest time wins, clears remove what was shown before them.
+    merge: function (a, b) {
+      a = a || {}; b = b || {};
+      var out = {}, Z = Math.max(a._z || 0, b._z || 0);
+      if (Z) out._z = Z;
+      Object.keys(a).concat(Object.keys(b)).forEach(function (k) {
+        if (k.charAt(0) === '_' || out[k]) return;
+        var A = a[k] || {}, B = b[k] || {}, z = Math.max(A.z || 0, B.z || 0, Z), newer = (B.at || 0) > (A.at || 0) ? B : A;
+        var g = { name: newer.name || A.name || B.name, at: Math.max(A.at || 0, B.at || 0), lists: {} };
+        if (A.z || B.z) g.z = Math.max(A.z || 0, B.z || 0);
+        var LA = A.lists || {}, LB = B.lists || {};
+        Object.keys(LA).concat(Object.keys(LB)).forEach(function (src) {
+          if (g.lists[src]) return;
+          var ra = norm(LA[src] || { s: 0, h: {} }), rb = norm(LB[src] || { s: 0, h: {} }), r = { s: Math.max(ra.s || 0, rb.s || 0), h: {} };
+          Object.keys(ra.h).concat(Object.keys(rb.h)).forEach(function (id) {
+            var x = ra.h[id] || [0, 0], y = rb.h[id] || [0, 0], ts = Math.max(x[0], y[0]);
+            if (ts > z) r.h[id] = [ts, Math.max(x[1], y[1])];
+          });
+          if (Object.keys(r.h).length) g.lists[src] = r;
+        });
+        if (g.at > z || g.z) { if (g.at <= z) g.at = 0; out[k] = g; }
+      });
+      return out;
+    }
+  };
+
+  // A shuffled deck: draws every item once before repeating. Items from WU.list rotate per group across lessons (WU.shown).
   kit.deck = function () {
     var left = [], sig = '';
     return function (list) {
+      var src = list.length && list[0]._src, hit = src ? WU.shown.pick(list, src) : null;
+      if (hit) return hit;
       var s = list.map(function (x) { return x.id; }).join('|');
       if (s !== sig) { sig = s; left = []; }
       if (!left.length) left = WU.shuffle(list.slice());

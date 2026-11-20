@@ -69,7 +69,10 @@
               '<div class="ct">' + c.names.length + ' names</div><div class="sbtn" data-cedit="' + c.id + '">Edit</div></div>';
           }).join('') + '</div>';
       }
+      var gnow = WU.shown.group();
       h += '<div style="flex:1"></div>' +
+        '<div class="row"><div class="lab" style="min-width:0">Content history</div><div class="sbtn" data-s="history">See what each group saw</div></div>' +
+        '<div class="note">Games give each group content it has not seen yet (shared through GitHub). Now: ' + WU.esc(gnow ? gnow.name : 'no group (nothing is logged)') + '.</div>' +
         '<div class="row"><div class="lab" style="min-width:0">Backup file</div><div class="sbtn" data-s="export">Export</div><div class="sbtn" data-s="import">Import</div></div>' +
         '<div class="note">Only a spare copy: your edits already save to GitHub. Import replaces the edits on this device (and then on GitHub).</div>' +
         (resetting
@@ -130,6 +133,7 @@
         b.onclick = function () {
           var a = b.getAttribute('data-s'), s = WU.state;
           refocus = '[data-s="' + a + '"]';
+          if (a === 'history') { WU.openHistory(); return; }
           if (a === 'export') { WU.exportData(); return; }
           if (a === 'import') { WU.importData(function () { render(); }); return; }
           if (a === 'steps') { showSteps = !showSteps; render(); return; }
@@ -186,6 +190,90 @@
         });
       },
       onClose: function () { if (offSync) offSync(); WU.emit('change', { classes: WU.state.classes }); }
+    });
+  };
+  /* Content history: what each group was shown, game by game (WU.shown in js/gamekit.js). */
+  WU.openHistory = function () {
+    var el = null, confirm = '', offs = [];
+    function when(ms) {
+      if (!ms) return '';
+      var d = new Date(ms);
+      return d.toLocaleDateString('en-GB', { weekday: 'short', day: 'numeric', month: 'short' }) + ' ' + ('0' + d.getHours()).slice(-2) + ':' + ('0' + d.getMinutes()).slice(-2);
+    }
+    function listName(src) {
+      var p = src.split(':'), def = WU.lists[p[0] + ':' + p[1]];
+      var g = (WU.content.games || []).filter(function (x) { return x.id === p[0]; })[0];
+      var game = (def && def.gameTitle) || (g && g.name) || p[0];
+      return game + (def && def.label ? ' · ' + def.label : '') + (def && def.global ? '' : ' · ' + ((WU.LEVELS[+p[2]] || {}).name || ''));
+    }
+    function syncLine() {
+      var y = WU.shownSync; if (!y) return '';
+      var st = y.status(), at = y.lastSaved(), has = WU.sync.hasToken();
+      var t = !has ? 'View only: this device loads the history from GitHub but cannot save to it (no token in Settings).'
+        : st === 'saving' || st === 'pending' ? 'Saving to GitHub...' : st === 'loading' ? 'Checking GitHub...'
+        : st === 'offline' ? 'Offline. The history is kept on this device and saved when the internet is back.'
+        : st === 'token' ? 'Token problem: ' + y.detail() + ' The history is kept on this device.'
+        : st === 'error' ? 'Not saved yet: ' + (y.detail() || 'GitHub could not be reached.') + ' Will retry.'
+        : 'Saved to GitHub' + (at ? ' ' + when(Date.parse(at)) : '') + '. Every device with a token shares it.';
+      return '<div class="note sync-line s-' + (has ? st : 'viewonly') + '" style="color:#0d0d0d">' + WU.esc(t) + '</div>';
+    }
+    function render() {
+      var groups = WU.shown.groups(), now = WU.shown.group();
+      // Timetable groups first (in timetable order), then classes.
+      var order = (WU.GROUPS || []).map(function (g) { return 'g:' + g.id; });
+      groups.sort(function (a, b) {
+        var ia = order.indexOf(a.key), ib = order.indexOf(b.key);
+        return (ia < 0 ? 999 : ia) - (ib < 0 ? 999 : ib) || String(a.name).localeCompare(String(b.name));
+      });
+      var h = '<div class="panel settings history"><div class="top"><div class="h">Content history</div>' +
+        (groups.length ? '<div class="sbtn warn" data-h="clearall">' + (confirm === '*' ? 'Sure? Clear every group' : 'Clear all') + '</div>' : '') +
+        '<div class="sbtn" data-h="sync">Sync now</div><div class="sbtn dark" data-h="close">Done (Esc)</div></div>' +
+        '<div class="note">Each game gives the group in the room items it has not seen yet. When a group has seen everything in a list, a new round starts (the last few items wait). ' +
+        'The group comes from the timetable, or the class chosen in Settings. In the room now: <b>' + WU.esc(now ? now.name : 'no group, so nothing is logged') + '</b>.</div>' +
+        syncLine() + '<div class="hgroups scroll">';
+      if (!groups.length) h += '<div class="note">Nothing yet. Play a game during a lesson and it shows here.</div>';
+      groups.forEach(function (grp) {
+        var k = grp.key, rows = Object.keys(grp.lists).map(function (src) {
+          var r = grp.lists[src], ids = Object.keys(r.h), last = 0, times = 0;
+          ids.forEach(function (id) { last = Math.max(last, r.h[id][0]); times += r.h[id][1]; });
+          var p = src.split(':'), has = !!WU.lists[p[0] + ':' + p[1]], L = has ? WU.list(p[0], p[1], +p[2]) : [];
+          var inRound = function (id) { return r.h[id] && r.h[id][0] >= r.s; };
+          var round = has ? L.filter(function (x) { return inRound(x.id); }).length : ids.filter(inRound).length;
+          return { name: listName(src), round: round, total: L.length, ever: ids.length, times: times, last: last };
+        }).sort(function (a, b) { return b.last - a.last; });
+        var lastAll = rows.length ? rows[0].last : 0;
+        h += '<div class="hg' + (now && now.key === k ? ' on' : '') + '"><div class="hgh"><div class="nm">' + WU.esc(grp.name || k) + '</div>' +
+          '<div class="ct">' + rows.length + (rows.length === 1 ? ' list' : ' lists') + (lastAll ? ' · last ' + when(lastAll) : '') + '</div>' +
+          '<div class="sbtn" data-h="clear" data-k="' + WU.esc(k) + '">' + (confirm === k ? 'Sure? Clear' : 'Clear') + '</div></div>' +
+          '<table class="ht"><tr><th>Game · list</th><th>This round</th><th>Seen ever</th><th>Shown</th><th>Last</th></tr>' +
+          rows.map(function (r) {
+            return '<tr><td>' + WU.esc(r.name) + '</td><td>' + r.round + ' of ' + r.total + '</td><td>' + r.ever + '</td><td>' + r.times + '×</td><td>' + WU.esc(when(r.last)) + '</td></tr>';
+          }).join('') + '</table></div>';
+      });
+      h += '</div></div>';
+      var sc = el.querySelector('.hgroups'), top = sc ? sc.scrollTop : 0;
+      el.innerHTML = h;
+      sc = el.querySelector('.hgroups'); if (sc) sc.scrollTop = top;
+      el.querySelectorAll('.sbtn').forEach(function (b) { b.setAttribute('tabindex', '0'); });
+      el.querySelectorAll('[data-h]').forEach(function (b) {
+        b.onclick = function () {
+          var a = b.getAttribute('data-h'), k = b.getAttribute('data-k');
+          if (a === 'close') { WU.closeOverlay(); return; }
+          if (a === 'sync') { if (WU.shownSync) WU.shownSync.now(); return; }
+          if (a === 'clear') { if (confirm === k) { WU.shown.clear(k); confirm = ''; WU.toast('History cleared.'); } else confirm = k; }
+          if (a === 'clearall') { if (confirm === '*') { WU.shown.clear(); confirm = ''; WU.toast('All history cleared.'); } else confirm = '*'; }
+          render();
+        };
+      });
+    }
+    WU.openOverlay({
+      cls: 'settings-ov',
+      render: function (o) {
+        el = o; render();
+        offs = [WU.on('shown-sync', render), WU.on('shown-merged', render)];
+        if (WU.shownSync) WU.shownSync.now();
+      },
+      onClose: function () { offs.forEach(function (f) { f(); }); }
     });
   };
 })();

@@ -23,7 +23,7 @@ Edits, resets and Export / Import work for every registered list automatically.
 Use `WU.kit` so every game looks and behaves the same:
 `kit.screen({...})` registers the per-level "Screen text & timing" record, `kit.header`, `kit.hints`,
 `kit.frame` (sentence frames with drawn gaps), `kit.chip`, `kit.fill` (`{name}`, `{n}`...), `kit.fit` (shrink text to its box),
-`kit.deck` (no repeats until the list is used up), `kit.student` (a random student, avoiding some names), `kit.normWord` (word + a / an from the picture library).
+`kit.deck` (no repeats until the list is used up; items from `WU.list` rotate per group across lessons and are logged in `WU.shown`, so always pick content through a deck, not `WU.pick`; `js/sync.js` syncs the log to `data/shown.json` on the branch `warm-up-data`, merged with `WU.shown.merge`), `kit.student` (a random student, avoiding some names), `kit.normWord` (word + a / an from the picture library).
 Every field listed in a screen record needs a default at every level; the automated check fails otherwise.
 
 ## Teacher screen (`js/teacher.js`)

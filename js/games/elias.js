@@ -72,7 +72,7 @@
     var d = kit.deck(), seen = {};
     return function (list) {
       var fresh = list.filter(function (w) { return isFresh(w) && !seen[w.id]; });
-      var w = fresh.length ? WU.pick(fresh) : d(list);
+      var w = fresh.length ? d(fresh) : d(list);
       if (w) seen[w.id] = 1;
       return w;
     };
