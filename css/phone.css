@@ -27,6 +27,23 @@ body.phone button { color: var(--ink); }
 .plvbtn span { grid-column: 1; font-size: 12px; font-weight: 800; text-transform: uppercase; opacity: .75; }
 .plvbtn b { grid-column: 1; font-family: var(--display); font-weight: 400; font-size: 18px; }
 .plvbtn i { grid-column: 2; grid-row: 1 / 3; font-style: normal; font-size: 14px; font-weight: 800; color: var(--lime); }
+/* search, sort, skill filter (sticks to the top while scrolling the list) */
+.pfind { position: sticky; top: 0; z-index: 4; display: flex; flex-direction: column; gap: 10px; margin: 0 -16px 16px; padding: calc(8px + env(safe-area-inset-top)) 16px 12px; background: var(--paper); border-bottom: 3px solid var(--ink); }
+.psearch { position: relative; display: flex; align-items: center; }
+.psearch svg { position: absolute; left: 13px; pointer-events: none; }
+.psearch .pinput { padding-left: 42px; padding-right: 46px; font-size: 17px; }
+.psearch .pinput::-webkit-search-cancel-button { -webkit-appearance: none; display: none; }
+#papp .psx { position: absolute; right: 4px; width: 40px; height: 40px; padding: 0; background: none; border: 0; font-size: 28px; font-weight: 800; line-height: 1; }
+.psort { display: flex; align-items: center; gap: 10px; }
+.psort label { display: flex; align-items: center; gap: 8px; }
+.psort label span { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .04em; opacity: .6; }
+.psort .psel { flex: none; min-height: 40px; }
+.pfound { margin-left: auto; font-size: 14px; font-weight: 800; opacity: .6; }
+.pskills { display: flex; gap: 8px; overflow-x: auto; margin: 0 -16px; padding: 2px 16px 4px; scrollbar-width: none; }
+.pskills::-webkit-scrollbar { display: none; }
+#papp .pskill { flex: none; min-height: 38px; padding: 6px 12px; background: #fff; border: 3px solid var(--ink); font-family: var(--display); font-size: 14px; white-space: nowrap; }
+#papp .pskill.on { background: var(--c, var(--lime)); box-shadow: 3px 3px 0 var(--ink); }
+.pnone { margin: 20px 0; }
 .pcards { display: flex; flex-direction: column; gap: 14px; }
 .pcard { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 14px 16px 14px 24px; background: #fff; border: 3px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); text-align: left; overflow: hidden; }
 .pcard::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 10px; background: var(--c); border-right: 3px solid var(--ink); }

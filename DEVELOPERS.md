@@ -73,6 +73,8 @@ A new board game script goes in **both** `index.html` and `phone.html`, and ever
 Games that need a group become pass-the-phone games (Elias, Hot Seat, Lie Detector: the players judge); room games become solo versions
 (Four Zones: pick, give a reason, argue for another zone). The former board-only games are in `js/phone/games-more.js`; its `frameInputs()` turns a
 sentence frame into gap boxes the student fills.
+The phone home list has search (name, phone text, hook, trains, skills, unit), a sort (Suggested = new first, A to Z, Newest by `added`)
+and skill chips (`WU.SKILLS`). Sort and skill are saved on the phone; games for other levels always go last.
 
 
 ## Shared expression bank (`js/expr.js`)
