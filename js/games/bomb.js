@@ -143,6 +143,7 @@
   }
   function randomCats() { var P = pk(); P.once = null; P.set = []; P.pos = 0; P.tick = []; }
 
+  var catDeck = WU.kit.deck();
   function newCat() {
     var chosen = chosenCat();
     if (chosen) { st.cat = buildCat(chosen.c, chosen.ln); st.catN++; return; }
@@ -152,7 +153,7 @@
     if (!list.length) { ln = 'cats'; list = WU.list('bomb', 'cats', lv); }
     if (!list.length) list = [{ id: 'none', text: 'Press E to add categories' }];
     var prev = st.cat ? st.cat.list + st.cat.id : '', c, tries = 0;
-    do { c = WU.pick(list); tries++; } while (tries < 20 && list.length > 1 && ln + c.id === prev);
+    do { c = catDeck(list); tries++; } while (tries < 20 && list.length > 1 && ln + c.id === prev);
     st.cat = buildCat(c, ln); st.catN++;
   }
   function buildCat(c, ln) {

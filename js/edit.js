@@ -132,6 +132,9 @@
       out.push(it);
     });
     (e.add || []).forEach(function (a) { var it = clone(a); it.custom = true; out.push(it); });
+    // Where each item came from, for the content rotation log (WU.shown). Not enumerable: never saved or exported.
+    var src = k3(game, list, level);
+    out.forEach(function (it) { try { Object.defineProperty(it, '_src', { value: src, enumerable: false, configurable: true }); } catch (x) {} });
     // Occasion themes (js/themes.js): themed items only while their theme is on. With 3 or more of them, they replace
     // the usual items (in Edit mode the usual items stay visible so they can still be edited).
     var th = WU.theme && WU.theme.active ? WU.theme.active() : null, tid = th ? th.id : '';
@@ -192,7 +195,7 @@
   WU.exportData = function () {
     var s = WU.state, data = {
       app: 'warm-up', version: 2, exported: new Date().toISOString(),
-      edits: edits(), images: WU.images.all(), conflicts: WU.sync ? WU.sync.conflicts() : [],
+      edits: edits(), images: WU.images.all(), conflicts: WU.sync ? WU.sync.conflicts() : [], shown: WU.store.get('shown', {}),
       classes: s.classes, students: s.students, teams: s.teams, teamNames: s.teamNames, teamColors: s.teamColors
     };
     var d = new Date(), name = 'warm-up-edits-' + d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2) + '-' + ('0' + d.getDate()).slice(-2) + '.json';
@@ -212,6 +215,7 @@
         // Files from older versions point at positions; convert them to permanent ids.
         E = d.edits || {}; migrate(E); WU.store.set('edits', E); if (WU.sync) WU.sync.changed();
         WU.images.clear(); Object.keys(d.images || {}).forEach(function (id) { WU.images.put(id, d.images[id]); });
+        if (d.shown && typeof d.shown === 'object') WU.store.set('shown', d.shown);
         var patch = {};
         ['classes', 'students', 'teams', 'teamNames', 'teamColors'].forEach(function (k) { if (d[k] !== undefined) patch[k] = d[k]; });
         if (patch.classes && !patch.classes.some(function (c) { return c.id === WU.state.classId; })) patch.classId = '';

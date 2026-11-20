@@ -105,10 +105,53 @@
     fitted = fitted.filter(function (el) { return el.isConnected; });
     fitted.forEach(function (el) { kit.fit(el, el._wuFit[0], el._wuFit[1]); });
   });
-  // A shuffled deck: draws every item once before repeating. key(item) identifies items across edits.
+  /* ---------- content rotation (WU.shown) ----------
+     A log, per group, of which item each game showed: { groupKey: { name, lists: { 'game:list:level': { c: [ids shown this
+     round, in order], h: { id: [minute last shown, times shown] } } } } } in localStorage ('shown').
+     The group is the one on the timetable now (content/groups.js), else the class chosen in Settings. On a phone: the phone.
+     No group (testing at home): nothing is logged and decks only avoid repeats until the page reloads. */
+  var SHOWN = 'shown';
+  WU.shown = {
+    // { key, name } of the group in the room now, or null.
+    group: function () {
+      if (WU.phone) return { key: 'phone', name: 'This phone' };
+      var g = WU.theme && WU.theme.group ? WU.theme.group() : null;
+      if (g) return { key: 'g:' + g.id, name: g.name };
+      var c = WU.activeClass && WU.activeClass();
+      return c ? { key: 'c:' + c.id, name: c.name } : null;
+    },
+    all: function () { var d = WU.store.get(SHOWN, {}); return d && typeof d === 'object' ? d : {}; },
+    // Pick from list for the group in the room: items it has not seen this round first; a new round starts when it
+    // has seen them all, and the last few of the old round wait so they do not come straight back.
+    pick: function (list, src) {
+      var g = WU.shown.group(); if (!g || !src || !list.length) return null;
+      var all = WU.shown.all(), grp = all[g.key] = all[g.key] || { name: g.name, lists: {} };
+      grp.name = g.name;
+      var rec = grp.lists[src] = grp.lists[src] || { c: [], h: {} };
+      var ids = list.map(function (x) { return x.id; });
+      var pool = list.filter(function (x) { return rec.c.indexOf(x.id) < 0; });
+      if (!pool.length) {
+        var old = rec.c.filter(function (id) { return ids.indexOf(id) >= 0; });
+        var hold = old.slice(-Math.min(3, Math.floor(list.length / 2)));
+        rec.c = rec.c.filter(function (id) { return ids.indexOf(id) < 0; });
+        pool = list.filter(function (x) { return hold.indexOf(x.id) < 0; });
+        if (!pool.length) pool = list.slice();
+      }
+      var it = WU.pick(pool), h = rec.h[it.id] || [0, 0];
+      rec.c.push(it.id); rec.h[it.id] = [Math.round(Date.now() / 6e4), h[1] + 1];
+      grp.at = Date.now();
+      WU.store.set(SHOWN, all);
+      return it;
+    },
+    clear: function (key) { var all = WU.shown.all(); if (key) delete all[key]; else all = {}; WU.store.set(SHOWN, all); }
+  };
+
+  // A shuffled deck: draws every item once before repeating. Items from WU.list rotate per group across lessons (WU.shown).
   kit.deck = function () {
     var left = [], sig = '';
     return function (list) {
+      var src = list.length && list[0]._src, hit = src ? WU.shown.pick(list, src) : null;
+      if (hit) return hit;
       var s = list.map(function (x) { return x.id; }).join('|');
       if (s !== sig) { sig = s; left = []; }
       if (!left.length) left = WU.shuffle(list.slice());
