@@ -206,7 +206,7 @@
           return r.json();
         }).then(function (j) {
           if (j.permissions && !j.permissions.push) throw err('token', 'This token can read but not write. Set Contents to "Read and write".');
-          return run(0);
+          return run(0).then(function () { return shownRun(0); });
         }).catch(function (e) {
           // A token GitHub rejects is not kept. If we are offline it is kept and checked on the next save.
           if (e.kind === 'token') { WU.store.set('sync-token', ''); set('token', e.message); } else if (e.kind === 'offline' || e instanceof TypeError) set('offline'); else set('error', e.message);
@@ -216,8 +216,106 @@
     _merge3: merge3
   };
 
+  /* ---------- content history (WU.shown) on its own branch ----------
+     data/shown.json on the branch warm-up-data, never on main: a push to main republishes the site, and phones would show
+     "New version!" every few minutes during a lesson. The branch is made from main the first time. Every device with the
+     same link loads it; a device with a token adds what it showed. Merging only keeps the newest times, so nothing is lost. */
+  var DBRANCH = 'warm-up-data', SFILE = 'data/shown.json';
+  var sh = { status: 'idle', detail: '', at: WU.store.get('shown-sync-at', null), running: false, again: false, timer: null };
+  function sset(s, d) { sh.status = s; sh.detail = d || ''; WU.emit('shown-sync', { status: s }); }
+  function stable(o) {
+    if (o === null || typeof o !== 'object') return JSON.stringify(o);
+    if (Array.isArray(o)) return '[' + o.map(stable).join(',') + ']';
+    return '{' + Object.keys(o).sort().map(function (k) { return JSON.stringify(k) + ':' + stable(o[k]); }).join(',') + '}';
+  }
+  function tokenErr(r) {
+    if (r.status === 401) return err('token', 'The token was not accepted (wrong, expired or removed).');
+    if (r.status === 403) return err('token', 'The token cannot write to ' + OWNER + '/' + REPO + '. It needs Contents: Read and write.');
+    return err('error', 'GitHub error ' + r.status);
+  }
+  function readShown() {
+    if (token()) {
+      return req(API + SFILE + '?ref=' + DBRANCH + '&t=' + Date.now(), { auth: true }).then(function (r) {
+        if (r.status === 404) return { data: {}, sha: null }; // no branch or no file yet
+        if (!r.ok) throw tokenErr(r);
+        return r.json().then(function (j) {
+          var got = j.content ? Promise.resolve(unb64(j.content)) : req(j.download_url + '?t=' + Date.now()).then(function (x) { return x.text(); });
+          return got.then(function (t) { var d = JSON.parse(t || '{}'); return { data: d.shown || {}, sha: j.sha }; });
+        });
+      });
+    }
+    return req('https://raw.githubusercontent.com/' + OWNER + '/' + REPO + '/' + DBRANCH + '/' + SFILE + '?t=' + Date.now()).then(function (r) {
+      if (r.status === 404) return { data: {}, sha: null };
+      if (!r.ok) throw err('error', 'GitHub error ' + r.status);
+      return r.json().then(function (d) { return { data: d.shown || {}, sha: null }; });
+    });
+  }
+  function makeBranch() {
+    var refs = 'https://api.github.com/repos/' + OWNER + '/' + REPO + '/git/refs';
+    return req(refs + '/heads/' + BRANCH, { auth: true }).then(function (r) {
+      if (!r.ok) throw tokenErr(r);
+      return r.json();
+    }).then(function (j) {
+      return req(refs, { method: 'POST', auth: true, body: { ref: 'refs/heads/' + DBRANCH, sha: j.object.sha } });
+    }).then(function (r) { if (!r.ok && r.status !== 422) throw tokenErr(r); }); // 422: made by another device just now
+  }
+  function writeShown(data, sha, made) {
+    var body = { message: 'Warm Up: content history', branch: DBRANCH,
+      content: b64(JSON.stringify({ app: 'warm-up', updated: new Date().toISOString(), shown: data })) };
+    if (sha) body.sha = sha;
+    return req(API + SFILE, { method: 'PUT', auth: true, body: body }).then(function (r) {
+      if (r.ok) return;
+      if (r.status === 409) throw err('race');
+      if ((r.status === 404 || r.status === 422) && !sha && !made) return makeBranch().then(function () { return writeShown(data, sha, true); });
+      if (r.status === 422) throw err('race');
+      throw tokenErr(r);
+    });
+  }
+  function shownRun(tries) {
+    if (WU.phone) return Promise.resolve(); // each phone keeps its own
+    if (sh.running) { sh.again = true; return Promise.resolve(); }
+    sh.running = true; clearTimeout(sh.timer);
+    var dirty = WU.store.get('shown-dirty', false);
+    sset(token() && dirty ? 'saving' : 'loading');
+    return readShown().then(function (rem) {
+      // Merge and store in one step, so nothing shown meanwhile is lost.
+      var local = WU.store.get('shown', {}) || {}, m = WU.shown.merge(local, rem.data);
+      if (stable(m) !== stable(local)) { WU.store.set('shown', m); WU.emit('shown-merged'); }
+      if (!token()) { sset('viewonly'); return; }
+      if (stable(m) === stable(WU.shown.merge({}, rem.data))) { WU.store.set('shown-dirty', false); sstamp(); sset('saved'); return; }
+      sset('saving');
+      WU.store.set('shown-dirty', false);
+      return writeShown(m, rem.sha).then(function () { sstamp(); sset('saved'); })
+        .catch(function (e) { WU.store.set('shown-dirty', true); throw e; });
+    }).catch(function (e) {
+      if (e.kind === 'race' && (tries || 0) < 4) { sh.running = false; return shownRun((tries || 0) + 1); }
+      if (e.kind === 'offline') { sset('offline'); sschedule(60000); }
+      else if (e.kind === 'token') sset('token', e.message);
+      else { sset('error', e.message || 'Could not reach GitHub.'); sschedule(120000); }
+    }).then(function () {
+      sh.running = false;
+      if (sh.again) { sh.again = false; sschedule(3000); }
+    });
+  }
+  function sstamp() { sh.at = new Date().toISOString(); WU.store.set('shown-sync-at', sh.at); }
+  function sschedule(ms) { clearTimeout(sh.timer); sh.timer = setTimeout(function () { shownRun(0); }, ms); }
+  // A game showed something: save it a little later (several picks in a row go up as one save).
+  WU.on('shown', function () { WU.store.set('shown-dirty', true); if (token() && !WU.phone) { if (sh.status !== 'saving') sset('pending'); sschedule(20000); } });
+  // Load what other devices showed every 10 minutes too (another room's laptop may have played with this group).
+  setInterval(function () { if (!document.hidden) shownRun(0); }, 10 * 60 * 1000);
+  WU.shownSync = {
+    status: function () { return sh.status; },
+    detail: function () { return sh.detail; },
+    lastSaved: function () { return sh.at; },
+    now: function () { return shownRun(0); },
+    BRANCH: DBRANCH, FILE: SFILE, _stable: stable
+  };
+
   // Keep in step: load on start, after coming back online, and when the tab becomes visible again.
-  window.addEventListener('online', function () { WU.sync.now(); });
-  document.addEventListener('visibilitychange', function () { if (!document.hidden) schedule(500); });
-  WU.on('booted', function () { WU.sync.now(); });
+  window.addEventListener('online', function () { WU.sync.now(); shownRun(0); });
+  document.addEventListener('visibilitychange', function () {
+    if (!document.hidden) { schedule(500); sschedule(800); }
+    else if (WU.store.get('shown-dirty', false) && token()) shownRun(0); // leaving the tab: save the history now
+  });
+  WU.on('booted', function () { WU.sync.now(); shownRun(0); });
 })();
