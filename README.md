@@ -129,7 +129,7 @@ of its length ("___ a decision", "a ___ decision"), so students see the shape of
 Answers: Teacher screen (**V**) lists every tile with its number, or **A** for a 2-second peek. **H** first letters · **U** undo the last tile · **N** other word · **P** other student.
 On a phone: the student types partners (one word or the whole phrase), takes the trap question (which one is right?), then writes a USE IT answer and the phone shows which board phrases it used.
 **Pictures:** Beginner and Elementary only, on the board and the phone (Screen text & timing: "Pictures on the tiles", per level).
-**Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days; then they join the mix.
+**Every Saturday** the weekly job adds 3–4 new core words per level from the units every group at that level has already been taught. They show their unit on the board ("Unit 9 · Clothes") and play first for 14 days (this week's words first, then last week's); then they join the mix.
 Edit mode: core word, up to 8 partner phrases, each with an optional picture (put [brackets] round the words you want hidden, otherwise every word except the core word and a / an / the is a gap), the USE IT question and the trap, per level. Screen text & timing: time for the whole word, strikes (off by default), first letters on / off, USE IT task and time.
 
 ### Elias (Vocabulary + Speaking · Pre-Intermediate and up; grey for Beginner and Elementary)
@@ -146,7 +146,7 @@ Pre-Intermediate and Intermediate show a sentence frame for the explainer ("It's
 Teacher screen (**V**): the word, its banned words, the turn's list and the match score.
 Edit mode: the words and banned words per level; Screen text & timing: where the word shows (laptop only / board), points to win, turn length, skip penalty on / off, last word on / off, team names, frame, rules, demo turn (on at Pre-Intermediate).
 Keys: P who explains · Space start / got it / add the points · X skip · Enter pause · 1–4 / 0 last word · R new match.
-**Weekly words:** every Saturday the weekly job adds about 15 words per level (Pre-Intermediate and Intermediate, the levels with groups) from the units the groups have already been taught. For 14 days they play first and show their unit on the board and the phone ("Unit 12 · Getting Around"); then they join the mix. In Edit mode each word has a Unit label field (empty = a normal word).
+**Weekly words:** every Saturday the weekly job adds about 15 words per level (Pre-Intermediate and Intermediate, the levels with groups) from the units the groups have already been taught. For 14 days they play first (this week's words first, then last week's) and show their unit on the board and the phone ("Unit 12 · Getting Around"); then they join the mix. In Edit mode each word has a Unit label field (empty = a normal word).
 **On a phone (pass the phone):** the one group game in the phone version. 2–4 teams, one phone. The explainer holds the phone (their team must not see it), taps Got it / Skip, then the last word, the check list and the points, and passes the phone to the next team. Same words, rules and timing as the board. Good for pairs or small groups in class, or with friends at home.
 
 ### Grammar games (G1–G10): one grammar point per game
@@ -196,6 +196,14 @@ Keys: Space reveal / question / spin · T mode · L family · P other student.
 
 **Vanishing Sentence** (Writing · Beginner to Intermediate). A sentence from your last lessons. The class reads it together. **Space**: one or two words vanish; the class reads it again, missing words too. Again and again until nothing is left, then WRITE IT!: everyone writes the whole sentence on paper. **Space**: the words come back and students check their spelling; a picked student reads theirs. **B** brings one word back, **N** other sentence, **P** other student.
 *Stress:* in the first reading the stressed words are big and underlined ("She did WELL in her EXAMS."), so the class reads with rhythm. Automatic: content words and negatives (*don't*, *can't*). A sentence can list its own stressed words in Edit mode.
+
+**Story Shuffle** (Reading · Beginner to Intermediate). A short text from your last units (a dialogue, a story, a blog), cut into 5–6 lines and shuffled: A, B, C... Pairs read the lines and write the right order on paper (for example C A D B E) before the time bar runs out. **Space**: the lines glide into place one by one ("Line 1 is... C"), so everyone checks their order. When all are in place, the order in letters shows, and a picked student answers a question about the text (the answer is on the Teacher screen). **A** shows the whole order at once, **N** other text, **P** other student.
+Edit mode: title, unit, up to 6 lines in the RIGHT order (the game shuffles them), the question and its answer.
+On phones: tap the lines in order, then Check.
+
+**Lost Vowels** (Writing + Vocabulary · Beginner to Intermediate). Six words from your last units (eight from Intermediate) without their vowels: "W_dn_sd_y", "y__th h_st_l". Beginner and Elementary see a picture, every level a short clue. **Space**: the words appear and the time bar runs; everyone writes the whole words on paper (1, 2, 3...). **Space** (or time up): the vowels drop back in, one word per Space; students check their spelling, 1 point per perfect word. **H** clues on / off, **A** every word at once, **N** new words.
+Edit mode: the words, clues, pictures; Screen text & timing: words per round, writing time, clues and pictures on / off.
+On phones: one word at a time, type it, Check.
 
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 

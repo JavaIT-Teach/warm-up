@@ -28,6 +28,8 @@
     chat: 'Answer fast. Every round is shorter.',
     hunt: 'Find the hidden words. Tap the first letter, then the last.',
     vanish: 'Read it. Words vanish. Write it from memory.',
+    shuffle: 'The lines are mixed up. Tap them in the right order.',
+    vowels: 'The vowels are gone. Type the whole word.',
     partners: 'One word. Type as many partners as you can before time runs out.',
     elias: 'With friends: pass the phone. One explains, the team guesses.',
     chain: 'You and the phone take turns. Use the last letter.',

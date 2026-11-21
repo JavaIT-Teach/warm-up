@@ -28,7 +28,10 @@ WU.content.standup = [
       { id: "a1-s-stand-up-if-you-like-bananas", text: "Stand up if you like bananas.", pic: "banana", follow: "I like ___ too." },
       { id: "a1-s-stand-up-if-you-have-a-6", text: "Stand up if you have a bag.", pic: "bag", follow: "My bag is ___." },
       { id: "a1-s-stand-up-if-you-can-play", text: "Stand up if you can play the guitar.", pic: "a-guitar", follow: "I play the guitar at ___." },
-      { id: "a1-s-stand-up-if-you-like-rain", text: "Stand up if you like rain.", pic: "rain", follow: "In the rain, I ___." }
+      { id: "a1-s-stand-up-if-you-like-rain", text: "Stand up if you like rain.", pic: "rain", follow: "In the rain, I ___." },
+      { id: "a1-s-walk-the-dog-u10", text: "Stand up if you walk the dog.", pic: "dog", follow: "My dog is ___." },
+      { id: "a1-s-always-breakfast-u11", text: "Stand up if you always have breakfast.", pic: "egg", follow: "I have ___ for breakfast." },
+      { id: "a1-s-like-watching-tv-u9", text: "Stand up if you like watching TV.", pic: "TV", follow: "I like watching ___." }
     ]
   },
   /* ---------- 1. Elementary (A2) ---------- */
@@ -53,7 +56,10 @@ WU.content.standup = [
       { id: "a2-s-stand-up-if-you-visited-another", text: "Stand up if you visited another city this year.", pic: "city", follow: "I visited ___." },
       { id: "a2-s-stand-up-if-you-speak-three", text: "Stand up if you speak three languages.", pic: "mouth", follow: "I speak ___, ___ and ___." },
       { id: "a2-s-stand-up-if-you-like-dancing", text: "Stand up if you like dancing.", pic: "a-dance", follow: "I dance to ___." },
-      { id: "a2-s-stand-up-if-you-went-to", text: "Stand up if you went to bed late yesterday.", pic: "bed", follow: "I went to bed at ___." }
+      { id: "a2-s-stand-up-if-you-went-to", text: "Stand up if you went to bed late yesterday.", pic: "bed", follow: "I went to bed at ___." },
+      { id: "a2-s-wearing-bright-u9", text: "Stand up if you are wearing something bright.", pic: "c-yellow", follow: "I'm wearing a bright ___ ___." },
+      { id: "a2-s-bought-online-u10", text: "Stand up if you bought something online last month.", pic: "computer", follow: "I bought ___ online." },
+      { id: "a2-s-favourite-place-home-u8", text: "Stand up if you have a favourite place in your home.", pic: "house", follow: "My favourite place is ___ because ___." }
     ]
   },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
@@ -76,7 +82,10 @@ WU.content.standup = [
       { id: "a2p-s-stand-up-if-you-are-learning", text: "Stand up if you are learning another language too.", pic: "book", follow: "I'm learning ___ because ___." },
       { id: "a2p-s-stand-up-if-you-have-ever-3", text: "Stand up if you have ever won a prize.", pic: "star", follow: "I won a prize for ___." },
       { id: "a2p-s-stand-up-if-you-have-climbed", text: "Stand up if you have climbed a mountain.", pic: "mountain", follow: "I climbed ___ with ___." },
-      { id: "a2p-s-stand-up-if-you-can-cook", text: "Stand up if you can cook a dish from another country.", pic: "a-cook", follow: "I can cook ___. It comes from ___." }
+      { id: "a2p-s-stand-up-if-you-can-cook", text: "Stand up if you can cook a dish from another country.", pic: "a-cook", follow: "I can cook ___. It comes from ___." },
+      { id: "a2p-s-vegetarian-dish-u10", text: "Stand up if you have eaten vegetarian food this week.", pic: "broccoli", follow: "I ate ___. It tasted ___." },
+      { id: "a2p-s-going-to-sport-u11", text: "Stand up if you are going to do some sport this weekend.", pic: "sport", follow: "I'm going to ___ on ___." },
+      { id: "a2p-s-seen-wild-animal-u12", text: "Stand up if you have seen a wild animal outside a zoo.", pic: "tree", follow: "I saw a ___ in ___. It was ___." }
     ]
   },
   /* ---------- 3. Intermediate (B1) ---------- */
@@ -99,7 +108,10 @@ WU.content.standup = [
       { id: "b1-s-stand-up-if-you-would-like-3", text: "Stand up if you would like to be famous.", pic: "star", follow: "I'd like to be famous for ___." },
       { id: "b1-s-stand-up-if-you-have-read", text: "Stand up if you have read the same book twice.", pic: "book", follow: "I read ___ twice because ___." },
       { id: "b1-s-stand-up-if-you-could-live", text: "Stand up if you could live without TV.", pic: "TV", follow: "I could live without TV because ___." },
-      { id: "b1-s-stand-up-if-you-have-changed", text: "Stand up if you have changed your mind about something recently.", pic: "heart", follow: "I used to think ___, but now I think ___." }
+      { id: "b1-s-stand-up-if-you-have-changed", text: "Stand up if you have changed your mind about something recently.", pic: "heart", follow: "I used to think ___, but now I think ___." },
+      { id: "b1-s-travelled-abroad-u12", text: "Stand up if you have travelled abroad.", pic: "plane", follow: "I went to ___. I had never ___ before." },
+      { id: "b1-s-school-let-phone-u12", text: "Stand up if your school lets you use your phone in class.", pic: "phone", follow: "They let us ___, but they make us ___." },
+      { id: "b1-s-airport-early-u12", text: "Stand up if you always get to the airport very early.", pic: "plane", follow: "I usually get there ___ before my flight because ___." }
     ]
   },
   /* ---------- 4. IELTS 1 (B2) ---------- */

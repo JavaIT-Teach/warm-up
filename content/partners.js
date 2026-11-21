@@ -11,6 +11,11 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.partners = [
   /* 0. Beginner (A1): verb + picture partners. [phrase, picture id] = the tile shows that picture. */
   { words: [
+    /* Weekly words (2026-11-21): taught units (Unit 10 Things We Do, Unit 11 My Digital Life). */
+    { id: 'wk0-1121-walk', word: 'walk', unit: 'Unit 10 · Things We Do', added: '2026-11-21', p: [['walk the dog', 'dog'], ['walk to school', 'school'], ['walk in the park', 'park'], ['walk home', 'house'], ['walk on the beach', 'beach'], ['walk with friends', 'friends']], question: 'Do you walk to school or work?', trap: 'walk to home' },
+    { id: 'wk0-1121-feed', word: 'feed', unit: 'Unit 10 · Things We Do', added: '2026-11-21', p: [['feed the cat', 'cat'], ['feed the dog', 'dog'], ['feed the fish', 'fish'], ['feed the birds', 'bird'], ['feed the baby', 'baby'], ['feed the chickens', 'chicken']], question: 'Do you feed a pet at home?', trap: 'feed to the cat' },
+    { id: 'wk0-1121-clean', word: 'clean', unit: 'Unit 10 · Things We Do', added: '2026-11-21', p: [['clean the bath', 'bath'], ['clean your teeth', 'toothbrush'], ['clean the window', 'window'], ['clean the car', 'car'], ['clean the table', 'table'], ['clean your shoes', 'shoes']], question: 'What do you clean at home?', trap: 'make the cleaning' },
+    { id: 'wk0-1121-listen', word: 'listen', unit: 'Unit 11 · My Digital Life', added: '2026-11-21', p: [['listen to music', 'guitar'], ['listen to a song', 'a-sing'], ['listen to the teacher', 'teacher'], ['listen to your mum', 'mother'], ['listen to the rain', 'rain'], ['listen to the piano', 'piano']], question: 'When do you listen to music?', trap: 'listen music' },
     /* Weekly words: taught units (Unit 7 My Day, Unit 8 At School, Unit 9 Feeling Good). */
     { id: 'wk0-1118-have', word: 'have', unit: 'Unit 7 · My Day', added: '2026-11-18', p: [['have breakfast', 'egg'], ['have lunch', 'sandwich'], ['have dinner', 'soup'], ['have a shower', 'shower'], ['have art', 'a-draw'], ['have maths', 'ruler']], question: 'What do you have for breakfast?', trap: 'drink breakfast' },
     { id: 'wk0-1118-good', word: 'good', unit: 'Unit 9 · Feeling Good', added: '2026-11-18', p: [['good for you', 'apple'], ['good at running', 'a-run'], ['good at swimming', 'a-swim'], ['good at English', 'book'], ['good at art', 'a-draw'], ['good at tennis', 'tennis']], question: 'What are you good at?', trap: 'good in running' },
@@ -26,6 +31,11 @@ WU.content.partners = [
   ] },
   /* 1. Elementary (A2): picture partners too. */
   { words: [
+    /* Weekly words (2026-11-21): taught units (Unit 8 Favourite Places, Unit 10 Buying Things). */
+    { id: 'wk1-1121-buy', word: 'buy', unit: 'Unit 10 · Buying Things', added: '2026-11-21', p: [['buy a present', 'present'], ['buy clothes', 'T-shirt'], ['buy online', 'computer'], ['buy food', 'bread'], ['buy shoes', 'shoes'], ['buy a phone', 'phone']], question: 'What do you buy online?', trap: 'buy in internet' },
+    { id: 'wk1-1121-shop', word: 'shop', unit: 'Unit 10 · Buying Things', added: '2026-11-21', p: [['a clothes shop', 'T-shirt'], ['a shoe shop', 'shoes'], ['a sports shop', 'football'], ['a flower shop', 'flower'], ['a toy shop', 'teddy bear'], ['a cake shop', 'cake']], question: 'What is your favourite shop in your town? Why?', trap: 'a shop of clothes' },
+    { id: 'wk1-1121-pay', word: 'pay', unit: 'Unit 10 · Buying Things', added: '2026-11-21', p: [['pay in cash', 'money'], ['pay by card', 'wallet'], ['pay for a coffee', 'coffee'], ['pay for a taxi', 'taxi'], ['pay for lunch', 'sandwich'], ['pay for the bus', 'bus']], question: 'How do you usually pay in shops?', trap: 'pay the coffee' },
+    { id: 'wk1-1121-listen', word: 'listen', unit: 'Unit 8 · Favourite Places', added: '2026-11-21', p: [['listen to the drums', 'drum'], ['listen to the guitar', 'guitar'], ['listen to songs', 'a-sing'], ['listen to stories', 'book'], ['listen to the piano', 'piano'], ['listen to the teacher', 'teacher']], question: 'What do you listen to in your favourite place?', trap: 'listen music' },
     /* Weekly words: taught units (Unit 7 An Exciting Trip, Unit 8 Favourite Places, Unit 9 Clothes). */
     { id: 'wk1-1118-wear', word: 'wear', unit: 'Unit 9 · Clothes', added: '2026-11-18', p: [['wear a cap', 'cap'], ['wear sunglasses', 'glasses'], ['wear boots', 'boots'], ['wear gloves', 'gloves'], ['wear a scarf', 'scarf'], ['wear trainers', 'shoes']], question: 'What do you wear when it is cold?', trap: 'dress a scarf' },
     { id: 'wk1-1118-go', word: 'go', unit: 'Unit 7 · An Exciting Trip', added: '2026-11-18', p: [['go camping', 'fire'], ['go on holiday', 'plane'], ['go to the beach', 'beach'], ['go shopping', 'shop'], ['go by ferry', 'boat'], ['go to the airport', 'taxi']], question: 'Where did you go last summer?', trap: 'go to camping' },
@@ -42,6 +52,11 @@ WU.content.partners = [
   ] },
   /* 2. Pre-Intermediate (A2+) */
   { words: [
+    /* Weekly words (2026-11-21): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). */
+    { id: 'wk2-1121-animal', word: 'animal', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21', p: ['a wild animal', 'a dangerous animal', 'a harmless animal', 'a farm animal', 'a weird animal', 'animals at work'], question: 'Which wild animal would you like to see? Why?', trap: 'a house animal' },
+    { id: 'wk2-1121-feel', word: 'feel', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21', p: ['feel sick', 'feel ill', 'feel better', 'feel exhausted', 'feel tired', 'feel well'], question: 'What do you do when you feel ill?', trap: 'feel myself bad' },
+    { id: 'wk2-1121-taste', word: 'taste', unit: 'Unit 10 · Taste This!', added: '2026-11-21', p: ['taste delicious', 'taste bitter', 'taste sour', 'taste sweet', 'taste disgusting', 'taste spicy'], question: 'What food tastes disgusting to you?', trap: 'taste deliciously' },
+    { id: 'wk2-1121-break', word: 'break', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21', p: ['break your leg', 'break your arm', 'break a finger', 'break a toe', 'break your thumb', 'break your ankle'], question: 'Have you ever broken your arm or your leg? What happened?', trap: 'break the leg' },
     /* Weekly words: taught units (Unit 9 Shop Till You Drop, Unit 10 Taste This!, Unit 11 A Healthy Future). */
     { id: 'wk2-1118-got', word: 'got', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18', p: ['got a cold', 'got a cough', 'got a fever', 'got flu', 'got a sore throat', 'got toothache'], question: 'What do you do when you have got a cold?', trap: 'got a flu' },
     { id: 'wk2-1118-hurt', word: 'hurt', unit: 'Unit 11 · A Healthy Future', added: '2026-11-18', p: ['hurt my knee', 'hurt my ankle', 'hurt my shoulder', 'hurt my elbow', 'hurt my thumb', 'hurt my back'], question: 'Have you ever hurt yourself? What happened?', trap: 'hurted my knee' },
@@ -58,6 +73,11 @@ WU.content.partners = [
   ] },
   /* 3. Intermediate (B1) */
   { words: [
+    /* Weekly words (2026-11-21): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). */
+    { id: 'wk3-1121-flight', word: 'flight', unit: 'Unit 12 · Getting Around', added: '2026-11-21', p: ['book a flight', 'catch a flight', 'miss a flight', 'a long-haul flight', 'a delayed flight', 'an early flight'], question: 'Tell us about a flight you remember.', trap: 'sit on a flight' },
+    { id: 'wk3-1121-trip', word: 'trip', unit: 'Unit 12 · Getting Around', added: '2026-11-21', p: ['go on a trip', 'a school trip', 'a business trip', 'a road trip', 'plan a trip', 'a day trip'], question: 'Where would you like to go on a road trip?', trap: 'make a trip' },
+    { id: 'wk3-1121-education', word: 'education', unit: 'Unit 11 · Off to School', added: '2026-11-21', p: ['a good education', 'get an education', 'primary education', 'secondary education', 'pay for education', 'the education system'], question: 'What makes a good education?', trap: 'take education' },
+    { id: 'wk3-1121-environment', word: 'environment', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21', p: ['protect the environment', 'damage the environment', 'the ocean environment', 'harm the environment', 'the natural environment', 'care about the environment'], question: 'How can young people protect the environment?', trap: 'save environment' },
     /* Weekly words: taught units (Unit 9 The Future Is Now, Unit 10 Animals in Danger, Unit 11 Off to School). */
     { id: 'wk3-1118-battery', word: 'battery', unit: 'Unit 9 · The Future Is Now', added: '2026-11-18', p: ['charge the battery', 'a flat battery', 'battery life', 'the battery died', 'a new battery', 'a spare battery'], question: 'What do you do when your phone battery is flat?', trap: 'fill the battery' },
     { id: 'wk3-1118-habitat', word: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18', p: ['lose their habitat', 'a natural habitat', 'protect a habitat', 'destroy a habitat', 'habitat loss', 'a safe habitat'], question: 'Why are many creatures losing their habitat?', trap: 'kill a habitat' },

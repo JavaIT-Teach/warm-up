@@ -71,7 +71,10 @@
   function picker() {
     var d = kit.deck(), seen = {};
     return function (list) {
-      var fresh = list.filter(function (w) { return isFresh(w) && !seen[w.id]; });
+      var fresh = list.filter(function (w) { return isFresh(w) && !seen[w.id]; }), top = '';
+      // The newest batch (latest "added" date) first, then last week's.
+      fresh.forEach(function (w) { if (w.added > top) top = w.added; });
+      fresh = fresh.filter(function (w) { return w.added === top; });
       var w = fresh.length ? d(fresh) : d(list);
       if (w) seen[w.id] = 1;
       return w;

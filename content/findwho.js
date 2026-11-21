@@ -27,7 +27,10 @@ WU.content.findwho = [
       { id: "a1-w-good-at-running-u9", task: "Find someone who is good at running.", ask: "Are you good at running?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is good at running. ___ isn't good at running.", pic: "a-run" },
       { id: "a1-w-breakfast-every-day-u9", task: "Find someone who has breakfast every day.", ask: "Do you have breakfast every day?", yes: "Yes, I do.", no: "No, I don't.", report: "___ has breakfast every day. ___ doesn't have breakfast every day.", pic: "egg" },
       { id: "a1-w-walks-to-school-u7", task: "Find someone who walks to school.", ask: "Do you walk to school?", yes: "Yes, I do.", no: "No, I don't.", report: "___ walks to school. ___ doesn't walk to school.", pic: "school" },
-      { id: "a1-w-likes-maths-u8", task: "Find someone who likes maths.", ask: "Do you like maths?", yes: "Yes, I do.", no: "No, I don't.", report: "___ likes maths. ___ doesn't like maths.", pic: "book" }
+      { id: "a1-w-likes-maths-u8", task: "Find someone who likes maths.", ask: "Do you like maths?", yes: "Yes, I do.", no: "No, I don't.", report: "___ likes maths. ___ doesn't like maths.", pic: "book" },
+      { id: "a1-w-walks-the-dog-u10", task: "Find someone who walks the dog.", ask: "Do you walk the dog?", yes: "Yes, I do.", no: "No, I don't.", report: "___ walks the dog. ___ doesn't walk the dog.", pic: "dog" },
+      { id: "a1-w-good-at-cooking-u10", task: "Find someone who is good at cooking.", ask: "Are you good at cooking?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is good at cooking. ___ isn't good at cooking.", pic: "a-cook" },
+      { id: "a1-w-often-watches-tv-u11", task: "Find someone who often watches TV.", ask: "Do you often watch TV?", yes: "Yes, I do.", no: "No, I don't.", report: "___ often watches TV. ___ doesn't often watch TV.", pic: "TV" }
     ]
   },
   /* ---------- 1. Elementary (A2) ---------- */
@@ -50,7 +53,10 @@ WU.content.findwho = [
       { id: "a2-w-went-camping-u7", task: "Find someone who went camping last summer.", ask: "Did you go camping last summer?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ went camping. ___ didn't go camping.", pic: "tree" },
       { id: "a2-w-took-photos-u7", task: "Find someone who took photos last weekend.", ask: "Did you take any photos last weekend?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ took photos of ___. ___ didn't take any photos.", pic: "camera" },
       { id: "a2-w-bookshelf-u8", task: "Find someone who has a bookshelf in their bedroom.", ask: "Have you got a bookshelf in your bedroom?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has got a bookshelf. ___ hasn't got a bookshelf.", pic: "book" },
-      { id: "a2-w-wearing-trainers-u9", task: "Find someone who is wearing trainers today.", ask: "Are you wearing trainers today?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is wearing trainers. ___ isn't wearing trainers.", pic: "shoes" }
+      { id: "a2-w-wearing-trainers-u9", task: "Find someone who is wearing trainers today.", ask: "Are you wearing trainers today?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is wearing trainers. ___ isn't wearing trainers.", pic: "shoes" },
+      { id: "a2-w-bought-online-u10", task: "Find someone who bought something online last month.", ask: "Did you buy anything online last month?", yes: "Yes, I did.", no: "No, I didn't.", report: "___ bought something online. ___ didn't buy anything online.", pic: "computer", follow: "What did you buy?" },
+      { id: "a2-w-wearing-cotton-u9", task: "Find someone who is wearing something made of cotton.", ask: "Are you wearing anything made of cotton?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is wearing something made of cotton. ___ isn't wearing anything made of cotton.", pic: "T-shirt", follow: "What is it?" },
+      { id: "a2-w-reads-blogs-u8", task: "Find someone who reads blogs.", ask: "Do you read any blogs?", yes: "Yes, I do.", no: "No, I don't.", report: "___ reads blogs. ___ doesn't read blogs.", pic: "phone", follow: "What is your favourite blog about?" }
     ]
   },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
@@ -71,7 +77,10 @@ WU.content.findwho = [
       { id: "a2p-w-eaten-raw-fish-u10", task: "Find someone who has eaten raw fish.", ask: "Have you ever eaten raw fish?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has eaten raw fish. ___ has never eaten raw fish.", pic: "fish", follow: "Did you like it?" },
       { id: "a2p-w-taken-something-back-u9", task: "Find someone who has taken something back to a shop.", ask: "Have you ever taken something back to a shop?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has taken ___ back. ___ has never taken anything back.", pic: "shop", follow: "What was wrong with it?" },
       { id: "a2p-w-cooked-for-friends-u10", task: "Find someone who has cooked a meal for their friends.", ask: "Have you ever cooked a meal for your friends?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has cooked ___ for friends. ___ has never cooked for friends.", pic: "a-cook", follow: "What did you make?" },
-      { id: "a2p-w-known-friend-five-years-u10", task: "Find someone who has known their best friend for more than five years.", ask: "Have you known your best friend for more than five years?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has known their best friend since ___.", pic: "heart", follow: "How did you meet?" }
+      { id: "a2p-w-known-friend-five-years-u10", task: "Find someone who has known their best friend for more than five years.", ask: "Have you known your best friend for more than five years?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has known their best friend since ___.", pic: "heart", follow: "How did you meet?" },
+      { id: "a2p-w-going-to-do-sport-u11", task: "Find someone who is going to do some sport this weekend.", ask: "Are you going to do any sport this weekend?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is going to ___. ___ isn't going to do any sport.", pic: "sport", follow: "What are you going to do?" },
+      { id: "a2p-w-eaten-spicy-u10", task: "Find someone who has eaten something spicy this week.", ask: "Have you eaten anything spicy this week?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has eaten ___ this week. ___ hasn't eaten anything spicy.", pic: "chilli", follow: "What was it?" },
+      { id: "a2p-w-scared-of-insects-u12", task: "Find someone who is scared of insects.", ask: "Are you scared of insects?", yes: "Yes, I am.", no: "No, I'm not.", report: "___ is scared of ___. ___ isn't scared of insects.", pic: "bee", follow: "Which insect is the worst?" }
     ]
   },
   /* ---------- 3. Intermediate (B1) ---------- */
@@ -92,7 +101,10 @@ WU.content.findwho = [
       { id: "b1-w-studying-at-8-u9", task: "Find someone who will be studying at 8 pm tonight.", ask: "Will you be studying at 8 pm tonight?", yes: "Yes, I will.", no: "No, I won't.", report: "At 8 pm ___ will be studying ___. ___ won't be studying.", pic: "book", follow: "What will you be studying?" },
       { id: "b1-w-buy-driverless-car-u9", task: "Find someone who would buy a driverless car.", ask: "Would you buy a driverless car?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would buy one because ___. ___ wouldn't buy one.", pic: "car", follow: "Why?" },
       { id: "b1-w-seen-endangered-animal-u10", task: "Find someone who has seen an endangered animal.", ask: "Have you ever seen an endangered animal?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has seen ___. ___ has never seen one.", pic: "monkey", follow: "Where did you see it?" },
-      { id: "b1-w-boarding-school-u11", task: "Find someone who would like to go to a boarding school.", ask: "Would you like to go to a boarding school?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would like to go to a boarding school because ___.", pic: "school", follow: "Why?" }
+      { id: "b1-w-boarding-school-u11", task: "Find someone who would like to go to a boarding school.", ask: "Would you like to go to a boarding school?", yes: "Yes, I would.", no: "No, I wouldn't.", report: "___ would like to go to a boarding school because ___.", pic: "school", follow: "Why?" },
+      { id: "b1-w-read-before-school-u11", task: "Find someone who had learned to read before they started school.", ask: "Had you learned to read before you started school?", yes: "Yes, I had.", no: "No, I hadn't.", report: "___ had learned to read before school. ___ hadn't.", pic: "book", follow: "Who taught you?" },
+      { id: "b1-w-abroad-on-own-u12", task: "Find someone who has travelled abroad on their own.", ask: "Have you ever travelled abroad on your own?", yes: "Yes, I have.", no: "No, I haven't.", report: "___ has travelled abroad on their own. ___ never has.", pic: "plane", follow: "Where did you go?" },
+      { id: "b1-w-parents-let-stay-up-u12", task: "Find someone whose parents let them stay up late at the weekend.", ask: "Do your parents let you stay up late at the weekend?", yes: "Yes, they do.", no: "No, they don't.", report: "___'s parents let them stay up late. ___'s parents make them go to bed early.", pic: "moon", follow: "Until what time?" }
     ]
   },
   /* ---------- 4. IELTS 1 (B2) ---------- */

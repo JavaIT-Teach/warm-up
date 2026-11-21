@@ -44,6 +44,10 @@ WU.content.games = [
     unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['FIND', 'TENNIS', 'B4'] },
   { id: 'vanish', skills: ['writing', 'grammar'], name: 'Vanishing Sentence', hook: 'Read it. Words vanish. Write it from memory!', trains: 'Writing from memory · spelling', color: '#00e5c7', added: '2026-11-15',
     unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['I', '____', 'it', 'WRITE!'] },
+  { id: 'shuffle', skills: ['reading'], name: 'Story Shuffle', hook: 'The lines are mixed up. Read them and put them in order!', trains: 'Reading for order · linking words · questions and answers', color: '#3d6bff', added: '2026-11-21',
+    unit: ['Unit 10 · Things We Do', 'Unit 10 · Buying Things', 'Unit 12 · Incredible Wildlife', 'Unit 12 · Getting Around'], levels: [0, 3], preview: ['C', 'A', 'D', 'B', 'IN ORDER!'] },
+  { id: 'vowels', skills: ['writing', 'vocab'], name: 'Lost Vowels', hook: 'The vowels are gone. Write the whole words!', trains: 'Spelling · words from your units', color: '#ff4fc3', added: '2026-11-21',
+    unit: ['Unit 10 · Things We Do', 'Unit 10 · Buying Things', 'Unit 12 · Incredible Wildlife', 'Unit 12 · Getting Around'], levels: [0, 3], preview: ['W_DN_SD_Y', 'A E I O U', 'WEDNESDAY'] },
   /* ---------- Grammar games: one grammar point each (in the Grammar menu) ---------- */
   { id: 'articles', skills: ['grammar'], grammar: true, name: 'Article Showdown', hook: '3, 2, 1... fingers up: a, an, the or nothing?', trains: 'Articles: a / an / the / no article', color: '#c6ff00' },
   { id: 'flash', skills: ['grammar'], grammar: true, name: 'Flash Room', hook: "Look fast. It's gone. What was there?", trains: 'There is / There are · was / were', color: '#00e5c7', levels: [0, 3] },

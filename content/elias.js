@@ -14,8 +14,24 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
     /* ---------- 1. Elementary (A2): not made for this level ---------- */
     { words: [] },
     /* ---------- 2. Pre-Intermediate (A2+): everyday things, places, jobs ---------- */
-    /* Weekly words: taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). They play first for 14 days. */
+    /* Weekly words (2026-11-21): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). They play first for 14 days. */
     { words: [
+      { id: 'ewk2-1121-pineapple', text: 'pineapple', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
+      { id: 'ewk2-1121-vegetarian', text: 'vegetarian', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
+      { id: 'ewk2-1121-recipe', text: 'recipe', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
+      { id: 'ewk2-1121-delicious', text: 'delicious', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
+      { id: 'ewk2-1121-raw', text: 'raw', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
+      { id: 'ewk2-1121-forehead', text: 'forehead', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21' },
+      { id: 'ewk2-1121-knee', text: 'knee', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21' },
+      { id: 'ewk2-1121-toothache', text: 'toothache', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21' },
+      { id: 'ewk2-1121-flu', text: 'flu', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21' },
+      { id: 'ewk2-1121-triathlon', text: 'triathlon', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21' },
+      { id: 'ewk2-1121-butterfly', text: 'butterfly', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21' },
+      { id: 'ewk2-1121-frog', text: 'frog', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21' },
+      { id: 'ewk2-1121-donkey', text: 'donkey', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21' },
+      { id: 'ewk2-1121-harmless', text: 'harmless', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21' },
+      { id: 'ewk2-1121-poison', text: 'poison', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21' },
+      /* Weekly words (2026-11-18): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). */
       { id: 'ewk2-1118-spicy', text: 'spicy', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
       { id: 'ewk2-1118-sour', text: 'sour', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
       { id: 'ewk2-1118-bitter', text: 'bitter', unit: 'Unit 10 · Taste This!', added: '2026-11-18' },
@@ -47,8 +63,24 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
       ['tired', 'tired'], ['hungry', 'hungry'], ['angry', 'angry'], ['bored', 'bored'], ['scared', 'scared']
     ])) },
     /* ---------- 3. Intermediate (B1): work, travel, media, life events ---------- */
-    /* Weekly words: taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). They play first for 14 days. */
+    /* Weekly words (2026-11-21): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). They play first for 14 days. */
     { words: [
+      { id: 'ewk3-1121-jungle', text: 'jungle', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
+      { id: 'ewk3-1121-population', text: 'population', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
+      { id: 'ewk3-1121-landscape', text: 'landscape', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
+      { id: 'ewk3-1121-tropical', text: 'tropical', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
+      { id: 'ewk3-1121-extinct', text: 'extinct', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
+      { id: 'ewk3-1121-timetable', text: 'timetable', unit: 'Unit 11 · Off to School', added: '2026-11-21' },
+      { id: 'ewk3-1121-textbook', text: 'textbook', unit: 'Unit 11 · Off to School', added: '2026-11-21' },
+      { id: 'ewk3-1121-lunchtime', text: 'lunchtime', unit: 'Unit 11 · Off to School', added: '2026-11-21' },
+      { id: 'ewk3-1121-celebrate', text: 'celebrate', unit: 'Unit 11 · Off to School', added: '2026-11-21' },
+      { id: 'ewk3-1121-set-off', text: 'set off', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      { id: 'ewk3-1121-youth-hostel', text: 'youth hostel', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      { id: 'ewk3-1121-airline', text: 'airline', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      { id: 'ewk3-1121-passport', text: 'passport', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      { id: 'ewk3-1121-on-foot', text: 'on foot', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      { id: 'ewk3-1121-on-purpose', text: 'on purpose', unit: 'Unit 12 · Getting Around', added: '2026-11-21' },
+      /* Weekly words (2026-11-18): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). */
       { id: 'ewk3-1118-rainforest', text: 'rainforest', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
       { id: 'ewk3-1118-habitat', text: 'habitat', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },
       { id: 'ewk3-1118-crops', text: 'crops', unit: 'Unit 10 · Animals in Danger', added: '2026-11-18' },

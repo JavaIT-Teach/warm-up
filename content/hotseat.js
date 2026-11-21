@@ -83,7 +83,11 @@ WU.content.hotseat = [
       { id: "a1-h-water-u9", pic: "water" },
       { id: "a1-h-chocolate-u9", pic: "chocolate" },
       { id: "a1-h-school-u8", pic: "school" },
-      { id: "a1-h-biscuit-u9", text: "biscuit", pic: "cookie" }
+      { id: "a1-h-biscuit-u9", text: "biscuit", pic: "cookie" },
+      { id: "a1-h-bath-u10", pic: "bath" },
+      { id: "a1-h-toothbrush-u10", pic: "toothbrush" },
+      { id: "a1-h-swimming-u9", pic: "swimming" },
+      { id: "a1-h-plate-u10", pic: "plate" }
     ] },
   /* ---------- 1. Elementary (A2) ---------- */
   { words: [
@@ -158,7 +162,13 @@ WU.content.hotseat = [
       { id: "a2-h-curtains-u8", text: "curtains" },
       { id: "a2-h-trainers-u9", text: "trainers" },
       { id: "a2-h-sunglasses-u9", text: "sunglasses" },
-      { id: "a2-h-tie-u9", text: "tie" }
+      { id: "a2-h-tie-u9", text: "tie" },
+      { id: "a2-h-cushion-u8", text: "cushion" },
+      { id: "a2-h-bookshelf-u8", text: "bookshelf" },
+      { id: "a2-h-jumper-u9", text: "jumper" },
+      { id: "a2-h-wallet-u10", text: "wallet" },
+      { id: "a2-h-receipt-u10", text: "receipt" },
+      { id: "a2-h-discount-u10", text: "discount" }
     ] },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
   { words: [
@@ -231,7 +241,13 @@ WU.content.hotseat = [
       { id: "a2p-h-knee-u11", text: "knee", banned: "leg, bend, middle" },
       { id: "a2p-h-thumb-u11", text: "thumb", banned: "finger, hand, short" },
       { id: "a2p-h-toothache-u11", text: "toothache", banned: "tooth, pain, dentist" },
-      { id: "a2p-h-cough-u11", text: "cough", banned: "ill, throat, cold" }
+      { id: "a2p-h-cough-u11", text: "cough", banned: "ill, throat, cold" },
+      { id: "a2p-h-butterfly-u12", text: "butterfly", banned: "insect, wings, colourful" },
+      { id: "a2p-h-frog-u12", text: "frog", banned: "green, jump, water" },
+      { id: "a2p-h-bee-u12", text: "bee", banned: "honey, insect, yellow" },
+      { id: "a2p-h-bat-u12", text: "bat", banned: "night, fly, mammal" },
+      { id: "a2p-h-donkey-u12", text: "donkey", banned: "horse, ears, farm" },
+      { id: "a2p-h-fever-u11", text: "fever", banned: "hot, ill, temperature" }
     ] },
   /* ---------- 3. Intermediate (B1) ---------- */
   { words: [
@@ -304,7 +320,12 @@ WU.content.hotseat = [
       { id: "b1-h-habitat-u10", text: "habitat", banned: "animals, live, home" },
       { id: "b1-h-endangered-u10", text: "endangered", banned: "animals, die, extinct" },
       { id: "b1-h-university-u11", text: "university", banned: "study, students, degree" },
-      { id: "b1-h-boarding-school-u11", text: "boarding school", banned: "school, live, sleep" }
+      { id: "b1-h-boarding-school-u11", text: "boarding school", banned: "school, live, sleep" },
+      { id: "b1-h-cruise-ship-u12", text: "cruise ship", banned: "sea, holiday, hotel" },
+      { id: "b1-h-youth-hostel-u12", text: "youth hostel", banned: "sleep, cheap, young" },
+      { id: "b1-h-headteacher-u11", text: "headteacher", banned: "school, boss, teacher" },
+      { id: "b1-h-orangutan-u10", text: "orangutan", banned: "monkey, trees, Sumatra" },
+      { id: "b1-h-ferry-u12", text: "ferry", banned: "boat, cars, cross" }
     ] },
   /* ---------- 4. IELTS 1 (B2) ---------- */
   { words: [

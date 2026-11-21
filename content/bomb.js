@@ -141,7 +141,10 @@ WU.content.bomb = [
       { id: "a2-sense-things-that-taste-sweet", name: "Things that taste sweet" },
       { id: "a2-sense-things-that-taste-sour", name: "Things that taste sour" },
       { id: "a2-sense-things-that-smell-nice", name: "Things that smell nice" },
-      { id: "a2-sense-things-that-smell-bad", name: "Things that smell bad" }
+      { id: "a2-sense-things-that-smell-bad", name: "Things that smell bad" },
+      { id: "a2-things-made-of-leather-u9", name: "Things made of leather" },
+      { id: "a2-things-made-of-plastic-u9", name: "Things made of plastic" },
+      { id: "a2-things-in-a-wallet-u10", name: "Things in a wallet or a purse" }
     ],
     first: [
       { id: "a2-first-things-you-like", name: "Things you like" },
@@ -220,7 +223,10 @@ WU.content.bomb = [
       { id: "a2p-sense-things-that-taste-bitter", name: "Things that taste bitter" },
       { id: "a2p-sense-things-that-feel-smooth", name: "Things that feel smooth" },
       { id: "a2p-sense-things-that-feel-sticky", name: "Things that feel sticky" },
-      { id: "a2p-sense-things-that-smell-nice", name: "Things that smell nice" }
+      { id: "a2p-sense-things-that-smell-nice", name: "Things that smell nice" },
+      { id: "a2p-insects-u12", name: "Insects" },
+      { id: "a2p-dangerous-animals-u12", name: "Animals that can be dangerous" },
+      { id: "a2p-ways-to-keep-fit-u11", name: "Ways to keep fit" }
     ],
     first: [
       { id: "a2p-first-places-you-have-visited", name: "Places you have visited" },
@@ -298,7 +304,10 @@ WU.content.bomb = [
       { id: "b1-sense-things-that-taste-spicy", name: "Things that taste spicy" },
       { id: "b1-sense-things-that-feel-rough", name: "Things that feel rough" },
       { id: "b1-sense-smells-you-love", name: "Smells you love" },
-      { id: "b1-sense-sounds-that-annoy-you", name: "Sounds that annoy you" }
+      { id: "b1-sense-sounds-that-annoy-you", name: "Sounds that annoy you" },
+      { id: "b1-ways-to-travel-u12", name: "Ways to travel" },
+      { id: "b1-before-a-flight-u12", name: "Things you need to do before a flight" },
+      { id: "b1-compound-nouns-school-u11", name: "Compound nouns with school (school bus...)" }
     ],
     first: [
       { id: "b1-first-things-you-used-to-love-as", name: "Things you used to love as a child" },

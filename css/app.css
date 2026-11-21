@@ -1245,6 +1245,55 @@ body.editing #deco { display: none; }
 .vsg .vswrite { font-size: 110px; padding: 6px 50px; }
 .vsg .vsempty { position: absolute; left: 70px; right: 70px; top: 400px; text-align: center; font-family: var(--display); font-size: 56px; }
 .calm .vsg .vsw.back { animation: none; }
+/* Story Shuffle (reading) */
+.shg .shtitle, .shg .shunit { flex: 0 1 auto; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+.shg .shunit { font-size: 30px; }
+.shg .shlist { position: absolute; left: 70px; right: 70px; top: 252px; height: 610px; }
+.shg .shslot { position: absolute; left: 0; width: 84px; height: calc(var(--rh) - 16px); display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: 44px; color: #9a968c; border: 4px dashed #b9b5aa; }
+.shg .shslot.on { color: var(--ink); border: 4px solid var(--ink); background: var(--lime); }
+.shg .shline { position: absolute; left: 0; right: 0; height: calc(var(--rh) - 16px); display: flex; align-items: center; gap: 22px; padding: 0 26px 0 0; background: #fff; border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); transition: top .55s cubic-bezier(.3, .9, .3, 1.1), background .3s; }
+.shg .shline.indent { left: 104px; }
+.shg .shline.placed { background: #eaffb8; }
+.shg .shline.last { box-shadow: 8px 8px 0 var(--blue); }
+.shg .shlet { flex: none; align-self: stretch; width: 78px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 46px; }
+.shg .shtext { flex: 1 1 auto; min-width: 0; max-height: 100%; font-size: 44px; font-weight: 700; line-height: 1.12; overflow: hidden; }
+.shg .shbottom { position: absolute; left: 70px; right: 70px; top: 876px; bottom: 96px; display: flex; align-items: center; justify-content: center; gap: 30px; text-align: center; }
+.shg .shbig { font-family: var(--display); font-size: 50px; line-height: 1.05; letter-spacing: -0.02em; }
+.shg .shbig b { color: var(--blue); }
+.shg .shkey { display: inline-block; min-width: 1.2em; padding: 0 12px; background: var(--ink); color: var(--yellow); }
+.shg .shdone { flex: none; display: flex; align-items: center; gap: 22px; }
+.shg .shdone .shbig { font-size: 34px; max-width: 360px; text-align: left; }
+.shg .shans { padding: 4px 22px; background: var(--yellow); border: 5px solid var(--ink); box-shadow: 8px 8px 0 var(--ink); font-family: var(--display); font-size: 54px; letter-spacing: .08em; white-space: nowrap; }
+.shg .shq { flex: 1 1 auto; min-width: 0; display: flex; align-items: center; gap: 18px; text-align: left; }
+.shg .shql { flex: none; padding: 4px 14px; background: var(--ink); color: var(--lime); font-family: var(--display); font-size: 26px; }
+.shg .shqt { flex: 1 1 auto; min-width: 0; max-height: 96px; font-size: 40px; font-weight: 800; line-height: 1.1; overflow: hidden; }
+.shg .shq .gwho { flex: none; font-size: 36px; }
+.shg .shempty, .lvg .lvempty { position: absolute; left: 70px; right: 70px; top: 400px; text-align: center; font-family: var(--display); font-size: 56px; }
+.calm .shg .shline { transition: none; }
+/* Lost Vowels (writing) */
+.lvg .lvready { position: absolute; left: 70px; right: 70px; top: 300px; bottom: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 40px; text-align: center; }
+.lvg .lvbig { font-family: var(--display); font-size: 60px; line-height: 1.05; letter-spacing: -0.02em; }
+.lvg .lvready .lvbig { font-size: 76px; max-width: 1500px; }
+.lvg .lvvow { padding: 8px 40px; background: var(--pink); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); font-family: var(--display); font-size: 110px; letter-spacing: .12em; white-space: pre; transform: rotate(-2deg); }
+.lvg .lvsample { font-family: var(--display); font-size: 54px; white-space: pre; opacity: .8; }
+.lvg .lvgrid { position: absolute; left: 70px; right: 70px; top: 252px; height: 600px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: minmax(0, 1fr); gap: 34px 34px; }
+.lvg .lvgrid.c4 { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 30px 26px; }
+.lvg .lvcard { position: relative; min-width: 0; display: flex; align-items: center; gap: 16px; padding: 18px 22px 18px 70px; background: #fff; border: 5px solid var(--ink); box-shadow: 10px 10px 0 var(--ink); transition: background .3s; }
+.lvg .lvcard.back { background: #eafff9; }
+.lvg .lvcard.last { box-shadow: 10px 10px 0 var(--pink), 10px 10px 0 5px var(--ink); animation: wu-popin .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.lvg .lvn { position: absolute; left: -5px; top: -5px; width: 56px; height: 56px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--teal); font-family: var(--display); font-size: 36px; }
+.lvg .lvpic { flex: none; width: 120px; height: 120px; }
+.lvg .lvgrid.c4 .lvpic { width: 92px; height: 92px; }
+.lvg .lvbody { flex: 1 1 auto; min-width: 0; height: 100%; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.lvg .lvword { max-height: 72%; font-family: var(--display); font-size: 72px; line-height: 1.12; letter-spacing: .02em; overflow: hidden; }
+.lvg .lvgap { display: inline-block; width: .5em; height: .1em; margin: 0 .05em; background: var(--pink); vertical-align: baseline; }
+.lvg .lvw { display: inline-block; white-space: nowrap; }
+.lvg .lvv { color: #c4127f; display: inline-block; animation: wu-popin .4s cubic-bezier(.2, .9, .3, 1.2) both; }
+.lvg .lvclue { max-height: 28%; font-size: 30px; font-weight: 700; line-height: 1.12; opacity: .8; overflow: hidden; }
+.lvg .lvbottom { position: absolute; left: 70px; right: 70px; top: 880px; bottom: 96px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; }
+.lvg .lvbottom .lvbig { font-size: 48px; }
+.lvg .lvbottom .rule { font-size: 34px; }
+.calm .lvg .lvv, .calm .lvg .lvcard.last { animation: none; }
 
 /* ---------- Home fit: the day strip took ~80px from the menus, so tighten the chrome and keep every text line whole ---------- */
 .home { padding: 28px 48px 26px; gap: 20px; }

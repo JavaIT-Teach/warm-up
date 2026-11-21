@@ -189,10 +189,12 @@
   function startTurn() {}
   // Weekly words (from the units the groups have just been taught, "added" in the last WU.NEW_DAYS days) play first.
   function isFresh(w) { var t = Date.parse(w.added || ''); return !isNaN(t) && Date.now() - t < (WU.NEW_DAYS || 14) * 864e5; }
+  // Of the fresh words, the newest batch (latest "added" date) first, then last week's.
+  function newest(list) { var top = ''; list.forEach(function (w) { if (w.added > top) top = w.added; }); return list.filter(function (w) { return w.added === top; }); }
   // This week's words first, then every other word once (random order), then round again.
   function pickWord(all, played, lastId) {
     var left = function (f) { return all.filter(function (w) { return played.indexOf(w.id) < 0 && (!f || f(w)); }); };
-    var c = left(isFresh); if (!c.length) c = left();
+    var c = newest(left(isFresh)); if (!c.length) c = left();
     if (!c.length) { played.length = 0; c = all.filter(function (w) { return w.id !== lastId; }); if (!c.length) c = all; }
     return WU.pick(c);
   }

@@ -379,3 +379,17 @@ body.phone button { color: var(--ink); }
 #pupdate span { flex: 1; min-width: 0; }
 #pupdate button { flex: none; min-height: 44px; padding: 0 14px; background: var(--ink); color: #fff; border: 3px solid var(--ink); font-family: var(--display); font-size: 16px; }
 #pupdate button[data-u="later"] { padding: 0 12px; background: #fff; color: var(--ink); font-size: 20px; }
+
+/* Story Shuffle + Lost Vowels (weekly games) */
+.shp-list { display: flex; flex-direction: column; gap: 10px; }
+.shp-line { display: flex; align-items: stretch; gap: 0; width: 100%; padding: 0; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); text-align: left; font: inherit; color: inherit; }
+.shp-line b { flex: none; width: 40px; display: flex; align-items: center; justify-content: center; background: var(--ink); color: var(--yellow); font-family: var(--display); font-weight: 400; font-size: 20px; }
+.shp-line span { flex: 1 1 auto; min-width: 0; padding: 10px 12px; font-size: 17px; font-weight: 700; line-height: 1.3; }
+.shp-line em { display: block; margin-top: 4px; font-style: normal; font-size: 14px; font-weight: 600; opacity: .75; }
+.shp-line.on { background: #eaffb8; }
+.shp-line.on b { background: var(--blue); color: #fff; }
+.shp-line.ok { background: var(--lime); }
+.shp-line.no { background: #ffd2c4; }
+.lvp-word { font-family: var(--display); font-size: 32px; line-height: 1.25; letter-spacing: .03em; overflow-wrap: anywhere; }
+.lvp-gap { display: inline-block; width: .5em; height: .12em; margin: 0 .04em; background: var(--pink); }
+.lvp-v { color: #c4127f; }
