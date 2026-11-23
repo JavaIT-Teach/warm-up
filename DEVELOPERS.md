@@ -74,6 +74,7 @@ Games that need a group become pass-the-phone games (Elias, Hot Seat: the player
 (Four Zones: pick, give a reason, argue for another zone). The former board-only games are in `js/phone/games-more.js`; its `frameInputs()` turns a
 sentence frame into gap boxes the student fills.
 Phone screens for the weekly games (Story Shuffle, Lost Vowels...) are in `js/phone/games-weekly.js`.
+Sentence Train's phone screen is `js/phone/games-sentence.js`; it uses the board game's parser and jobs through `WU.engines.sentence`.
 The phone home list has search (name, phone text, hook, trains, skills, unit), a sort (Suggested = new first, A to Z, Newest by `added`)
 and skill chips (`WU.SKILLS`). Sort and skill are saved on the phone; games for other levels always go last.
 

@@ -29,6 +29,7 @@
     vanish: 'Read it. Words vanish. Write it from memory.',
     shuffle: 'The lines are mixed up. Tap them in the right order.',
     vowels: 'The vowels are gone. Type the whole word.',
+    sentence: 'Tap the words in the right order. Then the twist.',
     partners: 'One word. Type as many partners as you can before time runs out.',
     elias: 'With friends: pass the phone. One explains, the team guesses.',
     chain: 'You and the phone take turns. Use the last letter.',
