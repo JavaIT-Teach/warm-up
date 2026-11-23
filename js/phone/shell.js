@@ -19,7 +19,6 @@
     bomb: 'Type words for the category before the bomb explodes.',
     tug: 'Argue for one side, then the other. Good reasons pull.',
     hotseat: 'With friends: phone on your forehead. They describe, you guess.',
-    lie: 'With friends: pass the phone. Truth or lie? Run the detector.',
     names: 'Write your introduction, then a classmate\'s.',
     standup: 'True for you? Say more. Not true? Ask a question.',
     zones: 'Pick an answer, give a reason, then argue for another.',

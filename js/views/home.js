@@ -31,13 +31,6 @@
           return '<div style="position:absolute;left:0;top:0;width:300px;height:100px;background:#fff;border:4px solid ' + K + ';display:flex;align-items:center;justify-content:center;font-family:' + F + ';font-size:52px;opacity:0;animation:wu-flashword 2.7s ' + (i * 0.9) + 's steps(1) infinite">' + w + '</div>';
         }).join('') + '</div></div>';
     }
-    if (id === 'lie') {
-      var pts = '0,50 30,50 40,20 50,80 60,35 70,60 80,50 120,50 128,40 136,58 150,50 190,50 200,10 210,90 220,30 230,70 240,50 270,50';
-      var path = pts + ' ' + pts.split(' ').map(function (p) { var q = p.split(','); return (+q[0] + 270) + ',' + q[1]; }).join(' ');
-      return '<div style="display:flex;align-items:center;gap:28px"><div style="width:360px;height:110px;overflow:hidden;background:' + K + ';border:4px solid ' + K + '">' +
-        '<svg width="540" height="100" viewBox="0 0 540 100" style="animation:wu-scroll 1.6s linear infinite"><polyline points="' + path + '" fill="none" stroke="' + col + '" stroke-width="6" stroke-linejoin="round"></polyline></svg></div>' +
-        '<div style="font-family:' + F + ';font-size:52px;color:' + K + ';animation:wu-flicker .5s steps(1) infinite alternate">LIE?</div></div>';
-    }
     if (id === 'tug') {
       return '<div style="position:relative;width:640px;height:120px"><div style="position:absolute;left:0;top:30px;width:90px;height:60px;background:' + K + '"></div>' +
         '<div style="position:absolute;right:0;top:30px;width:90px;height:60px;background:#fff;border:4px solid ' + K + '"></div>' +

@@ -70,7 +70,7 @@ Every board game has a phone screen (menu order = `content/games.js`, via `WU.ph
 check or reveal the answer, because no teacher judges. Read content only through `WU.list` and the game's screen record
 (`ctx.S`). Where a board game's logic is needed, the board file exposes it on `WU.engines.<id>` (Time Machine, Hide & Seek Cat).
 A new board game script goes in **both** `index.html` and `phone.html`, and every new game needs a phone screen too (content must be identical on both).
-Games that need a group become pass-the-phone games (Elias, Hot Seat, Lie Detector: the players judge); room games become solo versions
+Games that need a group become pass-the-phone games (Elias, Hot Seat: the players judge); room games become solo versions
 (Four Zones: pick, give a reason, argue for another zone). The former board-only games are in `js/phone/games-more.js`; its `frameInputs()` turns a
 sentence frame into gap boxes the student fills.
 Phone screens for the weekly games (Story Shuffle, Lost Vowels...) are in `js/phone/games-weekly.js`.
