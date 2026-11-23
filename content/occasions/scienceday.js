@@ -31,12 +31,6 @@
     { id: 'sc-a1-z-want', q: 'I want a...', a1: 'robot', p1: 'robot', a2: 'rocket', p2: 'rocket', a3: 'computer', p3: 'computer', a4: 'phone', p4: 'phone' },
     { id: 'sc-a1-z-planet-colour', q: 'Best colour for a planet?', a1: 'blue', p1: 'c-blue', a2: 'red', p2: 'c-red', a3: 'green', p3: 'c-green', a4: 'yellow', p4: 'c-yellow' }
   ]);
-  add('lie', 'questions', 0, [
-    { id: 'sc-a1-q-like-science', text: 'Do you like science?', pic: 'microscope' },
-    { id: 'sc-a1-q-have-computer', text: 'Do you have a computer?', pic: 'computer' },
-    { id: 'sc-a1-q-like-robots', text: 'Do you like robots?', pic: 'robot' },
-    { id: 'sc-a1-q-like-stars', text: 'Do you like the stars?', pic: 'star' }
-  ]);
 
   /* ---------- 1. Elementary ---------- */
   add('bomb', 'cats', 1, [
@@ -61,12 +55,6 @@
     { id: 'sc-a2-z-best-subject', q: 'Best school subject?', a1: 'science', p1: 'microscope', a2: 'maths', p2: 'computer', a3: 'English', p3: 'book', a4: 'sport', p4: 'football' },
     { id: 'sc-a2-z-visit', q: 'Which would you like to visit?', a1: 'the moon', p1: 'moon', a2: 'Mars', p2: 'planet', a3: 'the bottom of the sea', p3: 'fish', a4: 'a science museum', p4: 'microscope' },
     { id: 'sc-a2-z-cant-live', q: "I can't live without my...", a1: 'phone', p1: 'phone', a2: 'computer', p2: 'computer', a3: 'TV', p3: 'TV', a4: 'lamp', p4: 'lamp' }
-  ]);
-  add('lie', 'questions', 1, [
-    { id: 'sc-a2-q-liked-science', text: 'Did you like science at school?', pic: 'microscope' },
-    { id: 'sc-a2-q-museum', text: 'Did you go to a museum last year?', pic: 'book' },
-    { id: 'sc-a2-q-moon', text: 'Did you see the moon last night?', pic: 'moon' },
-    { id: 'sc-a2-q-robot', text: 'Have you got a robot toy?', pic: 'robot' }
   ]);
 
   /* ---------- 2. Pre-Intermediate ---------- */
@@ -93,12 +81,6 @@
     { id: 'sc-a2p-z-job', q: 'Which science job would you choose?', a1: 'astronaut', p1: 'rocket', a2: 'doctor', p2: 'doctor', a3: 'robot engineer', p3: 'robot', a4: 'scientist in a lab', p4: 'microscope' },
     { id: 'sc-a2p-z-future', q: 'In 50 years, people will...', a1: 'live on Mars', p1: 'planet', a2: 'have robot helpers', p2: 'robot', a3: 'drive flying cars', p3: 'car', a4: 'live longer', p4: 'heart' }
   ]);
-  add('lie', 'questions', 2, [
-    { id: 'sc-a2p-q-been-museum', text: 'Have you ever been to a science museum?', pic: 'microscope' },
-    { id: 'sc-a2p-q-telescope', text: 'Have you ever looked through a telescope?', pic: 'star' },
-    { id: 'sc-a2p-q-broken', text: 'Have you ever broken a phone or a computer?', pic: 'phone' },
-    { id: 'sc-a2p-q-astronaut', text: 'Did you want to be an astronaut when you were a child?', pic: 'rocket' }
-  ]);
 
   /* ---------- 3. Intermediate ---------- */
   add('bomb', 'cats', 3, [
@@ -123,11 +105,5 @@
     { id: 'sc-b1-z-most-important', q: 'Most important invention?', a1: 'the internet', p1: 'computer', a2: 'medicine', p2: 'doctor', a3: 'electricity', p3: 'lamp', a4: 'the plane', p4: 'plane' },
     { id: 'sc-b1-z-if-scientist', q: 'If you were a scientist, you would study...', a1: 'space', p1: 'rocket', a2: 'the human body', p2: 'heart', a3: 'animals', p3: 'dog', a4: 'robots and AI', p4: 'robot' },
     { id: 'sc-b1-z-worry', q: 'Which worries you most?', a1: 'climate change', p1: 'sun', a2: 'AI taking jobs', p2: 'robot', a3: 'too much screen time', p3: 'phone', a4: 'nothing', p4: 'heart' }
-  ]);
-  add('lie', 'questions', 3, [
-    { id: 'sc-b1-q-mars', text: 'Would you live on Mars for a year?', pic: 'planet' },
-    { id: 'sc-b1-q-used-to-astronaut', text: 'Did you use to want to be an astronaut?', pic: 'rocket' },
-    { id: 'sc-b1-q-ai', text: 'Have you ever used AI to do your homework?', pic: 'computer' },
-    { id: 'sc-b1-q-invented', text: 'Have you ever invented or built something yourself?', pic: 'robot' }
   ]);
 })();

@@ -30,12 +30,6 @@
     { id: 'ny-a1-z-party-food', q: 'Favourite party food?', a1: 'cake', p1: 'cake', a2: 'pizza', p2: 'pizza', a3: 'fruit', p3: 'apple', a4: 'sweets', p4: 'sweets' },
     { id: 'ny-a1-z-tree-colour', q: 'Best colour for a New Year tree?', a1: 'green', p1: 'c-green', a2: 'white', p2: 'c-white', a3: 'red', p3: 'c-red', a4: 'blue', p4: 'c-blue' }
   ]);
-  add('lie', 'questions', 0, [
-    { id: 'ny-a1-q-like-snow', text: 'Do you like snow?', pic: 'snow' },
-    { id: 'ny-a1-q-have-tree', text: 'Do you have a New Year tree?', pic: 'ny-tree' },
-    { id: 'ny-a1-q-like-fireworks', text: 'Do you like fireworks?', pic: 'fireworks' },
-    { id: 'ny-a1-q-like-cake', text: 'Do you like cake?', pic: 'cake' }
-  ]);
 
   /* ---------- 1. Elementary ---------- */
   add('bomb', 'cats', 1, [
@@ -60,12 +54,6 @@
     { id: 'ny-a2-z-best-present', q: 'Best New Year present?', a1: 'a phone', p1: 'phone', a2: 'clothes', p2: 'T-shirt', a3: 'a book', p3: 'book', a4: 'money', p4: 'money' },
     { id: 'ny-a2-z-eve', q: "Best way to spend New Year's Eve?", a1: 'at home with family', p1: 'family', a2: 'at a party', p2: 'balloon', a3: 'outside, watching fireworks', p3: 'fireworks', a4: 'sleeping', p4: 'bed' },
     { id: 'ny-a2-z-winter', q: 'Best winter activity?', a1: 'making a snowman', p1: 'snowman', a2: 'drinking hot tea', p2: 'tea', a3: 'watching films', p3: 'TV', a4: 'playing games', p4: 'a-games' }
-  ]);
-  add('lie', 'questions', 1, [
-    { id: 'ny-a2-q-got-present', text: 'Did you get a present last New Year?', pic: 'present' },
-    { id: 'ny-a2-q-saw-fireworks', text: 'Did you see fireworks last New Year?', pic: 'fireworks' },
-    { id: 'ny-a2-q-midnight', text: 'Did you stay up until midnight last New Year?', pic: 'clock' },
-    { id: 'ny-a2-q-tree', text: 'Have you got a New Year tree at home?', pic: 'ny-tree' }
   ]);
 
   /* ---------- 2. Pre-Intermediate ---------- */
@@ -92,12 +80,6 @@
     { id: 'ny-a2p-z-next-year', q: 'Next year, I want to...', a1: 'learn something new', p1: 'book', a2: 'travel', p2: 'plane', a3: 'do more sport', p3: 'football', a4: 'make new friends', p4: 'family' },
     { id: 'ny-a2p-z-present', q: 'Best New Year present?', a1: 'a trip', p1: 'plane', a2: 'clothes', p2: 'T-shirt', a3: 'a gadget', p3: 'phone', a4: 'money', p4: 'money' }
   ]);
-  add('lie', 'questions', 2, [
-    { id: 'ny-a2p-q-outside', text: 'Have you ever celebrated New Year outside?', pic: 'fireworks' },
-    { id: 'ny-a2p-q-snowman', text: 'Have you ever made a snowman?', pic: 'snowman' },
-    { id: 'ny-a2p-q-bought', text: 'Have you bought any presents this year?', pic: 'present' },
-    { id: 'ny-a2p-q-travel', text: 'Are you going to travel this winter?', pic: 'plane' }
-  ]);
 
   /* ---------- 3. Intermediate ---------- */
   add('bomb', 'cats', 3, [
@@ -122,11 +104,5 @@
     { id: 'ny-b1-z-important', q: 'Most important part of New Year?', a1: 'family', p1: 'family', a2: 'food', p2: 'cake', a3: 'presents', p3: 'present', a4: 'the countdown', p4: 'clock' },
     { id: 'ny-b1-z-resolution', q: 'Best New Year resolution?', a1: 'learn a language', p1: 'book', a2: 'exercise more', p2: 'football', a3: 'save money', p3: 'money', a4: 'spend less time online', p4: 'phone' },
     { id: 'ny-b1-z-where', q: 'If you could, where would you celebrate?', a1: 'in the mountains', p1: 'mountain', a2: 'on a beach', p2: 'beach', a3: 'in a big city', p3: 'city', a4: 'at home', p4: 'house' }
-  ]);
-  add('lie', 'questions', 3, [
-    { id: 'ny-b1-q-awake', text: "Have you ever stayed awake all night on New Year's Eve?", pic: 'clock' },
-    { id: 'ny-b1-q-used-to', text: 'Did you use to believe in Grandfather Frost?', pic: 'present' },
-    { id: 'ny-b1-q-kept', text: 'Have you ever kept a New Year resolution for a whole year?', pic: 'book' },
-    { id: 'ny-b1-q-abroad', text: 'Would you like to celebrate New Year in another country?', pic: 'plane' }
   ]);
 })();

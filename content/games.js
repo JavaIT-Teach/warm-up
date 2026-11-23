@@ -21,7 +21,6 @@ WU.content.games = [
   { id: 'bomb', skills: ['vocab', 'speaking'], name: 'The Bomb', hook: "Say a word. Pass it on. Don't be holding it.", trains: 'Vocabulary by topic · fast speaking', color: '#c6ff00', first: true },
   { id: 'slot', skills: ['speaking'], name: 'Slot Machine of Chaos', hook: 'Three reels. One ridiculous talk.', trains: 'Fluency · speaking at length', color: '#ff5a1f', first: true },
   { id: 'hotseat', skills: ['vocab', 'speaking'], name: 'Hot Seat', hook: 'Back to the board. The class describes.', trains: 'Describing · paraphrasing', color: '#ff4fc3' },
-  { id: 'lie', skills: ['speaking'], name: 'Lie Detector', hook: 'Truth or lie? The machine knows.', trains: 'Answering · follow-up questions', color: '#ffe600', first: true },
   { id: 'tug', skills: ['speaking'], name: 'Tug of War', hook: 'Two teams. Good reasons pull the rope.', trains: 'Giving reasons · persuading', color: '#3d6bff', first: true },
   { id: 'dice', skills: ['speaking', 'writing'], name: 'Story Dice', hook: 'Roll the pictures. Build one story.', trains: 'Storytelling · past simple · linking words', color: '#c6ff00' },
   { id: 'chain', skills: ['vocab', 'writing'], name: 'Word Chain', hook: 'The last letter starts the next word.', trains: 'Vocabulary recall · spelling', color: '#ff5a1f' },

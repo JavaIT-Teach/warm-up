@@ -2,7 +2,7 @@
    Same lists and screen texts as the board (WU.list, ctx.S), portrait screens, the phone checks or reveals.
    Grammar (solo, checked): Article Showdown, Pin It!, Sticky Words, Domino Effect.
    Speaking: The Bomb (solo: words before the fuse runs out), Tug of War (solo: argue both sides),
-             Hot Seat (with friends: phone on your forehead), Lie Detector (with friends: pass the phone).
+             Hot Seat (with friends: phone on your forehead).
    Room games as solo versions: Name Wall, Stand Up If..., Four Zones, Opinion Line, Find Someone Who, Speed Chat. */
 (function () {
   'use strict';
@@ -334,41 +334,6 @@
       st.phase = 'done'; ctx.score(st.score > 0); WU.sound.buzzer(); render();
     }
     return { mount: function (b, c) { body = b; ctx = c; ready(); }, unmount: function () { clearTimeout(tickT); body = ctx = st = null; } };
-  })();
-
-  /* ======================= LIE DETECTOR (with friends: pass the phone) ======================= */
-  P.games.lie = (function () {
-    var body, ctx, st, deck = WU.kit.deck();
-    function start() {
-      var q = deck(list('lie', 'questions', ctx).filter(function (x) { return x.text; }));
-      if (!q) { ctx.empty(); return; }
-      st = { q: q, phase: 'secret', truth: null }; render();
-    }
-    function render() {
-      var S = ctx.S, h = '';
-      if (st.phase === 'secret') {
-        h += '<p class="pnote big">With friends. Give the phone to the person who answers. Others: look away!</p>' +
-          '<div class="mbig">' + esc(st.q.text) + '</div><p class="pnote">Secretly choose: will your answer be TRUE or a LIE?</p>';
-        body.innerHTML = h;
-        ctx.actions([{ label: S.truth || 'TRUTH', alt: true, on: function () { st.truth = true; st.phase = 'answer'; WU.sound.clack(); render(); } },
-          { label: 'LIE', on: function () { st.truth = false; st.phase = 'answer'; WU.sound.clack(); render(); } }]);
-      } else if (st.phase === 'answer') {
-        h += '<div class="mbig">' + esc(st.q.text) + '</div>' + (S.ruleShow && S.rule ? '<p class="pnote big">' + esc(S.rule) + '</p>' : '') +
-          '<p class="pnote">Show the screen. Answer out loud with details. Each friend asks one follow-up question.</p>' +
-          '<p class="pnote">' + esc(S.vote || 'Vote! TRUTH or LIE?') + '</p>';
-        body.innerHTML = h;
-        ctx.actions([{ label: 'Run the detector', on: function () { st.phase = 'scan'; render(); setTimeout(function () { if (st && st.phase === 'scan') { st.phase = 'reveal'; WU.sound.slam(); render(); } }, WU.isCalm() ? 50 : 1600); } }]);
-      } else if (st.phase === 'scan') {
-        body.innerHTML = '<div class="mbig">' + esc(st.q.text) + '</div><div class="mscan">' + esc(S.scanning || 'ANALYSING...') + '</div>';
-        ctx.actions([]);
-      } else {
-        h += '<div class="mbig">' + esc(st.q.text) + '</div><div class="pbanner ' + (st.truth ? 'ok' : 'no') + ' mreveal">' + esc(st.truth ? S.truth || 'TRUTH' : S.lie || 'LIE!') + '</div>' +
-          '<p class="pnote">Who guessed right? Now pass the phone to the next person.</p>';
-        body.innerHTML = h;
-        ctx.actions([{ label: 'Next question', on: start }]);
-      }
-    }
-    return { mount: function (b, c) { body = b; ctx = c; start(); }, unmount: function () { body = ctx = st = null; } };
   })();
 
   /* ======================= NAME WALL (solo: your introduction, then a friend's) ======================= */

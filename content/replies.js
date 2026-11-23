@@ -1,7 +1,7 @@
 /* Warm Up: content for NATURAL REPLIES and the shared EXPRESSION BANK. Generated with a permanent id on every item.
    bank[level]: { id, cat, text }. The expressions students use to reply. cat = hello, reply (to "How are you?"), agree, disagree,
      thanks, welcome, sympathy, happy (good news), short (short answers: I did.), vague (kind of, not really), surprise (You're serious?).
-     Other games borrow from this bank (Opinion Line, Tug of War, Four Zones, Speed Chat, Find Someone Who, Lie Detector):
+     Other games borrow from this bank (Opinion Line, Tug of War, Four Zones, Speed Chat, Find Someone Who):
      their "Screen text & timing" says which categories they show. Edit an expression once, it changes everywhere.
    prompts[level]: { id, cat, line }. Something someone says; cat = the kind of reply that fits.
    No "go off" (often sarcastic now) and no "it sucks" (fine with adults, risky with teenagers).

@@ -1,6 +1,6 @@
 /* Warm Up: TEACHER SCREEN.
    A second window for the teacher's laptop (Windows "Extend": the board shows the game, the laptop shows this).
-   It shows what only the teacher should know (the hidden picture, the word, the secret truth / lie...), the timer,
+   It shows what only the teacher should know (the hidden picture, the word...), the timer,
    the scores and big buttons for the game's keys. The board never shows any of it.
    How the two windows talk: directly (window.open reference + postMessage) and through a BroadcastChannel as a backup.
    Same computer, no internet. The board runs the game; the teacher window only sends key presses and draws what it gets.
