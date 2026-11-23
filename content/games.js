@@ -39,6 +39,8 @@ WU.content.games = [
     preview: ['I OWE', 'YOU', 'ONE!'] },
   { id: 'elias', skills: ['vocab', 'speaking'], name: 'Elias', hook: 'Explain it to your team. Fast. No gestures.', trains: 'Paraphrasing · explaining words · team race', color: '#3d6bff', added: '2026-11-18', levels: [2, 6],
     preview: ['EXPLAIN', 'GUESS', '+1', 'SKIP'] },
+  { id: 'sentence', skills: ['grammar', 'writing'], name: 'Sentence Train', hook: 'Mixed-up words. Put every word in the right carriage!', trains: 'Word order · negatives · questions · long sentences', color: '#ff5a1f', added: '2026-11-23',
+    preview: ['WHO', '+ DOES', '+ WHAT'] },
   /* ---------- Weekly games built from the taught lessons ---------- */
   { id: 'hunt', skills: ['reading', 'vocab'], name: 'Word Hunt', hook: 'Read the clue. Find the word in the grid!', trains: 'Reading clues · finding words', color: '#ffe600', added: '2026-11-15',
     unit: ['Unit 9 · Feeling Good', 'Unit 9 · Clothes and Fashion', 'Unit 11 · A Healthy Future', 'Unit 11 · Off to School'], levels: [0, 3], preview: ['FIND', 'TENNIS', 'B4'] },

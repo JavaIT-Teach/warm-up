@@ -393,3 +393,23 @@ body.phone button { color: var(--ink); }
 .lvp-word { font-family: var(--display); font-size: 32px; line-height: 1.25; letter-spacing: .03em; overflow-wrap: anywhere; }
 .lvp-gap { display: inline-block; width: .5em; height: .12em; margin: 0 .04em; background: var(--pink); }
 .lvp-v { color: #c4127f; }
+/* Sentence Train */
+.stp-rail { display: flex; flex-wrap: wrap; align-items: stretch; gap: 14px 12px; padding-bottom: 6px; }
+.stp-car { position: relative; display: flex; flex-direction: column; min-width: 54px; padding: 0; background: #ece8dc; border: 3px dashed #9a968c; font: inherit; color: inherit; text-align: center; }
+.stp-car.on { background: #fff; border: 3px solid var(--ink); box-shadow: 3px 3px 0 var(--ink); }
+.stp-car.ok, .stp-car.no { background: var(--rc, #fff); color: var(--ri, var(--ink)); border: 3px solid var(--ink); }
+.stp-car.ok { box-shadow: 0 0 0 3px var(--lime), 3px 3px 0 3px var(--ink); }
+.stp-car.no { box-shadow: 0 0 0 3px #ff5a1f, 3px 3px 0 3px var(--ink); }
+.stp-car.no .stp-ct { text-decoration: line-through; text-decoration-thickness: 2px; }
+.stp-ct { flex: 1 1 auto; display: flex; align-items: center; justify-content: center; padding: 7px 10px; font-size: 17px; font-weight: 800; line-height: 1.2; }
+.stp-car:not(.on) .stp-ct { font-family: var(--display); font-weight: 400; color: #9a968c; }
+.stp-cr { flex: none; padding: 2px 6px; background: var(--rc, #ccc); color: var(--ri, var(--ink)); border-top: 2px solid var(--ink); font-size: 10px; font-weight: 900; letter-spacing: .05em; white-space: nowrap; }
+.stp-car.ok .stp-cr, .stp-car.no .stp-cr { background: var(--ink); color: #fff; }
+.stp-cr.off { background: transparent; color: #9a968c; border-top: 2px dashed #9a968c; }
+.stp-end { align-self: center; font-family: var(--display); font-size: 28px; line-height: 1; margin-left: -6px; }
+.stp-tiles { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+.stp-tile { padding: 9px 14px; background: #fff; border: 3px solid var(--ink); box-shadow: 4px 4px 0 var(--ink); font: inherit; font-size: 17px; font-weight: 800; color: inherit; }
+.stp-tile:active { transform: translate(2px, 2px); box-shadow: 2px 2px 0 var(--ink); }
+.stp-pat { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-top: 8px; }
+.stp-pat i { font-style: normal; font-weight: 900; }
+.stp-pat .ptag { border: 2px solid var(--ink); font-size: 11px; }
