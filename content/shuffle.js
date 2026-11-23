@@ -6,7 +6,9 @@
      l1 ... l6 = the lines in the RIGHT order (3 to 6 lines; empty = not used). The game shuffles them.
      title = shown at the top (the class may read it). unit = the taught unit (tag).
      q = a question about the text after the order is checked (empty = none). a = its answer (teacher screen only).
-   Every line needs a clue to its place (a question and its answer, First / After that / Finally, he / she / it...).
+   ONE order only: every line after l1 must point back to the line before it (an answer to its question, an echo of
+   its words, So / But / Then / too, he / she / it / there). l1 must be an opener that cannot follow any other line.
+   Test: if two lines can swap and the text still makes sense, rewrite one of them.
    id is PERMANENT: teacher edits (Edit mode) point at it. Never change or reuse an id. */
 window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.shuffle = [
@@ -14,19 +16,19 @@ WU.content.shuffle = [
   {
     texts: [
       { id: 'a1-sh-mum-calls', title: 'Mum calls Tomás', unit: 'Unit 10 · Things We Do',
-        l1: 'Hi, Tomás! Where are you?', l2: "Hi, Mum! I'm in my bedroom.", l3: 'Are you doing your homework?', l4: "No, I'm not. I'm tidying my room.", l5: 'Great! Thank you, Tomás!', l6: '',
+        l1: "Hi, Tomás! It's Mum. Where are you?", l2: "Hi, Mum! I'm at home, in my bedroom.", l3: 'In your bedroom? Are you doing your homework there?', l4: "No, I'm not doing my homework. I'm tidying my room.", l5: 'Tidying your room? Great! Thank you, Tomás!', l6: '',
         q: 'What is Tomás doing?', a: "He's tidying his room." },
       { id: 'a1-sh-dear-doctor', title: 'Dear Dr Smart', unit: 'Unit 9 · Feeling Good',
-        l1: "Dear Dr Smart, I'm Tom and I'm 16.", l2: 'I like relaxing at home and watching TV.', l3: "I don't like sport. Is it good for me?", l4: "Dear Tom, it isn't good for you.", l5: "Do sport with your friends. You'll feel better!", l6: '',
+        l1: "Dear Dr Smart, my name is Tom and I'm 16.", l2: "I've got a problem. I like relaxing at home and watching TV.", l3: "But I don't like sport. Is that bad for me?", l4: 'Dear Tom, thank you for your letter. Yes, it is bad for you!', l5: "So do sport with your friends. You'll feel better!", l6: '',
         q: 'What does Tom like doing?', a: 'He likes relaxing at home and watching TV.' },
       { id: 'a1-sh-my-saturday', title: 'My Saturday', unit: 'Unit 11 · My Digital Life',
-        l1: 'On Saturday, I always get up at nine o\'clock.', l2: 'Then I have breakfast with my family.', l3: 'After breakfast, I often play football with my friends.', l4: 'In the evening, I sometimes go to the cinema.', l5: 'I never go to bed early on Saturday!', l6: '',
+        l1: 'On Saturday, I always get up at nine o\'clock.', l2: 'Then I have breakfast with my family.', l3: 'After breakfast, I often play football with my friends.', l4: 'After football, I go home and have lunch.', l5: 'In the evening, I watch a film and go to bed late!', l6: '',
         q: 'What does he often do after breakfast?', a: 'He often plays football with his friends.' },
       { id: 'a1-sh-jose-on-tv', title: 'José is on TV!', unit: 'Unit 11 · My Digital Life',
-        l1: 'Look! José is on TV!', l2: 'Really? What is he doing?', l3: "He's talking to a woman about his band.", l4: 'His band is famous now. They have a lot of fans.', l5: 'Wow! I always listen to their songs.', l6: '',
+        l1: 'Look! Your friend José is on TV!', l2: 'Really? What is he doing?', l3: "He's talking to a woman about his band.", l4: 'His band? Is it famous now?', l5: 'Yes, it is! They have a lot of fans.', l6: '',
         q: 'Who is José talking to?', a: "He's talking to a woman." },
       { id: 'a1-sh-who-helps', title: 'Who helps at home?', unit: 'Unit 10 · Things We Do',
-        l1: 'Mum is at the front door with the shopping.', l2: 'Is Jason helping? Yes, he is.', l3: "He's in the kitchen. He's cooking dinner.", l4: 'Is Esther helping? No, she isn\'t.', l5: "She isn't at home. She's walking the dog!", l6: '',
+        l1: 'Mum is at the front door with the shopping. Where are the children?', l2: "Jason is in the kitchen. He's cooking dinner.", l3: 'Great! And what about Esther? Is she helping too?', l4: "No, she isn't. She isn't at home.", l5: "Where is she? Oh, look! She's walking the dog!", l6: '',
         q: 'What is Jason doing?', a: "He's cooking dinner." }
     ]
   },
@@ -34,19 +36,19 @@ WU.content.shuffle = [
   {
     texts: [
       { id: 'a2-sh-new-jacket', title: 'My new jacket', unit: 'Unit 10 · Buying Things',
-        l1: 'Last month, I wanted a new jacket for the winter.', l2: 'First, I looked at a lot of jackets online.', l3: 'After that, I went to the shopping centre with my friend.', l4: 'There was a sale, so I got a big discount.', l5: 'Two days later, I lost the receipt!', l6: 'Finally, I found it in my wallet.',
+        l1: 'Last month, I wanted a new jacket for the winter.', l2: 'First, I looked at a lot of jackets online, but they were expensive.', l3: 'So I went to the shopping centre with my friend.', l4: 'There was a sale there, so I got a big discount on a black jacket.', l5: "When I got home, I couldn't find the receipt!", l6: 'Finally, I found it in the jacket pocket.',
         q: 'Why did she get a discount?', a: 'Because there was a sale.' },
       { id: 'a2-sh-cory-cookies', title: "Mr Cory's Cookies", unit: 'Unit 10 · Buying Things',
-        l1: 'Cory was tired of getting the bus to school.', l2: 'He wanted to make some money, so he started a business.', l3: 'First, he sold hot chocolate and lemonade.', l4: 'After that, he and his mum made chocolate chip cookies.', l5: 'Now he sells his cookies for just over a dollar each.', l6: 'Cory is a young entrepreneur!',
+        l1: 'Cory was tired of getting the bus to school with his mum.', l2: 'He wanted to buy her a car, so he needed some money.', l3: 'First, he sold hot chocolate and lemonade in the street.', l4: 'After that, he and his mum made chocolate chip cookies.', l5: "People loved the cookies, so he started a business: Mr Cory's Cookies.", l6: 'Now the business is famous, and Cory is a young entrepreneur!',
         q: 'What did Cory sell first?', a: 'Hot chocolate and lemonade.' },
       { id: 'a2-sh-whose-boots', title: 'Whose boots?', unit: 'Unit 9 · Clothes and Fashion',
-        l1: 'Whose boots are these? Are they yours?', l2: "No, they aren't mine. Mine are black.", l3: "Are they Megan's?", l4: "Yes, I think they're hers. She wore them yesterday.", l5: "OK. Let's give them to her.", l6: '',
+        l1: 'Whose boots are these? Are they yours?', l2: "No, they aren't mine. Mine are black.", l3: "Not yours? Then are they Megan's?", l4: "Yes, I think they're hers. She wore them yesterday.", l5: "OK. Let's give them to her.", l6: '',
         q: 'What colour are his boots?', a: 'They are black.' },
       { id: 'a2-sh-beach', title: 'My favourite place', unit: 'Unit 8 · Favourite Places',
-        l1: "My favourite place is the beach near my grandparents' house.", l2: 'I go there every summer with my family.', l3: 'When we arrive, I take off my shoes.', l4: 'After that, I walk along the beach and listen to the sea.', l5: "It's always quiet there, so I can think.", l6: "That's why it's my favourite place!",
-        q: 'What does he do when he arrives?', a: 'He takes off his shoes.' },
+        l1: "My favourite place is the beach near my grandparents' house.", l2: 'I go there every summer with my family.', l3: 'When we arrive, I take off my shoes and run into the sea.', l4: 'After my swim, I sit on the sand and read a book.', l5: 'In the evening, we all eat fish at my grandparents\' house.', l6: "That's why the beach is my favourite place!",
+        q: 'What does he do when he arrives?', a: 'He takes off his shoes and runs into the sea.' },
       { id: 'a2-sh-best-buy', title: 'Best buy?', unit: 'Unit 9 · Clothes and Fashion',
-        l1: 'Last year, I bought a pale blue jumper.', l2: 'It was made of wool and it was really cheap.', l3: 'I washed it in the washing machine.', l4: 'After that, it was very small!', l5: 'Now my little sister wears it. It was not my best buy!', l6: '',
+        l1: 'Last year, I bought a pale blue jumper.', l2: 'It was made of wool, and it was really cheap.', l3: 'A week later, it was dirty, so I washed it in the washing machine.', l4: 'But the water was too hot. When I took it out, it was very small!', l5: 'Now my little sister wears it. It was not my best buy!', l6: '',
         q: 'What was the jumper made of?', a: 'It was made of wool.' }
     ]
   },
@@ -80,10 +82,10 @@ WU.content.shuffle = [
         l1: 'It was Monday morning and I was sitting on the school bus.', l2: 'Suddenly, I realised I had left my homework at home.', l3: 'I had worked on it all weekend, so I felt terrible.', l4: 'When I got to school, I told my teacher what had happened.', l5: 'Luckily, she let me hand it in the next day.', l6: '',
         q: 'What had the writer left at home?', a: 'His / her homework.' },
       { id: 'b1-sh-orangutans', title: 'Orangutans in danger', unit: 'Unit 10 · Animals in Danger',
-        l1: 'Orangutans live high in the trees of the rainforest in Sumatra.', l2: 'However, their habitat is decreasing every year.', l3: 'When the forest is damaged, they have nowhere to live.', l4: 'That is why experts take them to a rescue centre.', l5: "If we don't protect the rainforest, they won't survive in the wild.", l6: '',
+        l1: 'Orangutans live high in the trees of the rainforest in Sumatra.', l2: 'However, their habitat is decreasing every year.', l3: 'When their part of the forest is damaged, they have nowhere to live.', l4: 'That is why experts take these homeless orangutans to a rescue centre.', l5: "If we don't protect the rainforest, they won't survive in the wild.", l6: '',
         q: 'Where do orangutans live?', a: 'High in the trees of the rainforest in Sumatra.' },
       { id: 'b1-sh-trip-advice', title: 'Travelling with your besties', unit: 'Unit 12 · Getting Around',
-        l1: "Planning a trip abroad with your besties? Here's my advice.", l2: 'First, you need to check which documents to take.', l3: "If you're under 18, you have to take a letter from your parents.", l4: 'When you fly, you should get to the airport two hours early.', l5: "Finally, don't pack too much stuff: you'll have to carry it!", l6: '',
+        l1: "Planning a trip abroad with your besties? Here's my advice.", l2: 'First, you need to check which documents to take.', l3: "If you're under 18, you also have to take a letter from your parents.", l4: 'Once your documents are ready, think about the flight: get to the airport two hours early.', l5: "Finally, don't pack too much stuff: you'll have to carry it!", l6: '',
         q: 'What do you have to take if you are under 18?', a: 'A letter from your parents.' },
       { id: 'b1-sh-boarding', title: 'My first term', unit: 'Unit 11 · Off to School',
         l1: 'Last September, I started at a boarding school.', l2: 'I had never lived away from home before, so I was nervous.', l3: 'At first, I missed my family a lot.', l4: 'After a few weeks, though, I had made some good friends.', l5: 'By the time school broke up in December, I loved it!', l6: '',
