@@ -162,7 +162,7 @@
     }
     k += '<div class="tw-keys">' + btns.map(function (b) {
       return '<button data-k="' + esc(b[0]) + '"><span class="k">' + esc(b[0]) + '</span><span>' + esc(b[1]) + '</span></button>';
-    }).join('') + (s.view !== 'home' ? '' : '<div class="tw-games">' + WU.content.games.map(function (g, i) {
+    }).join('') + (s.view !== 'home' ? '' : '<div class="tw-games">' + WU.activeGames().map(function (g, i) {
       return '<button data-go="' + g.id + '"><span class="k">' + (i + 1) + '</span><span>' + esc(g.name) + '</span></button>'; }).join('') + '</div>') + '</div>';
     if (s.teams.length) k += '<div class="tw-scores">' + s.teams.map(function (t, i) {
       return '<div style="background:' + t.color + '"><span>' + esc(t.name) + '</span><b>' + t.score + '</b><span class="tw-pm"><i data-k="' + (i + 1) + '">+</i><i data-k="' + (i + 1) + '" data-shift="1">&minus;</i></span></div>';

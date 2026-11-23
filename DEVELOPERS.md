@@ -43,7 +43,7 @@ for the moving games; `inner` is what stands in the middle (Four Zones: four col
 ## Skill menus, NEW badge and weekly games
 The home screen is a skill picker (`WU.SKILLS` in `content/games.js`: vocab, grammar, speaking, reading, writing) plus "New this week".
 Every game entry needs `skills: [...]` (one or more skill ids). Optional: `added: 'YYYY-MM-DD'` (NEW badge, listed first and in
-"New this week" for `WU.NEW_DAYS` days), `unit: 'Unit 9 · Feeling Good'` (shown on the NEW badge; or a list with one unit per level) and `preview: [words]`
+"New this week" only if it is the newest `added` date of all games, i.e. the latest run, and under `WU.NEW_DAYS` days old; see `WU.isNewGame`), `unit: 'Unit 9 · Feeling Good'` (shown on the NEW badge; or a list with one unit per level) and `preview: [words]`
 (card preview for games without a drawn one in `js/views/home.js`).
 Weekly games built from the lesson plans follow every rule in this file: content in `content/<id>.js`, view in `js/games/<id>.js`,
 both added to `index.html`, entry in `content/games.js`, all content editable, a default at every level.

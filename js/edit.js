@@ -236,8 +236,9 @@
     var g = WU.current;
     var all = Object.keys(WU.lists).map(function (k) { return WU.lists[k]; });
     // Home: one button per game (the editor has a tab for each of its lists).
-    if (g === 'home') { var seen = {}; return all.filter(function (d) { if (seen[d.game]) return false; seen[d.game] = 1; return true; }); }
-    return all.filter(function (d) { return d.game === g || d.game === 'app'; });
+    // App lists ("App texts", "Games") each get their own button.
+    if (g === 'home') { var seen = {}; return all.filter(function (d) { var key = d.game === 'app' ? 'app:' + d.list : d.game; if (seen[key]) return false; seen[key] = 1; return true; }); }
+    return all.filter(function (d) { return d.game === g || (d.game === 'app' && d.list !== 'games'); });
   }
   function renderBar() {
     var st = document.getElementById('stage'), bar = document.getElementById('editbar');
@@ -335,7 +336,7 @@
   WU.editAttr = function (game, list, id, field) { return ' data-edit="' + game + ':' + list + ':' + id + (field ? ':' + field : '') + '"'; };
 
   /* ---------- editor panel ---------- */
-  // def options: global (same for every level), single (fixed records: no add / delete).
+  // def options: global (same for every level), single (fixed records: no add / delete), noAdd (delete only, no add).
   // Field types: text, num (min/max), bool (show/hide), pic, examples (example cards), head (section title).
   WU.openEditor = function (game, list, selId, focusKey) {
     var def = WU.lists[game + ':' + list]; if (!def) return;
@@ -367,7 +368,7 @@
             '<span class="ed-t">' + WU.esc(label(it)) + '</span>' + (it.custom ? '<span class="ed-b new">NEW</span>' : it.edited ? '<span class="ed-b">EDITED</span>' : '') + '</div>';
         }).join('') +
         dels.map(function (it) { return '<div class="ed-row del"><span class="ed-t">' + WU.esc(label(it)) + '</span><span class="sbtn" tabindex="0" data-restore="' + it.id + '">Restore</span></div>'; }).join('') +
-        '</div><div class="ed-acts">' + (def.single ? '' : '<span class="sbtn dark" tabindex="0" data-a="add">+ Add new (N)</span>') +
+        '</div><div class="ed-acts">' + (def.single || def.noAdd ? '' : '<span class="sbtn dark" tabindex="0" data-a="add">+ Add new (N)</span>') +
         '</div></div>' +
         '<div class="ed-right">' + (mode === 'pick' ? pickerHTML() : formHTML()) + '</div></div></div>';
       el.innerHTML = h; wire();
@@ -549,7 +550,7 @@
       });
     }
     function addItem() {
-      if (def.single) return;
+      if (def.single || def.noAdd) return;
       var id = WU.edits.add(game, list, lvl, def.blank(lvl)); if (!id) return;
       sel = id; mode = 'form'; render();
       var f = el.querySelector('.ed-form input[type=text]'); if (f) f.focus();
@@ -629,6 +630,19 @@
       ];
     }
   });
+
+  /* ---------- the game list itself: delete a game (hidden on the big screen and on phones), Restore brings it back ---------- */
+  WU.registerList('app', 'games', {
+    gameTitle: 'All games', label: 'Games', global: true, noAdd: true,
+    defaults: function () { return WU.content.games || []; },
+    norm: function (r) { var o = {}; Object.keys(r).forEach(function (k) { if (k !== 'id') o[k] = r[k]; }); return o; },
+    title: function (it) { return it.name + (WU.isNewGame && WU.isNewGame(it) ? '  (NEW)' : ''); },
+    fields: function () {
+      return [{ type: 'head', label: 'Delete (Del) hides this game everywhere: home screen, New this week, phones. Deleted games stay at the bottom of the list with a Restore button.' }];
+    }
+  });
+  WU.gameDeleted = function (id) { return WU.listDeleted('app', 'games', 0).some(function (g) { return g.id === id; }); };
+  WU.activeGames = function () { return (WU.content.games || []).filter(function (g) { return !WU.gameDeleted(g.id); }); };
 
   /* ---------- wiring ---------- */
   WU.on('route', function () { renderBar(); markEditables(); runAudit(); });

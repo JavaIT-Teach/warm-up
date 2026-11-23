@@ -134,21 +134,18 @@
 
   // cat = the skill menu that is open (null = the skill picker). Kept while a game is open, so Esc from a game comes back here.
   var cat = null;
-  function isNew(g) {
-    if (!g.added) return false;
-    var t = Date.parse(g.added); return !isNaN(t) && (Date.now() - t) < (WU.NEW_DAYS || 14) * 864e5;
-  }
+  function isNew(g) { return WU.isNewGame(g); }
   function skillOf(id) { return (WU.SKILLS || []).filter(function (k) { return k.id === id; })[0]; }
   // The games in a skill menu: new ones first (newest first), then the rest in list order. 'new' = every new game.
   function catGames(c) {
-    var all = WU.content.games, list = c === 'new' ? all.filter(isNew) : all.filter(function (g) { return (g.skills || []).indexOf(c) >= 0; });
+    var all = WU.activeGames(), list = c === 'new' ? all.filter(isNew) : all.filter(function (g) { return (g.skills || []).indexOf(c) >= 0; });
     var fresh = list.filter(isNew).sort(function (x, y) { return Date.parse(y.added) - Date.parse(x.added); });
     return fresh.concat(list.filter(function (g) { return !isNew(g); }));
   }
   // The skill picker tiles: the five skills, then "New this week".
   function skillTiles() {
     return (WU.SKILLS || []).map(function (k) { return { id: k.id, name: k.name, hook: k.hook, color: k.color }; })
-      .concat([{ id: 'new', name: 'New this week', hook: 'Added in the last ' + (WU.NEW_DAYS || 14) + ' days', color: '#ff5a1f' }]);
+      .concat([{ id: 'new', name: 'New this week', hook: 'From the latest weekly run', color: '#ff5a1f' }]);
   }
 
   function topBar(cls, s) {
@@ -267,7 +264,7 @@
     wireTiles(root);
   }
   function openCat(c) {
-    if (c === 'new' && !catGames('new').length) { WU.toast('No new games in the last ' + (WU.NEW_DAYS || 14) + ' days. New games arrive every Saturday.'); return; }
+    if (c === 'new' && !catGames('new').length) { WU.toast('No new games right now. New games arrive every Saturday.'); return; }
     cat = c; render();
     var t = root && root.querySelector(c ? '.grid .tile' : '.skillgrid .tile'); if (t && document.activeElement && document.activeElement.closest && document.activeElement.closest('.tile')) t.focus();
   }

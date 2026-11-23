@@ -9,7 +9,7 @@
   var P = WU.phone = { games: {} };
   // Elias is the one group game: pass the phone (2+ players).
   // Every board game has a phone screen: the menu follows the board's order (content/games.js).
-  P.order = function () { return (WU.content.games || []).map(function (g) { return g.id; }).filter(function (id) { return P.games[id]; }); };
+  P.order = function () { return (WU.content.games || []).map(function (g) { return g.id; }).filter(function (id) { return P.games[id] && !WU.gameDeleted(id); }); };
   // What the student does on the phone (the board text says what the class does).
   P.HOW = {
     articles: 'a, an, the or nothing? Tap the right one.',
@@ -102,8 +102,7 @@
 
   /* ---------- home ---------- */
   function newGame(g) {
-    if (!g || !g.added) return false;
-    var d = new Date(g.added + 'T00:00:00'); return !isNaN(d) && (Date.now() - d.getTime()) / 864e5 < (WU.NEW_DAYS || 14);
+    return WU.isNewGame(g);
   }
   function unitOf(g) {
     if (!g.unit) return '';
@@ -321,7 +320,7 @@
     app = document.getElementById('papp');
     document.addEventListener('pointerdown', function () { WU.sound.unlock(); }, { once: true });
     // The phone back button / swipe goes back to the game list.
-    window.addEventListener('popstate', function () { var id = (location.hash || '').replace('#', ''); if (id && P.games[id] && WU.gameOk(id)) open(id, true); else home(); });
+    window.addEventListener('popstate', function () { var id = (location.hash || '').replace('#', ''); if (id && P.games[id] && !WU.gameDeleted(id) && WU.gameOk(id)) open(id, true); else home(); });
     // Teacher edits (synced from GitHub) arrive after the first draw: redraw the list, keep a running game.
     WU.on('content', function () { if (!curId && levelChosen() && app.querySelector('.pcards')) drawCards(); });
     (WU.images ? WU.images.load() : Promise.resolve()).then(function () {

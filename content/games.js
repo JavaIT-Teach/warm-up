@@ -17,6 +17,16 @@ WU.SKILLS = [
   { id: 'writing', name: 'Writing', hook: 'Spell, build, write', color: '#00e5c7' }
 ];
 WU.NEW_DAYS = 14;
+/* "New" = only the games from the latest weekly run (the newest `added` date), and only while that run is under WU.NEW_DAYS old.
+   Older runs lose their NEW badge as soon as a newer run is added. */
+WU.isNewGame = function (g) {
+  if (!g || !g.added) return false;
+  var latest = '';
+  (WU.content.games || []).forEach(function (x) { if (x.added && x.added > latest) latest = x.added; });
+  if (g.added !== latest) return false;
+  var t = Date.parse(g.added + 'T00:00:00');
+  return !isNaN(t) && (Date.now() - t) < (WU.NEW_DAYS || 14) * 864e5;
+};
 WU.content.games = [
   { id: 'bomb', skills: ['vocab', 'speaking'], name: 'The Bomb', hook: "Say a word. Pass it on. Don't be holding it.", trains: 'Vocabulary by topic · fast speaking', color: '#c6ff00', first: true },
   { id: 'slot', skills: ['speaking'], name: 'Slot Machine of Chaos', hook: 'Three reels. One ridiculous talk.', trains: 'Fluency · speaking at length', color: '#ff5a1f', first: true },
