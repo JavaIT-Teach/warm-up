@@ -1,5 +1,5 @@
 /* Warm Up on a phone: the party games (see js/phone/shell.js). Same lists and screen texts as the board (WU.list, ctx.S).
-   Truth or Dare (solo: write the truth, say the dare against the clock), 20 Questions (with friends: pass the phone, one holds the secret),
+   Truth or Dare (solo: write the truth, say the dare against the clock),
    Just a Minute (solo: talk against the clock, then check yourself for the three mistakes). */
 (function () {
   'use strict';
@@ -66,47 +66,6 @@
       mount: function (b, c) { body = b; ctx = c; barEl = document.createElement('div'); bar = P.bar(barEl); start(); },
       unmount: function () { if (bar) bar.stop(); body = ctx = st = bar = null; }
     };
-  })();
-
-  /* ======================= 20 QUESTIONS (with friends: pass the phone) ======================= */
-  P.games.twenty = (function () {
-    var body, ctx, st, deck = WU.kit.deck();
-    function max() { return Math.max(5, Math.min(30, +ctx.S.max || 20)); }
-    function start() { var it = deck(list('twenty', 'secrets', ctx).filter(function (x) { return x.text; })); if (!it) { ctx.empty(); return; } st = { it: it, phase: 'setup', used: 0, log: [], peek: false }; render(); }
-    function answer(a) { st.used++; st.log.push(a); if (a === 'y') WU.sound.ding(); else WU.sound.pop(); if (st.used >= max()) end(false); else render(); }
-    function end(won) { st.phase = 'end'; st.won = won; ctx.score(won); if (won) WU.sound.slam(); else WU.sound.buzzer(); render(); }
-    function render() {
-      var S = ctx.S, it = st.it, h = '', left = max() - st.used;
-      if (st.phase === 'setup') {
-        h += '<p class="pnote big">Play with friends. One player holds the phone and looks at the secret. The others ask yes / no questions.</p>' +
-          '<div class="pcard2">' + (st.peek ? picHTML(it.pic) + '<div class="pqtext">' + esc(it.text) + '</div>' : '<div class="pqtext">Secret hidden</div>') + '</div>' +
-          (S.catShow && it.cat ? '<div class="pkv q"><span>' + esc(S.cat || 'It\'s a...') + '</span><b>' + esc(it.cat) + '</b></div>' : '') +
-          (S.ruleShow && S.rule ? '<p class="pnote">' + esc(S.rule) + '</p>' : '');
-        body.innerHTML = h;
-        ctx.actions([{ label: st.peek ? 'Hide it' : 'Show me the secret', alt: true, on: function () { st.peek = !st.peek; render(); } },
-          { label: 'Start', on: function () { st.phase = 'play'; st.peek = false; WU.sound.ding(); render(); } }]);
-        return;
-      }
-      if (st.phase === 'play') {
-        h += '<div class="prow"><span class="ptag" style="background:var(--c)">' + esc(S.tag || '20 QUESTIONS') + '</span><span class="pcount">' + left + ' ' + esc(S.left || 'left') + '</span></div>' +
-          (S.catShow && it.cat ? '<div class="pkv q"><span>' + esc(S.cat || 'It\'s a...') + '</span><b>' + esc(it.cat) + '</b></div>' : '') +
-          (S.startersShow ? '<p class="plabel">Ask like this</p>' + split(S.starters).map(frameHTML).join('') : '') +
-          '<div class="pans small">' + (st.log.length ? st.log.map(function (a) { return a === 'y' ? (S.yes || 'YES') : a === 'n' ? (S.no || 'NO') : (S.maybe || 'SOMETIMES'); }).join(' · ') : '...') + '</div>' +
-          '<p class="pnote">The secret holder taps the answer. Not a yes / no question? Ask again, it doesn\'t count.</p>' +
-          '<button class="pbtn" data-g="1" style="width:100%">Guessed it!</button>';
-        body.innerHTML = h;
-        body.querySelector('[data-g]').onclick = function () { end(true); };
-        ctx.actions([{ label: S.no || 'NO', alt: true, on: function () { answer('n'); } }, { label: S.maybe || 'SOMETIMES', alt: true, on: function () { answer('m'); } },
-          { label: S.yes || 'YES', on: function () { answer('y'); } }]);
-        return;
-      }
-      h += '<div class="pbanner ' + (st.won ? 'ok">' + esc(P.fill(S.win || 'GOT IT in {used}!', { used: st.used })) : 'no">' + esc(S.lose || 'Out of questions!')) + '</div>' +
-        '<p class="plabel">' + esc(S.reveal || 'It was:') + '</p><div class="pcard2">' + picHTML(it.pic) + '<div class="pqtext">' + esc(it.text) + '</div></div>' +
-        (S.best ? '<p class="pnote">' + esc(S.best) + '</p>' : '');
-      body.innerHTML = h;
-      ctx.actions([{ label: 'Next round: pass the phone', on: start }]);
-    }
-    return { mount: function (b, c) { body = b; ctx = c; start(); }, unmount: function () { body = ctx = st = null; } };
   })();
 
   /* ======================= JUST A MINUTE (solo: talk, then check yourself) ======================= */
