@@ -44,7 +44,6 @@
     lostword: 'Someone forgot a word. Which one? Then say it your way.',
     replies: 'Someone says something. Pick the best reply, fast.',
     truth: 'Truth: write your answer. Dare: say it before the time is up.',
-    ever: 'Yes or no? Then tell the story in the past simple.',
     twenty: 'With friends: one holds the secret, the others ask yes / no questions.',
     minute: 'Talk about a topic until the time is up. Then check yourself.'
   };

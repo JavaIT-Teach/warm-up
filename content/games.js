@@ -42,8 +42,6 @@ WU.content.games = [
     preview: ['WHO', '+ DOES', '+ WHAT'] },
   { id: 'truth', skills: ['speaking'], name: 'Truth or Dare', hook: 'Answer about you, or take a speaking dare.', trains: 'Talking about yourself · follow-up questions', color: '#ff4fc3', added: '2026-11-24',
     preview: ['TRUTH', 'OR', 'DARE?'] },
-  { id: 'ever', skills: ['speaking', 'grammar'], name: 'Have You Ever...?', hook: 'Ask about experiences. A YES gets the whole story.', trains: 'Present perfect + past simple for the story', color: '#00e5c7', added: '2026-11-24',
-    levels: [1, 6], preview: ['HAVE YOU', 'EVER...?', 'WHEN?'] },
   { id: 'twenty', skills: ['speaking', 'grammar'], name: '20 Questions', hook: 'Find the secret with yes / no questions only.', trains: 'Yes / no questions · question forms', color: '#ffe600', added: '2026-11-24',
     preview: ['IS IT...?', 'YES', 'NO', '17'] },
   { id: 'minute', skills: ['speaking'], name: 'Just a Minute', hook: "Talk without stopping. The class shouts 'Challenge!'", trains: 'Fluency · no hesitation, no repetition', color: '#ff5a1f', added: '2026-11-24',

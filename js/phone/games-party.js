@@ -1,6 +1,5 @@
 /* Warm Up on a phone: the party games (see js/phone/shell.js). Same lists and screen texts as the board (WU.list, ctx.S).
-   Truth or Dare (solo: write the truth, say the dare against the clock), Have You Ever...? (solo: answer, then the story
-   in the past simple, checked for "have + past participle"), 20 Questions (with friends: pass the phone, one holds the secret),
+   Truth or Dare (solo: write the truth, say the dare against the clock), 20 Questions (with friends: pass the phone, one holds the secret),
    Just a Minute (solo: talk against the clock, then check yourself for the three mistakes). */
 (function () {
   'use strict';
@@ -67,47 +66,6 @@
       mount: function (b, c) { body = b; ctx = c; barEl = document.createElement('div'); bar = P.bar(barEl); start(); },
       unmount: function () { if (bar) bar.stop(); body = ctx = st = bar = null; }
     };
-  })();
-
-  /* ======================= HAVE YOU EVER...? (solo, checked: past simple for the details) ======================= */
-  P.games.ever = (function () {
-    var body, ctx, st, deck = WU.kit.deck();
-    // "I have been / I've seen / we have eaten": the present perfect where the story needs the past simple.
-    var PERFECT = /\b(have|has|'ve|'s)\s+(been|gone|seen|eaten|done|had|made|taken|given|got|gotten|met|tried|visited|travelled|traveled|played|lost|won|found|bought|flown|ridden|swum|written|read|heard|felt|learned|learnt|cooked|watched|lived|worked|stayed|climbed|sent|forgotten)\b/i;
-    function start() { var it = deck(list('ever', 'prompts', ctx).filter(function (x) { return x.text; })); if (!it) { ctx.empty(); return; } st = { it: it, phase: 'ask', typed: '' }; render(); }
-    function render() {
-      var S = ctx.S, it = st.it, h = picHTML(it.pic) + '<div class="mbig">' + esc(it.text) + '</div>';
-      if (st.phase === 'ask') {
-        h += (S.ruleShow && S.rule ? '<p class="pnote">' + esc(S.rule) + '</p>' : '');
-        body.innerHTML = h;
-        ctx.actions([{ label: S.noShort || 'No, I haven\'t.', alt: true, on: function () { st.phase = 'no'; st.typed = ''; render(); } },
-          { label: S.yesShort || 'Yes, I have.', on: function () { st.phase = 'yes'; st.typed = ''; WU.sound.ding(); render(); } }]);
-        return;
-      }
-      if (st.phase === 'yes') {
-        h += '<div class="pbanner ok">' + esc(S.yesTag || 'YES! TELL US MORE') + '</div><p class="pq">' + esc(it.ask || split(S.ladder)[0] || 'When was that?') + '</p>' + frameHTML(it.yes) +
-          (st.warn ? '<div class="pmsg">Past simple for the story: I went, I saw, I ate... not "I have been".</div>' : '');
-        body.innerHTML = h; box(body, st, 'Answer in the past simple');
-        ctx.actions([{ label: 'Done', on: function () {
-          if (words(st.typed) < 4) { P.toast('A bit more, please: 4 words or more.'); return; }
-          if (PERFECT.test(st.typed)) { st.warn = true; ctx.score(false); WU.sound.beep(300); render(); return; }
-          st.phase = 'done'; st.warn = false; ctx.score(true); WU.sound.ding(); render();
-        } }]);
-        return;
-      }
-      if (st.phase === 'no') {
-        h += '<div class="pbanner no">' + esc(S.noTag || 'NOT YET!') + '</div><p class="pq">' + esc(S.noAsk || 'Would you like to?') + '</p>' + split(S.noFrame).map(frameHTML).join('');
-        body.innerHTML = h; box(body, st, 'Your answer');
-        ctx.actions([{ label: 'Done', on: function () { if (words(st.typed) < 4) { P.toast('Say why: 4 words or more.'); return; } st.phase = 'done'; ctx.score(true); WU.sound.ding(); render(); } }]);
-        return;
-      }
-      h += '<div class="pbanner ok">Nice!</div><div class="pans small">' + esc(st.typed) + '</div>' +
-        (S.ladderShow !== false ? '<p class="plabel">' + esc(S.ladderLabel || 'More questions:') + '</p>' + split(S.ladder).map(function (q) { return '<div class="pkv">' + esc(q) + '</div>'; }).join('') : '') +
-        '<p class="pnote">Ask a friend the same question. Then ask them these.</p>';
-      body.innerHTML = h;
-      ctx.actions([{ label: 'Next question', on: start }]);
-    }
-    return { mount: function (b, c) { body = b; ctx = c; start(); }, unmount: function () { body = ctx = st = null; } };
   })();
 
   /* ======================= 20 QUESTIONS (with friends: pass the phone) ======================= */

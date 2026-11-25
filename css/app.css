@@ -1512,7 +1512,7 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .qr-panel .btn { font-size: 36px; padding: 12px 24px; background: #fff; }
 .qr-panel .btn .key { font-size: 26px; padding: 4px 14px; }
 
-/* ---------- Party games: Truth or Dare, Have You Ever...?, 20 Questions, Just a Minute (shared layout .ptg) ---------- */
+/* ---------- Party games: Truth or Dare, 20 Questions, Just a Minute (shared layout .ptg) ---------- */
 .ptg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .ptg .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .ptg .phead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 26px; }
@@ -1546,14 +1546,10 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .tdoor.t { background: var(--blue); color: #fff; }
 .ptg .tdoor.d { background: var(--pink); }
 .ptg .swap { padding: 4px 22px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 44px; animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
-/* Have You Ever: short answers and the question ladder */
+/* Fair / not fair buttons (Just a Minute) */
 .ptg .yn { display: flex; gap: 30px; }
 .ptg .yn .btn { font-size: 46px; }
 .ptg .yn .btn.no { background: #fff; }
-.ptg .ladder { display: flex; flex-wrap: wrap; gap: 14px 18px; }
-.ptg .ladder .q { padding: 6px 18px; background: #fff; border: 4px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); font-family: var(--display); font-size: 38px; }
-.ptg .ladder .q.hot { background: var(--yellow); }
-.ptg .lbl { font-size: 36px; font-weight: 800; }
 /* 20 Questions: the counter and the answer log */
 .ptg .qcount { width: 400px; height: 330px; display: flex; flex-direction: column; align-items: center; justify-content: center; background: var(--yellow); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); }
 .ptg .qcount b { font-family: var(--display); font-weight: normal; font-size: 210px; line-height: .9; }
@@ -1581,4 +1577,3 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .pside .yn { flex-direction: column; gap: 18px; align-self: stretch; }
 .ptg .pside .yn .btn { font-size: 42px; }
 .ptg.side .frame.small { font-size: 32px; }
-.ptg.side .ladder .q { font-size: 34px; }
