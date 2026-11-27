@@ -1,5 +1,4 @@
 /* Warm Up on a phone: the party games (see js/phone/shell.js). Same lists and screen texts as the board (WU.list, ctx.S).
-   Truth or Dare (solo: write the truth, say the dare against the clock),
    Just a Minute (solo: talk against the clock, then check yourself for the three mistakes). */
 (function () {
   'use strict';
@@ -15,58 +14,6 @@
     el.insertAdjacentHTML('beforeend', '<textarea class="pinput" rows="3" autocapitalize="sentences" spellcheck="true" placeholder="' + esc(ph || 'Write your answer') + '">' + esc(st.typed || '') + '</textarea>');
     var ta = el.querySelector('textarea'); ta.oninput = function () { st.typed = ta.value; }; return ta;
   }
-
-  /* ======================= TRUTH OR DARE (solo) ======================= */
-  P.games.truth = (function () {
-    var body, ctx, st, bar, barEl, dT = WU.kit.deck(), dD = WU.kit.deck();
-    function start() { st = { phase: 'choose', typed: '' }; render(); }
-    function draw(kind) {
-      var it = (kind === 'truth' ? dT : dD)(list('truth', kind === 'truth' ? 'truths' : 'dares', ctx).filter(function (x) { return x.text; }));
-      if (!it) { ctx.empty(); return false; }
-      st.kind = kind; st.it = it; st.typed = ''; return true;
-    }
-    function secs() { var S = ctx.S; return Math.max(10, st.kind === 'truth' ? +S.truthSecs || 45 : +st.it.secs || +S.dareSecs || 30); }
-    function render() {
-      var S = ctx.S, h = '';
-      bar.stop();
-      if (st.phase === 'choose') {
-        h += '<p class="pnote big">' + esc(P.fill(S.choose || 'Truth or dare?', { name: 'You' })) + '</p>' +
-          '<div class="pchoices"><button class="pchoice" data-k="truth" style="background:#3d6bff;color:#fff">' + esc(S.truthLabel || 'TRUTH') + '<br><small>' + esc(S.truthSub || '') + '</small></button>' +
-          '<button class="pchoice" data-k="dare" style="background:#ff4fc3">' + esc(S.dareLabel || 'DARE') + '<br><small>' + esc(S.dareSub || '') + '</small></button></div>' +
-          '<p class="pnote">Truth: write your answer, then say it out loud. Dare: say it before the time is up.</p>';
-        body.innerHTML = h;
-        body.querySelectorAll('[data-k]').forEach(function (b) { b.onclick = function () { if (draw(b.getAttribute('data-k'))) { st.phase = 'card'; WU.sound.slam(); render(); } }; });
-        ctx.actions([]); return;
-      }
-      var isT = st.kind === 'truth', it = st.it;
-      h += '<div class="prow"><span class="ptag" style="background:' + (isT ? '#3d6bff;color:#fff' : '#ff4fc3') + '">' + esc(isT ? S.truthLabel || 'TRUTH' : S.dareLabel || 'DARE') + '</span><span class="pcount">' + secs() + 's</span></div>' +
-        '<div class="pbarwrap"></div><div class="mbig">' + esc(it.text) + '</div>';
-      if (st.phase === 'card') {
-        if (isT) {
-          if (S.frameShow !== false) h += frameHTML(it.frame || S.frame);
-          body.innerHTML = h; body.querySelector('.pbarwrap').appendChild(barEl);
-          box(body, st, 'Your answer');
-          bar.start(secs(), function () { WU.sound.buzzer(); });
-          ctx.actions([{ label: 'Done', on: function () { if (words(st.typed) < 4) { P.toast('Say a bit more: 4 words or more.'); return; } st.phase = 'after'; ctx.score(true); WU.sound.ding(); render(); } }]);
-        } else {
-          h += '<p class="pnote big">Say it out loud, now!</p>';
-          body.innerHTML = h; body.querySelector('.pbarwrap').appendChild(barEl);
-          bar.start(secs(), function () { WU.sound.buzzer(); });
-          ctx.actions([{ label: 'Skip', alt: true, on: function () { st.phase = 'after'; st.skipped = true; ctx.score(false); render(); } },
-            { label: 'I did it!', on: function () { st.phase = 'after'; st.skipped = false; ctx.score(true); WU.sound.ding(); render(); } }]);
-        }
-        return;
-      }
-      if (isT) h += '<div class="pbanner ok">Nice!</div><div class="pans small">' + esc(st.typed) + '</div><p class="pnote">Now say it out loud. Then think: what would a classmate ask you next?</p>';
-      else h += '<div class="pbanner ' + (st.skipped ? 'no">Next time!' : 'ok">Well done!') + '</div>';
-      body.innerHTML = h;
-      ctx.actions([{ label: 'Next turn', on: start }]);
-    }
-    return {
-      mount: function (b, c) { body = b; ctx = c; barEl = document.createElement('div'); bar = P.bar(barEl); start(); },
-      unmount: function () { if (bar) bar.stop(); body = ctx = st = bar = null; }
-    };
-  })();
 
   /* ======================= JUST A MINUTE (solo: talk, then check yourself) ======================= */
   P.games.minute = (function () {

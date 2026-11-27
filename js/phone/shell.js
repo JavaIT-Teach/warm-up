@@ -43,7 +43,6 @@
     slot: 'Spin a topic. Talk about it until the time is up.',
     lostword: 'Someone forgot a word. Which one? Then say it your way.',
     replies: 'Someone says something. Pick the best reply, fast.',
-    truth: 'Truth: write your answer. Dare: say it before the time is up.',
     minute: 'Talk about a topic until the time is up. Then check yourself.'
   };
 
