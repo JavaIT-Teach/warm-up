@@ -40,8 +40,6 @@ WU.content.games = [
     preview: ['EXPLAIN', 'GUESS', '+1', 'SKIP'] },
   { id: 'sentence', skills: ['grammar', 'writing'], name: 'Sentence Train', hook: 'Mixed-up words. Put every word in the right carriage!', trains: 'Word order · negatives · questions · long sentences', color: '#ff5a1f', added: '2026-11-23',
     preview: ['WHO', '+ DOES', '+ WHAT'] },
-  { id: 'truth', skills: ['speaking'], name: 'Truth or Dare', hook: 'Answer about you, or take a speaking dare.', trains: 'Talking about yourself · follow-up questions', color: '#ff4fc3', added: '2026-11-24',
-    preview: ['TRUTH', 'OR', 'DARE?'] },
   { id: 'minute', skills: ['speaking'], name: 'Just a Minute', hook: "Talk without stopping. The class shouts 'Challenge!'", trains: 'Fluency · no hesitation, no repetition', color: '#ff5a1f', added: '2026-11-24',
     levels: [2, 6], preview: ['0:60', 'UMM...', 'CHALLENGE!'] },
   { id: 'roleplay', skills: ['speaking'], name: 'Role Play', hook: 'One scene. Everyone in the group plays a different role.', trains: 'Functional language · negotiating · staying in role', color: '#3d6bff', added: '2026-11-27',

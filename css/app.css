@@ -1512,7 +1512,7 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .qr-panel .btn { font-size: 36px; padding: 12px 24px; background: #fff; }
 .qr-panel .btn .key { font-size: 26px; padding: 4px 14px; }
 
-/* ---------- Party games: Truth or Dare, Just a Minute (shared layout .ptg) ---------- */
+/* ---------- Party game: Just a Minute (layout .ptg) ---------- */
 .ptg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .ptg .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
 .ptg .phead { position: absolute; left: 70px; right: 70px; top: 145px; display: flex; align-items: center; gap: 26px; }
@@ -1523,8 +1523,6 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .parrow { font-family: var(--display); font-size: 54px; }
 .ptg .pcard { position: absolute; left: 70px; right: 70px; top: 232px; height: 370px; display: flex; align-items: center; gap: 40px; padding: 24px 44px; background: #fff; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
 .ptg.side .pcard, .ptg.side .pbot { right: 560px; }
-.ptg .pcard.truth { background: #dfe7ff; }
-.ptg .pcard.dare { background: #ffe1f4; }
 .ptg .pcard.lit { box-shadow: 14px 14px 0 var(--yellow), 14px 14px 0 6px var(--ink); }
 .ptg .ppic { flex: none; width: 270px; height: 270px; }
 .ptg .ptext { flex: 1 1 auto; min-width: 0; max-height: 320px; font-family: var(--display); font-size: 110px; line-height: 1.04; letter-spacing: -0.03em; overflow: hidden; }
@@ -1537,15 +1535,6 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .brow { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
 .ptg .pside { position: absolute; right: 70px; top: 232px; width: 440px; bottom: 100px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
 .ptg .pstat { padding: 6px 22px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 40px; text-align: center; }
-/* Truth or Dare: the two doors */
-.ptg .tdoors { position: absolute; left: 70px; right: 70px; top: 232px; height: 370px; display: flex; gap: 60px; }
-.ptg .tdoor { flex: 1 1 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; padding: 24px 44px; border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); cursor: pointer; }
-.ptg .tdoor b { font-family: var(--display); font-weight: normal; font-size: 150px; line-height: .95; letter-spacing: -0.04em; }
-.ptg .tdoor span { font-size: 42px; font-weight: 800; }
-.ptg .tdoor .key { align-self: flex-start; font-size: 36px; }
-.ptg .tdoor.t { background: var(--blue); color: #fff; }
-.ptg .tdoor.d { background: var(--pink); }
-.ptg .swap { padding: 4px 22px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 44px; animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
 /* Fair / not fair buttons (Just a Minute) */
 .ptg .yn { display: flex; gap: 30px; }
 .ptg .yn .btn { font-size: 46px; }
@@ -1557,7 +1546,7 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .chal .btn small { font-family: inherit; font-size: 24px; font-weight: 700; font-family: Arial, sans-serif; }
 .ptg .chal .btn.on { background: var(--orange); }
 .ptg .bigmsg { padding: 8px 30px; background: var(--orange); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); font-family: var(--display); font-size: 90px; line-height: 1; transform: rotate(-2deg); animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
-.calm .ptg .swap, .calm .ptg .flash, .calm .ptg .bigmsg { animation: none; }
+.calm .ptg .flash, .calm .ptg .bigmsg { animation: none; }
 .ptg.side .pcard { height: 300px; }
 .ptg.side .pbot { top: 572px; }
 .ptg.side .ptext { max-height: 250px; }

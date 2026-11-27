@@ -75,7 +75,7 @@ Games that need a group become pass-the-phone games (Elias, Hot Seat: the player
 sentence frame into gap boxes the student fills.
 Phone screens for the weekly games (Story Shuffle, Lost Vowels...) are in `js/phone/games-weekly.js`.
 Sentence Train's phone screen is `js/phone/games-sentence.js`; it uses the board game's parser and jobs through `WU.engines.sentence`.
-The party games' phone screens (Truth or Dare, Just a Minute) are in `js/phone/games-party.js`. Role Play's phone screen (pass the phone, secret roles) is `js/phone/games-roleplay.js`; it reads roles and phrases through `WU.engines.roleplay`. The board layout is `.rpg` in `css/app.css`. The two board games share one layout, `.ptg` in `css/app.css` (`.side` puts the timer column on the right).
+Just a Minute's phone screen is in `js/phone/games-party.js`; its board layout is `.ptg` in `css/app.css` (`.side` puts the timer column on the right). Role Play's phone screen (pass the phone, secret roles) is `js/phone/games-roleplay.js`; it reads roles and phrases through `WU.engines.roleplay`. The board layout is `.rpg` in `css/app.css`.
 The phone home list has search (name, phone text, hook, trains, skills, unit), a sort (Suggested = new first, A to Z, Newest by `added`)
 and skill chips (`WU.SKILLS`). Sort and skill are saved on the phone; games for other levels always go last.
 
