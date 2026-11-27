@@ -1565,3 +1565,52 @@ body.editing .home .tile .fit { transform: rotate(-1.5deg); }
 .ptg .pside .yn { flex-direction: column; gap: 18px; align-self: stretch; }
 .ptg .pside .yn .btn { font-size: 42px; }
 .ptg.side .frame.small { font-size: 32px; }
+
+/* ---------- Role Play (.rpg) ---------- */
+.rpg { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.rpg .layer { position: absolute; left: 0; top: 0; right: 0; bottom: 0; }
+.rpg .rp-top { position: absolute; left: 70px; right: 70px; top: 130px; height: 175px; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
+.rpg .rp-trow { display: flex; align-items: center; gap: 26px; min-width: 0; }
+.rpg .rp-trow > .chip-label { flex: none; }
+.rpg .rp-title { flex: 1 1 auto; min-width: 0; height: 92px; display: flex; align-items: center; font-family: var(--display); font-size: 76px; line-height: 1; letter-spacing: -0.03em; overflow: hidden; white-space: nowrap; }
+.rpg .demo { flex: none; padding: 6px 20px; background: var(--pink); border: 4px solid var(--ink); box-shadow: 6px 6px 0 var(--ink); font-family: var(--display); font-size: 36px; transform: rotate(-2deg); }
+.rpg .rp-set { font-size: 36px; font-weight: 800; line-height: 1.15; max-height: 84px; overflow: hidden; }
+.rpg .rp-twist { position: absolute; left: 60px; right: 60px; top: 138px; height: 150px; z-index: 3; display: flex; align-items: center; gap: 30px; padding: 10px 36px; background: var(--orange); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); transform: rotate(-.5deg); }
+.rpg .rp-twist.new { animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.rpg .rp-tl { flex: none; padding: 4px 20px; background: var(--ink); color: var(--yellow); font-family: var(--display); font-size: 52px; }
+.rpg .rp-tt { flex: 1 1 auto; min-width: 0; max-height: 136px; overflow: hidden; font-family: var(--display); font-size: 48px; line-height: 1.08; }
+.rpg .rp-roles { position: absolute; left: 70px; right: 70px; top: 330px; height: 350px; display: flex; gap: 34px; }
+.rpg .rp-role { position: relative; flex: 1 1 0; min-width: 0; display: flex; flex-direction: column; gap: 10px; padding: 46px 28px 24px; border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); }
+.rpg .rp-num { position: absolute; left: 22px; top: -26px; padding: 2px 16px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 32px; }
+.rpg .rp-name { flex: none; max-height: 112px; font-family: var(--display); font-size: 52px; line-height: 1.02; letter-spacing: -0.02em; overflow: hidden; }
+.rpg .rp-glab { font-size: 22px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; opacity: .75; }
+.rpg .rp-goal { flex: 1 1 auto; min-height: 0; font-size: 34px; font-weight: 800; line-height: 1.15; overflow: hidden; }
+.rpg .rp-bot { position: absolute; left: 70px; right: 70px; top: 722px; bottom: 92px; display: flex; align-items: center; gap: 30px; }
+.rpg .rp-info { flex: 1 1 auto; min-width: 0; display: flex; flex-direction: column; justify-content: center; align-items: flex-start; gap: 14px; }
+.rpg .rp-tslot { flex: none; width: 250px; display: flex; justify-content: center; }
+.rpg .brow { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+.rpg .rule { font-size: 34px; font-weight: 800; line-height: 1.15; }
+.rpg .rp-q { font-size: 40px; font-weight: 800; line-height: 1.15; }
+.rpg .pstat { padding: 6px 22px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 40px; }
+.rpg .pname { padding: 2px 26px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 60px; line-height: 1.15; }
+.rpg .pbig { font-family: var(--display); font-size: 52px; line-height: 1.05; }
+.rpg .bigmsg { padding: 8px 30px; background: var(--orange); border: 6px solid var(--ink); box-shadow: 12px 12px 0 var(--ink); font-family: var(--display); font-size: 90px; line-height: 1; transform: rotate(-2deg); animation: wu-slam2 .45s cubic-bezier(.2, .9, .3, 1.2) both; }
+.rpg .bigmsg.sm { font-size: 60px; padding: 4px 24px; box-shadow: 8px 8px 0 var(--ink); }
+.rpg .rp-cast { display: flex; align-items: center; gap: 18px; font-size: 34px; font-weight: 800; line-height: 1.15; }
+.rpg .rp-cast > .chip-label { flex: none; }
+.rpg .rp-cast b { background: var(--yellow); padding: 0 8px; }
+.rpg .rp-phr { display: flex; align-items: center; gap: 12px 14px; flex-wrap: wrap; max-height: 124px; overflow: hidden; padding: 0 6px 6px 0; }
+.rpg .rp-p { padding: 3px 14px; background: #fff; border: 4px solid var(--ink); box-shadow: 5px 5px 0 var(--ink); font-size: 28px; font-weight: 800; white-space: nowrap; }
+.rpg .rp-p .gap { display: inline-block; width: 70px; height: 4px; margin: 0 6px; background: var(--ink); vertical-align: middle; }
+.rpg .rp-sec { position: absolute; left: 0; right: 0; top: 104px; bottom: 80px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 22px; padding: 0 120px; text-align: center; }
+.rpg .rp-sec.done { background: var(--paper); gap: 50px; }
+.rpg .rp-stitle { font-family: var(--display); font-size: 130px; line-height: 1; letter-spacing: -0.04em; }
+.rpg .rp-sname { padding: 2px 26px; background: var(--ink); color: #fff; font-family: var(--display); font-size: 54px; }
+.rpg .rp-eyes { font-size: 46px; font-weight: 800; }
+.rpg .rp-scard { position: relative; align-self: stretch; height: 300px; display: flex; align-items: center; justify-content: center; padding: 30px 50px; margin-top: 20px; background: #fff; color: var(--ink); border: 6px solid var(--ink); box-shadow: 14px 14px 0 var(--ink); }
+.rpg .rp-scard .ptag { position: absolute; left: 30px; top: -30px; padding: 2px 18px; border: 4px solid var(--ink); font-family: var(--display); font-size: 36px; background: var(--yellow); }
+.rpg .rp-stext { width: 100%; max-height: 240px; overflow: hidden; font-family: var(--display); font-size: 84px; line-height: 1.05; }
+.rpg .rp-sbar { align-self: stretch; height: 18px; border: 4px solid var(--ink); background: #fff; }
+.rpg .rp-sbar i { display: block; height: 100%; width: 100%; background: var(--ink); transform-origin: left; animation: rp-shrink linear forwards; }
+@keyframes rp-shrink { from { transform: scaleX(1) } to { transform: scaleX(0) } }
+.calm .rpg .rp-twist.new, .calm .rpg .bigmsg { animation: none; }
