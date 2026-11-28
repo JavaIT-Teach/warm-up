@@ -224,6 +224,12 @@ On phones: tap the lines in order, then Check.
 Edit mode: the words, clues, pictures; Screen text & timing: words per round, writing time, clues and pictures on / off.
 On phones: one word at a time, type it, Check.
 
+**Mistake Detective** (Reading + Writing + Grammar · Beginner to Intermediate). A short text from your last units hides 3 or 4 mistakes, the ones your groups make in class ("He drive a lorry", "the most biggest"). Pairs read it and write the right sentences on paper before the time bar runs out. Then the class calls out a line: **↑ / ↓** choose it, **Enter** (or tap it) checks it: FOUND! with the correction, or NO MISTAKE!. **Space** reveals the next mistake. When all are found, a picked student reads the whole text correctly. **A** every mistake, **N** other text, **P** other student.
+Edit mode: title, unit, up to 6 lines; mark a mistake as [wrong|right]: "He [drive|drives] a lorry." On phones: tap the lines with a mistake, Check.
+
+**Clue by Clue** (Reading + Vocabulary · Beginner to Intermediate). A word from your last units hides behind five written clues, hardest first ("It's a job." ... "This person grows food."). **Space** shows the next clue and the points drop (5, 4, 3...). The class shouts guesses: **Enter** = guessed (or, with teams, **1–4** = that team guessed and gets the points); **X** = wrong guess, the next clue appears. After the last clue, Space shows the answer. Then everyone writes the word and checks the spelling. **N** other word. Pictures with the answer at Beginner and Elementary.
+On phones: type the word; wrong = another clue.
+
 **Teams:** turn them on in Settings. Keys **1–4** add a point, **Shift + 1–4** remove one, **S** shows or hides the board. The small board shows colours and scores; **+** on the board shows the team names.
 
 ## Teacher screen (your laptop)

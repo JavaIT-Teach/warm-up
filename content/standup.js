@@ -31,7 +31,11 @@ WU.content.standup = [
       { id: "a1-s-stand-up-if-you-like-rain", text: "Stand up if you like rain.", pic: "rain", follow: "In the rain, I ___." },
       { id: "a1-s-walk-the-dog-u10", text: "Stand up if you walk the dog.", pic: "dog", follow: "My dog is ___." },
       { id: "a1-s-always-breakfast-u11", text: "Stand up if you always have breakfast.", pic: "egg", follow: "I have ___ for breakfast." },
-      { id: "a1-s-like-watching-tv-u9", text: "Stand up if you like watching TV.", pic: "TV", follow: "I like watching ___." }
+      { id: "a1-s-like-watching-tv-u9", text: "Stand up if you like watching TV.", pic: "TV", follow: "I like watching ___." },
+      { id: "a1-s-often-send-texts-u11", text: "Stand up if you often send texts.", pic: "phone", follow: "I send texts to ___." },
+      { id: "a1-s-have-laptop-u11", text: "Stand up if you have a laptop.", pic: "computer", follow: "I ___ on my laptop." },
+      { id: "a1-s-like-concerts-u11", text: "Stand up if you like concerts.", pic: "microphone", follow: "My favourite band is ___." },
+      { id: "a1-s-sugar-in-tea-u12", text: "Stand up if you have sugar in your tea.", pic: "tea", follow: "I have ___ in my tea." }
     ]
   },
   /* ---------- 1. Elementary (A2) ---------- */
@@ -59,7 +63,11 @@ WU.content.standup = [
       { id: "a2-s-stand-up-if-you-went-to", text: "Stand up if you went to bed late yesterday.", pic: "bed", follow: "I went to bed at ___." },
       { id: "a2-s-wearing-bright-u9", text: "Stand up if you are wearing something bright.", pic: "c-yellow", follow: "I'm wearing a bright ___ ___." },
       { id: "a2-s-bought-online-u10", text: "Stand up if you bought something online last month.", pic: "computer", follow: "I bought ___ online." },
-      { id: "a2-s-favourite-place-home-u8", text: "Stand up if you have a favourite place in your home.", pic: "house", follow: "My favourite place is ___ because ___." }
+      { id: "a2-s-favourite-place-home-u8", text: "Stand up if you have a favourite place in your home.", pic: "house", follow: "My favourite place is ___ because ___." },
+      { id: "a2-s-ate-out-weekend-u11", text: "Stand up if you ate out last weekend.", pic: "pizza", follow: "I went to ___. I had ___." },
+      { id: "a2-s-like-street-food-u11", text: "Stand up if you like street food.", pic: "hot dog", follow: "My favourite street food is ___." },
+      { id: "a2-s-headphones-today-u12", text: "Stand up if you have got headphones with you today.", pic: "phone", follow: "I use them to listen to ___." },
+      { id: "a2-s-games-console-u12", text: "Stand up if you have a games console at home.", pic: "a-games", follow: "The best game is ___ because ___." }
     ]
   },
   /* ---------- 2. Pre-Intermediate (A2+) ---------- */
@@ -85,7 +93,11 @@ WU.content.standup = [
       { id: "a2p-s-stand-up-if-you-can-cook", text: "Stand up if you can cook a dish from another country.", pic: "a-cook", follow: "I can cook ___. It comes from ___." },
       { id: "a2p-s-vegetarian-dish-u10", text: "Stand up if you have eaten vegetarian food this week.", pic: "broccoli", follow: "I ate ___. It tasted ___." },
       { id: "a2p-s-going-to-sport-u11", text: "Stand up if you are going to do some sport this weekend.", pic: "sport", follow: "I'm going to ___ on ___." },
-      { id: "a2p-s-seen-wild-animal-u12", text: "Stand up if you have seen a wild animal outside a zoo.", pic: "tree", follow: "I saw a ___ in ___. It was ___." }
+      { id: "a2p-s-seen-wild-animal-u12", text: "Stand up if you have seen a wild animal outside a zoo.", pic: "tree", follow: "I saw a ___ in ___. It was ___." },
+      { id: "a2p-s-exhausted-today-u13", text: "Stand up if you feel exhausted today.", pic: "bed", follow: "I'm exhausted because ___." },
+      { id: "a2p-s-already-homework-u13", text: "Stand up if you have already done your homework for the next lesson.", pic: "book", follow: "I've already ___, but I haven't ___ yet." },
+      { id: "a2p-s-fan-reality-shows-u14", text: "Stand up if you are a big fan of reality shows.", pic: "TV", follow: "I'm a big fan of ___ because ___." },
+      { id: "a2p-s-cant-stand-horror-u14", text: "Stand up if you can't stand horror films.", pic: "moon", follow: "I can't stand them because ___." }
     ]
   },
   /* ---------- 3. Intermediate (B1) ---------- */
@@ -111,7 +123,11 @@ WU.content.standup = [
       { id: "b1-s-stand-up-if-you-have-changed", text: "Stand up if you have changed your mind about something recently.", pic: "heart", follow: "I used to think ___, but now I think ___." },
       { id: "b1-s-travelled-abroad-u12", text: "Stand up if you have travelled abroad.", pic: "plane", follow: "I went to ___. I had never ___ before." },
       { id: "b1-s-school-let-phone-u12", text: "Stand up if your school lets you use your phone in class.", pic: "phone", follow: "They let us ___, but they make us ___." },
-      { id: "b1-s-airport-early-u12", text: "Stand up if you always get to the airport very early.", pic: "plane", follow: "I usually get there ___ before my flight because ___." }
+      { id: "b1-s-airport-early-u12", text: "Stand up if you always get to the airport very early.", pic: "plane", follow: "I usually get there ___ before my flight because ___." },
+      { id: "b1-s-posted-photo-week-u13", text: "Stand up if you have posted a photo this week.", pic: "camera", follow: "I posted a photo of ___ and ___ liked it." },
+      { id: "b1-s-blocked-someone-u13", text: "Stand up if you have ever blocked someone on social media.", pic: "phone", follow: "I blocked them because ___." },
+      { id: "b1-s-read-reviews-u13", text: "Stand up if you always read reviews before you buy something.", pic: "computer", follow: "The last review I read was about ___." },
+      { id: "b1-s-can-bake-u14", text: "Stand up if you can bake a cake.", pic: "cake", follow: "The last thing I baked was ___. It was ___." }
     ]
   },
   /* ---------- 4. IELTS 1 (B2) ---------- */

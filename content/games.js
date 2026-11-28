@@ -53,6 +53,10 @@ WU.content.games = [
     unit: ['Unit 10 · Things We Do', 'Unit 10 · Buying Things', 'Unit 12 · Incredible Wildlife', 'Unit 12 · Getting Around'], levels: [0, 3], preview: ['C', 'A', 'D', 'B', 'IN ORDER!'] },
   { id: 'vowels', skills: ['writing', 'vocab'], name: 'Lost Vowels', hook: 'The vowels are gone. Write the whole words!', trains: 'Spelling · words from your units', color: '#ff4fc3', added: '2026-11-21',
     unit: ['Unit 10 · Things We Do', 'Unit 10 · Buying Things', 'Unit 12 · Incredible Wildlife', 'Unit 12 · Getting Around'], levels: [0, 3], preview: ['W_DN_SD_Y', 'A E I O U', 'WEDNESDAY'] },
+  { id: 'detective', skills: ['reading', 'writing', 'grammar'], name: 'Mistake Detective', hook: 'The text has mistakes. Find them. Write it right!', trains: 'Reading carefully · correcting mistakes · grammar from your units', color: '#ff3b3b', added: '2026-11-28',
+    unit: ['Unit 12 · Working Life', 'Unit 11 · Eating Out', 'Unit 13 · Mixed Feelings', 'Unit 13 · #NoFilter'], levels: [0, 3], preview: ['FIND', '3 MISTAKES', 'FOUND!'] },
+  { id: 'clues', skills: ['reading', 'vocab'], name: 'Clue by Clue', hook: 'Read the clues. Guess early for more points!', trains: 'Reading clues · words from your units', color: '#ffe600', added: '2026-11-28',
+    unit: ['Unit 12 · Working Life', 'Unit 12 · The Latest Technology', 'Unit 14 · On Screen', "Unit 14 · Let's Cook!"], levels: [0, 3], preview: ['CLUE 1', 'CLUE 2', '5 POINTS', '?'] },
   /* ---------- Grammar games: one grammar point each (in the Grammar menu) ---------- */
   { id: 'articles', skills: ['grammar'], grammar: true, name: 'Article Showdown', hook: '3, 2, 1... fingers up: a, an, the or nothing?', trains: 'Articles: a / an / the / no article', color: '#c6ff00' },
   { id: 'flash', skills: ['grammar'], grammar: true, name: 'Flash Room', hook: "Look fast. It's gone. What was there?", trains: 'There is / There are · was / were', color: '#00e5c7', levels: [0, 3] },

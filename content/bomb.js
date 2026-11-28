@@ -144,7 +144,10 @@ WU.content.bomb = [
       { id: "a2-sense-things-that-smell-bad", name: "Things that smell bad" },
       { id: "a2-things-made-of-leather-u9", name: "Things made of leather" },
       { id: "a2-things-made-of-plastic-u9", name: "Things made of plastic" },
-      { id: "a2-things-in-a-wallet-u10", name: "Things in a wallet or a purse" }
+      { id: "a2-things-in-a-wallet-u10", name: "Things in a wallet or a purse" },
+      { id: "a2-street-food-u11", name: "Street food" },
+      { id: "a2-bowl-glass-bottle-u11", name: "Things in a bowl, a glass or a bottle" },
+      { id: "a2-technology-u12", name: "Technology at home (laptop...)" }
     ],
     first: [
       { id: "a2-first-things-you-like", name: "Things you like" },
@@ -226,7 +229,10 @@ WU.content.bomb = [
       { id: "a2p-sense-things-that-smell-nice", name: "Things that smell nice" },
       { id: "a2p-insects-u12", name: "Insects" },
       { id: "a2p-dangerous-animals-u12", name: "Animals that can be dangerous" },
-      { id: "a2p-ways-to-keep-fit-u11", name: "Ways to keep fit" }
+      { id: "a2p-ways-to-keep-fit-u11", name: "Ways to keep fit" },
+      { id: "a2p-feelings-adjectives-u13", name: "Adjectives for feelings (proud...)" },
+      { id: "a2p-tv-film-genres-u14", name: "TV and film genres" },
+      { id: "a2p-things-people-put-off-u13", name: "Things people put off doing" }
     ],
     first: [
       { id: "a2p-first-places-you-have-visited", name: "Places you have visited" },
@@ -307,7 +313,10 @@ WU.content.bomb = [
       { id: "b1-sense-sounds-that-annoy-you", name: "Sounds that annoy you" },
       { id: "b1-ways-to-travel-u12", name: "Ways to travel" },
       { id: "b1-before-a-flight-u12", name: "Things you need to do before a flight" },
-      { id: "b1-compound-nouns-school-u11", name: "Compound nouns with school (school bus...)" }
+      { id: "b1-compound-nouns-school-u11", name: "Compound nouns with school (school bus...)" },
+      { id: "b1-social-media-verbs-u13", name: "Things you can do on social media" },
+      { id: "b1-cooking-verbs-u14", name: "Verbs for cooking" },
+      { id: "b1-phrases-with-in-u13", name: "Phrases with in (in fact...)" }
     ],
     first: [
       { id: "b1-first-things-you-used-to-love-as", name: "Things you used to love as a child" },

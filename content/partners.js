@@ -11,6 +11,11 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
 WU.content.partners = [
   /* 0. Beginner (A1): verb + picture partners. [phrase, picture id] = the tile shows that picture. */
   { words: [
+    /* Weekly words (2026-11-28): taught units (Unit 11 My Digital Life, Unit 12 Working Life). */
+    { id: 'wk0-1128-work', word: 'work', unit: 'Unit 12 · Working Life', added: '2026-11-28', p: [['work in a hospital', 'hospital'], ['work on a farm', 'farm'], ['work in a café', 'coffee'], ['work in a shop', 'shop'], ['work at home', 'house'], ['work in a school', 'school']], question: 'Where do people in your family work?', trap: 'work in a farm' },
+    { id: 'wk0-1128-drive', word: 'drive', unit: 'Unit 12 · Working Life', added: '2026-11-28', p: [['drive a lorry', 'truck'], ['drive a taxi', 'taxi'], ['drive a bus', 'bus'], ['drive a car', 'car'], ['drive to the beach', 'beach'], ['drive home', 'house']], question: 'Can you drive? Who drives in your family?', trap: 'drive a bike' },
+    { id: 'wk0-1128-watch', word: 'watch', unit: 'Unit 11 · My Digital Life', added: '2026-11-28', p: [['watch TV', 'TV'], ['watch football', 'football'], ['watch tennis', 'tennis'], ['watch a concert', 'microphone'], ['watch basketball', 'basketball'], ['watch films', 'computer']], question: 'What do you often watch?', trap: 'look TV' },
+    { id: 'wk0-1128-send', word: 'send', unit: 'Unit 11 · My Digital Life', added: '2026-11-28', p: [['send a text', 'phone'], ['send an email', 'computer'], ['send a photo', 'camera'], ['send a present', 'present'], ['send money', 'money'], ['send a song', 'a-sing']], question: 'How many texts do you send in a day?', trap: 'send to me a text' },
     /* Weekly words (2026-11-21): taught units (Unit 10 Things We Do, Unit 11 My Digital Life). */
     { id: 'wk0-1121-walk', word: 'walk', unit: 'Unit 10 · Things We Do', added: '2026-11-21', p: [['walk the dog', 'dog'], ['walk to school', 'school'], ['walk in the park', 'park'], ['walk home', 'house'], ['walk on the beach', 'beach'], ['walk with friends', 'friends']], question: 'Do you walk to school or work?', trap: 'walk to home' },
     { id: 'wk0-1121-feed', word: 'feed', unit: 'Unit 10 · Things We Do', added: '2026-11-21', p: [['feed the cat', 'cat'], ['feed the dog', 'dog'], ['feed the fish', 'fish'], ['feed the birds', 'bird'], ['feed the baby', 'baby'], ['feed the chickens', 'chicken']], question: 'Do you feed a pet at home?', trap: 'feed to the cat' },
@@ -31,6 +36,11 @@ WU.content.partners = [
   ] },
   /* 1. Elementary (A2): picture partners too. */
   { words: [
+    /* Weekly words (2026-11-28): taught units (Unit 11 Eating Out, Unit 12 The Latest Technology). */
+    { id: 'wk1-1128-eat', word: 'eat', unit: 'Unit 11 · Eating Out', added: '2026-11-28', p: [['eat out', 'chef'], ['eat fast food', 'burger'], ['eat fresh vegetables', 'carrot'], ['eat street food', 'hot dog'], ['eat healthy food', 'apple'], ['eat dessert', 'cake']], question: 'How often do you eat out? Where do you go?', trap: 'eat a fast food' },
+    { id: 'wk1-1128-order', word: 'order', unit: 'Unit 11 · Eating Out', added: '2026-11-28', p: [['order a pizza', 'pizza'], ['order a drink', 'cola'], ['order a dessert', 'ice cream'], ['order noodles', 'noodles'], ['order soup', 'soup'], ['order a sandwich', 'sandwich']], question: 'What do you usually order in a café?', trap: 'order pizza to home' },
+    { id: 'wk1-1128-slice', word: 'slice', unit: 'Unit 11 · Eating Out', added: '2026-11-28', p: [['a slice of [pizza]', 'pizza'], ['a slice of [cake]', 'cake'], ['a slice of [bread]', 'bread'], ['a slice of [cheese]', 'cheese'], ['a slice of [lemon]', 'lemon'], ['a slice of [watermelon]', 'watermelon']], question: 'What do you like better: a slice of pizza or a slice of cake?', trap: 'a cut of pizza' },
+    { id: 'wk1-1128-bowl', word: 'bowl', unit: 'Unit 11 · Eating Out', added: '2026-11-28', p: [['a bowl of [ice cream]', 'ice cream'], ['a bowl of [soup]', 'soup'], ['a bowl of [rice]', 'rice'], ['a bowl of [noodles]', 'noodles'], ['a bowl of [strawberries]', 'strawberry'], ['a bowl of [grapes]', 'grapes']], question: 'What did you have for dinner yesterday?', trap: 'a plate of soup' },
     /* Weekly words (2026-11-21): taught units (Unit 8 Favourite Places, Unit 10 Buying Things). */
     { id: 'wk1-1121-buy', word: 'buy', unit: 'Unit 10 · Buying Things', added: '2026-11-21', p: [['buy a present', 'present'], ['buy clothes', 'T-shirt'], ['buy online', 'computer'], ['buy food', 'bread'], ['buy shoes', 'shoes'], ['buy a phone', 'phone']], question: 'What do you buy online?', trap: 'buy in internet' },
     { id: 'wk1-1121-shop', word: 'shop', unit: 'Unit 10 · Buying Things', added: '2026-11-21', p: [['a clothes shop', 'T-shirt'], ['a shoe shop', 'shoes'], ['a sports shop', 'football'], ['a flower shop', 'flower'], ['a toy shop', 'teddy bear'], ['a cake shop', 'cake']], question: 'What is your favourite shop in your town? Why?', trap: 'a shop of clothes' },
@@ -52,6 +62,11 @@ WU.content.partners = [
   ] },
   /* 2. Pre-Intermediate (A2+) */
   { words: [
+    /* Weekly words (2026-11-28): taught units (Unit 13 Mixed Feelings, Unit 14 On Screen). */
+    { id: 'wk2-1128-scared', word: 'scared', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28', p: ['scared of spiders', 'scared of the dark', 'feel scared', 'too scared to move', 'get scared', 'really scared'], question: 'What are you scared of? Why?', trap: 'scared from spiders' },
+    { id: 'wk2-1128-proud', word: 'proud', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28', p: ['proud of myself', 'proud of you', 'feel proud', 'make your parents proud', 'really proud', 'proud of my team'], question: 'When did you last feel proud of yourself?', trap: 'proud with you' },
+    { id: 'wk2-1128-film', word: 'film', unit: 'Unit 14 · On Screen', added: '2026-11-28', p: ['a horror film', 'a science fiction film', 'watch a film', 'a film extra', 'appear in a film', 'a film director'], question: 'What kind of film do you never watch? Why?', trap: 'look a film' },
+    { id: 'wk2-1128-show', word: 'show', unit: 'Unit 14 · On Screen', added: '2026-11-28', p: ['a chat show', 'a reality show', 'a TV show', 'watch a show', 'appear on a show', 'my favourite show'], question: 'Which TV show are you a big fan of?', trap: 'a show of reality' },
     /* Weekly words (2026-11-21): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). */
     { id: 'wk2-1121-animal', word: 'animal', unit: 'Unit 12 · Incredible Wildlife', added: '2026-11-21', p: ['a wild animal', 'a dangerous animal', 'a harmless animal', 'a farm animal', 'a weird animal', 'animals at work'], question: 'Which wild animal would you like to see? Why?', trap: 'a house animal' },
     { id: 'wk2-1121-feel', word: 'feel', unit: 'Unit 11 · A Healthy Future', added: '2026-11-21', p: ['feel sick', 'feel ill', 'feel better', 'feel exhausted', 'feel tired', 'feel well'], question: 'What do you do when you feel ill?', trap: 'feel myself bad' },
@@ -73,6 +88,11 @@ WU.content.partners = [
   ] },
   /* 3. Intermediate (B1) */
   { words: [
+    /* Weekly words (2026-11-28): taught units (Unit 13 #NoFilter, Unit 14 Let's Cook!). */
+    { id: 'wk3-1128-photo', word: 'photo', unit: 'Unit 13 · #NoFilter', added: '2026-11-28', p: ['post a photo', 'share a photo', 'take a photo down', 'edit a photo', 'an airbrushed photo', 'tag someone in a photo'], question: 'Have you ever asked someone to take a photo down? Why?', trap: 'make a photo' },
+    { id: 'wk3-1128-post', word: 'post', unit: 'Unit 13 · #NoFilter', added: '2026-11-28', p: ['comment on a post', 'like a post', 'share a post', 'delete a post', 'a funny post', 'write a post'], question: 'What kind of posts do you like or share?', trap: 'comment a post' },
+    { id: 'wk3-1128-review', word: 'review', unit: 'Unit 13 · #NoFilter', added: '2026-11-28', p: ['write a review', 'an online review', 'a positive review', 'read reviews', 'a product review', 'a negative review'], question: 'Do you read reviews before you buy something? Why?', trap: 'make a review' },
+    { id: 'wk3-1128-meat', word: 'meat', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28', p: ['roast meat', 'grilled meat', 'fry meat', 'barbecue meat', 'raw meat', 'freeze meat'], question: 'How do people in your family usually cook meat?', trap: 'bake meat' },
     /* Weekly words (2026-11-21): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). */
     { id: 'wk3-1121-flight', word: 'flight', unit: 'Unit 12 · Getting Around', added: '2026-11-21', p: ['book a flight', 'catch a flight', 'miss a flight', 'a long-haul flight', 'a delayed flight', 'an early flight'], question: 'Tell us about a flight you remember.', trap: 'sit on a flight' },
     { id: 'wk3-1121-trip', word: 'trip', unit: 'Unit 12 · Getting Around', added: '2026-11-21', p: ['go on a trip', 'a school trip', 'a business trip', 'a road trip', 'plan a trip', 'a day trip'], question: 'Where would you like to go on a road trip?', trap: 'make a trip' },

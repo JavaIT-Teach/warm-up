@@ -14,8 +14,24 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
     /* ---------- 1. Elementary (A2): not made for this level ---------- */
     { words: [] },
     /* ---------- 2. Pre-Intermediate (A2+): everyday things, places, jobs ---------- */
-    /* Weekly words (2026-11-21): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). They play first for 14 days. */
+    /* Weekly words (2026-11-28): taught units (Unit 13 Mixed Feelings, Unit 14 On Screen). They play first for 14 days. */
     { words: [
+      { id: 'ewk2-1128-exhausted', text: 'exhausted', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-grateful', text: 'grateful', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-embarrassed', text: 'embarrassed', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-brave', text: 'brave', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-disappointed', text: 'disappointed', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-amazed', text: 'amazed', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-stressed', text: 'stressed', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-put-off', text: 'put off', unit: 'Unit 13 · Mixed Feelings', added: '2026-11-28' },
+      { id: 'ewk2-1128-documentary', text: 'documentary', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-soap-opera', text: 'soap opera', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-period-drama', text: 'period drama', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-chat-show', text: 'chat show', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-reality-show', text: 'reality show', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-horror-film', text: 'horror film', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      { id: 'ewk2-1128-animation', text: 'animation', unit: 'Unit 14 · On Screen', added: '2026-11-28' },
+      /* Weekly words (2026-11-21): taught units (Unit 10 Taste This!, Unit 11 A Healthy Future, Unit 12 Incredible Wildlife). They play first for 14 days. */
       { id: 'ewk2-1121-pineapple', text: 'pineapple', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
       { id: 'ewk2-1121-vegetarian', text: 'vegetarian', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
       { id: 'ewk2-1121-recipe', text: 'recipe', unit: 'Unit 10 · Taste This!', added: '2026-11-21' },
@@ -63,8 +79,24 @@ window.WU = window.WU || {}; WU.content = WU.content || {};
       ['tired', 'tired'], ['hungry', 'hungry'], ['angry', 'angry'], ['bored', 'bored'], ['scared', 'scared']
     ])) },
     /* ---------- 3. Intermediate (B1): work, travel, media, life events ---------- */
-    /* Weekly words (2026-11-21): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). They play first for 14 days. */
+    /* Weekly words (2026-11-28): taught units (Unit 13 #NoFilter, Unit 14 Let's Cook!). They play first for 14 days. */
     { words: [
+      { id: 'ewk3-1128-tag', text: 'tag', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-block', text: 'block', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-take-down', text: 'take down', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-follow', text: 'follow', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-airbrush', text: 'airbrush', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-body-image', text: 'body image', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-in-advance', text: 'in advance', unit: 'Unit 13 · #NoFilter', added: '2026-11-28' },
+      { id: 'ewk3-1128-roast', text: 'roast', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-bake', text: 'bake', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-steam', text: 'steam', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-stir', text: 'stir', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-freeze', text: 'freeze', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-stove', text: 'stove', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-stew', text: 'stew', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      { id: 'ewk3-1128-employee', text: 'employee', unit: 'Unit 14 · Let\'s Cook!', added: '2026-11-28' },
+      /* Weekly words (2026-11-21): taught units (Unit 10 Animals in Danger, Unit 11 Off to School, Unit 12 Getting Around). They play first for 14 days. */
       { id: 'ewk3-1121-jungle', text: 'jungle', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
       { id: 'ewk3-1121-population', text: 'population', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },
       { id: 'ewk3-1121-landscape', text: 'landscape', unit: 'Unit 10 · Animals in Danger', added: '2026-11-21' },

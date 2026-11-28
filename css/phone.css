@@ -413,3 +413,6 @@ body.phone button { color: var(--ink); }
 .stp-pat { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-top: 8px; }
 .stp-pat i { font-style: normal; font-weight: 900; }
 .stp-pat .ptag { border: 2px solid var(--ink); font-size: 11px; }
+/* Mistake Detective */
+.shp-line .mdw { color: #c4122f; text-decoration-thickness: 3px; }
+.shp-line .mdr { padding: 0 5px; background: var(--lime); border: 2px solid var(--ink); font-weight: 900; }
